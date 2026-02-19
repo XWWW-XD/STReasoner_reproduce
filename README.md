@@ -30,6 +30,7 @@
 
 ## 📰 News
 
+- **[2025/01/06]** Now supports Qwen3-4B, Qwen3-8B, and Qwen3-14B, and adds the MAPE metric during evaluation.
 - **[2025/01/06]** 🎉 Released full pipeline training code for STReasoner
 
 ---
@@ -88,7 +89,7 @@ python download_dataset.py
 ```bash
 python download_model.py --repo_id Qwen/Qwen3-8B
 cp -rf base_model/Config-Qwen3-8B/* base_model/Qwen3-8B/
-python initial_model.py
+python initial_model.py --model_path base_model/Qwen3-8B
 ```
 
 ### 2. Stage 1 & 2 (SFT)

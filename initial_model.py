@@ -1,3 +1,4 @@
+import argparse
 import torch
 from transformers import AutoModelForCausalLM, AutoProcessor
 import transformers
@@ -19,9 +20,28 @@ def initialize_ts_encoder(model):
     print("ts_encoder initialization complete.")
     return model
 
+def parse_args():
+    parser = argparse.ArgumentParser(description="Initialize ts_encoder weights for a model")
+    parser.add_argument(
+        "--repo_id",
+        type=str,
+        default="Qwen/Qwen3-14B",
+        help="Model repo id used to infer local path (e.g., Qwen/Qwen3-8B)",
+    )
+    parser.add_argument(
+        "--model_path",
+        type=str,
+        default=None,
+        help="Local path to model (e.g., base_model/Qwen3-8B). Overrides --repo_id.",
+    )
+    return parser.parse_args()
+
+
 def main():
+    args = parse_args()
+
     # Define the path to the model that needs to be initialized.
-    model_path = "base_model/Qwen3-8B"
+    model_path = args.model_path or f"base_model/{args.repo_id.split('/')[-1]}"
     
     # Check if the model path exists
     if not os.path.isdir(model_path):
