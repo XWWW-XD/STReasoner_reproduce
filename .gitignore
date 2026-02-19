@@ -1,0 +1,110 @@
+*.DS_Store
+*__pycache__
+evaluation/dataset/*
+config/datagen_config_bak.yaml
+!evaluation/dataset/.gitkeep
+result/
+labels/
+sensitive_info_result.txt
+.vscode/
+.env
+exp/
+exp_images/
+ckpt
+vllm_input.txt
+output
+batch_output
+batch_inputs
+batch_inputs_qa
+output_qa
+datasets
+test_data
+# data
+data/alignment
+data/reasoning
+data/reasoning_before_filter
+data/reasoning_image
+data/reasoning_text
+data/convert_to_image.py
+data/convert_to_text.py
+data/filter.py
+data/forecasting_qa.json
+data/list_files.json
+data/reasoning_qa.json
+data/ST-Bench
+outputs
+
+ChatTS
+ChatTS-Training
+bedrock_batch_inputs
+bedrock_batch_outputs
+*.safetensors
+Video-R1-rs
+Video-R1
+qwen-vl-utils
+transformers-main
+wandb
+transformers-main.zip
+filter_output.log
+Qwen2.5-7B-Instruct
+checkpoints
+Dockerfile*
+tmp_ts_images/
+run.sh
+
+# base model
+base_model/Qwen3-8B
+base_model/Qwen2.5-7B
+base_model/Qwen2.5-14B-Instruct
+base_model/Qwen3-4B-Instruct-2507
+base_model/Qwen3-14B
+base_model_for_inference
+causalrivers
+
+evaluation/evaluate_llm_as_judge.py
+evaluation/visualize_sample.py
+evaluation/run_llm_judge.sh
+
+
+data_generation/generate_file_list.py
+data_generation/generate_file_list.py
+data_generation/list_files.json
+
+claude.sh
+claude.py
+
+run.sh
+run_data.sh
+run_experiments.sh
+run_inference&evaluation.sh
+
+data_generation
+ragas
+react_agent.py
+spatial_effect.py
+train_rocket_tsc.py
+inference/config.py
+inference/inference_llm_agent.py
+inference/inference_llm_text_claude_cot.py
+inference/inference_llm_text_claude.py
+inference/inference_llm_text.py
+inference/inference_llm_vision.py
+inference/inference_llm_vllm.py
+inference/inference_vllm_vllm.py
+
+scripts/qwen2.5-7b-instruct
+# scripts/qwen3-4b-instruct
+# scripts/qwen3-vl-8b-instruct
+
+scripts/qwen3-8b/train_stage1+2+3_w_spatial_35.89.sh
+scripts/qwen3-8b/train_stage1+2+3_w_spatial_54.201.sh
+scripts/qwen3-14b/train_stage1+2+3_w_spatial_35.89.sh
+scripts/qwen3-14b/train_stage1+2+3_w_spatial_54.201.sh
+# scripts/qwen3-8b/train_stage1+2+3.sh
+# scripts/qwen3-8b/train_stage1+3_w_spatial.sh
+# scripts/qwen3-8b/train_stage2_only_text.sh
+# scripts/qwen3-8b/train_stage2.sh
+# scripts/qwen3-8b/train_stage2+3_w_spatial_only_text.sh
+# scripts/qwen3-8b/train_stage2+3_w_spatial.sh
+# scripts/qwen3-8b/train_stage3_w_spatial.sh
+# scripts/qwen3-8b/train_stage3.sh
