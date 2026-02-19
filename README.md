@@ -30,7 +30,7 @@
 
 ## 📰 News
 
-- **[2025/01/06]** Now supports Qwen3-4B, Qwen3-8B, and Qwen3-14B, and adds the MAPE metric during evaluation.
+- **[2025/02/19]** Now supports Qwen3-4B, Qwen3-8B, and Qwen3-14B, and adds the MAPE metric during evaluation.
 - **[2025/01/06]** 🎉 Released full pipeline training code for STReasoner
 
 ---
