@@ -203,6 +203,12 @@ def evaluate_forecasting_predictions(
     missing = 0
     missing_idx: List[int] = []
     mae_sum = 0.0
+    mape_sum = 0.0
+    mape_valid_count = 0
+    
+    # For calculating average magnitude of target values
+    all_target_values: List[float] = []
+    all_target_abs_values: List[float] = []
 
     for idx, sample in enumerate(dataset):
         target_series = _parse_series(sample.get("output"))
@@ -220,11 +226,34 @@ def evaluate_forecasting_predictions(
         elif len(pred_series) > len(target_series):
             pred_series = pred_series[: len(target_series)]
 
+        # Collect target values for statistics
+        all_target_values.extend(target_series)
+        all_target_abs_values.extend([abs(v) for v in target_series])
+
         absolute_errors = [abs(pred_series[i] - target_series[i]) for i in range(len(target_series))]
 
+        # MAE calculation
         mae = sum(absolute_errors) / len(absolute_errors) if absolute_errors else 0.0
         mae_sum += mae
+        
+        # MAPE calculation (skip values where target is zero or near-zero to avoid division by zero)
+        percentage_errors = []
+        for i in range(len(target_series)):
+            if abs(target_series[i]) > 1e-8:  # Avoid division by zero
+                percentage_errors.append(abs(pred_series[i] - target_series[i]) / abs(target_series[i]))
+        
+        if percentage_errors:
+            mape = sum(percentage_errors) / len(percentage_errors) * 100  # Convert to percentage
+            mape_sum += mape
+            mape_valid_count += 1
+        
         evaluated += 1
+
+    # Calculate target value statistics
+    target_mean = sum(all_target_values) / len(all_target_values) if all_target_values else None
+    target_abs_mean = sum(all_target_abs_values) / len(all_target_abs_values) if all_target_abs_values else None
+    target_min = min(all_target_values) if all_target_values else None
+    target_max = max(all_target_values) if all_target_values else None
 
     result = {
         "task": "reasoning_forecasting",
@@ -233,6 +262,14 @@ def evaluate_forecasting_predictions(
         "missing_predictions": total - evaluated,
         "coverage": evaluated / total if total else 0.0,
         "mae": mae_sum / evaluated if evaluated else None,
+        "mape": mape_sum / mape_valid_count if mape_valid_count else None,
+        "target_stats": {
+            "mean": target_mean,
+            "abs_mean": target_abs_mean,
+            "min": target_min,
+            "max": target_max,
+            "total_values": len(all_target_values),
+        },
         "missing_indices": missing_idx,
     }
     return result
