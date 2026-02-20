@@ -2,7 +2,7 @@
 
 set -x
 
-MODEL_PATH=/workspace/output/Qwen3-4B-Instruct-2507-stage1+2  # replace it with your local file path
+MODEL_PATH=./output/Qwen3-4B-Instruct-2507-stage1+2  # replace it with your local file path
 
 python3 -m src.EasyR1.verl.trainer.main \
     config=./src/EasyR1/examples/config.yaml \
@@ -27,7 +27,7 @@ python3 -m src.EasyR1.verl.trainer.main \
     trainer.save_freq=100 \
     trainer.save_limit=1 \
     algorithm.enable_spatial_reward=true \
-    algorithm.spatial_reward_weight=0.5 \
+    algorithm.spatial_reward_weight=0.1 \
     data.enable_spatial_reward=true
 
     

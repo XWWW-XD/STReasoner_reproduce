@@ -2,7 +2,7 @@
 
 set -x
 
-MODEL_PATH=/workspace/output/Qwen3-14B-stage2  # replace it with your local file path
+MODEL_PATH=./output/Qwen3-14B-stage2  # replace it with your local file path
 
 python3 -m src.EasyR1.verl.trainer.main \
     config=./src/EasyR1/examples/config.yaml \
