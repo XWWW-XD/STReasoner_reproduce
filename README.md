@@ -110,7 +110,7 @@ Launch the Docker container:
 docker run -it --gpus all \
   --name verl_env \
   --shm-size=40g \
-  -v .:/workspace/SpatialTemporalReasoning \
+  -v .:/workspace/STReasoner \
   hiyouga/verl:ngc-th2.8.0-cu12.9-vllm0.11.0 bash
 ```
 
