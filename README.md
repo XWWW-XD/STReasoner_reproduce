@@ -140,8 +140,13 @@ python model_merger.py \
 
 ## 🔮 Inference
 
-Run inference across all reasoning tasks:
+Run inference across all reasoning tasks.
 
+Exit the Docker container, then activate the `str` environment:
+```bash
+conda activate str
+```
+Then run:
 ```bash
 for task in reasoning_forecasting reasoning_entity reasoning_etiological reasoning_correlation; do 
     python inference/inference_tsmllm_vllm.py \
