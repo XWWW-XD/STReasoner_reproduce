@@ -1,6 +1,6 @@
 <div align="center">
 
-# STReasoner: Time Series LLM for Spatio-Temporal Reasoning
+# (ACL 2026 Main) STReasoner: Time Series LLM for Spatio-Temporal Reasoning
 
 **Empowering LLMs for Spatio-Temporal Reasoning in Time Series via Spatial-Aware Reinforcement Learning**
 
