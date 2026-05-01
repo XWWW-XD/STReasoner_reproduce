@@ -25,9 +25,6 @@ data/reasoning
 data/reasoning_before_filter
 data/reasoning_image
 data/reasoning_text
-data/convert_to_image.py
-data/convert_to_text.py
-data/filter.py
 data/forecasting_qa.json
 data/list_files.json
 data/reasoning_qa.json
