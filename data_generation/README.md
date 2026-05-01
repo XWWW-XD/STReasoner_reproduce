@@ -46,8 +46,8 @@ Run from the repository root after `conda activate stt`.
 
 ```bash
 # Stage 1 — raw STS scenarios (LLM API required)
-python data_generation/batch_inference_runner.py \
-    --min_tasks 100 --node_counts 3,5,10
+python data_generation/run_pipeline.py \
+    --num_tasks 100 --node_counts 3,5,10 --max_workers 8
 
 # Stage 2 — QA generation
 python data_generation/generate_alignment_QA.py
@@ -77,8 +77,8 @@ python data/convert_to_image.py --input_dir data/reasoning --output_dir data/rea
 | Script                                  | Stage | LLM API | Inputs → Outputs |
 |-----------------------------------------|-------|---------|------------------|
 | `llm_client.py`                         | -     | -       | shared OpenAI-compatible client used by every LLM-calling script |
-| `batch_inference_runner.py`             | 1     | yes     | (none) → `batch_output/` |
-| `demo_sts_sde.py`                       | 1     | yes     | library used by Stage 1; runnable standalone for a single demo |
+| `run_pipeline.py`                       | 1     | yes     | parallel driver that runs `demo_sts_sde.py` N times → `batch_output/task_*.pkl` |
+| `demo_sts_sde.py`                       | 1     | yes     | full 6-Agent + 2-Judge pipeline for a single scenario; importable as a library |
 | `generate_file_list.py`                 | 1     | no      | `batch_output/` → `list_files.json` |
 | `generate_alignment_QA.py`              | 2     | no      | `batch_output/*.pkl` → `data/alignment/` |
 | `generate_reasoning_QA.py`              | 2     | yes     | `batch_output/*.pkl` → `data/reasoning_before_filter/` |

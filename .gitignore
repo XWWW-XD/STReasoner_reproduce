@@ -71,6 +71,7 @@ data_generation/batch_output/
 data_generation/batch_inputs/
 data_generation/batch_inputs_qa/
 data_generation/output_qa/
+data_generation/batch_inference_runner.py
 
 claude.sh
 claude.py

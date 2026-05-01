@@ -3093,7 +3093,8 @@ Please review your previous feedback below and check if the new parameters and v
         return self.DEFAULT_SEQ_LEN
 
 def demo_network_sde_generation(enabled_judges: List[int] = None, enable_logging: bool = True,
-                                num_nodes: int = 3, domain: str = 'traffic'):
+                                num_nodes: int = 3, domain: str = 'traffic',
+                                generate_viz: bool = True):
     """Demonstrate 6-Agent Network SDE Generation Pipeline with Judge Agents
 
     Args:
@@ -3101,6 +3102,8 @@ def demo_network_sde_generation(enabled_judges: List[int] = None, enable_logging
         enable_logging: Enable interaction logging
         num_nodes: Number of nodes in the network
         domain: Domain type (traffic, epidemic, finance, etc.)
+        generate_viz: Whether to render PNG/HTML visualizations. Disable for
+            batch generation where the simulation is the only output that matters.
     """
     
     if enabled_judges is None:
@@ -3448,29 +3451,34 @@ def demo_network_sde_generation(enabled_judges: List[int] = None, enable_logging
     print(f"✓ JSON data saved: {json_file_path}")
     
     print("\n" + "="*70 + "\n")
-    
-    # Visualize results
-    print("Generating visualization...")
-    
-    # Generate both PNG and HTML visualizations
-    if num_nodes <= 3:
-        # For small networks, generate both PNG (for quick preview) and HTML (for interactivity)
-        print(f"Generating matplotlib visualization (PNG)...")
-        png_path = f"output/{file_prefix}_viz.png"
-        sde_gen.visualize_network_sde_results(ts_data, network_sde, generation_info, save_path=png_path)
-        
-        print(f"Generating HTML interactive visualization...")
-        html_path = f"output/{file_prefix}_interactive.html"
-        sde_gen.visualize_network_sde_html(ts_data, network_sde, generation_info, save_path=html_path)
-        
-        save_path = html_path  # Primary output is HTML
-        viz_type = "PNG + HTML"
+
+    png_path = None
+    html_path = None
+    save_path = None
+
+    if generate_viz:
+        # Visualize results
+        print("Generating visualization...")
+
+        # Generate both PNG and HTML visualizations
+        if num_nodes <= 3:
+            # For small networks, generate both PNG (for quick preview) and HTML (for interactivity)
+            print(f"Generating matplotlib visualization (PNG)...")
+            png_path = f"output/{file_prefix}_viz.png"
+            sde_gen.visualize_network_sde_results(ts_data, network_sde, generation_info, save_path=png_path)
+
+            print(f"Generating HTML interactive visualization...")
+            html_path = f"output/{file_prefix}_interactive.html"
+            sde_gen.visualize_network_sde_html(ts_data, network_sde, generation_info, save_path=html_path)
+
+            save_path = html_path  # Primary output is HTML
+        else:
+            # For larger networks, only generate HTML
+            print(f"Generating HTML interactive visualization...")
+            save_path = f"output/{file_prefix}_interactive.html"
+            sde_gen.visualize_network_sde_html(ts_data, network_sde, generation_info, save_path=save_path)
     else:
-        # For larger networks, only generate HTML
-        print(f"Generating HTML interactive visualization...")
-        save_path = f"output/{file_prefix}_interactive.html"
-        sde_gen.visualize_network_sde_html(ts_data, network_sde, generation_info, save_path=save_path)
-        viz_type = "HTML (interactive)"
+        print("Skipping visualization (generate_viz=False).")
     
     print("\n" + "="*70)
     if enabled_judges:
@@ -3482,11 +3490,12 @@ def demo_network_sde_generation(enabled_judges: List[int] = None, enable_logging
     print(f"  - Description: {desc_file_path}")
     print(f"  - Complete data (pickle): {complete_data_file}")
     print(f"  - JSON data: {json_file_path}")
-    if num_nodes <= 3:
-        print(f"  - Visualization (PNG): {png_path}")
-        print(f"  - Visualization (HTML): {html_path}")
-    else:
-        print(f"  - Visualization (HTML): {save_path}")
+    if generate_viz:
+        if num_nodes <= 3 and png_path:
+            print(f"  - Visualization (PNG): {png_path}")
+            print(f"  - Visualization (HTML): {html_path}")
+        elif save_path:
+            print(f"  - Visualization (HTML): {save_path}")
     
     # 保存完整的Agent交互日志
     if logger:
