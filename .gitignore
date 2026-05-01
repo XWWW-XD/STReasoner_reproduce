@@ -66,9 +66,11 @@ evaluation/visualize_sample.py
 evaluation/run_llm_judge.sh
 
 
-data_generation/generate_file_list.py
-data_generation/generate_file_list.py
 data_generation/list_files.json
+data_generation/batch_output/
+data_generation/batch_inputs/
+data_generation/batch_inputs_qa/
+data_generation/output_qa/
 
 claude.sh
 claude.py
@@ -78,7 +80,6 @@ run_data.sh
 run_experiments.sh
 run_inference&evaluation.sh
 
-data_generation
 ragas
 react_agent.py
 spatial_effect.py
