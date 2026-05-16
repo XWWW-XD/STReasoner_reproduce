@@ -1,0 +1,81 @@
+=== Data Loading ===
+dataset: Time-HD-Anonymous/ST-Bench
+subset: ST-Test
+split: train
+num_rows: 3273
+=== Sample Summary ===
+index: 0
+category: correlation
+input preview: You are a spatial temporal analysis expert. Node 0 time series with length of 48: <ts><ts/>; Node 1 time series with length of 48: <ts><ts/>; Node 2 time series with length of 48: <ts><ts/>; Node 3 time series with length of 48: <ts><ts/>; Node 4 time series with length of 48: <ts><ts/>; Graph Structure: Node 0->Node 2; Node 1->Node 2; Node 2->Node 3; Node 2->Node 4, please analyze the spatial temporal data and answer the following question: Based on the observed data, which of the following best describes the influence on Node 2 during time steps 15-19 (1 time step = 1 hour)? Options: A. Industrial pollution peak B. Agricultural runoff surge C. Urban heat island effect D. Vehicle emissions spike
+output: <answer>A</answer>
+timeseries node count: 5
+timeseries sequence lengths: [48, 48, 48, 48, 48]
+=== Processor / Tokenizer ===
+Trying AutoProcessor.from_pretrained(...)
+AutoProcessor loaded: Qwen3TSProcessor
+Trying AutoTokenizer.from_pretrained(...)
+AutoTokenizer loaded: Qwen2TokenizerFast
+=== Config ===
+config class: Qwen3TSConfig
+config._attn_implementation: 'eager' -> 'sdpa'
+Using 4-bit BitsAndBytesConfig with torch.float16 compute dtype.
+=== Model Load ===
+Trying AutoModelForCausalLM.from_pretrained(...)
+model class: Qwen3TSForCausalLM
+processor class: Qwen3TSProcessor
+tokenizer class: Qwen2TokenizerFast
+device map: {'model.embed_tokens': 0, 'model.layers.0': 0, 'model.layers.1': 0, 'model.layers.2': 0, 'model.layers.3': 0, 'model.layers.4': 0, 'model.layers.5': 0, 'model.layers.6': 0, 'model.layers.7': 0, 'model.layers.8': 1, 'model.layers.9': 1, 'model.layers.10': 1, 'model.layers.11': 1, 'model.layers.12': 1, 'model.layers.13': 1, 'model.layers.14': 1, 'model.layers.15': 1, 'model.layers.16': 1, 'model.layers.17': 1, 'model.layers.18': 1, 'model.layers.19': 1, 'model.layers.20': 1, 'model.layers.21': 1, 'model.layers.22': 1, 'model.layers.23': 1, 'model.layers.24': 1, 'model.layers.25': 1, 'model.layers.26': 1, 'model.layers.27': 1, 'model.layers.28': 1, 'model.layers.29': 1, 'model.layers.30': 1, 'model.layers.31': 1, 'model.layers.32': 1, 'model.layers.33': 1, 'model.layers.34': 1, 'model.layers.35': 1, 'model.norm': 1, 'model.rotary_emb': 1, 'lm_head': 1, 'ts_encoder': 1}
+=== GPU Memory ===
+gpu 0: allocated=1.91 GiB, reserved=2.04 GiB
+gpu 1: allocated=3.81 GiB, reserved=5.76 GiB
+=== Processor Input Construction ===
+processor class: Qwen3TSProcessor
+<ts><ts/> placeholder count: 5
+timeseries node count: 5
+processor output keys: ['input_ids', 'attention_mask', 'timeseries']
+  input_ids: type=Tensor, shape=(1, 504), dtype=torch.int64
+  attention_mask: type=Tensor, shape=(1, 504), dtype=torch.int64
+  timeseries: type=Tensor, shape=(5, 96, 1), dtype=torch.float16
+=== Generate ===
+moving inputs to device: cuda:0
+[ERROR] generate failed: RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:1 and cuda:0!
+Traceback (most recent call last):
+  File "/kaggle/working/STReasoner_reproduce/repro_kaggle/scripts/run_one_sttest_sample.py", line 269, in main
+    result["prediction"] = generate_one(
+                           ^^^^^^^^^^^^^
+  File "/kaggle/working/STReasoner_reproduce/repro_kaggle/scripts/run_one_sttest_sample.py", line 192, in generate_one
+    outputs = model.generate(**inputs, max_new_tokens=max_new_tokens, do_sample=False)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/working/hf_cache/modules/transformers_modules/Time-HD-Anonymous/STReasoner-8B/443c275241196d0d47c1afd0cbfe7d0cd2ee2276/modeling_qwen3_ts.py", line 328, in generate
+    return super().generate(
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/generation/utils.py", line 2597, in generate
+    result = self._sample(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/generation/utils.py", line 3557, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/accelerate/hooks.py", line 176, in new_forward
+    output = module._old_forward(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/utils/generic.py", line 969, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/working/hf_cache/modules/transformers_modules/Time-HD-Anonymous/STReasoner-8B/443c275241196d0d47c1afd0cbfe7d0cd2ee2276/modeling_qwen3_ts.py", line 587, in forward
+    inputs_embeds, attention_mask, position_ids, labels, new_token_positions = self._merge_input_ids_with_time_series_features(
+                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/working/hf_cache/modules/transformers_modules/Time-HD-Anonymous/STReasoner-8B/443c275241196d0d47c1afd0cbfe7d0cd2ee2276/modeling_qwen3_ts.py", line 425, in _merge_input_ids_with_time_series_features
+    num_total_patches[i] = patch_cnt[patch_index : patch_index + num_ts_in_batch].sum() - 2 * num_ts_in_batch
+                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:1 and cuda:0!
+
+ONE_SAMPLE_RUN_FAIL

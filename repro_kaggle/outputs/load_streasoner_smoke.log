@@ -1,0 +1,51 @@
+=== Environment ===
+timestamp: 2026-05-16T16:36:16
+Python version: 3.12.12 (main, Oct 10 2025, 08:52:57) [GCC 11.4.0]
+platform: Linux-6.6.122+-x86_64-with-glibc2.35
+torch version: 2.6.0+cu124
+torch.version.cuda: 12.4
+cuda available: True
+gpu count: 2
+gpu 0: Tesla T4, total memory: 14.56 GiB
+gpu 1: Tesla T4, total memory: 14.56 GiB
+transformers version: 4.52.4
+accelerate version: 1.4.0
+bitsandbytes version: 0.49.2
+[WARNING] flash_attn is not available. Continuing without it.
+=== Hugging Face Cache ===
+HF_HOME=/kaggle/working/hf_cache
+TRANSFORMERS_CACHE=/kaggle/working/hf_cache/transformers
+HF_DATASETS_CACHE=/kaggle/working/hf_cache/datasets
+=== Arguments ===
+model_name: Time-HD-Anonymous/STReasoner-8B
+load_in_4bit: True
+attn_backend: sdpa
+output_log: repro_kaggle/outputs/load_streasoner_smoke.log
+=== Processor / Tokenizer ===
+Trying AutoProcessor.from_pretrained(...)
+AutoProcessor loaded: Qwen3TSProcessor
+Trying AutoTokenizer.from_pretrained(...)
+AutoTokenizer loaded: Qwen2TokenizerFast
+=== Config ===
+config class: Qwen3TSConfig
+config._attn_implementation: 'eager' -> 'sdpa'
+Using 4-bit BitsAndBytesConfig with torch.float16 compute dtype.
+=== Model Load ===
+Trying AutoModelForCausalLM.from_pretrained(...)
+=== Load Success ===
+model class: Qwen3TSForCausalLM
+processor class: Qwen3TSProcessor
+tokenizer class: Qwen2TokenizerFast
+model device map: {'model.embed_tokens': 0, 'model.layers.0': 0, 'model.layers.1': 0, 'model.layers.2': 0, 'model.layers.3': 0, 'model.layers.4': 0, 'model.layers.5': 0, 'model.layers.6': 0, 'model.layers.7': 0, 'model.layers.8': 1, 'model.layers.9': 1, 'model.layers.10': 1, 'model.layers.11': 1, 'model.layers.12': 1, 'model.layers.13': 1, 'model.layers.14': 1, 'model.layers.15': 1, 'model.layers.16': 1, 'model.layers.17': 1, 'model.layers.18': 1, 'model.layers.19': 1, 'model.layers.20': 1, 'model.layers.21': 1, 'model.layers.22': 1, 'model.layers.23': 1, 'model.layers.24': 1, 'model.layers.25': 1, 'model.layers.26': 1, 'model.layers.27': 1, 'model.layers.28': 1, 'model.layers.29': 1, 'model.layers.30': 1, 'model.layers.31': 1, 'model.layers.32': 1, 'model.layers.33': 1, 'model.layers.34': 1, 'model.layers.35': 1, 'model.norm': 1, 'model.rotary_emb': 1, 'lm_head': 1, 'ts_encoder': 1}
+=== GPU Memory ===
+gpu 0: allocated=1.91 GiB, reserved=2.04 GiB
+gpu 1: allocated=3.81 GiB, reserved=5.76 GiB
+CPU RAM: total=31.35 GiB, available=24.37 GiB, used=6.51 GiB
+=== Minimal Generate Test ===
+Trying to tokenize prompt with processor.
+generate output tensor shape: (1, 18)
+generate decoded output: ['Hello. I need to find the value of the limit as x approaches 0 of (']
+Minimal text generate succeeded.
+GENERATE_PASS
+=== Result ===
+MODEL_LOAD_PASS

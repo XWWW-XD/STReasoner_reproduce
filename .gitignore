@@ -6,7 +6,8 @@ config/datagen_config_bak.yaml
 result/
 labels/
 sensitive_info_result.txt
-.vscode/
+.vscode/*
+!.vscode/extensions.json
 .env
 exp/
 exp_images/

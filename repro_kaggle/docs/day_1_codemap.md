@@ -1,4 +1,4 @@
-# Day 1 Code Map
+# stage1 Code Map
 
 画一张最小项目地图。
 

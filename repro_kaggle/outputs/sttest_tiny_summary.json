@@ -1,0 +1,11 @@
+{
+  "num_samples": 20,
+  "num_success": 20,
+  "num_failed": 0,
+  "parse_fail_rate": 0.5,
+  "accuracy_if_applicable": 0.9,
+  "avg_latency": 55.27832896980008,
+  "failure_steps": {},
+  "parse_fail_count": 10,
+  "accuracy_denominator": 10
+}

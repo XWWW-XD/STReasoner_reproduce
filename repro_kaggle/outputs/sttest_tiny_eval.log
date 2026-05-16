@@ -1,0 +1,106 @@
+=== Tiny ST-Test Evaluation ===
+model_name: Time-HD-Anonymous/STReasoner-8B
+max_samples: 20
+category: all
+output_path: repro_kaggle/outputs/sttest_tiny_predictions.jsonl
+summary_path: repro_kaggle/outputs/sttest_tiny_summary.json
+=== Data Loading ===
+dataset: Time-HD-Anonymous/ST-Bench
+subset: ST-Test
+split: train
+category filter: all
+dataset rows: 3273
+selected rows: 20
+=== Model Loading ===
+=== Processor / Tokenizer ===
+Trying AutoProcessor.from_pretrained(...)
+AutoProcessor loaded: Qwen3TSProcessor
+Trying AutoTokenizer.from_pretrained(...)
+AutoTokenizer loaded: Qwen2TokenizerFast
+=== Config ===
+config class: Qwen3TSConfig
+config._attn_implementation: 'eager' -> 'sdpa'
+Using 4-bit BitsAndBytesConfig with torch.float16 compute dtype.
+=== Model Load ===
+Trying AutoModelForCausalLM.from_pretrained(...)
+model class: Qwen3TSForCausalLM
+processor class: Qwen3TSProcessor
+tokenizer class: Qwen2TokenizerFast
+device map: {'model.embed_tokens': 0, 'model.layers.0': 0, 'model.layers.1': 0, 'model.layers.2': 0, 'model.layers.3': 0, 'model.layers.4': 0, 'model.layers.5': 0, 'model.layers.6': 0, 'model.layers.7': 0, 'model.layers.8': 1, 'model.layers.9': 1, 'model.layers.10': 1, 'model.layers.11': 1, 'model.layers.12': 1, 'model.layers.13': 1, 'model.layers.14': 1, 'model.layers.15': 1, 'model.layers.16': 1, 'model.layers.17': 1, 'model.layers.18': 1, 'model.layers.19': 1, 'model.layers.20': 1, 'model.layers.21': 1, 'model.layers.22': 1, 'model.layers.23': 1, 'model.layers.24': 1, 'model.layers.25': 1, 'model.layers.26': 1, 'model.layers.27': 1, 'model.layers.28': 1, 'model.layers.29': 1, 'model.layers.30': 1, 'model.layers.31': 1, 'model.layers.32': 1, 'model.layers.33': 1, 'model.layers.34': 1, 'model.layers.35': 1, 'model.norm': 1, 'model.rotary_emb': 1, 'lm_head': 1, 'ts_encoder': 1}
+=== GPU Memory ===
+gpu 0: allocated=1.91 GiB, reserved=2.04 GiB
+gpu 1: allocated=3.81 GiB, reserved=5.76 GiB
+Applied runtime patch for multi-GPU time-series merge device alignment.
+--------------------------------------------------------------------------------
+[1/20] index=0, category=correlation
+result: target=A, parsed_prediction=None, is_correct=None, latency=37.23s
+--------------------------------------------------------------------------------
+[2/20] index=1, category=correlation
+result: target=A, parsed_prediction=C, is_correct=False, latency=67.94s
+--------------------------------------------------------------------------------
+[3/20] index=2, category=correlation
+result: target=B, parsed_prediction=None, is_correct=None, latency=69.84s
+--------------------------------------------------------------------------------
+[4/20] index=3, category=correlation
+result: target=D, parsed_prediction=None, is_correct=None, latency=69.92s
+--------------------------------------------------------------------------------
+[5/20] index=4, category=correlation
+result: target=C, parsed_prediction=C, is_correct=True, latency=73.40s
+--------------------------------------------------------------------------------
+[6/20] index=5, category=correlation
+result: target=D, parsed_prediction=D, is_correct=True, latency=42.14s
+--------------------------------------------------------------------------------
+[7/20] index=6, category=correlation
+result: target=C, parsed_prediction=None, is_correct=None, latency=34.88s
+--------------------------------------------------------------------------------
+[8/20] index=7, category=correlation
+result: target=B, parsed_prediction=None, is_correct=None, latency=83.59s
+--------------------------------------------------------------------------------
+[9/20] index=8, category=correlation
+result: target=B, parsed_prediction=B, is_correct=True, latency=42.03s
+--------------------------------------------------------------------------------
+[10/20] index=9, category=correlation
+result: target=B, parsed_prediction=None, is_correct=None, latency=74.53s
+--------------------------------------------------------------------------------
+[11/20] index=10, category=correlation
+result: target=C, parsed_prediction=C, is_correct=True, latency=74.10s
+--------------------------------------------------------------------------------
+[12/20] index=11, category=correlation
+result: target=C, parsed_prediction=None, is_correct=None, latency=42.54s
+--------------------------------------------------------------------------------
+[13/20] index=12, category=correlation
+result: target=B, parsed_prediction=None, is_correct=None, latency=73.19s
+--------------------------------------------------------------------------------
+[14/20] index=13, category=correlation
+result: target=C, parsed_prediction=C, is_correct=True, latency=69.51s
+--------------------------------------------------------------------------------
+[15/20] index=14, category=correlation
+result: target=D, parsed_prediction=D, is_correct=True, latency=34.12s
+--------------------------------------------------------------------------------
+[16/20] index=15, category=correlation
+result: target=D, parsed_prediction=D, is_correct=True, latency=34.31s
+--------------------------------------------------------------------------------
+[17/20] index=16, category=correlation
+result: target=A, parsed_prediction=A, is_correct=True, latency=31.98s
+--------------------------------------------------------------------------------
+[18/20] index=17, category=correlation
+result: target=D, parsed_prediction=None, is_correct=None, latency=41.55s
+--------------------------------------------------------------------------------
+[19/20] index=18, category=correlation
+result: target=D, parsed_prediction=None, is_correct=None, latency=74.60s
+--------------------------------------------------------------------------------
+[20/20] index=19, category=correlation
+result: target=D, parsed_prediction=D, is_correct=True, latency=34.17s
+=== Summary ===
+{
+  "num_samples": 20,
+  "num_success": 20,
+  "num_failed": 0,
+  "parse_fail_rate": 0.5,
+  "accuracy_if_applicable": 0.9,
+  "avg_latency": 55.27832896980008,
+  "failure_steps": {},
+  "parse_fail_count": 10,
+  "accuracy_denominator": 10
+}
+TINY_EVAL_PASS

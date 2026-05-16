@@ -1,0 +1,203 @@
+dataset: Time-HD-Anonymous/ST-Bench
+log: outputs/stbench_inspect.log
+================================================================================
+subset: ST-Test
+LOAD_OK: ST-Test
+num_rows: 3273
+column_names: ['input', 'timeseries', 'output', 'category']
+first sample field types:
+  input: str
+  timeseries: list(len=5)
+  output: str
+  category: str
+input preview: You are a spatial temporal analysis expert. Node 0 time series with length of 48: <ts><ts/>; Node 1 time series with length of 48: <ts><ts/>; Node 2 time series with length of 48: <ts><ts/>; Node 3 time series with length of 48: <ts><ts/>; Node 4 time series with length of 48: <ts><ts/>; Graph Struc...
+output preview: <answer>A</answer>
+category: correlation
+timeseries preview:
+list nodes: 5
+  node[0]: [10.23, 10.69, 13.61, 12.04, 14.27, 18.25, 19.03, 20.59]
+  node[1]: [37.9, 37.65, 38.18, 38.56, 39.49, 36.83, 38.89, 35.22]
+  node[2]: [10.11, 13.13, 15.48, 17.72, 18.02, 19.0, 21.73, 21.72]
+  node[3]: [5.0, 5.11, 6.72, 7.21, 8.31, 9.81, 10.51, 11.38]
+  node[4]: [4.92, 4.93, 5.35, 6.35, 8.06, 8.74, 10.58, 11.77]
+================================================================================
+subset: ST-Test-Text
+LOAD_FAILED: ST-Test-Text
+DatasetGenerationError: An error occurred while generating the dataset
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/datasets/builder.py", line 1886, in _prepare_split_single
+    num_examples, num_bytes = writer.finalize()
+                              ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/datasets/arrow_writer.py", line 648, in finalize
+    raise SchemaInferenceError("Please pass `features` or at least one example when writing data")
+datasets.arrow_writer.SchemaInferenceError: Please pass `features` or at least one example when writing data
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/kaggle/working/STReasoner_reproduce/scripts/inspect_stbench.py", line 92, in inspect_subset
+    dataset = load_dataset(DATASET_NAME, subset, split="train")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/datasets/load.py", line 2151, in load_dataset
+    builder_instance.download_and_prepare(
+  File "/usr/local/lib/python3.12/dist-packages/datasets/builder.py", line 924, in download_and_prepare
+    self._download_and_prepare(
+  File "/usr/local/lib/python3.12/dist-packages/datasets/builder.py", line 1000, in _download_and_prepare
+    self._prepare_split(split_generator, **prepare_split_kwargs)
+  File "/usr/local/lib/python3.12/dist-packages/datasets/builder.py", line 1741, in _prepare_split
+    for job_id, done, content in self._prepare_split_single(
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/datasets/builder.py", line 1897, in _prepare_split_single
+    raise DatasetGenerationError("An error occurred while generating the dataset") from e
+datasets.exceptions.DatasetGenerationError: An error occurred while generating the dataset
+
+================================================================================
+subset: ST-SFT
+LOAD_OK: ST-SFT
+num_rows: 6213
+column_names: ['input', 'timeseries', 'output', 'category']
+first sample field types:
+  input: str
+  timeseries: list(len=10)
+  output: str
+  category: str
+input preview: You are a spatial temporal analysis expert. Node 0 time series with length of 168: <ts><ts/>; Node 1 time series with length of 168: <ts><ts/>; Node 2 time series with length of 168: <ts><ts/>; Node 3 time series with length of 168: <ts><ts/>; Node 4 time series with length of 168: <ts><ts/>; Node 5...
+output preview: <answer>C</answer>
+category: correlation
+timeseries preview:
+list nodes: 10
+  node[0]: [15.02, 15.03, 15.2, 15.57, 16.14, 16.93, 17.82, 18.85]
+  node[1]: [23.13, 23.22, 23.4, 23.6, 23.68, 23.6, 23.37, 22.98]
+  node[2]: [19.61, 19.24, 19.05, 18.94, 18.95, 18.97, 19.07, 19.22]
+  node[3]: [19.67, 20.09, 20.27, 20.39, 20.41, 20.45, 20.48, 20.47]
+  node[4]: [20.13, 20.07, 20.05, 20.02, 20.08, 20.09, 20.1, 20.09]
+================================================================================
+subset: ST-CoT
+LOAD_FAILED: ST-CoT
+DatasetGenerationCastError: An error occurred while generating the dataset
+
+All the data files must have the same columns, but at some point there are 3 new columns ({'cot_normalized_mae', 'cot_mae', 'idx'})
+
+This happened while the json dataset builder was generating data using
+
+hf://datasets/Time-HD-Anonymous/ST-Bench/ST-CoT/forecasting_cot.jsonl (at revision 1a6871632f295dc2a049860b2a7d08ae445c25da)
+
+Please either edit the data files to have matching columns, or separate them into different configurations (see docs at https://hf.co/docs/hub/datasets-manual-configuration#multiple-configurations)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/datasets/builder.py", line 1870, in _prepare_split_single
+    writer.write_table(table)
+  File "/usr/local/lib/python3.12/dist-packages/datasets/arrow_writer.py", line 622, in write_table
+    pa_table = table_cast(pa_table, self._schema)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/datasets/table.py", line 2292, in table_cast
+    return cast_table_to_schema(table, schema)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/datasets/table.py", line 2240, in cast_table_to_schema
+    raise CastError(
+datasets.table.CastError: Couldn't cast
+input: string
+timeseries: list<item: list<item: double>>
+  child 0, item: list<item: double>
+      child 0, item: double
+output: string
+category: string
+idx: int64
+cot_attempt: int64
+cot_mae: double
+cot_normalized_mae: double
+to
+{'input': Value(dtype='string', id=None), 'timeseries': Sequence(feature=Sequence(feature=Value(dtype='float64', id=None), length=-1, id=None), length=-1, id=None), 'output': Value(dtype='string', id=None), 'category': Value(dtype='string', id=None), 'cot_attempt': Value(dtype='int64', id=None)}
+because column names don't match
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/kaggle/working/STReasoner_reproduce/scripts/inspect_stbench.py", line 92, in inspect_subset
+    dataset = load_dataset(DATASET_NAME, subset, split="train")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/datasets/load.py", line 2151, in load_dataset
+    builder_instance.download_and_prepare(
+  File "/usr/local/lib/python3.12/dist-packages/datasets/builder.py", line 924, in download_and_prepare
+    self._download_and_prepare(
+  File "/usr/local/lib/python3.12/dist-packages/datasets/builder.py", line 1000, in _download_and_prepare
+    self._prepare_split(split_generator, **prepare_split_kwargs)
+  File "/usr/local/lib/python3.12/dist-packages/datasets/builder.py", line 1741, in _prepare_split
+    for job_id, done, content in self._prepare_split_single(
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/datasets/builder.py", line 1872, in _prepare_split_single
+    raise DatasetGenerationCastError.from_cast_error(
+datasets.exceptions.DatasetGenerationCastError: An error occurred while generating the dataset
+
+All the data files must have the same columns, but at some point there are 3 new columns ({'cot_normalized_mae', 'cot_mae', 'idx'})
+
+This happened while the json dataset builder was generating data using
+
+hf://datasets/Time-HD-Anonymous/ST-Bench/ST-CoT/forecasting_cot.jsonl (at revision 1a6871632f295dc2a049860b2a7d08ae445c25da)
+
+Please either edit the data files to have matching columns, or separate them into different configurations (see docs at https://hf.co/docs/hub/datasets-manual-configuration#multiple-configurations)
+
+================================================================================
+subset: ST-Align
+LOAD_FAILED: ST-Align
+DatasetGenerationCastError: An error occurred while generating the dataset
+
+All the data files must have the same columns, but at some point there are 1 new columns ({'category'})
+
+This happened while the json dataset builder was generating data using
+
+hf://datasets/Time-HD-Anonymous/ST-Bench/ST-Align/alignment_test.jsonl (at revision 1a6871632f295dc2a049860b2a7d08ae445c25da)
+
+Please either edit the data files to have matching columns, or separate them into different configurations (see docs at https://hf.co/docs/hub/datasets-manual-configuration#multiple-configurations)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/dist-packages/datasets/builder.py", line 1870, in _prepare_split_single
+    writer.write_table(table)
+  File "/usr/local/lib/python3.12/dist-packages/datasets/arrow_writer.py", line 622, in write_table
+    pa_table = table_cast(pa_table, self._schema)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/datasets/table.py", line 2292, in table_cast
+    return cast_table_to_schema(table, schema)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/datasets/table.py", line 2240, in cast_table_to_schema
+    raise CastError(
+datasets.table.CastError: Couldn't cast
+input: string
+timeseries: list<item: list<item: double>>
+  child 0, item: list<item: double>
+      child 0, item: double
+output: string
+category: string
+to
+{'input': Value(dtype='string', id=None), 'timeseries': Sequence(feature=Sequence(feature=Value(dtype='float64', id=None), length=-1, id=None), length=-1, id=None), 'output': Value(dtype='string', id=None)}
+because column names don't match
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/kaggle/working/STReasoner_reproduce/scripts/inspect_stbench.py", line 92, in inspect_subset
+    dataset = load_dataset(DATASET_NAME, subset, split="train")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/datasets/load.py", line 2151, in load_dataset
+    builder_instance.download_and_prepare(
+  File "/usr/local/lib/python3.12/dist-packages/datasets/builder.py", line 924, in download_and_prepare
+    self._download_and_prepare(
+  File "/usr/local/lib/python3.12/dist-packages/datasets/builder.py", line 1000, in _download_and_prepare
+    self._prepare_split(split_generator, **prepare_split_kwargs)
+  File "/usr/local/lib/python3.12/dist-packages/datasets/builder.py", line 1741, in _prepare_split
+    for job_id, done, content in self._prepare_split_single(
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/datasets/builder.py", line 1872, in _prepare_split_single
+    raise DatasetGenerationCastError.from_cast_error(
+datasets.exceptions.DatasetGenerationCastError: An error occurred while generating the dataset
+
+All the data files must have the same columns, but at some point there are 1 new columns ({'category'})
+
+This happened while the json dataset builder was generating data using
+
+hf://datasets/Time-HD-Anonymous/ST-Bench/ST-Align/alignment_test.jsonl (at revision 1a6871632f295dc2a049860b2a7d08ae445c25da)
+
+Please either edit the data files to have matching columns, or separate them into different configurations (see docs at https://hf.co/docs/hub/datasets-manual-configuration#multiple-configurations)
+
+================================================================================
+summary:
+direct_load_ok: ['ST-Test', 'ST-SFT']
+direct_load_failed: ['ST-Test-Text', 'ST-CoT', 'ST-Align']
