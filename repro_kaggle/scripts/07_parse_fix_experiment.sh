@@ -18,7 +18,7 @@ run_experiment() {
   return 0
 }
 
-run_experiment "A. baseline: max_new_tokens=64, answer_format_prompt=false" \
+run_experiment "A. 基线: max_new_tokens=64, answer_format_prompt=false" \
   env CUDA_VISIBLE_DEVICES=0 python repro_kaggle/scripts/05_eval_sttest_tiny.py \
     --model_name Time-HD-Anonymous/STReasoner-8B \
     --precision 4bit \
@@ -32,7 +32,7 @@ run_experiment "A. baseline: max_new_tokens=64, answer_format_prompt=false" \
     --summary_path repro_kaggle/outputs/parsefix_baseline_summary.json \
     --log_path repro_kaggle/outputs/parsefix_baseline_eval.log
 
-run_experiment "B. longer generation: max_new_tokens=256, answer_format_prompt=false" \
+run_experiment "B. 加长生成: max_new_tokens=256, answer_format_prompt=false" \
   env CUDA_VISIBLE_DEVICES=0 python repro_kaggle/scripts/05_eval_sttest_tiny.py \
     --model_name Time-HD-Anonymous/STReasoner-8B \
     --precision 4bit \
@@ -46,7 +46,7 @@ run_experiment "B. longer generation: max_new_tokens=256, answer_format_prompt=f
     --summary_path repro_kaggle/outputs/parsefix_longer_summary.json \
     --log_path repro_kaggle/outputs/parsefix_longer_eval.log
 
-run_experiment "C. forced answer format: max_new_tokens=256, answer_format_prompt=true" \
+run_experiment "C. 强制答案格式: max_new_tokens=256, answer_format_prompt=true" \
   env CUDA_VISIBLE_DEVICES=0 python repro_kaggle/scripts/05_eval_sttest_tiny.py \
     --model_name Time-HD-Anonymous/STReasoner-8B \
     --precision 4bit \
@@ -74,21 +74,21 @@ REPORT_PATH = OUT / "parse_fix_experiment_report.md"
 RUNS = [
     {
         "key": "baseline",
-        "label": "baseline",
+        "label": "基线",
         "config": "max_new_tokens=64, answer_format_prompt=false",
         "summary": OUT / "parsefix_baseline_summary.json",
         "predictions": OUT / "parsefix_baseline_predictions.jsonl",
     },
     {
         "key": "longer",
-        "label": "longer generation",
+        "label": "加长生成",
         "config": "max_new_tokens=256, answer_format_prompt=false",
         "summary": OUT / "parsefix_longer_summary.json",
         "predictions": OUT / "parsefix_longer_predictions.jsonl",
     },
     {
         "key": "forced",
-        "label": "forced answer format",
+        "label": "强制答案格式",
         "config": "max_new_tokens=256, answer_format_prompt=true",
         "summary": OUT / "parsefix_forced_summary.json",
         "predictions": OUT / "parsefix_forced_predictions.jsonl",
@@ -169,33 +169,32 @@ best = ranked[0]
 best_summary = summaries[best["key"]]
 
 lines: list[str] = []
-lines.append("# Parse Fix Experiment")
+lines.append("# 输出格式修复实验")
 lines.append("")
-lines.append("## 1. Goal")
+lines.append("## 1. 目标")
 lines.append("")
 lines.append(
-    "The goal of this experiment is to reduce parse failures caused by "
-    "`no_answer_tag_or_standalone_choice`. The model was already generating text; "
-    "this test checks whether longer generation or an explicit final-answer instruction "
-    "makes outputs easier to parse as `<answer>A</answer>` / `<answer>B</answer>` / "
-    "`<answer>C</answer>` / `<answer>D</answer>`."
+    "本实验的目标是降低由 `no_answer_tag_or_standalone_choice` 导致的解析失败。"
+    "前面的实验已经证明模型可以生成文本；这里进一步检查两种修复方向："
+    "一是增加生成长度，二是追加明确的最终答案格式要求，看看模型输出是否更容易被解析为 "
+    "`<answer>A</answer>` / `<answer>B</answer>` / `<answer>C</answer>` / `<answer>D</answer>`。"
 )
 lines.append("")
-lines.append("## 2. Setup")
+lines.append("## 2. 实验设置")
 lines.append("")
 lines.append("- model_name: `Time-HD-Anonymous/STReasoner-8B`")
 lines.append("- dataset: `Time-HD-Anonymous/ST-Bench`, subset `ST-Test`, split `train`")
-lines.append("- device_strategy: `single_gpu` with `CUDA_VISIBLE_DEVICES=0`")
+lines.append("- device_strategy: `single_gpu`，使用 `CUDA_VISIBLE_DEVICES=0`")
 lines.append("- precision: `4bit`")
 lines.append("- attention backend: `sdpa`")
-lines.append("- samples: 20 max, 5 per category, reusing `compare_single4bit_dualfp16_selected_indices.json` when available")
-lines.append("- baseline: `max_new_tokens=64`, `answer_format_prompt=false`")
-lines.append("- longer generation: `max_new_tokens=256`, `answer_format_prompt=false`")
-lines.append("- forced answer format: `max_new_tokens=256`, `answer_format_prompt=true`")
+lines.append("- samples: 最多 20 条，每类最多 5 条；如果存在则复用 `compare_single4bit_dualfp16_selected_indices.json`")
+lines.append("- 基线: `max_new_tokens=64`, `answer_format_prompt=false`")
+lines.append("- 加长生成: `max_new_tokens=256`, `answer_format_prompt=false`")
+lines.append("- 强制答案格式: `max_new_tokens=256`, `answer_format_prompt=true`")
 lines.append("")
-lines.append("## 3. Results Table")
+lines.append("## 3. 结果表")
 lines.append("")
-lines.append("| run | config | parse_fail_rate | parse_success | accuracy | avg_latency | main_error |")
+lines.append("| 实验组 | 配置 | 解析失败率 | 解析成功数 | 准确率 | 平均延迟 | 主要错误 |")
 lines.append("|---|---|---:|---:|---:|---:|---|")
 for run in RUNS:
     summary = summaries[run["key"]]
@@ -215,7 +214,7 @@ for run in RUNS:
         + " |"
     )
 lines.append("")
-lines.append("## 4. Evidence")
+lines.append("## 4. 证据")
 lines.append("")
 for run in RUNS:
     records = records_by_key[run["key"]]
@@ -224,7 +223,7 @@ for run in RUNS:
     lines.append(f"### {run['label']}")
     lines.append("")
     if fail:
-        lines.append("Parse fail example:")
+        lines.append("解析失败样例：")
         lines.append("")
         lines.append("```text")
         lines.append(f"index={fail.get('index')} category={fail.get('category')} gold={fail.get('output')}")
@@ -233,10 +232,10 @@ for run in RUNS:
         lines.append("```")
         lines.append("")
     else:
-        lines.append("No parse fail example found.")
+        lines.append("未找到解析失败样例。")
         lines.append("")
     if success:
-        lines.append("Parse success example:")
+        lines.append("解析成功样例：")
         lines.append("")
         lines.append("```text")
         lines.append(
@@ -248,35 +247,35 @@ for run in RUNS:
         lines.append("```")
         lines.append("")
     else:
-        lines.append("No parse success example found.")
+        lines.append("未找到解析成功样例。")
         lines.append("")
-lines.append("## 5. Conclusion")
+lines.append("## 5. 结论")
 lines.append("")
 if best_summary.get("parse_fail_rate") is None:
-    lines.append("No run produced a usable parse_fail_rate, so the parse-fix experiment is inconclusive.")
+    lines.append("没有任何实验组产出可用的 `parse_fail_rate`，因此本次格式修复实验暂时无法下结论。")
 else:
     lines.append(
-        f"The best configuration in this run is `{best['label']}` "
-        f"({best['config']}) with parse_fail_rate={fmt(best_summary.get('parse_fail_rate'))}, "
-        f"parse_success={fmt(best_summary.get('num_parse_success'))}, and "
-        f"avg_latency={fmt(best_summary.get('avg_latency_sec'))} seconds."
+        f"本次实验中效果最好的是 `{best['label']}` "
+        f"({best['config']})：parse_fail_rate={fmt(best_summary.get('parse_fail_rate'))}，"
+        f"parse_success={fmt(best_summary.get('num_parse_success'))}，"
+        f"avg_latency={fmt(best_summary.get('avg_latency_sec'))} 秒。"
     )
     if best["key"] == "forced":
         lines.append(
-            "For the next tiny eval, use `max_new_tokens=256` and enable `answer_format_prompt=true`."
+            "下一轮 tiny eval 建议使用 `max_new_tokens=256`，并启用 `answer_format_prompt=true`。"
         )
     elif best["key"] == "longer":
         lines.append(
-            "For the next tiny eval, prefer `max_new_tokens=256`; the explicit answer-format prompt did not improve parsing enough in this run."
+            "下一轮 tiny eval 可优先尝试 `max_new_tokens=256`；本次实验里，显式答案格式提示没有带来足够改善。"
         )
     else:
         lines.append(
-            "For the next tiny eval, keep the baseline generation length unless manual inspection suggests the parser should be improved instead."
+            "下一轮 tiny eval 可以继续使用基线生成长度；除非人工检查表明更应该先改 parser。"
         )
 lines.append("")
 
 REPORT_PATH.write_text("\n".join(lines), encoding="utf-8")
-print(f"Wrote report: {REPORT_PATH}")
+print(f"已写入报告: {REPORT_PATH}")
 PY
 
-echo "Parse fix experiment finished. Report: repro_kaggle/outputs/parse_fix_experiment_report.md"
+echo "解析修复实验完成。报告: repro_kaggle/outputs/parse_fix_experiment_report.md"

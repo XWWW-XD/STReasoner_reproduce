@@ -137,7 +137,7 @@ def max_reserved(summary: dict[str, Any], gpu: str) -> str:
 
 def evidence(log_path: Path) -> list[str]:
     if not log_path.exists():
-        return [f"log not found: {log_path}"]
+        return [f"未找到日志: {log_path}"]
     needles = (
         "actual_device_map",
         "model device map",
@@ -162,7 +162,7 @@ def evidence(log_path: Path) -> list[str]:
         if any(needle in raw for needle in needles):
             lines.append(raw)
     if not lines:
-        return ["No key evidence snippets matched the report filters."]
+        return ["没有匹配到报告筛选条件的关键证据片段。"]
     head = lines[:12]
     tail = lines[-8:] if len(lines) > 20 else []
     if tail:
@@ -196,75 +196,72 @@ any_dual_ok = dual_auto_ok or dual_balanced_ok
 
 if not single_ok:
     conclusion = (
-        "Current problem is not primarily an FP16 or dual-GPU question. The base single_gpu 4bit "
-        "inference path failed or did not generate successfully, so that path should be fixed first."
+        "当前问题并不主要是 FP16 或双卡问题；基础的 single_gpu 4bit 推理链路失败或没有成功生成，"
+        "因此应先修复 single_gpu 4bit。"
     )
 elif any_dual_ok:
     conclusion = (
-        "In the current Kaggle T4 x2 environment, both single_gpu 4bit and at least one dual_gpu FP16 "
-        "strategy are feasible. The next comparison should focus on latency, memory, and output stability; "
-        "because single_gpu 4bit is simpler, it can remain the default low-resource path unless FP16 gives "
-        "a clear benefit."
+        "在当前 Kaggle T4 x2 环境下，single_gpu 4bit 和至少一种 dual_gpu FP16 策略都可行。"
+        "下一步应重点比较延迟、显存和输出稳定性；由于 single_gpu 4bit 更简单，"
+        "除非 FP16 带来明确收益，否则它仍可作为默认低资源方案。"
     )
 else:
     blockers = []
     for item in (dual_auto, dual_balanced):
         if item.get("first_error_message"):
             blockers.append(short(item.get("first_error_message"), 180))
-    blocker_text = blockers[0] if blockers else "no successful real dual-GPU FP16 run was produced"
+    blocker_text = blockers[0] if blockers else "没有产出成功的真实双卡 FP16 运行结果"
     conclusion = (
-        "In the current Kaggle T4 x2 + STReasoner-8B + current script configuration, single_gpu 4bit is "
-        "the more stable low-resource reproduction strategy. dual_gpu FP16 was unavailable or unstable in "
-        f"this experiment; the main observed bottleneck was: {blocker_text}."
+        "在当前 Kaggle T4 x2 + STReasoner-8B + 当前脚本配置下，single_gpu 4bit 是更稳定的"
+        f"低资源复现方案。dual_gpu FP16 在本次实验中不可用或不稳定；主要观察到的瓶颈是：{blocker_text}。"
     )
 
 if bool(dual_auto.get("model_load_pass")) and not dual_auto_real:
-    conclusion += " dual_auto did not form a real two-GPU split, so it is not evidence of dual_gpu FP16 success."
+    conclusion += " dual_auto 没有形成真实双卡切分，因此不能作为 dual_gpu FP16 成功证据。"
 
 lines: list[str] = []
-lines.append("# Single-GPU 4bit vs Dual-GPU FP16 Experiment")
+lines.append("# 单卡 4bit 与双卡 FP16 对照实验")
 lines.append("")
-lines.append("## 1. Goal")
+lines.append("## 1. 目标")
 lines.append("")
 lines.append(
-    "This experiment compares the feasibility and stability of single_gpu 4bit and dual_gpu FP16 "
-    "inference for STReasoner-8B in the current Kaggle T4 x2 environment."
+    "本实验比较当前 Kaggle T4 x2 环境下，STReasoner-8B 使用 single_gpu 4bit 与 "
+    "dual_gpu FP16 推理的可行性和稳定性。"
 )
 lines.append("")
 lines.append(
-    "The conclusion only applies to the current environment, model, and helper script configuration. "
-    "It should not be generalized to all dual-GPU systems."
+    "结论只适用于当前环境、当前模型和当前辅助脚本配置，不应泛化到所有双卡环境。"
 )
 lines.append("")
-lines.append("## 2. Background")
+lines.append("## 2. 背景")
 lines.append("")
-lines.append("- An 8B model in FP16 has roughly 16GB-scale weights, while one Kaggle T4 exposes about 14.56 GiB, so single-card FP16 is not a good fit.")
-lines.append("- 4bit quantization can greatly reduce VRAM pressure, and single_gpu smoke testing was already known to load successfully.")
-lines.append("- dual_gpu FP16 can theoretically split weights, but it can introduce device mismatch, KV cache placement, and processor/timeseries tensor placement issues.")
-lines.append("- PyTorch allocated and reserved memory should not be added together: allocated is live tensor memory, while reserved is the caching pool that already contains allocated memory.")
+lines.append("- 8B 模型的 FP16 权重约为 16GB 级别，而单张 Kaggle T4 约 14.56 GiB，因此单卡 FP16 不合适。")
+lines.append("- 4bit 量化可以显著降低显存压力；已知 single_gpu smoke test 可以成功加载。")
+lines.append("- dual_gpu FP16 理论上可以分摊权重，但可能引入 device mismatch、KV cache 放置、processor/timeseries tensor 设备不一致等问题。")
+lines.append("- PyTorch 的 allocated 和 reserved 显存不能相加：allocated 是真实张量占用，reserved 是 PyTorch 缓存池，已经包含 allocated。")
 lines.append("")
-lines.append("## 3. Experimental Setup")
+lines.append("## 3. 实验设置")
 lines.append("")
 lines.append(f"- model_name: `{single.get('model_name') or dual_auto.get('model_name') or 'Time-HD-Anonymous/STReasoner-8B'}`")
 lines.append("- dataset: `Time-HD-Anonymous/ST-Bench`, subset `ST-Test`, split `train`")
-lines.append("- samples: 20 max, each category at most 5")
+lines.append("- samples: 最多 20 条，每类最多 5 条")
 lines.append("- attention backend: `sdpa`")
 lines.append("- GPU: Kaggle Tesla T4")
 lines.append("- A: `single_gpu + 4bit`")
 lines.append("- B: `dual_auto + FP16`")
 lines.append("- C: `dual_balanced + FP16`")
 lines.append("")
-lines.append("## 4. Selected Samples")
+lines.append("## 4. 选中样本")
 lines.append("")
 if selected:
     for sample in selected:
         lines.append(f"- index `{sample.get('index')}`: `{sample.get('category')}`")
 else:
-    lines.append("- No selected-sample file was available.")
+    lines.append("- 未找到选中样本文件。")
 lines.append("")
-lines.append("## 5. Results Table")
+lines.append("## 5. 结果表")
 lines.append("")
-lines.append("| strategy | precision | visible GPUs | actual device map | actually multi-GPU | model load | generate success | generate failed | parse fail rate | accuracy | avg latency | max reserved GPU0 | max reserved GPU1 | main error |")
+lines.append("| 策略 | 精度 | 可见 GPU | 实际 device map | 是否真实双卡 | 模型加载 | 生成成功数 | 生成失败数 | 解析失败率 | 准确率 | 平均延迟 | GPU0 峰值 reserved | GPU1 峰值 reserved | 主要错误 |")
 lines.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
 for run in RUNS:
     summary = summaries[run["key"]]
@@ -291,25 +288,25 @@ for run in RUNS:
         + " |"
     )
 lines.append("")
-lines.append("## 6. Error Analysis")
+lines.append("## 6. 错误分析")
 lines.append("")
 for run in RUNS:
     summary = summaries[run["key"]]
     lines.append(f"### {run['label']}. {run['strategy']} + {run['precision']}")
     lines.append("")
     lines.append(f"- conclusion_hint: `{summary.get('conclusion_hint', 'n/a')}`")
-    lines.append(f"- model loading pass: `{summary.get('model_load_pass', 'n/a')}`")
-    lines.append(f"- actually multi-GPU: `{summary.get('is_actually_multi_gpu', 'n/a')}`")
+    lines.append(f"- 模型加载是否通过: `{summary.get('model_load_pass', 'n/a')}`")
+    lines.append(f"- 是否真实双卡: `{summary.get('is_actually_multi_gpu', 'n/a')}`")
     lines.append(f"- failure_count_by_stage: `{short(summary.get('failure_count_by_stage'))}`")
     lines.append(f"- failure_count_by_error_type: `{short(summary.get('failure_count_by_error_type'))}`")
     if summary.get("first_error_message"):
-        lines.append(f"- first error: {short(summary.get('first_error_message'), 500)}")
+        lines.append(f"- 首个错误: {short(summary.get('first_error_message'), 500)}")
     if run["strategy"] == "dual_auto" and summary.get("model_load_pass") and not summary.get("is_actually_multi_gpu"):
-        lines.append("- dual_auto did not actually use both GPUs, so it cannot count as successful dual-GPU FP16 evidence.")
+        lines.append("- dual_auto 没有实际使用两张 GPU，因此不能算作 dual-GPU FP16 成功证据。")
     if run["strategy"] == "dual_balanced" and summary.get("failure_count_by_error_type", {}).get("BALANCED_NOT_SUPPORTED"):
-        lines.append("- dual_balanced was reported as unsupported by the current stack.")
+        lines.append("- 当前软件栈报告 dual_balanced 不受支持。")
     lines.append("")
-lines.append("## 7. Evidence Snippets")
+lines.append("## 7. 证据片段")
 lines.append("")
 for run in RUNS:
     lines.append(f"### {run['label']}. {run['strategy']} + {run['precision']}")
@@ -318,13 +315,13 @@ for run in RUNS:
     lines.extend(evidence(run["log"]))
     lines.append("```")
     lines.append("")
-lines.append("## 8. Conclusion")
+lines.append("## 8. 结论")
 lines.append("")
 lines.append(conclusion)
 lines.append("")
 
 REPORT_PATH.write_text("\n".join(lines), encoding="utf-8")
-print(f"Wrote report: {REPORT_PATH}")
+print(f"已写入报告: {REPORT_PATH}")
 PY
 
-echo "Compare experiment finished. Report: repro_kaggle/outputs/compare_single4bit_dualfp16_report.md"
+echo "对照实验完成。报告: repro_kaggle/outputs/compare_single4bit_dualfp16_report.md"
