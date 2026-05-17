@@ -10,7 +10,7 @@ from typing import Any
 
 DATASET_NAME = "Time-HD-Anonymous/ST-Bench"
 SUBSETS = ("ST-Test", "ST-Test-Text", "ST-SFT", "ST-CoT", "ST-Align")
-OUTPUT_LOG = "repro_kaggle/outputs/stbench_inspect.log"
+OUTPUT_LOG = "repro_kaggle/outputs/02_stbench_inspect.log"
 
 
 class TeeLogger:

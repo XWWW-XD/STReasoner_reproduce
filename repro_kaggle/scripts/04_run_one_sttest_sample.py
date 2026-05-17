@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import sys
 import traceback
@@ -15,25 +16,36 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
-from load_streasoner_smoke import (  # noqa: E402
-    DEFAULT_MODEL_NAME,
-    TeeLogger,
-    build_quantization_config,
-    class_name,
-    load_config,
-    load_model,
-    load_processor_and_tokenizer,
-    log_gpu_memory,
-    move_inputs_to_device,
-    set_hf_cache_env,
-    str2bool,
-)
+
+def load_script_module(filename: str, module_name: str) -> Any:
+    module_path = SCRIPT_DIR / filename
+    spec = importlib.util.spec_from_file_location(module_name, module_path)
+    if spec is None or spec.loader is None:
+        raise ImportError(f"Cannot import {module_path}")
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[module_name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+_smoke = load_script_module("03_load_streasoner_smoke.py", "repro_kaggle_03_load_streasoner_smoke")
+DEFAULT_MODEL_NAME = _smoke.DEFAULT_MODEL_NAME
+TeeLogger = _smoke.TeeLogger
+build_quantization_config = _smoke.build_quantization_config
+class_name = _smoke.class_name
+load_config = _smoke.load_config
+load_model = _smoke.load_model
+load_processor_and_tokenizer = _smoke.load_processor_and_tokenizer
+log_gpu_memory = _smoke.log_gpu_memory
+move_inputs_to_device = _smoke.move_inputs_to_device
+set_hf_cache_env = _smoke.set_hf_cache_env
+str2bool = _smoke.str2bool
 
 
 DATASET_NAME = "Time-HD-Anonymous/ST-Bench"
 DATASET_SUBSET = "ST-Test"
 DEFAULT_OUTPUT_JSON = "repro_kaggle/outputs/one_sttest_prediction.json"
-DEFAULT_OUTPUT_LOG = "repro_kaggle/outputs/run_one_sttest_sample.log"
+DEFAULT_OUTPUT_LOG = "repro_kaggle/outputs/04_run_one_sttest_sample.log"
 
 
 def parse_args() -> argparse.Namespace:

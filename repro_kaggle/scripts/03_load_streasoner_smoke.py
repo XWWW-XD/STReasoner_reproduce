@@ -20,7 +20,7 @@ from typing import Any
 
 
 DEFAULT_MODEL_NAME = "Time-HD-Anonymous/STReasoner-8B"
-DEFAULT_OUTPUT_LOG = "repro_kaggle/outputs/load_streasoner_smoke.log"
+DEFAULT_OUTPUT_LOG = "repro_kaggle/outputs/03_load_streasoner_smoke.log"
 
 
 class TeeLogger:

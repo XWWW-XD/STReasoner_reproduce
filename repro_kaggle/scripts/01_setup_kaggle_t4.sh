@@ -24,6 +24,6 @@ echo "==> Upgrading bitsandbytes"
 pip install -U bitsandbytes
 
 echo "==> Running Kaggle environment check"
-python repro_kaggle/scripts/check_kaggle_env.py
+python repro_kaggle/scripts/00_check_kaggle_env.py
 
 echo "==> Kaggle T4 setup finished"
