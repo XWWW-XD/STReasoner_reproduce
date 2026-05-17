@@ -30,7 +30,6 @@ data/forecasting_qa.json
 data/list_files.json
 data/reasoning_qa.json
 data/ST-Bench
-outputs
 
 ChatTS
 ChatTS-Training

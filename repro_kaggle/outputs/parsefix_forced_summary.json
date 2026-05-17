@@ -1,0 +1,98 @@
+{
+  "model_name": "Time-HD-Anonymous/STReasoner-8B",
+  "precision": "4bit",
+  "device_strategy": "single_gpu",
+  "attn_backend": "sdpa",
+  "max_new_tokens": 256,
+  "answer_format_prompt": true,
+  "visible_gpu_count": 1,
+  "gpu_names": [
+    "Tesla T4 (14.56 GiB)"
+  ],
+  "actual_device_map": {
+    "": 0
+  },
+  "is_actually_multi_gpu": false,
+  "model_load_pass": true,
+  "model_load_time_sec": 73.104,
+  "total_eval_time_sec": 4837.725,
+  "num_samples_requested": 20,
+  "num_samples_run": 20,
+  "num_generate_success": 20,
+  "num_generate_failed": 0,
+  "num_parse_success": 2,
+  "num_parse_failed": 18,
+  "parse_fail_rate": 0.9,
+  "accuracy_overall_if_applicable": 0.5,
+  "accuracy_by_category": {
+    "correlation": {
+      "accuracy": null,
+      "num_scored": 0
+    },
+    "entity": {
+      "accuracy": null,
+      "num_scored": 0
+    },
+    "etiological": {
+      "accuracy": 0.5,
+      "num_scored": 2
+    },
+    "forecasting": {
+      "accuracy": null,
+      "num_scored": 0
+    }
+  },
+  "success_by_category": {
+    "correlation": {
+      "num_total": 5,
+      "num_generate_success": 5,
+      "num_generate_failed": 0,
+      "num_parse_success": 0,
+      "num_parse_failed": 5
+    },
+    "entity": {
+      "num_total": 5,
+      "num_generate_success": 5,
+      "num_generate_failed": 0,
+      "num_parse_success": 0,
+      "num_parse_failed": 5
+    },
+    "etiological": {
+      "num_total": 5,
+      "num_generate_success": 5,
+      "num_generate_failed": 0,
+      "num_parse_success": 2,
+      "num_parse_failed": 3
+    },
+    "forecasting": {
+      "num_total": 5,
+      "num_generate_success": 5,
+      "num_generate_failed": 0,
+      "num_parse_success": 0,
+      "num_parse_failed": 5
+    }
+  },
+  "avg_latency_sec": 237.76885000000001,
+  "median_latency_sec": 220.3445,
+  "p95_latency_sec": 326.431,
+  "max_allocated_gib_by_gpu": {
+    "gpu0": 6.631
+  },
+  "max_reserved_gib_by_gpu": {
+    "gpu0": 6.744
+  },
+  "final_allocated_gib_by_gpu": {
+    "gpu0": 5.711
+  },
+  "final_reserved_gib_by_gpu": {
+    "gpu0": 6.744
+  },
+  "failure_count_by_stage": {
+    "parse": 18
+  },
+  "failure_count_by_error_type": {
+    "ParseError": 18
+  },
+  "first_error_message": "no_answer_tag_or_standalone_choice",
+  "conclusion_hint": "PARTIAL"
+}

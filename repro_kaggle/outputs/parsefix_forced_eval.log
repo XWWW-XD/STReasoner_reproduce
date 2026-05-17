@@ -1,0 +1,231 @@
+=== Tiny ST-Test Evaluation ===
+model_name: Time-HD-Anonymous/STReasoner-8B
+precision: 4bit
+attn_backend: sdpa
+device_strategy: single_gpu
+max_samples: 20
+samples_per_category: 5
+max_new_tokens: 256
+answer_format_prompt: True
+category: all
+output_path: repro_kaggle/outputs/parsefix_forced_predictions.jsonl
+summary_path: repro_kaggle/outputs/parsefix_forced_summary.json
+log_path: repro_kaggle/outputs/parsefix_forced_eval.log
+visible_gpu_count: 1
+gpu_names: ['Tesla T4 (14.56 GiB)']
+=== Data Loading ===
+dataset: Time-HD-Anonymous/ST-Bench
+subset: ST-Test
+split: train
+dataset rows: 3273
+Reusing selected sample indices: repro_kaggle/outputs/compare_single4bit_dualfp16_selected_indices.json
+selected rows: 20
+selected rows by category: {'correlation': 5, 'entity': 5, 'etiological': 5, 'forecasting': 5}
+device_strategy=single_gpu: using device_map={'': 0}; expect CUDA_VISIBLE_DEVICES=0 externally.
+=== Model Loading ===
+model_name: Time-HD-Anonymous/STReasoner-8B
+precision: 4bit
+torch_dtype: torch.float16
+bf16: disabled
+flash_attn: not requested
+attn_backend: sdpa
+=== Processor / Tokenizer ===
+Trying AutoProcessor.from_pretrained(...)
+AutoProcessor loaded: Qwen3TSProcessor
+Trying AutoTokenizer.from_pretrained(...)
+AutoTokenizer loaded: Qwen2TokenizerFast
+=== Config ===
+config class: Qwen3TSConfig
+config._attn_implementation: 'eager' -> 'sdpa'
+precision=4bit: using BitsAndBytesConfig with torch.float16 compute dtype.
+device_strategy=single_gpu: using device_map={'': 0}; expect CUDA_VISIBLE_DEVICES=0 externally.
+Trying AutoModelForCausalLM.from_pretrained(...)
+model class: Qwen3TSForCausalLM
+processor class: Qwen3TSProcessor
+tokenizer class: Qwen2TokenizerFast
+model_load_time_sec: 73.10
+MODEL_LOAD_PASS
+actual_device_map: {'': 0}
+is_actually_multi_gpu: False
+Applied runtime patch for multi-GPU time-series merge device alignment.
+gpu_memory_after_model_load: {'gpu0': {'allocated_gib': 5.703, 'reserved_gib': 6.74}}
+--------------------------------------------------------------------------------
+[1/20] index=0, category=correlation
+GENERATE_PASS index=0 latency_sec=201.372
+PARSE_FAIL index=0: no_answer_tag_or_standalone_choice
+--------------------------------------------------------------------------------
+[2/20] index=1, category=correlation
+GENERATE_PASS index=1 latency_sec=292.641
+PARSE_FAIL index=1: no_answer_tag_or_standalone_choice
+--------------------------------------------------------------------------------
+[3/20] index=2, category=correlation
+GENERATE_PASS index=2 latency_sec=293.096
+PARSE_FAIL index=2: no_answer_tag_or_standalone_choice
+--------------------------------------------------------------------------------
+[4/20] index=3, category=correlation
+GENERATE_PASS index=3 latency_sec=293.528
+PARSE_FAIL index=3: no_answer_tag_or_standalone_choice
+--------------------------------------------------------------------------------
+[5/20] index=4, category=correlation
+GENERATE_PASS index=4 latency_sec=326.431
+PARSE_FAIL index=4: no_answer_tag_or_standalone_choice
+--------------------------------------------------------------------------------
+[6/20] index=1592, category=entity
+GENERATE_PASS index=1592 latency_sec=291.558
+PARSE_FAIL index=1592: no_answer_tag_or_standalone_choice
+--------------------------------------------------------------------------------
+[7/20] index=1593, category=entity
+GENERATE_PASS index=1593 latency_sec=214.454
+PARSE_FAIL index=1593: no_answer_tag_or_standalone_choice
+--------------------------------------------------------------------------------
+[8/20] index=1594, category=entity
+GENERATE_PASS index=1594 latency_sec=330.018
+PARSE_FAIL index=1594: no_answer_tag_or_standalone_choice
+--------------------------------------------------------------------------------
+[9/20] index=1595, category=entity
+GENERATE_PASS index=1595 latency_sec=289.882
+PARSE_FAIL index=1595: no_answer_tag_or_standalone_choice
+--------------------------------------------------------------------------------
+[10/20] index=1596, category=entity
+GENERATE_PASS index=1596 latency_sec=290.850
+PARSE_FAIL index=1596: no_answer_tag_or_standalone_choice
+--------------------------------------------------------------------------------
+[11/20] index=2786, category=etiological
+GENERATE_PASS index=2786 latency_sec=202.768
+PARSE_FAIL index=2786: no_answer_tag_or_standalone_choice
+--------------------------------------------------------------------------------
+[12/20] index=2787, category=etiological
+GENERATE_PASS index=2787 latency_sec=183.295
+PARSE_PASS index=2787 target=C parsed_prediction=C is_correct=True
+--------------------------------------------------------------------------------
+[13/20] index=2788, category=etiological
+GENERATE_PASS index=2788 latency_sec=178.420
+PARSE_FAIL index=2788: no_answer_tag_or_standalone_choice
+--------------------------------------------------------------------------------
+[14/20] index=2789, category=etiological
+GENERATE_PASS index=2789 latency_sec=175.004
+PARSE_FAIL index=2789: no_answer_tag_or_standalone_choice
+--------------------------------------------------------------------------------
+[15/20] index=2790, category=etiological
+GENERATE_PASS index=2790 latency_sec=226.235
+PARSE_PASS index=2790 target=A parsed_prediction=C is_correct=False
+--------------------------------------------------------------------------------
+[16/20] index=2993, category=forecasting
+GENERATE_PASS index=2993 latency_sec=154.389
+PARSE_FAIL index=2993: no_answer_tag_or_standalone_choice
+--------------------------------------------------------------------------------
+[17/20] index=2994, category=forecasting
+GENERATE_PASS index=2994 latency_sec=202.876
+PARSE_FAIL index=2994: no_answer_tag_or_standalone_choice
+--------------------------------------------------------------------------------
+[18/20] index=2995, category=forecasting
+GENERATE_PASS index=2995 latency_sec=303.107
+PARSE_FAIL index=2995: no_answer_tag_or_standalone_choice
+--------------------------------------------------------------------------------
+[19/20] index=2996, category=forecasting
+GENERATE_PASS index=2996 latency_sec=152.620
+PARSE_FAIL index=2996: no_answer_tag_or_standalone_choice
+--------------------------------------------------------------------------------
+[20/20] index=2997, category=forecasting
+GENERATE_PASS index=2997 latency_sec=152.833
+PARSE_FAIL index=2997: no_answer_tag_or_standalone_choice
+=== Summary ===
+{
+  "model_name": "Time-HD-Anonymous/STReasoner-8B",
+  "precision": "4bit",
+  "device_strategy": "single_gpu",
+  "attn_backend": "sdpa",
+  "max_new_tokens": 256,
+  "answer_format_prompt": true,
+  "visible_gpu_count": 1,
+  "gpu_names": [
+    "Tesla T4 (14.56 GiB)"
+  ],
+  "actual_device_map": {
+    "": 0
+  },
+  "is_actually_multi_gpu": false,
+  "model_load_pass": true,
+  "model_load_time_sec": 73.104,
+  "total_eval_time_sec": 4837.725,
+  "num_samples_requested": 20,
+  "num_samples_run": 20,
+  "num_generate_success": 20,
+  "num_generate_failed": 0,
+  "num_parse_success": 2,
+  "num_parse_failed": 18,
+  "parse_fail_rate": 0.9,
+  "accuracy_overall_if_applicable": 0.5,
+  "accuracy_by_category": {
+    "correlation": {
+      "accuracy": null,
+      "num_scored": 0
+    },
+    "entity": {
+      "accuracy": null,
+      "num_scored": 0
+    },
+    "etiological": {
+      "accuracy": 0.5,
+      "num_scored": 2
+    },
+    "forecasting": {
+      "accuracy": null,
+      "num_scored": 0
+    }
+  },
+  "success_by_category": {
+    "correlation": {
+      "num_total": 5,
+      "num_generate_success": 5,
+      "num_generate_failed": 0,
+      "num_parse_success": 0,
+      "num_parse_failed": 5
+    },
+    "entity": {
+      "num_total": 5,
+      "num_generate_success": 5,
+      "num_generate_failed": 0,
+      "num_parse_success": 0,
+      "num_parse_failed": 5
+    },
+    "etiological": {
+      "num_total": 5,
+      "num_generate_success": 5,
+      "num_generate_failed": 0,
+      "num_parse_success": 2,
+      "num_parse_failed": 3
+    },
+    "forecasting": {
+      "num_total": 5,
+      "num_generate_success": 5,
+      "num_generate_failed": 0,
+      "num_parse_success": 0,
+      "num_parse_failed": 5
+    }
+  },
+  "avg_latency_sec": 237.76885000000001,
+  "median_latency_sec": 220.3445,
+  "p95_latency_sec": 326.431,
+  "max_allocated_gib_by_gpu": {
+    "gpu0": 6.631
+  },
+  "max_reserved_gib_by_gpu": {
+    "gpu0": 6.744
+  },
+  "final_allocated_gib_by_gpu": {
+    "gpu0": 5.711
+  },
+  "final_reserved_gib_by_gpu": {
+    "gpu0": 6.744
+  },
+  "failure_count_by_stage": {
+    "parse": 18
+  },
+  "failure_count_by_error_type": {
+    "ParseError": 18
+  },
+  "first_error_message": "no_answer_tag_or_standalone_choice",
+  "conclusion_hint": "PARTIAL"
+}
+TINY_EVAL_PASS

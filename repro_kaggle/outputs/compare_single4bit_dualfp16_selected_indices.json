@@ -1,0 +1,98 @@
+{
+  "metadata": {
+    "dataset": "Time-HD-Anonymous/ST-Bench",
+    "subset": "ST-Test",
+    "split": "train",
+    "max_samples": 20,
+    "samples_per_category": 5,
+    "category": "all",
+    "target_categories": [
+      "correlation",
+      "entity",
+      "etiological",
+      "forecasting"
+    ]
+  },
+  "samples": [
+    {
+      "index": 0,
+      "category": "correlation"
+    },
+    {
+      "index": 1,
+      "category": "correlation"
+    },
+    {
+      "index": 2,
+      "category": "correlation"
+    },
+    {
+      "index": 3,
+      "category": "correlation"
+    },
+    {
+      "index": 4,
+      "category": "correlation"
+    },
+    {
+      "index": 1592,
+      "category": "entity"
+    },
+    {
+      "index": 1593,
+      "category": "entity"
+    },
+    {
+      "index": 1594,
+      "category": "entity"
+    },
+    {
+      "index": 1595,
+      "category": "entity"
+    },
+    {
+      "index": 1596,
+      "category": "entity"
+    },
+    {
+      "index": 2786,
+      "category": "etiological"
+    },
+    {
+      "index": 2787,
+      "category": "etiological"
+    },
+    {
+      "index": 2788,
+      "category": "etiological"
+    },
+    {
+      "index": 2789,
+      "category": "etiological"
+    },
+    {
+      "index": 2790,
+      "category": "etiological"
+    },
+    {
+      "index": 2993,
+      "category": "forecasting"
+    },
+    {
+      "index": 2994,
+      "category": "forecasting"
+    },
+    {
+      "index": 2995,
+      "category": "forecasting"
+    },
+    {
+      "index": 2996,
+      "category": "forecasting"
+    },
+    {
+      "index": 2997,
+      "category": "forecasting"
+    }
+  ]
+}
