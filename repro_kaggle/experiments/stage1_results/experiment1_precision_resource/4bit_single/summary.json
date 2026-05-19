@@ -20,7 +20,7 @@
   },
   "load_success": true,
   "load_error": null,
-  "load_time_sec": 190.971,
+  "load_time_sec": 67.018,
   "load_info": {
     "actual_device_map": {
       "": 0
@@ -32,38 +32,39 @@
         "allocated_gib": 5.703,
         "reserved_gib": 6.74
       }
-    }
+    },
+    "merge_patch_applied": true
   },
   "counts": {
     "main": 20,
-    "paper": 4,
-    "stress": 1
+    "paper": 0,
+    "stress": 0
   },
   "official_denominator_note": "正式成功率统计三组样例合计：主测试 20 + 论文样例 4 + 压力测试 1。",
-  "official_accuracy": 0.0,
-  "official_generate_success_rate": 0.0,
-  "official_decode_success_rate": 0.0,
-  "official_parse_success_rate": 0.0,
-  "generate_success_rate_all": 0.0,
-  "decode_success_rate_all": 0.0,
-  "parse_success_rate_all": 0.0,
-  "main_accuracy": 0.0,
-  "main_parse_accuracy": null,
-  "main_generate_success_rate": 0.0,
-  "main_decode_success_rate": 0.0,
-  "main_parse_success_rate": 0.0,
-  "paper_accuracy": 0.0,
+  "official_accuracy": 0.15,
+  "official_generate_success_rate": 1.0,
+  "official_decode_success_rate": 1.0,
+  "official_parse_success_rate": 0.45,
+  "generate_success_rate_all": 1.0,
+  "decode_success_rate_all": 1.0,
+  "parse_success_rate_all": 0.45,
+  "main_accuracy": 0.15,
+  "main_parse_accuracy": 0.3333,
+  "main_generate_success_rate": 1.0,
+  "main_decode_success_rate": 1.0,
+  "main_parse_success_rate": 0.45,
+  "paper_accuracy": null,
   "paper_parse_accuracy": null,
-  "stress_accuracy": 0.0,
+  "stress_accuracy": null,
   "stress_parse_accuracy": null,
-  "avg_input_tokens": 745.16,
-  "avg_actual_new_tokens": null,
-  "avg_latency_sec": null,
-  "max_latency_sec": null,
-  "avg_tokens_per_sec": null,
+  "avg_input_tokens": 696.85,
+  "avg_actual_new_tokens": 512.0,
+  "avg_latency_sec": 552.565,
+  "max_latency_sec": 773.262,
+  "avg_tokens_per_sec": 0.979,
   "final_memory": {
     "gpu0": {
-      "allocated_gib": 5.734,
+      "allocated_gib": 5.711,
       "reserved_gib": 6.744
     }
   },
@@ -74,10 +75,10 @@
     }
   },
   "bottleneck_counts": {
-    "输入/生成瓶颈": 25
+    "输出与评测瓶颈": 11
   },
   "failure_count_by_stage": {
-    "generate": 25
+    "parse": 11
   },
-  "first_error": "输入与 time-series 特征合并时张量长度不匹配，generate 失败：RuntimeError: The size of tensor a (981) must match the size of tensor b (951) at non-singleton dimension 1"
+  "first_error": "parse 阶段失败：json_array_parse_error: Expecting ',' delimiter: line 1 column 4 (char 3)"
 }

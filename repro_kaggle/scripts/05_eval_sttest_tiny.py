@@ -65,6 +65,7 @@ ANSWER_FORMAT_INSTRUCTION = (
 TARGET_CATEGORIES = ("correlation", "entity", "etiological", "forecasting")
 VALID_CATEGORIES = ("all",) + TARGET_CATEGORIES
 CHOICE_RE = re.compile(r"(?:^|[^A-Za-z])([ABCD])(?:[^A-Za-z]|$)")
+# 它只解析 A/B/C/D，没有单独处理 forecasting。
 ANSWER_TAG_RE = re.compile(r"<answer>\s*(.*?)\s*</answer>", re.IGNORECASE | re.DOTALL)
 
 

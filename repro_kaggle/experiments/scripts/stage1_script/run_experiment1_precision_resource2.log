@@ -1,0 +1,53 @@
+开始运行配置: 4bit_single / 4bit单卡
+CUDA_VISIBLE_DEVICES=1
+/usr/local/lib/python3.12/dist-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+2026-05-19 11:45:40.040684: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1779191140.065550   36898 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1779191140.073015   36898 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1779191140.105244   36898 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1779191140.105283   36898 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1779191140.105287   36898 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1779191140.105291   36898 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+=== Processor / Tokenizer ===
+Trying AutoProcessor.from_pretrained(...)
+A new version of the following files was downloaded from https://huggingface.co/Time-HD-Anonymous/STReasoner-8B:
+- processing_qwen3_ts.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+AutoProcessor loaded: Qwen3TSProcessor
+Trying AutoTokenizer.from_pretrained(...)
+AutoTokenizer loaded: Qwen2TokenizerFast
+=== Config ===
+A new version of the following files was downloaded from https://huggingface.co/Time-HD-Anonymous/STReasoner-8B:
+- configuration_qwen3_ts.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+config class: Qwen3TSConfig
+config._attn_implementation: 'eager' -> 'sdpa'
+加载配置: precision=4bit, device_map={'': 0}, quantization=BitsAndBytesConfig {
+  "_load_in_4bit": true,
+  "_load_in_8bit": false,
+  "bnb_4bit_compute_dtype": "float16",
+  "bnb_4bit_quant_storage": "uint8",
+  "bnb_4bit_quant_type": "nf4",
+  "bnb_4bit_use_double_quant": true,
+  "llm_int8_enable_fp32_cpu_offload": false,
+  "llm_int8_has_fp16_weight": false,
+  "llm_int8_skip_modules": null,
+  "llm_int8_threshold": 6.0,
+  "load_in_4bit": true,
+  "load_in_8bit": false,
+  "quant_method": "bitsandbytes"
+}
+
+A new version of the following files was downloaded from https://huggingface.co/Time-HD-Anonymous/STReasoner-8B:
+- modeling_qwen3_ts.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:18<00:54, 18.23s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:45<00:47, 23.75s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:54<00:17, 17.06s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:04<00:00, 13.96s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:04<00:00, 16.04s/it]
+Applied runtime patch for multi-GPU time-series merge device alignment.
+MERGE_PATCH_APPLIED=True
+[main 1/20] tiny20_forecasting_01_line87
+  stage=parse correct=False latency=4400.107
+[main 2/20] tiny20_forecasting_02_line116
+  stage=parse correct=False latency=1602.506
+[main 3/20] tiny20_forecasting_03_line174

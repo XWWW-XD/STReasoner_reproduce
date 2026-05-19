@@ -1,0 +1,33 @@
+开始运行配置: 4bit_single / 4bit单卡
+CUDA_VISIBLE_DEVICES=1
+=== Processor / Tokenizer ===
+Trying AutoProcessor.from_pretrained(...)
+AutoProcessor loaded: Qwen3TSProcessor
+Trying AutoTokenizer.from_pretrained(...)
+AutoTokenizer loaded: Qwen2TokenizerFast
+=== Config ===
+config class: Qwen3TSConfig
+config._attn_implementation: 'eager' -> 'sdpa'
+加载配置: precision=4bit, device_map={'': 0}, quantization=BitsAndBytesConfig {
+  "_load_in_4bit": true,
+  "_load_in_8bit": false,
+  "bnb_4bit_compute_dtype": "float16",
+  "bnb_4bit_quant_storage": "uint8",
+  "bnb_4bit_quant_type": "nf4",
+  "bnb_4bit_use_double_quant": true,
+  "llm_int8_enable_fp32_cpu_offload": false,
+  "llm_int8_has_fp16_weight": false,
+  "llm_int8_skip_modules": null,
+  "llm_int8_threshold": 6.0,
+  "load_in_4bit": true,
+  "load_in_8bit": false,
+  "quant_method": "bitsandbytes"
+}
+
+Applied runtime patch for multi-GPU time-series merge device alignment.
+MERGE_PATCH_APPLIED=True
+[main 1/20] tiny20_forecasting_01_line87
+  stage=parse correct=False latency=4400.107
+[main 2/20] tiny20_forecasting_02_line116
+  stage=parse correct=False latency=1602.506
+[main 3/20] tiny20_forecasting_03_line174

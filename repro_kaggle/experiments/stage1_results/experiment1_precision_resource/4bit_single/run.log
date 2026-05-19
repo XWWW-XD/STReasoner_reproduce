@@ -27,3 +27,128 @@ config._attn_implementation: 'eager' -> 'sdpa'
 Applied runtime patch for multi-GPU time-series merge device alignment.
 MERGE_PATCH_APPLIED=True
 [main 1/20] tiny20_forecasting_01_line87
+  stage=parse correct=False latency=665.719
+[main 2/20] tiny20_forecasting_02_line116
+  stage=parse correct=False latency=488.735
+[main 3/20] tiny20_forecasting_03_line174
+  stage=parse correct=False latency=401.96
+[main 4/20] tiny20_forecasting_04_line227
+  stage=parse correct=False latency=395.946
+[main 5/20] tiny20_forecasting_05_line239
+  stage=parse correct=False latency=637.99
+[main 6/20] tiny20_entity_01_line257
+  stage=parse correct=False latency=772.784
+[main 7/20] tiny20_entity_02_line529
+  stage=none correct=False latency=480.565
+[main 8/20] tiny20_entity_03_line670
+  stage=none correct=False latency=773.262
+[main 9/20] tiny20_entity_04_line785
+  stage=none correct=True latency=535.116
+[main 10/20] tiny20_entity_05_line1133
+  stage=none correct=False latency=681.474
+[main 11/20] tiny20_etiological_01_line13
+  stage=none correct=False latency=703.94
+[main 12/20] tiny20_etiological_02_line137
+  stage=parse correct=False latency=692.927
+[main 13/20] tiny20_etiological_03_line144
+  stage=none correct=True latency=418.031
+[main 14/20] tiny20_etiological_04_line154
+  stage=none correct=False latency=444.622
+[main 15/20] tiny20_etiological_05_line197
+  stage=parse correct=False latency=427.657
+[main 16/20] tiny20_correlation_01_line91
+  stage=parse correct=False latency=430.283
+[main 17/20] tiny20_correlation_02_line336
+  stage=parse correct=False latency=431.204
+[main 18/20] tiny20_correlation_03_line528
+  stage=none correct=True latency=427.664
+[main 19/20] tiny20_correlation_04_line896
+  stage=none correct=False latency=694.753
+[main 20/20] tiny20_correlation_05_line1059
+  stage=parse correct=False latency=546.674
+[paper 1/4] paper_appendix_h_table6_etiological_line118
+summary:
+{
+  "config": "4bit_single",
+  "label": "4bit单卡",
+  "model": "Time-HD-Anonymous/STReasoner-8B",
+  "batch_size": 1,
+  "max_new_tokens": 512,
+  "precision": "4bit",
+  "cuda_visible_devices": "0",
+  "requested_device_map": {
+    "": 0
+  },
+  "environment": {
+    "visible_gpu_count": 1,
+    "gpu_names": [
+      "Tesla T4"
+    ],
+    "gpu_total_gib": {
+      "gpu0": 14.563
+    }
+  },
+  "load_success": true,
+  "load_error": null,
+  "load_time_sec": 67.018,
+  "load_info": {
+    "actual_device_map": {
+      "": 0
+    },
+    "use_cache": false,
+    "first_parameter_dtype": "torch.float16",
+    "load_after_memory": {
+      "gpu0": {
+        "allocated_gib": 5.703,
+        "reserved_gib": 6.74
+      }
+    },
+    "merge_patch_applied": true
+  },
+  "counts": {
+    "main": 20,
+    "paper": 0,
+    "stress": 0
+  },
+  "official_denominator_note": "正式成功率统计三组样例合计：主测试 20 + 论文样例 4 + 压力测试 1。",
+  "official_accuracy": 0.15,
+  "official_generate_success_rate": 1.0,
+  "official_decode_success_rate": 1.0,
+  "official_parse_success_rate": 0.45,
+  "generate_success_rate_all": 1.0,
+  "decode_success_rate_all": 1.0,
+  "parse_success_rate_all": 0.45,
+  "main_accuracy": 0.15,
+  "main_parse_accuracy": 0.3333,
+  "main_generate_success_rate": 1.0,
+  "main_decode_success_rate": 1.0,
+  "main_parse_success_rate": 0.45,
+  "paper_accuracy": null,
+  "paper_parse_accuracy": null,
+  "stress_accuracy": null,
+  "stress_parse_accuracy": null,
+  "avg_input_tokens": 696.85,
+  "avg_actual_new_tokens": 512.0,
+  "avg_latency_sec": 552.565,
+  "max_latency_sec": 773.262,
+  "avg_tokens_per_sec": 0.979,
+  "final_memory": {
+    "gpu0": {
+      "allocated_gib": 5.711,
+      "reserved_gib": 6.744
+    }
+  },
+  "peak_memory": {
+    "gpu0": {
+      "max_allocated_gib": 6.631,
+      "max_reserved_gib": 6.744
+    }
+  },
+  "bottleneck_counts": {
+    "输出与评测瓶颈": 11
+  },
+  "failure_count_by_stage": {
+    "parse": 11
+  },
+  "first_error": "parse 阶段失败：json_array_parse_error: Expecting ',' delimiter: line 1 column 4 (char 3)"
+}
