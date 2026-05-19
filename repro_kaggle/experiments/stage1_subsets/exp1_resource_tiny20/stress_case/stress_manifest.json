@@ -1,0 +1,25 @@
+{
+  "experiment": "exp1_resource_tiny20",
+  "subset_name": "stress_case",
+  "created_at_utc": "2026-05-19T09:00:08+00:00",
+  "dataset_repo": "Time-HD-Anonymous/ST-Bench",
+  "dataset_revision": "1a6871632f295dc2a049860b2a7d08ae445c25da",
+  "selection_rule": "选择全部 ST-Test 样本中 `input` 字符长度 + 序列化 `timeseries` 字符长度合计最大的 1 条。",
+  "length_metric_note": "由于本地没有完整 Qwen/STReasoner tokenizer 文件，当前记录的是近似字符长度。",
+  "stress_count": 1,
+  "sample": {
+    "sample_id": "stress_longest_etiological_line110",
+    "task": "etiological",
+    "source_file": "ST-Test/etiological_test.jsonl",
+    "original_line_index": 110,
+    "category": "etiological",
+    "output": "<answer>A</answer>",
+    "appears_in_tiny20": false,
+    "length_metrics": {
+      "input_char_length": 1356,
+      "timeseries_serialized_char_length": 22363,
+      "output_char_length": 20,
+      "combined_input_timeseries_char_length": 23719
+    }
+  }
+}

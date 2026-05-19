@@ -1,0 +1,504 @@
+{
+  "experiment": "exp1_resource_tiny20",
+  "subset_name": "st_test_tiny20_seed20260519",
+  "created_at_utc": "2026-05-19T09:00:07+00:00",
+  "dataset_repo": "Time-HD-Anonymous/ST-Bench",
+  "dataset_revision": "1a6871632f295dc2a049860b2a7d08ae445c25da",
+  "seed": 20260519,
+  "selection_rule": "对每个 ST-Test 任务文件，使用 Python random.Random(20260519).sample(range(num_rows), 5) 抽取 5 个原始零基行号；随后按行号升序写出，保证文件顺序稳定。",
+  "length_metric_note": "由于本地没有完整 Qwen/STReasoner tokenizer 文件，当前记录的是近似字符长度。",
+  "source_files": {
+    "forecasting": "ST-Test/forecasting_test.jsonl",
+    "entity": "ST-Test/entity_test.jsonl",
+    "etiological": "ST-Test/etiological_test.jsonl",
+    "correlation": "ST-Test/correlation_test.jsonl"
+  },
+  "field_summary": {
+    "forecasting": {
+      "columns": [
+        "category",
+        "input",
+        "output",
+        "timeseries"
+      ],
+      "category_counts": {
+        "forecasting": 280
+      },
+      "timeseries_node_count_distribution": {
+        "3": 115,
+        "5": 92,
+        "10": 73
+      },
+      "timeseries_length_distribution": {
+        "32": 52,
+        "33": 34,
+        "34": 68,
+        "35": 43,
+        "36": 152,
+        "37": 87,
+        "38": 52,
+        "39": 3,
+        "40": 57,
+        "41": 8,
+        "42": 29,
+        "43": 26,
+        "44": 8,
+        "45": 8,
+        "46": 10,
+        "47": 3,
+        "48": 23,
+        "49": 10,
+        "50": 8,
+        "51": 10,
+        "52": 18,
+        "53": 20,
+        "55": 10,
+        "56": 20,
+        "58": 5,
+        "59": 10,
+        "60": 60,
+        "61": 13,
+        "62": 6,
+        "64": 9,
+        "65": 14,
+        "66": 5,
+        "67": 15,
+        "68": 23,
+        "69": 3,
+        "70": 13,
+        "71": 40,
+        "72": 51,
+        "73": 15,
+        "74": 26,
+        "75": 5,
+        "76": 10,
+        "77": 15,
+        "78": 5,
+        "80": 23,
+        "82": 25,
+        "83": 39,
+        "84": 33,
+        "85": 13,
+        "86": 3,
+        "87": 3,
+        "88": 3,
+        "89": 5,
+        "90": 20,
+        "95": 3,
+        "97": 5,
+        "98": 3,
+        "99": 5,
+        "100": 16,
+        "101": 15,
+        "103": 10,
+        "104": 5,
+        "108": 3,
+        "118": 3,
+        "119": 3,
+        "120": 11,
+        "121": 8,
+        "122": 23,
+        "140": 15,
+        "148": 3,
+        "150": 3,
+        "151": 5,
+        "152": 5,
+        "161": 10,
+        "165": 10,
+        "179": 5,
+        "180": 13,
+        "181": 23,
+        "182": 10,
+        "184": 10,
+        "185": 3,
+        "200": 10,
+        "201": 10,
+        "202": 10,
+        "240": 3,
+        "261": 5
+      }
+    },
+    "entity": {
+      "columns": [
+        "category",
+        "input",
+        "output",
+        "timeseries"
+      ],
+      "category_counts": {
+        "entity": 1194
+      },
+      "timeseries_node_count_distribution": {
+        "3": 249,
+        "5": 295,
+        "10": 650
+      },
+      "timeseries_length_distribution": {
+        "48": 2104,
+        "56": 109,
+        "60": 234,
+        "72": 325,
+        "84": 824,
+        "90": 243,
+        "96": 1560,
+        "120": 225,
+        "168": 1803,
+        "192": 9,
+        "240": 325,
+        "288": 100,
+        "360": 861
+      }
+    },
+    "etiological": {
+      "columns": [
+        "category",
+        "input",
+        "output",
+        "timeseries"
+      ],
+      "category_counts": {
+        "etiological": 207
+      },
+      "timeseries_node_count_distribution": {
+        "3": 83,
+        "5": 59,
+        "10": 65
+      },
+      "timeseries_length_distribution": {
+        "48": 318,
+        "56": 13,
+        "60": 28,
+        "72": 35,
+        "84": 128,
+        "90": 31,
+        "96": 210,
+        "120": 25,
+        "168": 251,
+        "192": 3,
+        "240": 35,
+        "288": 10,
+        "360": 107
+      }
+    },
+    "correlation": {
+      "columns": [
+        "category",
+        "input",
+        "output",
+        "timeseries"
+      ],
+      "category_counts": {
+        "correlation": 1592
+      },
+      "timeseries_node_count_distribution": {
+        "3": 248,
+        "5": 413,
+        "10": 931
+      },
+      "timeseries_length_distribution": {
+        "48": 2831,
+        "56": 159,
+        "60": 344,
+        "72": 495,
+        "84": 1124,
+        "90": 323,
+        "96": 2180,
+        "120": 315,
+        "168": 2503,
+        "192": 9,
+        "240": 465,
+        "288": 100,
+        "360": 1271
+      }
+    }
+  },
+  "task_counts": {
+    "forecasting": 5,
+    "entity": 5,
+    "etiological": 5,
+    "correlation": 5
+  },
+  "total_count": 20,
+  "samples": [
+    {
+      "sample_id": "tiny20_forecasting_01_line87",
+      "task": "forecasting",
+      "source_file": "ST-Test/forecasting_test.jsonl",
+      "original_line_index": 87,
+      "category": "forecasting",
+      "output": "[72.17, 101.58, 126.82, 102.51, 226.55]",
+      "length_metrics": {
+        "input_char_length": 933,
+        "timeseries_serialized_char_length": 2396,
+        "output_char_length": 41,
+        "combined_input_timeseries_char_length": 3329
+      }
+    },
+    {
+      "sample_id": "tiny20_forecasting_02_line116",
+      "task": "forecasting",
+      "source_file": "ST-Test/forecasting_test.jsonl",
+      "original_line_index": 116,
+      "category": "forecasting",
+      "output": "[0.0, 584.65, 0.0, 605.0]",
+      "length_metrics": {
+        "input_char_length": 604,
+        "timeseries_serialized_char_length": 1092,
+        "output_char_length": 27,
+        "combined_input_timeseries_char_length": 1696
+      }
+    },
+    {
+      "sample_id": "tiny20_forecasting_03_line174",
+      "task": "forecasting",
+      "source_file": "ST-Test/forecasting_test.jsonl",
+      "original_line_index": 174,
+      "category": "forecasting",
+      "output": "[205.36, 521.99, 270.49, 650.0, 270.51, 650.0, 145.24]",
+      "length_metrics": {
+        "input_char_length": 507,
+        "timeseries_serialized_char_length": 678,
+        "output_char_length": 56,
+        "combined_input_timeseries_char_length": 1185
+      }
+    },
+    {
+      "sample_id": "tiny20_forecasting_04_line227",
+      "task": "forecasting",
+      "source_file": "ST-Test/forecasting_test.jsonl",
+      "original_line_index": 227,
+      "category": "forecasting",
+      "output": "[20.23, 22.93, 22.81]",
+      "length_metrics": {
+        "input_char_length": 480,
+        "timeseries_serialized_char_length": 1544,
+        "output_char_length": 23,
+        "combined_input_timeseries_char_length": 2024
+      }
+    },
+    {
+      "sample_id": "tiny20_forecasting_05_line239",
+      "task": "forecasting",
+      "source_file": "ST-Test/forecasting_test.jsonl",
+      "original_line_index": 239,
+      "category": "forecasting",
+      "output": "[6.35, 6.41, 6.6, 6.44]",
+      "length_metrics": {
+        "input_char_length": 929,
+        "timeseries_serialized_char_length": 1791,
+        "output_char_length": 25,
+        "combined_input_timeseries_char_length": 2720
+      }
+    },
+    {
+      "sample_id": "tiny20_entity_01_line257",
+      "task": "entity",
+      "source_file": "ST-Test/entity_test.jsonl",
+      "original_line_index": 257,
+      "category": "entity",
+      "output": "<answer>C</answer>",
+      "length_metrics": {
+        "input_char_length": 1042,
+        "timeseries_serialized_char_length": 9843,
+        "output_char_length": 20,
+        "combined_input_timeseries_char_length": 10885
+      }
+    },
+    {
+      "sample_id": "tiny20_entity_02_line529",
+      "task": "entity",
+      "source_file": "ST-Test/entity_test.jsonl",
+      "original_line_index": 529,
+      "category": "entity",
+      "output": "<answer>B</answer>",
+      "length_metrics": {
+        "input_char_length": 712,
+        "timeseries_serialized_char_length": 1713,
+        "output_char_length": 20,
+        "combined_input_timeseries_char_length": 2425
+      }
+    },
+    {
+      "sample_id": "tiny20_entity_03_line670",
+      "task": "entity",
+      "source_file": "ST-Test/entity_test.jsonl",
+      "original_line_index": 670,
+      "category": "entity",
+      "output": "<answer>D</answer>",
+      "length_metrics": {
+        "input_char_length": 1075,
+        "timeseries_serialized_char_length": 9940,
+        "output_char_length": 20,
+        "combined_input_timeseries_char_length": 11015
+      }
+    },
+    {
+      "sample_id": "tiny20_entity_04_line785",
+      "task": "entity",
+      "source_file": "ST-Test/entity_test.jsonl",
+      "original_line_index": 785,
+      "category": "entity",
+      "output": "<answer>B</answer>",
+      "length_metrics": {
+        "input_char_length": 774,
+        "timeseries_serialized_char_length": 5569,
+        "output_char_length": 20,
+        "combined_input_timeseries_char_length": 6343
+      }
+    },
+    {
+      "sample_id": "tiny20_entity_05_line1133",
+      "task": "entity",
+      "source_file": "ST-Test/entity_test.jsonl",
+      "original_line_index": 1133,
+      "category": "entity",
+      "output": "<answer>C</answer>",
+      "length_metrics": {
+        "input_char_length": 1047,
+        "timeseries_serialized_char_length": 4414,
+        "output_char_length": 20,
+        "combined_input_timeseries_char_length": 5461
+      }
+    },
+    {
+      "sample_id": "tiny20_etiological_01_line13",
+      "task": "etiological",
+      "source_file": "ST-Test/etiological_test.jsonl",
+      "original_line_index": 13,
+      "category": "etiological",
+      "output": "<answer>D</answer>",
+      "length_metrics": {
+        "input_char_length": 1341,
+        "timeseries_serialized_char_length": 3065,
+        "output_char_length": 20,
+        "combined_input_timeseries_char_length": 4406
+      }
+    },
+    {
+      "sample_id": "tiny20_etiological_02_line137",
+      "task": "etiological",
+      "source_file": "ST-Test/etiological_test.jsonl",
+      "original_line_index": 137,
+      "category": "etiological",
+      "output": "<answer>A</answer>",
+      "length_metrics": {
+        "input_char_length": 1420,
+        "timeseries_serialized_char_length": 2843,
+        "output_char_length": 20,
+        "combined_input_timeseries_char_length": 4263
+      }
+    },
+    {
+      "sample_id": "tiny20_etiological_03_line144",
+      "task": "etiological",
+      "source_file": "ST-Test/etiological_test.jsonl",
+      "original_line_index": 144,
+      "category": "etiological",
+      "output": "<answer>B</answer>",
+      "length_metrics": {
+        "input_char_length": 874,
+        "timeseries_serialized_char_length": 1688,
+        "output_char_length": 20,
+        "combined_input_timeseries_char_length": 2562
+      }
+    },
+    {
+      "sample_id": "tiny20_etiological_04_line154",
+      "task": "etiological",
+      "source_file": "ST-Test/etiological_test.jsonl",
+      "original_line_index": 154,
+      "category": "etiological",
+      "output": "<answer>D</answer>",
+      "length_metrics": {
+        "input_char_length": 905,
+        "timeseries_serialized_char_length": 3076,
+        "output_char_length": 20,
+        "combined_input_timeseries_char_length": 3981
+      }
+    },
+    {
+      "sample_id": "tiny20_etiological_05_line197",
+      "task": "etiological",
+      "source_file": "ST-Test/etiological_test.jsonl",
+      "original_line_index": 197,
+      "category": "etiological",
+      "output": "<answer>A</answer>",
+      "length_metrics": {
+        "input_char_length": 943,
+        "timeseries_serialized_char_length": 1492,
+        "output_char_length": 20,
+        "combined_input_timeseries_char_length": 2435
+      }
+    },
+    {
+      "sample_id": "tiny20_correlation_01_line91",
+      "task": "correlation",
+      "source_file": "ST-Test/correlation_test.jsonl",
+      "original_line_index": 91,
+      "category": "correlation",
+      "output": "<answer>B</answer>",
+      "length_metrics": {
+        "input_char_length": 812,
+        "timeseries_serialized_char_length": 1516,
+        "output_char_length": 20,
+        "combined_input_timeseries_char_length": 2328
+      }
+    },
+    {
+      "sample_id": "tiny20_correlation_02_line336",
+      "task": "correlation",
+      "source_file": "ST-Test/correlation_test.jsonl",
+      "original_line_index": 336,
+      "category": "correlation",
+      "output": "<answer>B</answer>",
+      "length_metrics": {
+        "input_char_length": 812,
+        "timeseries_serialized_char_length": 943,
+        "output_char_length": 20,
+        "combined_input_timeseries_char_length": 1755
+      }
+    },
+    {
+      "sample_id": "tiny20_correlation_03_line528",
+      "task": "correlation",
+      "source_file": "ST-Test/correlation_test.jsonl",
+      "original_line_index": 528,
+      "category": "correlation",
+      "output": "<answer>D</answer>",
+      "length_metrics": {
+        "input_char_length": 799,
+        "timeseries_serialized_char_length": 997,
+        "output_char_length": 20,
+        "combined_input_timeseries_char_length": 1796
+      }
+    },
+    {
+      "sample_id": "tiny20_correlation_04_line896",
+      "task": "correlation",
+      "source_file": "ST-Test/correlation_test.jsonl",
+      "original_line_index": 896,
+      "category": "correlation",
+      "output": "<answer>B</answer>",
+      "length_metrics": {
+        "input_char_length": 1043,
+        "timeseries_serialized_char_length": 3323,
+        "output_char_length": 20,
+        "combined_input_timeseries_char_length": 4366
+      }
+    },
+    {
+      "sample_id": "tiny20_correlation_05_line1059",
+      "task": "correlation",
+      "source_file": "ST-Test/correlation_test.jsonl",
+      "original_line_index": 1059,
+      "category": "correlation",
+      "output": "<answer>A</answer>",
+      "length_metrics": {
+        "input_char_length": 1090,
+        "timeseries_serialized_char_length": 3543,
+        "output_char_length": 20,
+        "combined_input_timeseries_char_length": 4633
+      }
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+开始运行配置: fp16_single / fp16单卡
+CUDA_VISIBLE_DEVICES=0
+=== Processor / Tokenizer ===
+Trying AutoProcessor.from_pretrained(...)
+AutoProcessor loaded: Qwen3TSProcessor
+Trying AutoTokenizer.from_pretrained(...)
+AutoTokenizer loaded: Qwen2TokenizerFast
+=== Config ===
+config class: Qwen3TSConfig
+config._attn_implementation: 'eager' -> 'sdpa'
+加载配置: precision=fp16, device_map={'': 0}, quantization=None
+[ERROR] AutoModelForCausalLM 加载失败，尝试 AutoModel: OutOfMemoryError: CUDA out of memory. Tried to allocate 96.00 MiB. GPU 0 has a total capacity of 14.56 GiB of which 57.81 MiB is free. Including non-PyTorch memory, this process has 14.50 GiB memory in use. Of the allocated memory 14.35 GiB is allocated by PyTorch, and 44.44 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/kaggle/working/STReasoner_reproduce/repro_kaggle/experiments/scripts/stage1_script/run_experiment1_precision_resource.py", line 458, in load_model
+    model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/models/auto/auto_factory.py", line 564, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 309, in _wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 4574, in from_pretrained
+    ) = cls._load_pretrained_model(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 5031, in _load_pretrained_model
+    disk_offload_index, cpu_offload_index = _load_state_dict_into_meta_model(
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 808, in _load_state_dict_into_meta_model
+    param = param.to(casting_dtype)
+            ^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 96.00 MiB. GPU 0 has a total capacity of 14.56 GiB of which 57.81 MiB is free. Including non-PyTorch memory, this process has 14.50 GiB memory in use. Of the allocated memory 14.35 GiB is allocated by PyTorch, and 44.44 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+[ERROR] 配置运行失败: OutOfMemoryError: CUDA out of memory. Tried to allocate 1.16 GiB. GPU 0 has a total capacity of 14.56 GiB of which 57.81 MiB is free. Including non-PyTorch memory, this process has 14.50 GiB memory in use. Of the allocated memory 14.35 GiB is allocated by PyTorch, and 44.44 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/kaggle/working/STReasoner_reproduce/repro_kaggle/experiments/scripts/stage1_script/run_experiment1_precision_resource.py", line 458, in load_model
+    model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/models/auto/auto_factory.py", line 564, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 309, in _wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 4574, in from_pretrained
+    ) = cls._load_pretrained_model(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 5031, in _load_pretrained_model
+    disk_offload_index, cpu_offload_index = _load_state_dict_into_meta_model(
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 808, in _load_state_dict_into_meta_model
+    param = param.to(casting_dtype)
+            ^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 96.00 MiB. GPU 0 has a total capacity of 14.56 GiB of which 57.81 MiB is free. Including non-PyTorch memory, this process has 14.50 GiB memory in use. Of the allocated memory 14.35 GiB is allocated by PyTorch, and 44.44 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/kaggle/working/STReasoner_reproduce/repro_kaggle/experiments/scripts/stage1_script/run_experiment1_precision_resource.py", line 776, in run_config
+    model, processor, tokenizer, load_time, load_info = load_model(spec, logger)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/working/STReasoner_reproduce/repro_kaggle/experiments/scripts/stage1_script/run_experiment1_precision_resource.py", line 461, in load_model
+    model = AutoModel.from_pretrained(MODEL_NAME, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/models/auto/auto_factory.py", line 564, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 309, in _wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 4574, in from_pretrained
+    ) = cls._load_pretrained_model(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 5031, in _load_pretrained_model
+    disk_offload_index, cpu_offload_index = _load_state_dict_into_meta_model(
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 806, in _load_state_dict_into_meta_model
+    param = param[...]
+            ~~~~~^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.16 GiB. GPU 0 has a total capacity of 14.56 GiB of which 57.81 MiB is free. Including non-PyTorch memory, this process has 14.50 GiB memory in use. Of the allocated memory 14.35 GiB is allocated by PyTorch, and 44.44 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+summary:
+{
+  "config": "fp16_single",
+  "label": "fp16单卡",
+  "model": "Time-HD-Anonymous/STReasoner-8B",
+  "batch_size": 1,
+  "max_new_tokens": 512,
+  "precision": "fp16",
+  "cuda_visible_devices": "0",
+  "requested_device_map": {
+    "": 0
+  },
+  "environment": {
+    "visible_gpu_count": 1,
+    "gpu_names": [
+      "Tesla T4"
+    ],
+    "gpu_total_gib": {
+      "gpu0": 14.563
+    }
+  },
+  "load_success": false,
+  "load_error": "OutOfMemoryError: CUDA out of memory. Tried to allocate 1.16 GiB. GPU 0 has a total capacity of 14.56 GiB of which 57.81 MiB is free. Including non-PyTorch memory, this process has 14.50 GiB memory in use. Of the allocated memory 14.35 GiB is allocated by PyTorch, and 44.44 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+  "load_time_sec": null,
+  "load_info": {},
+  "counts": {
+    "main": 20,
+    "paper": 4,
+    "stress": 1
+  },
+  "official_denominator_note": "正式成功率统计三组样例合计：主测试 20 + 论文样例 4 + 压力测试 1。",
+  "official_accuracy": 0.0,
+  "official_generate_success_rate": 0.0,
+  "official_decode_success_rate": 0.0,
+  "official_parse_success_rate": 0.0,
+  "generate_success_rate_all": 0.0,
+  "decode_success_rate_all": 0.0,
+  "parse_success_rate_all": 0.0,
+  "main_accuracy": 0.0,
+  "main_parse_accuracy": null,
+  "main_generate_success_rate": 0.0,
+  "main_decode_success_rate": 0.0,
+  "main_parse_success_rate": 0.0,
+  "paper_accuracy": 0.0,
+  "paper_parse_accuracy": null,
+  "stress_accuracy": 0.0,
+  "stress_parse_accuracy": null,
+  "avg_input_tokens": null,
+  "avg_actual_new_tokens": null,
+  "avg_latency_sec": null,
+  "max_latency_sec": null,
+  "avg_tokens_per_sec": null,
+  "final_memory": {
+    "gpu0": {
+      "allocated_gib": 0.0,
+      "reserved_gib": 14.389
+    }
+  },
+  "peak_memory": {
+    "gpu0": {
+      "max_allocated_gib": 14.345,
+      "max_reserved_gib": 14.389
+    }
+  },
+  "bottleneck_counts": {
+    "资源瓶颈": 25
+  },
+  "failure_count_by_stage": {
+    "model_loading": 25
+  },
+  "first_error": "显存不足导致失败：OutOfMemoryError: CUDA out of memory. Tried to allocate 1.16 GiB. GPU 0 has a total capacity of 14.56 GiB of which 57.81 MiB is free. Including non-PyTorch memory, this process has 14.50 GiB memory in use. Of the allocated memory 14.35 GiB is allocated by PyTorch, and 44.44 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+}

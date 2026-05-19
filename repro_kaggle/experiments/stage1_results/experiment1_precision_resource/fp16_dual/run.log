@@ -1,0 +1,197 @@
+开始运行配置: fp16_dual / fp16双卡
+CUDA_VISIBLE_DEVICES=0,1
+=== Processor / Tokenizer ===
+Trying AutoProcessor.from_pretrained(...)
+AutoProcessor loaded: Qwen3TSProcessor
+Trying AutoTokenizer.from_pretrained(...)
+AutoTokenizer loaded: Qwen2TokenizerFast
+=== Config ===
+config class: Qwen3TSConfig
+config._attn_implementation: 'eager' -> 'sdpa'
+加载配置: precision=fp16, device_map=balanced, quantization=None
+[main 1/20] tiny20_forecasting_01_line87
+  stage=generate correct=False latency=0.991
+[main 2/20] tiny20_forecasting_02_line116
+  stage=generate correct=False latency=0.012
+[main 3/20] tiny20_forecasting_03_line174
+  stage=generate correct=False latency=0.017
+[main 4/20] tiny20_forecasting_04_line227
+  stage=generate correct=False latency=0.007
+[main 5/20] tiny20_forecasting_05_line239
+  stage=generate correct=False latency=0.01
+[main 6/20] tiny20_entity_01_line257
+  stage=generate correct=False latency=0.01
+[main 7/20] tiny20_entity_02_line529
+  stage=generate correct=False latency=0.006
+[main 8/20] tiny20_entity_03_line670
+  stage=generate correct=False latency=0.01
+[main 9/20] tiny20_entity_04_line785
+  stage=generate correct=False latency=0.008
+[main 10/20] tiny20_entity_05_line1133
+  stage=generate correct=False latency=0.01
+[main 11/20] tiny20_etiological_01_line13
+  stage=generate correct=False latency=0.01
+[main 12/20] tiny20_etiological_02_line137
+  stage=generate correct=False latency=0.01
+[main 13/20] tiny20_etiological_03_line144
+  stage=generate correct=False latency=0.008
+[main 14/20] tiny20_etiological_04_line154
+  stage=generate correct=False latency=0.007
+[main 15/20] tiny20_etiological_05_line197
+  stage=generate correct=False latency=0.007
+[main 16/20] tiny20_correlation_01_line91
+  stage=generate correct=False latency=0.007
+[main 17/20] tiny20_correlation_02_line336
+  stage=generate correct=False latency=0.007
+[main 18/20] tiny20_correlation_03_line528
+  stage=generate correct=False latency=0.007
+[main 19/20] tiny20_correlation_04_line896
+  stage=generate correct=False latency=0.01
+[main 20/20] tiny20_correlation_05_line1059
+  stage=generate correct=False latency=0.008
+[paper 1/4] paper_appendix_h_table6_etiological_line118
+  stage=generate correct=False latency=0.009
+[paper 2/4] paper_appendix_h_table7_entity_line982
+  stage=generate correct=False latency=0.01
+[paper 3/4] paper_appendix_h_table8_correlation_line547
+  stage=generate correct=False latency=0.015
+[paper 4/4] paper_appendix_h_table9_forecasting_line9
+  stage=generate correct=False latency=0.008
+[stress 1/1] stress_longest_etiological_line110
+  stage=generate correct=False latency=0.012
+summary:
+{
+  "config": "fp16_dual",
+  "label": "fp16双卡",
+  "model": "Time-HD-Anonymous/STReasoner-8B",
+  "batch_size": 1,
+  "max_new_tokens": 512,
+  "precision": "fp16",
+  "cuda_visible_devices": "0,1",
+  "requested_device_map": "balanced",
+  "environment": {
+    "visible_gpu_count": 2,
+    "gpu_names": [
+      "Tesla T4",
+      "Tesla T4"
+    ],
+    "gpu_total_gib": {
+      "gpu0": 14.563,
+      "gpu1": 14.563
+    }
+  },
+  "load_success": true,
+  "load_error": null,
+  "load_time_sec": 114.625,
+  "load_info": {
+    "actual_device_map": {
+      "model.embed_tokens": 0,
+      "model.layers.0": 0,
+      "model.layers.1": 0,
+      "model.layers.2": 0,
+      "model.layers.3": 0,
+      "model.layers.4": 0,
+      "model.layers.5": 0,
+      "model.layers.6": 0,
+      "model.layers.7": 0,
+      "model.layers.8": 0,
+      "model.layers.9": 0,
+      "model.layers.10": 0,
+      "model.layers.11": 0,
+      "model.layers.12": 0,
+      "model.layers.13": 0,
+      "model.layers.14": 0,
+      "model.layers.15": 0,
+      "model.layers.16": 1,
+      "model.layers.17": 1,
+      "model.layers.18": 1,
+      "model.layers.19": 1,
+      "model.layers.20": 1,
+      "model.layers.21": 1,
+      "model.layers.22": 1,
+      "model.layers.23": 1,
+      "model.layers.24": 1,
+      "model.layers.25": 1,
+      "model.layers.26": 1,
+      "model.layers.27": 1,
+      "model.layers.28": 1,
+      "model.layers.29": 1,
+      "model.layers.30": 1,
+      "model.layers.31": 1,
+      "model.layers.32": 1,
+      "model.layers.33": 1,
+      "model.layers.34": 1,
+      "model.layers.35": 1,
+      "model.norm": 1,
+      "model.rotary_emb": 1,
+      "lm_head": 1,
+      "ts_encoder": 1
+    },
+    "use_cache": false,
+    "first_parameter_dtype": "torch.float16",
+    "load_after_memory": {
+      "gpu0": {
+        "allocated_gib": 6.909,
+        "reserved_gib": 6.941
+      },
+      "gpu1": {
+        "allocated_gib": 8.474,
+        "reserved_gib": 8.494
+      }
+    }
+  },
+  "counts": {
+    "main": 20,
+    "paper": 4,
+    "stress": 1
+  },
+  "official_denominator_note": "正式成功率统计三组样例合计：主测试 20 + 论文样例 4 + 压力测试 1。",
+  "official_accuracy": 0.0,
+  "official_generate_success_rate": 0.0,
+  "official_decode_success_rate": 0.0,
+  "official_parse_success_rate": 0.0,
+  "generate_success_rate_all": 0.0,
+  "decode_success_rate_all": 0.0,
+  "parse_success_rate_all": 0.0,
+  "main_accuracy": 0.0,
+  "main_parse_accuracy": null,
+  "main_generate_success_rate": 0.0,
+  "main_decode_success_rate": 0.0,
+  "main_parse_success_rate": 0.0,
+  "paper_accuracy": 0.0,
+  "paper_parse_accuracy": null,
+  "stress_accuracy": 0.0,
+  "stress_parse_accuracy": null,
+  "avg_input_tokens": 745.16,
+  "avg_actual_new_tokens": null,
+  "avg_latency_sec": null,
+  "max_latency_sec": null,
+  "avg_tokens_per_sec": null,
+  "final_memory": {
+    "gpu0": {
+      "allocated_gib": 6.909,
+      "reserved_gib": 6.941
+    },
+    "gpu1": {
+      "allocated_gib": 8.482,
+      "reserved_gib": 8.496
+    }
+  },
+  "peak_memory": {
+    "gpu0": {
+      "max_allocated_gib": 6.917,
+      "max_reserved_gib": 6.941
+    },
+    "gpu1": {
+      "max_allocated_gib": 8.491,
+      "max_reserved_gib": 8.496
+    }
+  },
+  "bottleneck_counts": {
+    "资源瓶颈": 25
+  },
+  "failure_count_by_stage": {
+    "generate": 25
+  },
+  "first_error": "设备不一致导致失败：RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:1 and cuda:0!"
+}
