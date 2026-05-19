@@ -1,0 +1,9 @@
+{
+  "stage": "selected_sample",
+  "attempt": 2,
+  "sample_id": "tiny20_entity_01_line257",
+  "task": "entity",
+  "local_index": 5,
+  "precision": "8bit",
+  "max_new_tokens": 2048
+}

@@ -1,0 +1,40 @@
+{
+  "stage": "model_loaded",
+  "sample_id": "tiny20_entity_01_line257",
+  "task": "entity",
+  "local_index": 5,
+  "precision": "8bit",
+  "max_new_tokens": 2048,
+  "load_time_sec": 67.987,
+  "load_info": {
+    "processor_class": "Qwen3TSProcessor",
+    "tokenizer_class": "Qwen2TokenizerFast",
+    "model_class": "Qwen3TSForCausalLM",
+    "requested_device_map": {
+      "": 0
+    },
+    "actual_device_map": {
+      "": 0
+    },
+    "model_distribution": {
+      "label": "single_gpu",
+      "devices": [
+        "0"
+      ],
+      "cuda_devices": [
+        "0"
+      ],
+      "has_cpu_offload": false,
+      "has_disk_offload": false
+    },
+    "use_cache": false,
+    "first_parameter_dtype": "torch.float16",
+    "timeseries_merge_patch_applied": true,
+    "load_after_memory": {
+      "gpu0": {
+        "allocated_gib": 8.859,
+        "reserved_gib": 9.064
+      }
+    }
+  }
+}

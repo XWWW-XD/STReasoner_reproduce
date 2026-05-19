@@ -1,0 +1,129 @@
+{
+  "stage": "done",
+  "sample_id": "tiny20_entity_01_line257",
+  "task": "entity",
+  "local_index": 5,
+  "max_new_tokens": 2048,
+  "load_time_sec": 114.562,
+  "load_info": {
+    "processor_class": "Qwen3TSProcessor",
+    "tokenizer_class": "Qwen2TokenizerFast",
+    "model_class": "Qwen3TSForCausalLM",
+    "requested_device_map": {
+      "": 0
+    },
+    "actual_device_map": {
+      "": 0
+    },
+    "model_distribution": {
+      "label": "single_gpu",
+      "devices": [
+        "0"
+      ],
+      "cuda_devices": [
+        "0"
+      ],
+      "has_cpu_offload": false,
+      "has_disk_offload": false
+    },
+    "use_cache": false,
+    "first_parameter_dtype": "torch.float16",
+    "timeseries_merge_patch_applied": true,
+    "load_after_memory": {
+      "gpu0": {
+        "allocated_gib": 5.703,
+        "reserved_gib": 6.74
+      }
+    }
+  },
+  "record": {
+    "sample": {
+      "group": "main",
+      "local_index": 5,
+      "sample_id": "tiny20_entity_01_line257",
+      "task": "entity",
+      "category": "entity",
+      "source_file": "ST-Test/entity_test.jsonl",
+      "original_line_index": 257,
+      "gold_output": "<answer>C</answer>"
+    },
+    "run": {
+      "generate_success": true,
+      "decode_success": true,
+      "decoded_text": " \n\nBased on the spatial-temporal analysis, let me examine the characteristics of Node 2 and its role in the network.\n\n**Network Structure Analysis:**\n- Node 0 and Node 1 both feed into Node 2\n- Node 2 feeds into Node 3\n- This makes Node 2 a convergence point where two upstream sources meet\n\n**Time Series Analysis of Node 2:**\n\n1. **Initial period (1-40)**: Values range from ~20-40, showing relatively stable flow patterns\n\n2. **Critical period (41-60)**: Shows dramatic spikes:\n   - Values jump to 170.00 (maximum capacity?) at multiple points\n   - Pattern: 69.02, 10.99, 170.00, 0.00, 170.00, 0.00, 170.00, 0.00, 170.00, 0.00, 170.00, 0.00, 170.00, 0.00, 170.00, 0.00\n   - This alternating pattern between extreme values suggests overflow or capacity issues\n\n3. **Recovery period (61-75)**: Gradual decrease from 49.22 down to ~30s, showing recovery from the event\n\n4. **Post-event period (76-168)**: Returns to stable values around 30-40\n\n**Key Observations:**\n\n1. Node 2 receives input from TWO sources (Node 0 and Node 1)\n2. The dramatic spike pattern (reaching 170 repeatedly) suggests this is where flows combine and potentially exceed capacity\n3. The alternating 170-0 pattern suggests overflow/surge dynamics typical of confluence points during storm events\n4. Node 2 is structurally a convergence point in the network\n\n**Comparing with options:**\n\n- **Flow Junction/Storm drain outlet**: More of an outlet, not a convergence\n- **Distribution Hub/Secondary water channel**: Suggests splitting/sending out, not receiving two inputs\n- **Confluence Point/Main river confluence**: Perfect match - where two water sources meet\n- **Collection Basin/Reservoir intake**: Typically collects but doesn't show the same surge dynamics\n\nThe fact that Node 0 shows a major spike (reaching 245.60) and Node 1 also shows increased values, while Node 2 shows even more extreme behavior (reaching 170 multiple times), strongly suggests this is a confluence where combined flows create overflow conditions.\n\n**Answer: C. (Confluence Point, Main river confluence)**\n\nThis best describes a point where two upstream sources (Node 0 and Node 1) converge, creating combined flow dynamics that lead to overflow conditions during storm events.\nś\n\nThe spatial-temporal analysis reveals that Node 2 is a critical convergence point in the network:\n\n1. **Structural Role**: Node 2 receives inputs from TWO upstream nodes (Node 0 and Node 1), making it a convergence/junction point\n\n2. **Flow Dynamics**: \n   - Node 0 shows extreme values (reaching 245.60)\n   - Node 1 shows moderate increases\n   - Node 2 shows combined effects with extreme overflow behavior (alternating 170-0 pattern)\n\n3. **Event Response**: During the critical period (41-60), Node 2 exhibits:\n   - Combined surge behavior from both inputs\n   - Capacity overflow dynamics (repeated 170-0 oscillations)\n   - Gradual recovery pattern\n\n4. **Semantic Match**: \n   - \"Confluence Point\" perfectly describes where two water sources meet\n   - \"Main river confluence\" suggests the primary merging point in a river system\n   - This matches the structural topology and dynamic behavior observed\n\nThe other options fail to capture:\n- A: \"Storm drain outlet\" suggests an endpoint, not a convergence\n- B: \"Distribution Hub\" suggests splitting, not combining\n- D: \"Reservoir intake\" doesn't explain the overflow dynamics or the two-input structure\n\n**Answer: C. (Confluence Point, Main river confluence)**\n</think>\n\nThe spatial-temporal analysis reveals that Node 2 is a critical convergence point in the network:\n\n1. **Structural Role**: Node 2 receives inputs from TWO upstream nodes (Node 0 and Node 1), making it a convergence/junction point\n\n2. **Flow Dynamics**: \n   - Node 0 shows extreme values (reaching 245.60)\n   - Node 1 shows moderate increases\n   - Node 2 shows combined effects with extreme overflow behavior (alternating 170-0 pattern)\n\n3. **Event Response**: During the critical period (41-60), Node 2 exhibits:\n   - Combined surge behavior from both inputs\n   - Capacity overflow dynamics (repeated 170-0 oscillations)\n   - Gradual recovery pattern\n\n4. **Semantic Match**: \n   - \"Confluence Point\" perfectly describes where two water sources meet\n   - \"Main river confluence\" suggests the primary merging point in a river system\n   - This matches the structural topology and dynamic behavior observed\n\nThe other options fail to capture:\n- A: \"Storm drain outlet\" suggests an endpoint, not a convergence\n- B: \"Distribution Hub\" suggests splitting, not combining\n- D: \"Reservoir intake\" doesn't explain the overflow dynamics or the two-input structure\n\n**Answer: C. (Confluence Point, Main river confluence)**",
+      "latency_sec": 1816.342,
+      "tokens_per_sec": 0.667,
+      "input_tokens": 1182,
+      "actual_new_tokens": 1211,
+      "token_details": {
+        "tokenizer_prompt_tokens": 332,
+        "processor_input_ids_length": 972,
+        "timeseries_patch_tokens_estimate": 210,
+        "input_tokens_metric": 1182
+      },
+      "gpu_memory_before_generate": {
+        "gpu0": {
+          "allocated_gib": 5.703,
+          "reserved_gib": 6.74
+        }
+      },
+      "gpu_memory_after_generate": {
+        "gpu0": {
+          "allocated_gib": 5.711,
+          "reserved_gib": 6.744
+        }
+      },
+      "gpu_peak_memory_during_generate": {
+        "gpu0": {
+          "max_allocated_gib": 5.989,
+          "max_reserved_gib": 6.744
+        }
+      },
+      "error_stage": "none",
+      "error_type": null,
+      "error_message": null,
+      "bottleneck_type": "输入/生成瓶颈",
+      "failure_reason": "生成提前结束：actual_new_tokens=1211，小于 max_new_tokens=2048；可能是 EOS 或模型自然停止。",
+      "diagnostic_error_stage": "strict_diagnostic"
+    },
+    "strict_diagnostic": {
+      "strict_format_success": false,
+      "strict_error": "expected_exactly_one_answer_tag_got_0",
+      "parsed_value": null,
+      "answer_tag_count": 0,
+      "note": "Diagnostic only; official evaluate_qa.py may be more permissive."
+    },
+    "official_eval": {
+      "official_task": "reasoning_entity",
+      "included_in_prediction_file": true
+    }
+  },
+  "official_metrics": {
+    "all": {
+      "reasoning_entity": {
+        "task": "reasoning_entity",
+        "total_samples": 1,
+        "evaluated_samples": 1,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "accuracy": 0.0,
+        "dataset_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/smoke_nonforecasting_4bit_2048/official_eval/all/reasoning_entity/dataset.jsonl",
+        "prediction_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/smoke_nonforecasting_4bit_2048/official_eval/all/reasoning_entity/generated_answer_new.json",
+        "author_evaluate_qa": "evaluation/evaluate_qa.py"
+      }
+    },
+    "main": {
+      "reasoning_entity": {
+        "task": "reasoning_entity",
+        "total_samples": 1,
+        "evaluated_samples": 1,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "accuracy": 0.0,
+        "dataset_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/smoke_nonforecasting_4bit_2048/official_eval/main/reasoning_entity/dataset.jsonl",
+        "prediction_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/smoke_nonforecasting_4bit_2048/official_eval/main/reasoning_entity/generated_answer_new.json",
+        "author_evaluate_qa": "evaluation/evaluate_qa.py"
+      }
+    }
+  }
+}

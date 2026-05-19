@@ -1,0 +1,40 @@
+SMOKE_SAMPLE sample_id=tiny20_entity_01_line257 task=entity local_index=5
+ATTEMPT=3
+PHYSICAL_GPU=1
+PRECISION=8bit
+MAX_NEW_TOKENS=2048
+CUDA_VISIBLE_DEVICES=1
+gpu_environment={"visible_gpu_count": 1, "gpu_names": ["Tesla T4"], "gpu_total_gib": {"gpu0": 14.563}}
+STAGE=model_loading
+=== Processor / Tokenizer ===
+Trying AutoProcessor.from_pretrained(...)
+AutoProcessor loaded: Qwen3TSProcessor
+Trying AutoTokenizer.from_pretrained(...)
+AutoTokenizer loaded: Qwen2TokenizerFast
+=== Config ===
+config class: Qwen3TSConfig
+config._attn_implementation: 'eager' -> 'sdpa'
+=== Run Layer: Model Load ===
+model: Time-HD-Anonymous/STReasoner-8B
+precision: 8bit
+requested device_map: {'': 0}
+quantization_config: BitsAndBytesConfig {
+  "_load_in_4bit": false,
+  "_load_in_8bit": true,
+  "bnb_4bit_compute_dtype": "float32",
+  "bnb_4bit_quant_storage": "uint8",
+  "bnb_4bit_quant_type": "fp4",
+  "bnb_4bit_use_double_quant": false,
+  "llm_int8_enable_fp32_cpu_offload": false,
+  "llm_int8_has_fp16_weight": false,
+  "llm_int8_skip_modules": null,
+  "llm_int8_threshold": 6.0,
+  "load_in_4bit": false,
+  "load_in_8bit": true,
+  "quant_method": "bitsandbytes"
+}
+
+Applied runtime patch for multi-GPU time-series merge device alignment.
+model_load_time_sec: 80.110
+load_info: {"processor_class": "Qwen3TSProcessor", "tokenizer_class": "Qwen2TokenizerFast", "model_class": "Qwen3TSForCausalLM", "requested_device_map": {"": 0}, "actual_device_map": {"": 0}, "model_distribution": {"label": "single_gpu", "devices": ["0"], "cuda_devices": ["0"], "has_cpu_offload": false, "has_disk_offload": false}, "use_cache": false, "first_parameter_dtype": "torch.float16", "timeseries_merge_patch_applied": true, "load_after_memory": {"gpu0": {"allocated_gib": 8.859, "reserved_gib": 9.064}}}
+STAGE=generate_one_sample

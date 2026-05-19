@@ -1,0 +1,163 @@
+RERUN_DIR=/kaggle/working/STReasoner_reproduce/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/smoke_nonforecasting_4bit_2048_rerun_20260519_182802
+SMOKE_SAMPLE sample_id=tiny20_entity_01_line257 task=entity local_index=5
+MAX_NEW_TOKENS=2048
+CUDA_VISIBLE_DEVICES=0
+gpu_environment={"visible_gpu_count": 1, "gpu_names": ["Tesla T4"], "gpu_total_gib": {"gpu0": 14.563}}
+STAGE=model_loading
+=== Processor / Tokenizer ===
+Trying AutoProcessor.from_pretrained(...)
+AutoProcessor loaded: Qwen3TSProcessor
+Trying AutoTokenizer.from_pretrained(...)
+AutoTokenizer loaded: Qwen2TokenizerFast
+=== Config ===
+config class: Qwen3TSConfig
+config._attn_implementation: 'eager' -> 'sdpa'
+=== Run Layer: Model Load ===
+model: Time-HD-Anonymous/STReasoner-8B
+precision: 4bit
+requested device_map: {'': 0}
+quantization_config: BitsAndBytesConfig {
+  "_load_in_4bit": true,
+  "_load_in_8bit": false,
+  "bnb_4bit_compute_dtype": "float16",
+  "bnb_4bit_quant_storage": "uint8",
+  "bnb_4bit_quant_type": "nf4",
+  "bnb_4bit_use_double_quant": true,
+  "llm_int8_enable_fp32_cpu_offload": false,
+  "llm_int8_has_fp16_weight": false,
+  "llm_int8_skip_modules": null,
+  "llm_int8_threshold": 6.0,
+  "load_in_4bit": true,
+  "load_in_8bit": false,
+  "quant_method": "bitsandbytes"
+}
+
+[ERROR] AutoModelForCausalLM load failed; trying AutoModel: OutOfMemoryError: CUDA out of memory. Tried to allocate 24.00 MiB. GPU 0 has a total capacity of 14.56 GiB of which 13.75 MiB is free. Process 18715 has 11.60 GiB memory in use. Including non-PyTorch memory, this process has 2.94 GiB memory in use. Of the allocated memory 2.81 GiB is allocated by PyTorch, and 20.49 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/kaggle/working/STReasoner_reproduce/repro_kaggle/experiments/scripts/stage1_script/run_experiment1_new_version.py", line 441, in load_model_and_processors
+    model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/models/auto/auto_factory.py", line 564, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 309, in _wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 4574, in from_pretrained
+    ) = cls._load_pretrained_model(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 5031, in _load_pretrained_model
+    disk_offload_index, cpu_offload_index = _load_state_dict_into_meta_model(
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 846, in _load_state_dict_into_meta_model
+    hf_quantizer.create_quantized_param(
+  File "/usr/local/lib/python3.12/dist-packages/transformers/quantizers/quantizer_bnb_4bit.py", line 243, in create_quantized_param
+    new_value = bnb.nn.Params4bit(new_value, requires_grad=False, **kwargs).to(target_device)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/bitsandbytes/nn/modules.py", line 345, in to
+    return self._quantize(device)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/bitsandbytes/nn/modules.py", line 300, in _quantize
+    w_4bit, quant_state = bnb.functional.quantize_4bit(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/bitsandbytes/functional.py", line 924, in quantize_4bit
+    _out, _absmax = torch.ops.bitsandbytes.quantize_4bit.default(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_ops.py", line 723, in __call__
+    return self._op(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_compile.py", line 32, in inner
+    return disable_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_dynamo/eval_frame.py", line 745, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/library.py", line 597, in func_no_dynamo
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/bitsandbytes/backends/cuda/ops.py", line 323, in _
+    out = torch.empty(((n + 1) // (quant_storage.itemsize * 2), 1), device=A.device, dtype=quant_storage)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 24.00 MiB. GPU 0 has a total capacity of 14.56 GiB of which 13.75 MiB is free. Process 18715 has 11.60 GiB memory in use. Including non-PyTorch memory, this process has 2.94 GiB memory in use. Of the allocated memory 2.81 GiB is allocated by PyTorch, and 20.49 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+[ERROR] rerun failed: OutOfMemoryError: CUDA out of memory. Tried to allocate 1.16 GiB. GPU 0 has a total capacity of 14.56 GiB of which 13.75 MiB is free. Process 18715 has 11.60 GiB memory in use. Including non-PyTorch memory, this process has 2.94 GiB memory in use. Of the allocated memory 2.81 GiB is allocated by PyTorch, and 20.49 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/kaggle/working/STReasoner_reproduce/repro_kaggle/experiments/scripts/stage1_script/run_experiment1_new_version.py", line 441, in load_model_and_processors
+    model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/models/auto/auto_factory.py", line 564, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 309, in _wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 4574, in from_pretrained
+    ) = cls._load_pretrained_model(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 5031, in _load_pretrained_model
+    disk_offload_index, cpu_offload_index = _load_state_dict_into_meta_model(
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 846, in _load_state_dict_into_meta_model
+    hf_quantizer.create_quantized_param(
+  File "/usr/local/lib/python3.12/dist-packages/transformers/quantizers/quantizer_bnb_4bit.py", line 243, in create_quantized_param
+    new_value = bnb.nn.Params4bit(new_value, requires_grad=False, **kwargs).to(target_device)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/bitsandbytes/nn/modules.py", line 345, in to
+    return self._quantize(device)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/bitsandbytes/nn/modules.py", line 300, in _quantize
+    w_4bit, quant_state = bnb.functional.quantize_4bit(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/bitsandbytes/functional.py", line 924, in quantize_4bit
+    _out, _absmax = torch.ops.bitsandbytes.quantize_4bit.default(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_ops.py", line 723, in __call__
+    return self._op(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_compile.py", line 32, in inner
+    return disable_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/_dynamo/eval_frame.py", line 745, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/library.py", line 597, in func_no_dynamo
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/bitsandbytes/backends/cuda/ops.py", line 323, in _
+    out = torch.empty(((n + 1) // (quant_storage.itemsize * 2), 1), device=A.device, dtype=quant_storage)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 24.00 MiB. GPU 0 has a total capacity of 14.56 GiB of which 13.75 MiB is free. Process 18715 has 11.60 GiB memory in use. Including non-PyTorch memory, this process has 2.94 GiB memory in use. Of the allocated memory 2.81 GiB is allocated by PyTorch, and 20.49 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<stdin>", line 48, in <module>
+  File "/kaggle/working/STReasoner_reproduce/repro_kaggle/experiments/scripts/stage1_script/run_experiment1_new_version.py", line 444, in load_model_and_processors
+    model = AutoModel.from_pretrained(MODEL_NAME, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/models/auto/auto_factory.py", line 564, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 309, in _wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 4574, in from_pretrained
+    ) = cls._load_pretrained_model(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 5031, in _load_pretrained_model
+    disk_offload_index, cpu_offload_index = _load_state_dict_into_meta_model(
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_utils.py", line 784, in _load_state_dict_into_meta_model
+    param = empty_param.to(tensor_device)  # It is actually not empty!
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.16 GiB. GPU 0 has a total capacity of 14.56 GiB of which 13.75 MiB is free. Process 18715 has 11.60 GiB memory in use. Including non-PyTorch memory, this process has 2.94 GiB memory in use. Of the allocated memory 2.81 GiB is allocated by PyTorch, and 20.49 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
