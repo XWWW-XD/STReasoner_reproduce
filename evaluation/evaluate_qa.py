@@ -16,10 +16,12 @@ def _safe_float(value: Any) -> Optional[float]:
     return None
 
 
+# 把文本转成字符串并去掉前后空格
 def _normalize_text(text: Any) -> str:
     return str(text).strip()
 
 
+# 选择题：先抽<answer>，再找其中的A/B/C/D
 def _normalize_choice(text: Any) -> str:
     if text is None:
         return ""
@@ -33,6 +35,7 @@ def _normalize_choice(text: Any) -> str:
     return value.lower()
 
 
+# 抽取<tag>中内容，没有则保留整段文本
 def _extract_tag_content(text: str, tag: str = "answer") -> str:
     if not text:
         return ""
@@ -44,6 +47,7 @@ def _extract_tag_content(text: str, tag: str = "answer") -> str:
         return answer
     return text.strip()
 
+# 把 gold 或模型输出解析成 List[float]
 def _parse_series(text: Any) -> List[float]:
     if text is None:
         return []
@@ -66,6 +70,7 @@ def _parse_series(text: Any) -> List[float]:
     return [float(n) for n in numbers]
 
 
+# 读 gold 测试集
 def load_jsonl_dataset(path: str) -> List[Dict[str, Any]]:
     dataset: List[Dict[str, Any]] = []
     with open(path, "r", encoding="utf-8") as fh:
@@ -79,6 +84,7 @@ def load_jsonl_dataset(path: str) -> List[Dict[str, Any]]:
     return dataset
 
 
+# 读模型prediction文件
 def load_prediction_files(exp_dir: str, pattern: str = "generated_answer") -> Dict[int, str]:
     predictions: Dict[int, str] = {}
     response_lengths: List[int] = []
@@ -195,6 +201,7 @@ def evaluate_alignment_predictions(
     return result
 
 
+# forecasting任务的测评
 def evaluate_forecasting_predictions(
     dataset: List[Dict[str, Any]], predictions: Dict[int, str]
 ) -> Dict[str, Any]:
@@ -275,6 +282,7 @@ def evaluate_forecasting_predictions(
     return result
 
 
+# 多选题的测评
 def evaluate_multiple_choice_predictions(
     dataset: List[Dict[str, Any]], predictions: Dict[int, str], task: str
 ) -> Dict[str, Any]:
@@ -317,6 +325,7 @@ def evaluate_multiple_choice_predictions(
     return result
 
 
+# 任务分发
 def evaluate_predictions_for_task(
     dataset: List[Dict[str, Any]], predictions: Dict[int, str], task_type: str
 ) -> Dict[str, Any]:
