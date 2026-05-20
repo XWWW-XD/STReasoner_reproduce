@@ -37,6 +37,7 @@ from cache_config import TRANSFORMERS_CACHE_PATH, apply_cache_config
 apply_cache_config()
 
 REPRO_ROOT = PROJECT_ROOT / "repro_kaggle"
+SMOKE_SCRIPT_ROOT = REPRO_ROOT / "00_smoke_test_scripts"
 RESULT_ROOT = REPRO_ROOT / "experiments/stage1_results/experiment1_precision_resource"
 DOC_ROOT = REPRO_ROOT / "experiments/stage1_docs"
 SCRIPT_PATH = Path(__file__).resolve()
@@ -256,11 +257,11 @@ def set_hf_cache_env() -> None:
 
 
 def import_repro_loader() -> Any:
-    return load_module(REPRO_ROOT / "scripts/03_load_streasoner_smoke.py", "experiment1_new_repro_loader")
+    return load_module(SMOKE_SCRIPT_ROOT / "03_load_streasoner_smoke.py", "experiment1_new_repro_loader")
 
 
 def import_timeseries_patch_module() -> Any:
-    return load_module(REPRO_ROOT / "scripts/05_eval_sttest_tiny.py", "experiment1_new_timeseries_patch")
+    return load_module(SMOKE_SCRIPT_ROOT / "05_eval_sttest_tiny.py", "experiment1_new_timeseries_patch")
 
 
 def gpu_environment() -> dict[str, Any]:

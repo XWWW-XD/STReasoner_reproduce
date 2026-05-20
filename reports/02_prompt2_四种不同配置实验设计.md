@@ -9,6 +9,8 @@
 
 参考脚本为 /kaggle/working/STReasoner_reproduce/repro_kaggle/experiments/scripts/stage1_script/run_experiment1_new_version.py，可以对脚本内容进行修改，但优先复用。不要新增一套 parser。优先复用参考脚本 run_experiment1_new_version.py 中已有 parser；如果发现它与 evaluation/ 文件夹中的官方评测逻辑不一致，只在报告中说明差异，不要擅自大改 parser。
 
+补充（文件移动后的脚本路径）：原 `repro_kaggle/scripts/` 下的烟测/评测辅助脚本已移动到 `repro_kaggle/00_smoke_test_scripts/`。本实验继续复用原辅助脚本逻辑，但 `run_experiment1_new_version.py` 中导入 `03_load_streasoner_smoke.py`、`05_eval_sttest_tiny.py` 时应使用新地址，不要恢复旧目录或新增 parser。
+
 实验具体设计：
 1. 探索以下问题：
 	1. 【正式 fp16 推理最低需要什么显存级别的 GPU】精度fp16时，8B模型推理需要多大GPU显存，分单卡和双卡两种情况，速度和输出质量如何？

@@ -36,6 +36,12 @@
 - official forecasting coverage：1.0
 - 说明：官方指标复用 `evaluation/evaluate_qa.py`；forecasting 使用 MAE/MAPE/coverage，不计算 exact accuracy。
 
+## 结论与瓶颈分类
+
+- 资源瓶颈：4bit 单卡可以加载并完成两条 SmartTest 推理，没有 OOM，也没有 CPU/disk offload；但速度非常慢，平均延迟约 3507.756 秒，平均 tokens/s 只有 0.599。
+- 输入/生成瓶颈：两条样本的 actual new tokens 都等于 2048，说明均触顶 `max_new_tokens`，没有自然 EOS 收束。
+- 输出与评测瓶颈：两条输出都没有生成规范 `<answer>...</answer>`，strict parse 成功率为 0；entity 样本预测为 C，gold 为 B，official choice accuracy 为 0；forecasting MAE/MAPE 也很差。
+
 ## 产物
 
 - run records：`repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/main_predictions_new.jsonl`
