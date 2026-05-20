@@ -1,0 +1,22 @@
+=== Experiment 1 New Version: fp16_dual / fp16双卡 ===
+CUDA_VISIBLE_DEVICES=0,1
+environment={"visible_gpu_count": 2, "gpu_names": ["Tesla T4", "Tesla T4"], "gpu_total_gib": {"gpu0": 14.563, "gpu1": 14.563}}
+=== Processor / Tokenizer ===
+Trying AutoProcessor.from_pretrained(...)
+AutoProcessor loaded: Qwen3TSProcessor
+Trying AutoTokenizer.from_pretrained(...)
+AutoTokenizer loaded: Qwen2TokenizerFast
+=== Config ===
+config class: Qwen3TSConfig
+config._attn_implementation: 'eager' -> 'sdpa'
+=== Run Layer: Model Load ===
+model: Time-HD-Anonymous/STReasoner-8B
+precision: fp16
+requested device_map: balanced
+quantization_config: None
+Applied runtime patch for multi-GPU time-series merge device alignment.
+model_load_time_sec: 56.911
+load_info: {"processor_class": "Qwen3TSProcessor", "tokenizer_class": "Qwen2TokenizerFast", "model_class": "Qwen3TSForCausalLM", "requested_device_map": "balanced", "actual_device_map": {"model.embed_tokens": 0, "model.layers.0": 0, "model.layers.1": 0, "model.layers.2": 0, "model.layers.3": 0, "model.layers.4": 0, "model.layers.5": 0, "model.layers.6": 0, "model.layers.7": 0, "model.layers.8": 0, "model.layers.9": 0, "model.layers.10": 0, "model.layers.11": 0, "model.layers.12": 0, "model.layers.13": 0, "model.layers.14": 0, "model.layers.15": 0, "model.layers.16": 1, "model.layers.17": 1, "model.layers.18": 1, "model.layers.19": 1, "model.layers.20": 1, "model.layers.21": 1, "model.layers.22": 1, "model.layers.23": 1, "model.layers.24": 1, "model.layers.25": 1, "model.layers.26": 1, "model.layers.27": 1, "model.layers.28": 1, "model.layers.29": 1, "model.layers.30": 1, "model.layers.31": 1, "model.layers.32": 1, "model.layers.33": 1, "model.layers.34": 1, "model.layers.35": 1, "model.norm": 1, "model.rotary_emb": 1, "lm_head": 1, "ts_encoder": 1}, "model_distribution": {"label": "multi_gpu", "devices": ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"], "cuda_devices": ["0", "1"], "has_cpu_offload": false, "has_disk_offload": false}, "use_cache": false, "first_parameter_dtype": "torch.float16", "timeseries_merge_patch_applied": true, "load_after_memory": {"gpu0": {"allocated_gib": 6.909, "reserved_gib": 6.941}, "gpu1": {"allocated_gib": 8.474, "reserved_gib": 8.494}}}
+[main 1/2] sample_id=tiny20_forecasting_01_line87 task=forecasting
+  generate=True decode=True new_tokens=2048 latency=3735.326 stage=none
+[main 2/2] sample_id=tiny20_entity_02_line529 task=entity

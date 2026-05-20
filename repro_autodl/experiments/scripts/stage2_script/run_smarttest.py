@@ -937,6 +937,49 @@ def official_metrics_for_record(sample: dict[str, Any], record: dict[str, Any]) 
     return metrics
 
 
+def explain_failure(first_error: str | None) -> dict[str, Any]:
+    if not first_error:
+        return {
+            "plain_explanation": "No failure was recorded.",
+            "likely_stage": "none",
+            "next_step": None,
+        }
+
+    lower = first_error.lower()
+    if "flash_attn_import_failed" in lower or "flash_attn_2_cuda" in lower or "undefined symbol" in lower:
+        return {
+            "plain_explanation": (
+                "Model loading stopped before weights/generation because AutoDL flash_attn is installed, "
+                "but its CUDA extension cannot be imported by the active Python/PyTorch/CUDA environment."
+            ),
+            "likely_stage": "flash_attn_import_before_model_load",
+            "next_step": (
+                "Check the installed flash_attn package against torch/Python/CUDA, then reinstall or rebuild "
+                "a flash_attn version compatible with this AutoDL environment."
+            ),
+        }
+
+    if "out of memory" in lower or "cuda oom" in lower or "outofmemoryerror" in lower:
+        return {
+            "plain_explanation": "CUDA ran out of GPU memory during model loading or generation.",
+            "likely_stage": "cuda_memory",
+            "next_step": "Check nvidia-smi and the run log memory snapshots before changing model settings.",
+        }
+
+    if "decode" in lower:
+        return {
+            "plain_explanation": "Generation may have completed, but decoding the generated token ids failed.",
+            "likely_stage": "decode",
+            "next_step": "Send the run log and prediction jsonl so the decoder/output tensor path can be checked.",
+        }
+
+    return {
+        "plain_explanation": "The failure was recorded, but it does not match a known stage-specific pattern yet.",
+        "likely_stage": "unknown",
+        "next_step": "Send the full *_run.log for diagnosis.",
+    }
+
+
 def summarize_case(
     case: str,
     sample: dict[str, Any],
@@ -949,6 +992,7 @@ def summarize_case(
     output_root: Path,
     attn_backend: str,
 ) -> dict[str, Any]:
+    first_error = load_error or record.get("generate_error") or record.get("parse_error")
     return {
         "case": case,
         "config": CONFIG_NAME,
@@ -988,7 +1032,8 @@ def summarize_case(
         },
         "official_metrics": official_metrics,
         "failure_type": record.get("failure_type"),
-        "first_error": load_error or record.get("generate_error") or record.get("parse_error"),
+        "first_error": first_error,
+        "failure_explanation": explain_failure(first_error),
     }
 
 
