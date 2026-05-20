@@ -55,6 +55,12 @@ MAIN_DATA = SMART_DATA
 PAPER_DATA = REPRO_ROOT / "experiments/stage1_subsets/exp1_resource_tiny20/paper_cases/paper_cases_matched.jsonl"
 STRESS_DATA = REPRO_ROOT / "experiments/stage1_subsets/exp1_resource_tiny20/stress_case/stress_longest_input_1.jsonl"
 SUMMARY_DOC = DOC_ROOT / "experiment_summary_2.md"
+CONFIG_REPORT_DOCS = {
+    "4bit_single": DOC_ROOT / "00_experiment1_4bit_single.md",
+    "8bit_single": DOC_ROOT / "01_experiment1_8bit_single.md",
+    "fp16_single": DOC_ROOT / "02_experiment1_fp16_single.md",
+    "fp16_dual": DOC_ROOT / "03_experiment1_fp16_dual.md",
+}
 
 ANSWER_TAG_RE = re.compile(r"<answer>\s*(.*?)\s*</answer>", re.IGNORECASE | re.DOTALL)
 STRICT_CHOICE_RE = re.compile(r"^[A-Da-d]$")
@@ -1105,7 +1111,7 @@ def write_config_report(spec: ConfigSpec, summary: dict[str, Any]) -> None:
 {sample_details}
 """
     DOC_ROOT.mkdir(parents=True, exist_ok=True)
-    (DOC_ROOT / f"experiment1_{spec.name}.md").write_text(report, encoding="utf-8")
+    CONFIG_REPORT_DOCS[spec.name].write_text(report, encoding="utf-8")
 
 
 def load_records_for_report(spec: ConfigSpec) -> list[dict[str, Any]]:

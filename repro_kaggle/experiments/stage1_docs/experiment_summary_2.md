@@ -1,13 +1,5 @@
 # 实验一：不同精度推理资源测试
 
-## 当前停止点
-
-- 本轮已完成 `4bit_single`，并通过配置后健康检查。
-- 本轮 `8bit_single` 在 model loading 阶段失败，原因是当前工作区缺少 `repro_kaggle/scripts/03_load_streasoner_smoke.py`。
-- 静态核查发现对应文件当前位于 `repro_kaggle/00_smoke_test_scripts/03_load_streasoner_smoke.py`，因此该失败是脚本路径/工作区文件移动问题，不是 8bit 显存结论。
-- 按 prompt2 的规则，出现加载失败、decoded_text 缺失和关键字段缺失后立即停止；本轮没有继续运行 `fp16_single` 和 `fp16_dual`。
-- 最小修改建议：恢复 `repro_kaggle/scripts/` 目录，或让 `run_experiment1_new_version.py` 的 `import_repro_loader()` / `import_timeseries_patch_module()` 兼容 `repro_kaggle/00_smoke_test_scripts/` 作为 fallback，然后从 `8bit_single` 重新开始。
-
 ## 样本与目录
 
 - SmartTest 样例：`repro_kaggle/experiments/stage1_subsets/exp1_resource_tiny20/smart_test/SmartTest.jsonl`，共 2 条，任务分布 `{"forecasting": 1, "entity": 1}`。
@@ -52,25 +44,25 @@
 |           | 指标 | 4bit单卡 | 8bit单卡 | fp16单卡 | fp16双卡 |
 | --------- | ---- | -------: | -------: | -------: | ------- |
 | 配置证据 | 加载方式 | 4bit | 8bit |  |  |
-|  | device_map | {"": 0} |  |  |  |
-|  | 实际模型分布 | {"label": "single_gpu", "devices": ["0"], "cuda_devices": ["0"], "has_cpu_offload": false, "has_disk_offload": false} |  |  |  |
-|  | is_cpu_offload | False |  |  |  |
-|  | use_cache | False |  |  |  |
-| 可运行证据 | input tokens（平均值） | 697.000 |  |  |  |
-|  | actual new tokens（平均值） | 2048.000 |  |  |  |
-|  | load 成功 | True | False |  |  |
-|  | generate 成功率 | 1.000 | 0.000 |  |  |
+|  | device_map | {"": 0} | {"": 0} |  |  |
+|  | 实际模型分布 | {"label": "single_gpu", "devices": ["0"], "cuda_devices": ["0"], "has_cpu_offload": false, "has_disk_offload": false} | {"label": "single_gpu", "devices": ["0"], "cuda_devices": ["0"], "has_cpu_offload": false, "has_disk_offload": false} |  |  |
+|  | is_cpu_offload | False | False |  |  |
+|  | use_cache | False | False |  |  |
+| 可运行证据 | input tokens（平均值） | 697.000 | 697.000 |  |  |
+|  | actual new tokens（平均值） | 2048.000 | 1068.500 |  |  |
+|  | load 成功 | True | True |  |  |
+|  | generate 成功率 | 1.000 | 1.000 |  |  |
 | 资源与速度 | GPU 总显存 | {"gpu0": 14.563} | {"gpu0": 14.563} |  |  |
-|  | load 后显存 | {"gpu0": {"allocated_gib": 5.703, "reserved_gib": 6.74}} |  |  |  |
-|  | generate 峰值显存 | {"gpu0": {"max_allocated_gib": 6.038, "max_reserved_gib": 6.744}} | {} |  |  |
-|  | 平均延迟与最高延迟 | 3507.756 |  |  |  |
-|  | tokens/s | 0.599 |  |  |  |
-| 输出与评测 | decode 成功率 | 1.000 | 0.000 |  |  |
+|  | load 后显存 | {"gpu0": {"allocated_gib": 5.703, "reserved_gib": 6.74}} | {"gpu0": {"allocated_gib": 8.859, "reserved_gib": 9.064}} |  |  |
+|  | generate 峰值显存 | {"gpu0": {"max_allocated_gib": 6.038, "max_reserved_gib": 6.744}} | {"gpu0": {"max_allocated_gib": 9.434, "max_reserved_gib": 11.002}} |  |  |
+|  | 平均延迟与最高延迟 | 3507.756 | 1140.646 |  |  |
+|  | tokens/s | 0.599 | 0.952 |  |  |
+| 输出与评测 | decode 成功率 | 1.000 | 1.000 |  |  |
 |  | strict diagnostic 成功率 | 0.000 | 0.000 |  |  |
-|  | official choice accuracy | 0.000 |  |  |  |
-|  | official forecasting MAE | 113.526 |  |  |  |
-|  | official forecasting MAPE | 87.618 |  |  |  |
-| 失败阶段、失败原因 | 失败阶段、详细失败原因 |  | model_loading 阶段失败：FileNotFoundError: [Errno 2] No such file or directory: '/kaggle/working/STReasoner_reproduce/repro_kaggle/scripts/03_load_streasoner_smoke.py' |  |  |
+|  | official choice accuracy | 0.000 | 0.000 |  |  |
+|  | official forecasting MAE | 113.526 | 85.002 |  |  |
+|  | official forecasting MAPE | 87.618 | 69.308 |  |  |
+| 失败阶段、失败原因 | 失败阶段、详细失败原因 |  | 生成提前结束：actual_new_tokens=968，小于 max_new_tokens=2048；可能是 EOS 或模型自然停止。 |  |  |
 
 ## 说明
 

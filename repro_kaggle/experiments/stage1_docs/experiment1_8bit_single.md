@@ -36,12 +36,6 @@
 - official forecasting coverage：1.0
 - 说明：官方指标复用 `evaluation/evaluate_qa.py`；forecasting 使用 MAE/MAPE/coverage，不计算 exact accuracy。
 
-## 结论与瓶颈分类
-
-- 资源瓶颈：8bit 单卡可以加载并完成两条 SmartTest 推理，没有 OOM，也没有 CPU/disk offload；峰值 reserved 显存约 11.002 GiB，平均 tokens/s 为 0.952，速度仍然偏慢。
-- 输入/生成瓶颈：两条样本都没有触顶 2048，而是分别在 968、1169 new tokens 提前结束；这与 4bit 的 2048 触顶不同，属于生成收束/停止策略需要进一步检查的问题。
-- 输出与评测瓶颈：两条输出都没有生成规范 `<answer>...</answer>`，strict parse 成功率为 0；entity 样本 official accuracy 为 0，forecasting MAE/MAPE 仍然很差。因此 8bit 虽能跑通，但当前输出质量不可接受，暂停进入 fp16。
-
 ## 产物
 
 - run records：`repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/main_predictions_new.jsonl`
