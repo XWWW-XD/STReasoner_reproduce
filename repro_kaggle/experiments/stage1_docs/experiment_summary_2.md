@@ -1,5 +1,11 @@
 # 实验一：不同精度推理资源测试
 
+## 当前暂停点
+
+- 已完成：4bit单卡、8bit单卡。
+- 暂停原因：8bit 单卡虽然 load/generate/decode 和健康检查均通过，但两条输出都没有规范 `<answer>...</answer>`，strict diagnostic 成功率为 0，entity 官方准确率为 0，forecasting MAE/MAPE 仍然很差。因此按“结果很糟糕也先告诉我”的要求，暂不继续 fp16_single / fp16_dual。
+- 详细报告文件：`00_experiment1_4bit_single.md`、`01_experiment1_8bit_single.md`。`02_experiment1_fp16_single.md`、`03_experiment1_fp16_dual.md` 尚未产生本轮新运行结果。
+
 ## 样本与目录
 
 - SmartTest 样例：`repro_kaggle/experiments/stage1_subsets/exp1_resource_tiny20/smart_test/SmartTest.jsonl`，共 2 条，任务分布 `{"forecasting": 1, "entity": 1}`。
@@ -55,13 +61,14 @@
 | 资源与速度 | GPU 总显存 | {"gpu0": 14.563} | {"gpu0": 14.563} |  |  |
 |  | load 后显存 | {"gpu0": {"allocated_gib": 5.703, "reserved_gib": 6.74}} | {"gpu0": {"allocated_gib": 8.859, "reserved_gib": 9.064}} |  |  |
 |  | generate 峰值显存 | {"gpu0": {"max_allocated_gib": 6.038, "max_reserved_gib": 6.744}} | {"gpu0": {"max_allocated_gib": 9.434, "max_reserved_gib": 11.002}} |  |  |
-|  | 平均延迟与最高延迟 | 3507.756 | 1140.646 |  |  |
+|  | 平均延迟与最高延迟 | 3507.756 / 4060.895 | 1140.646 / 1242.483 |  |  |
 |  | tokens/s | 0.599 | 0.952 |  |  |
 | 输出与评测 | decode 成功率 | 1.000 | 1.000 |  |  |
 |  | strict diagnostic 成功率 | 0.000 | 0.000 |  |  |
 |  | official choice accuracy | 0.000 | 0.000 |  |  |
 |  | official forecasting MAE | 113.526 | 85.002 |  |  |
 |  | official forecasting MAPE | 87.618 | 69.308 |  |  |
+| 失败阶段、失败原因 | 瓶颈类型计数 | {} | {"输入/生成瓶颈": 2} |  |  |
 | 失败阶段、失败原因 | 失败阶段、详细失败原因 |  | 生成提前结束：actual_new_tokens=968，小于 max_new_tokens=2048；可能是 EOS 或模型自然停止。 |  |  |
 
 ## 说明

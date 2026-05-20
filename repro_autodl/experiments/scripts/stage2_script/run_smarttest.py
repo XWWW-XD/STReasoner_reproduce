@@ -54,6 +54,7 @@ MODEL_NAME = "Time-HD-Anonymous/STReasoner-8B"
 CONFIG_NAME = "fp16_a100_single"
 DEFAULT_MAX_NEW_TOKENS = 2048
 DEFAULT_AUTODL_CACHE = "/cloud/cloud-ssd1/hf_cache"
+DEFAULT_ATTN_BACKEND = "flash_attention_2"
 PATCH_SIZE = 8
 
 ANSWER_TAG_RE = re.compile(r"<answer>\s*(.*?)\s*</answer>", re.IGNORECASE | re.DOTALL)
@@ -501,6 +502,29 @@ def class_name(obj: Any | None) -> str:
     return "None" if obj is None else obj.__class__.__name__
 
 
+def check_flash_attn_environment(logger: TeeLogger) -> None:
+    """Validate AutoDL flash_attn before importing remote model code."""
+
+    logger.log("=== Flash Attention Check ===")
+    try:
+        from importlib import metadata
+
+        logger.log(f"flash_attn package version: {metadata.version('flash_attn')}")
+    except Exception as exc:
+        raise RuntimeError(f"flash_attn package is not available: {exc}") from exc
+
+    try:
+        import flash_attn  # noqa: F401
+        import flash_attn_2_cuda  # noqa: F401
+    except Exception as exc:
+        raise RuntimeError(
+            "flash_attn_import_failed: AutoDL flash_attn is installed, but its CUDA extension "
+            f"cannot be imported in this Python/PyTorch/CUDA environment: {exc}"
+        ) from exc
+
+    logger.log("flash_attn import check: PASS")
+
+
 def load_processor_and_tokenizer(model_name: str, cache_dir: str, logger: TeeLogger) -> tuple[Any | None, Any | None]:
     from transformers import AutoProcessor, AutoTokenizer
 
@@ -544,8 +568,15 @@ def assert_no_cpu_or_disk_offload(model: Any) -> None:
         raise RuntimeError(f"CPU/disk offload is not allowed in stage2: {distribution}")
 
 
-def load_model_and_processors(logger: TeeLogger, attn_backend: str = "sdpa") -> tuple[Any, Any, Any, float, dict[str, Any]]:
+def load_model_and_processors(
+    logger: TeeLogger,
+    attn_backend: str = DEFAULT_ATTN_BACKEND,
+) -> tuple[Any, Any, Any, float, dict[str, Any]]:
     import torch
+
+    if attn_backend == "flash_attention_2":
+        check_flash_attn_environment(logger)
+
     from transformers import AutoModel, AutoModelForCausalLM
 
     cache_dir = os.environ["TRANSFORMERS_CACHE"]
@@ -565,6 +596,7 @@ def load_model_and_processors(logger: TeeLogger, attn_backend: str = "sdpa") -> 
     logger.log(f"model: {MODEL_NAME}")
     logger.log(f"config: {CONFIG_NAME}")
     logger.log("precision: fp16")
+    logger.log(f"attn_backend: {attn_backend}")
     logger.log("requested device_map: {'': 0}")
     logger.log("quantization_config: None")
     logger.log("cpu_offload: disabled")
@@ -591,6 +623,7 @@ def load_model_and_processors(logger: TeeLogger, attn_backend: str = "sdpa") -> 
         "model_distribution": model_distribution(actual_map),
         "use_cache": getattr(getattr(model, "config", None), "use_cache", None),
         "first_parameter_dtype": str(next(model.parameters()).dtype),
+        "attn_backend": attn_backend,
         "timeseries_merge_patch_applied": bool(getattr(model, "_stage2_merge_patch", False)),
         "load_after_memory": gpu_memory_snapshot(),
     }
@@ -914,6 +947,7 @@ def summarize_case(
     load_info: dict[str, Any] | None,
     official_metrics: dict[str, Any],
     output_root: Path,
+    attn_backend: str,
 ) -> dict[str, Any]:
     return {
         "case": case,
@@ -922,6 +956,7 @@ def summarize_case(
         "batch_size": 1,
         "max_new_tokens": record.get("max_new_tokens"),
         "precision": "fp16",
+        "attn_backend": attn_backend,
         "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES"),
         "smarttest_path": rel(SMARTTEST_PATH),
         "result_root": rel(output_root),
@@ -974,6 +1009,7 @@ def run_one_case(
     resume: bool,
     output_root: Path,
     logger: TeeLogger,
+    attn_backend: str = DEFAULT_ATTN_BACKEND,
 ) -> dict[str, Any]:
     ensure_autodl_cache_env()
     ensure_single_gpu_env()
@@ -981,6 +1017,7 @@ def run_one_case(
     logger.log("=== Stage2 SmartTest Run ===")
     logger.log(f"case: {case}")
     logger.log(f"max_new_tokens: {max_new_tokens}")
+    logger.log(f"attn_backend: {attn_backend}")
     logger.log(f"output_root: {rel(output_root)}")
 
     sample, smarttest_index = select_case_sample(case)
@@ -1008,7 +1045,7 @@ def run_one_case(
     stage = "model_loading"
 
     try:
-        model, processor, tokenizer, load_time_sec, load_info = load_model_and_processors(logger)
+        model, processor, tokenizer, load_time_sec, load_info = load_model_and_processors(logger, attn_backend)
         load_success = True
     except Exception as exc:
         load_error = f"{exc.__class__.__name__}: {short_error(exc)}"
@@ -1018,7 +1055,16 @@ def run_one_case(
         official_metrics = official_metrics_for_record(sample, record)
         append_jsonl(paths["prediction"], record)
         summary = summarize_case(
-            case, sample, record, load_success, load_error, load_time_sec, load_info, official_metrics, output_root
+            case,
+            sample,
+            record,
+            load_success,
+            load_error,
+            load_time_sec,
+            load_info,
+            official_metrics,
+            output_root,
+            attn_backend,
         )
         write_json(paths["summary"], summary)
         return summary
@@ -1088,7 +1134,16 @@ def run_one_case(
     official_metrics = official_metrics_for_record(sample, record)
     append_jsonl(paths["prediction"], record)
     summary = summarize_case(
-        case, sample, record, load_success, load_error, load_time_sec, load_info, official_metrics, output_root
+        case,
+        sample,
+        record,
+        load_success,
+        load_error,
+        load_time_sec,
+        load_info,
+        official_metrics,
+        output_root,
+        attn_backend,
     )
     write_json(paths["summary"], summary)
     logger.log(f"Wrote prediction: {rel(paths['prediction'])}")
@@ -1109,6 +1164,11 @@ def parse_args() -> argparse.Namespace:
     run.add_argument("--overwrite", type=str2bool, nargs="?", const=True, default=False)
     run.add_argument("--resume", type=str2bool, nargs="?", const=True, default=False)
     run.add_argument("--output-root", type=Path, default=RESULT_ROOT)
+    run.add_argument(
+        "--attn-backend",
+        choices=["flash_attention_2", "sdpa", "eager"],
+        default=DEFAULT_ATTN_BACKEND,
+    )
 
     return parser.parse_args()
 
@@ -1136,6 +1196,7 @@ def main() -> int:
                 resume=args.resume,
                 output_root=args.output_root,
                 logger=logger,
+                attn_backend=args.attn_backend,
             )
             logger.log(f"run_summary: {json.dumps(json_safe(summary), ensure_ascii=False)}")
             return 0

@@ -1205,6 +1205,13 @@ def write_experiment_summary() -> None:
             current = current.get(key)
         return fmt(current)
 
+    def paired_cell(config_name: str, left_path: list[str], right_path: list[str]) -> str:
+        left = cell(config_name, left_path)
+        right = cell(config_name, right_path)
+        if left and right:
+            return f"{left} / {right}"
+        return left or right
+
     rows = [
         ("配置证据", "加载方式", [[ "precision" ] for _ in cols]),
         ("", "device_map", [["load", "info", "requested_device_map"] for _ in cols]),
@@ -1225,6 +1232,7 @@ def write_experiment_summary() -> None:
         ("", "official choice accuracy", [["official_eval_summary", "official_choice_accuracy_micro"] for _ in cols]),
         ("", "official forecasting MAE", [["official_eval_summary", "official_forecasting_mae"] for _ in cols]),
         ("", "official forecasting MAPE", [["official_eval_summary", "official_forecasting_mape"] for _ in cols]),
+        ("失败阶段、失败原因", "瓶颈类型计数", [["bottleneck_counts"] for _ in cols]),
         ("失败阶段、失败原因", "失败阶段、详细失败原因", [["first_error"] for _ in cols]),
     ]
 
@@ -1233,7 +1241,17 @@ def write_experiment_summary() -> None:
         "| --------- | ---- | -------: | -------: | -------: | ------- |",
     ]
     for section, metric, paths in rows:
-        values = [cell(config_name, path) for config_name, path in zip(cols, paths)]
+        if metric == "平均延迟与最高延迟":
+            values = [
+                paired_cell(
+                    config_name,
+                    ["run_layer_metrics", "avg_latency_sec"],
+                    ["run_layer_metrics", "max_latency_sec"],
+                )
+                for config_name in cols
+            ]
+        else:
+            values = [cell(config_name, path) for config_name, path in zip(cols, paths)]
         table.append("| " + " | ".join([section, metric, *values]) + " |")
 
     doc = f"""# 实验一：不同精度推理资源测试
