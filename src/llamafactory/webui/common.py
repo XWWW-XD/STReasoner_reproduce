@@ -22,6 +22,8 @@ from typing import Any, Optional, Union
 from psutil import Process
 from yaml import safe_dump, safe_load
 
+from cache_config import resolve_transformers_cache_dir
+
 from ..extras import logging
 from ..extras.constants import (
     DATA_CONFIG,
@@ -77,7 +79,13 @@ def load_config() -> dict[str, Union[str, dict[str, Any]]]:
         with open(_get_config_path(), encoding="utf-8") as f:
             return safe_load(f)
     except Exception:
-        return {"lang": None, "hub_name": None, "last_model": None, "path_dict": {}, "cache_dir": None}
+        return {
+            "lang": None,
+            "hub_name": None,
+            "last_model": None,
+            "path_dict": {},
+            "cache_dir": resolve_transformers_cache_dir(),
+        }
 
 
 def save_config(

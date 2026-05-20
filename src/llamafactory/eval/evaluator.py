@@ -47,6 +47,8 @@ from datasets import load_dataset
 from tqdm import tqdm, trange
 from transformers.utils import cached_file
 
+from cache_config import resolve_datasets_cache_dir, resolve_transformers_cache_dir
+
 from ..data import get_template_and_fix_tokenizer
 from ..extras.constants import CHOICES, SUBJECTS
 from ..hparams import get_eval_args
@@ -83,7 +85,7 @@ class Evaluator:
         mapping = cached_file(
             path_or_repo_id=os.path.join(self.eval_args.task_dir, eval_task),
             filename="mapping.json",
-            cache_dir=self.model_args.cache_dir,
+            cache_dir=resolve_transformers_cache_dir(self.model_args.cache_dir),
             token=self.model_args.hf_hub_token,
         )
 
@@ -97,7 +99,7 @@ class Evaluator:
             dataset = load_dataset(
                 path=os.path.join(self.eval_args.task_dir, eval_task),
                 name=subject,
-                cache_dir=self.model_args.cache_dir,
+                cache_dir=resolve_datasets_cache_dir(self.model_args.cache_dir),
                 download_mode=self.eval_args.download_mode,
                 token=self.model_args.hf_hub_token,
                 trust_remote_code=self.model_args.trust_remote_code,

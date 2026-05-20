@@ -19,6 +19,8 @@ from collections import defaultdict
 from io import BytesIO
 from typing import Any, Optional, Union
 
+from cache_config import resolve_datasets_cache_dir
+
 import numpy as np
 import torch
 from datasets import load_dataset, concatenate_datasets
@@ -152,6 +154,7 @@ class RLHFDataset(Dataset):
         # Support multiple datasets by allowing comma-separated paths in `data_path`
         data_paths = [p.strip() for p in data_path.split(",")] if "," in data_path else [data_path]
         loaded_datasets = []
+        cache_dir = resolve_datasets_cache_dir()
 
         for single_path in data_paths:
             if "@" in single_path:
@@ -162,13 +165,23 @@ class RLHFDataset(Dataset):
             if os.path.isdir(single_path):
                 # when we use dataset builder, we should always refer to the train split
                 file_type = os.path.splitext(os.listdir(single_path)[0])[-1][1:].replace("jsonl", "json")
-                ds = load_dataset(file_type, data_dir=single_path, split=data_split)
+                ds = load_dataset(
+                    file_type,
+                    data_dir=single_path,
+                    split=data_split,
+                    cache_dir=cache_dir,
+                )
             elif os.path.isfile(single_path):
                 file_type = os.path.splitext(single_path)[-1][1:].replace("jsonl", "json")
-                ds = load_dataset(file_type, data_files=single_path, split=data_split)
+                ds = load_dataset(
+                    file_type,
+                    data_files=single_path,
+                    split=data_split,
+                    cache_dir=cache_dir,
+                )
             else:
                 # load remote dataset from huggingface hub
-                ds = load_dataset(single_path, split=data_split)
+                ds = load_dataset(single_path, split=data_split, cache_dir=cache_dir)
 
             loaded_datasets.append(ds)
 

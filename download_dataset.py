@@ -5,8 +5,12 @@ Usage:
     python download_dataset.py
 """
 
+from cache_config import HF_HUB_CACHE_PATH, apply_cache_config
 from huggingface_hub import snapshot_download
 import os
+
+apply_cache_config()
+
 
 def main():
     # Download ST-Bench dataset to data/ directory
@@ -18,6 +22,7 @@ def main():
         repo_id="Time-HD-Anonymous/ST-Bench",
         repo_type="dataset",
         local_dir=local_dir,
+        cache_dir=HF_HUB_CACHE_PATH,
         local_dir_use_symlinks=False,  # Download actual files, not symlinks
     )
     
@@ -25,4 +30,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

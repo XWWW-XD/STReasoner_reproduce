@@ -18,6 +18,8 @@ from typing import TYPE_CHECKING, Any, Optional, Union
 
 from typing_extensions import override
 
+from cache_config import resolve_transformers_cache_dir
+
 from ..data import get_template_and_fix_tokenizer
 from ..extras import logging
 from ..extras.constants import AUDIO_PLACEHOLDER, IMAGE_PLACEHOLDER, VIDEO_PLACEHOLDER, EngineName
@@ -71,7 +73,7 @@ class VllmEngine(BaseEngine):
         engine_args = {
             "model": model_args.model_name_or_path,
             "trust_remote_code": model_args.trust_remote_code,
-            "download_dir": model_args.cache_dir,
+            "download_dir": resolve_transformers_cache_dir(model_args.cache_dir),
             "dtype": model_args.infer_dtype,
             "max_model_len": model_args.vllm_maxlen,
             "tensor_parallel_size": get_device_count() or 1,

@@ -15,11 +15,14 @@
 import asyncio
 import atexit
 import json
+import os
 from collections.abc import AsyncGenerator, AsyncIterator, Sequence
 from typing import TYPE_CHECKING, Any, Optional, Union
 
 import requests
 from typing_extensions import override
+
+from cache_config import resolve_transformers_cache_dir
 
 from ..data import get_template_and_fix_tokenizer
 from ..extras import logging
@@ -91,7 +94,7 @@ class SGLangEngine(BaseEngine):
             f"--context-length {model_args.sglang_maxlen}",
             f"--mem-fraction-static {model_args.sglang_mem_fraction}",
             f"--tp-size {model_args.sglang_tp_size if model_args.sglang_tp_size != -1 else get_device_count() or 1}",
-            f"--download-dir {model_args.cache_dir}",
+            f"--download-dir {resolve_transformers_cache_dir(model_args.cache_dir)}",
             "--log-level error",
         ]
         if self.lora_request:

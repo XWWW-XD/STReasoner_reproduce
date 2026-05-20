@@ -28,6 +28,8 @@ from transformers import (
 )
 from trl import AutoModelForCausalLMWithValueHead
 
+from cache_config import resolve_transformers_cache_dir
+
 from ..extras import logging
 from ..extras.misc import count_parameters, skip_check_imports, try_download_model_from_other_hub
 from .adapter import init_adapter
@@ -62,7 +64,7 @@ def _get_init_kwargs(model_args: "ModelArguments") -> dict[str, Any]:
     model_args.model_name_or_path = try_download_model_from_other_hub(model_args)
     return {
         "trust_remote_code": model_args.trust_remote_code,
-        "cache_dir": model_args.cache_dir,
+        "cache_dir": resolve_transformers_cache_dir(model_args.cache_dir),
         "revision": model_args.model_revision,
         "token": model_args.hf_hub_token,
     }

@@ -17,6 +17,10 @@ import os
 import re
 from concurrent.futures import ThreadPoolExecutor
 
+from cache_config import TRANSFORMERS_CACHE_PATH, apply_cache_config
+
+apply_cache_config()
+
 import numpy as np
 import torch
 from torch.distributed._tensor import DTensor, Placement, Shard
@@ -160,7 +164,11 @@ if __name__ == "__main__":
 
     print("Merge completed.")
     hf_path = os.path.join(local_dir, "huggingface")
-    config: PretrainedConfig = AutoConfig.from_pretrained(hf_path, trust_remote_code=True)
+    config: PretrainedConfig = AutoConfig.from_pretrained(
+        hf_path,
+        trust_remote_code=True,
+        cache_dir=TRANSFORMERS_CACHE_PATH,
+    )
     architectures: list[str] = getattr(config, "architectures", ["Unknown"])
 
     if "ForTokenClassification" in architectures[0]:

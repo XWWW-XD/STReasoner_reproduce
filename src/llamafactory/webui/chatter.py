@@ -20,6 +20,8 @@ from typing import TYPE_CHECKING, Any, Optional
 
 from transformers.utils import is_torch_npu_available
 
+from cache_config import resolve_transformers_cache_dir
+
 from ..chat import ChatModel
 from ..data import Role
 from ..extras.constants import PEFT_METHODS
@@ -127,7 +129,7 @@ class WebChatModel(ChatModel):
         yield ALERTS["info_loading"][lang]
         args = dict(
             model_name_or_path=model_path,
-            cache_dir=user_config.get("cache_dir", None),
+            cache_dir=resolve_transformers_cache_dir(user_config.get("cache_dir")),
             finetuning_type=finetuning_type,
             template=get("top.template"),
             rope_scaling=get("top.rope_scaling") if get("top.rope_scaling") != "none" else None,

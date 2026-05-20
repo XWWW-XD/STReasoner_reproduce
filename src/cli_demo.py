@@ -1,3 +1,15 @@
+import sys
+from pathlib import Path
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from cache_config import apply_cache_config
+
+apply_cache_config()
+
 from llamafactory.chat import ChatModel
 from llamafactory.extras.misc import torch_gc
 import json

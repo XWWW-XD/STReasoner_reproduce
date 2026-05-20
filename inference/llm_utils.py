@@ -12,12 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from transformers import AutoTokenizer
 import multiprocessing
 from tqdm import tqdm
 import json
 import yaml
 import os
+import sys
+from pathlib import Path
 from loguru import logger
 from json_repair import repair_json
 import re
@@ -25,6 +26,16 @@ import numpy as np
 import time
 import traceback
 from typing import *
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from cache_config import TRANSFORMERS_CACHE_PATH, apply_cache_config
+
+apply_cache_config()
+
+from transformers import AutoTokenizer
 
 
 # Config
@@ -95,7 +106,7 @@ def worker_vllm(input_queue, output_queue, gpu_id, batch_size, sample_n, finishe
     try:
         from vllm import LLM, SamplingParams
         sampling_params = SamplingParams(temperature=0.5, top_p=0.95, max_tokens=CTX_LENGTH, stop_token_ids=[151643, 151645], stop=['<|endoftext|>', '<|im_end|>'], n=sample_n)
-        llm = LLM(model=model_path, trust_remote_code=True, max_model_len=30000, tensor_parallel_size=len(gpu_id.split(',')), gpu_memory_utilization=0.85, dtype='half')
+        llm = LLM(model=model_path, trust_remote_code=True, max_model_len=30000, tensor_parallel_size=len(gpu_id.split(',')), gpu_memory_utilization=0.85, dtype='half', download_dir=TRANSFORMERS_CACHE_PATH)
         print(f"[worker {gpu_id}] Initialization finished.")
         ready_cnt.value = ready_cnt.value + 1
         
@@ -146,7 +157,7 @@ def worker_vllm_ts(input_queue, output_queue, gpu_id, batch_size, sample_n, fini
         from vllm import LLM, SamplingParams
         import inference.vllm.chatts_vllm
         sampling_params = SamplingParams(temperature=0.5, top_p=0.95, max_tokens=CTX_LENGTH, stop_token_ids=[151643, 151645], stop=['<|endoftext|>', '<|im_end|>'], n=sample_n)
-        llm = LLM(model=model_path, trust_remote_code=True, max_model_len=CTX_LENGTH, tensor_parallel_size=len(gpu_id.split(',')), gpu_memory_utilization=0.95, limit_mm_per_prompt={"timeseries": 50}, enable_prefix_caching=False)
+        llm = LLM(model=model_path, trust_remote_code=True, max_model_len=CTX_LENGTH, tensor_parallel_size=len(gpu_id.split(',')), gpu_memory_utilization=0.95, limit_mm_per_prompt={"timeseries": 50}, enable_prefix_caching=False, download_dir=TRANSFORMERS_CACHE_PATH)
         print(f"[worker {gpu_id}] Initialization finished.")
         ready_cnt.value = ready_cnt.value + 1
         
@@ -232,7 +243,11 @@ class LLMClient:
         self.sample_n = sample_n
 
         # Apply chat template
-        self.tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            model_path,
+            trust_remote_code=True,
+            cache_dir=TRANSFORMERS_CACHE_PATH,
+        )
         self.system_prompt = system_prompt
 
         if chat_template:

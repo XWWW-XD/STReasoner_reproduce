@@ -21,6 +21,8 @@ from typing import TYPE_CHECKING, Any, Optional
 
 from transformers.utils import is_torch_npu_available
 
+from cache_config import resolve_transformers_cache_dir
+
 from ..extras.constants import LLAMABOARD_CONFIG, MULTIMODAL_SUPPORTED_MODELS, PEFT_METHODS, TRAINING_STAGES
 from ..extras.misc import is_accelerator_available, torch_gc
 from ..extras.packages import is_gradio_available
@@ -133,7 +135,7 @@ class Runner:
             stage=TRAINING_STAGES[get("train.training_stage")],
             do_train=True,
             model_name_or_path=get("top.model_path"),
-            cache_dir=user_config.get("cache_dir", None),
+            cache_dir=resolve_transformers_cache_dir(user_config.get("cache_dir")),
             preprocessing_num_workers=16,
             finetuning_type=finetuning_type,
             template=get("top.template"),
@@ -298,7 +300,7 @@ class Runner:
         args = dict(
             stage="sft",
             model_name_or_path=get("top.model_path"),
-            cache_dir=user_config.get("cache_dir", None),
+            cache_dir=resolve_transformers_cache_dir(user_config.get("cache_dir")),
             preprocessing_num_workers=16,
             finetuning_type=finetuning_type,
             quantization_method=get("top.quantization_method"),

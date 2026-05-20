@@ -19,6 +19,8 @@ import torch
 from peft import LoraConfig, LoraModel, PeftModel, TaskType, get_peft_model
 from transformers.integrations import is_deepspeed_zero3_enabled
 
+from cache_config import resolve_transformers_cache_dir
+
 from ..extras import logging
 from .model_utils.misc import find_all_linear_modules, find_expanded_modules
 from .model_utils.quantization import QuantizationMethod
@@ -186,7 +188,7 @@ def _setup_lora_tuning(
         init_kwargs = {
             "subfolder": model_args.adapter_folder,
             "offload_folder": model_args.offload_folder,
-            "cache_dir": model_args.cache_dir,
+            "cache_dir": resolve_transformers_cache_dir(model_args.cache_dir),
             "revision": model_args.model_revision,
             "token": model_args.hf_hub_token,
         }

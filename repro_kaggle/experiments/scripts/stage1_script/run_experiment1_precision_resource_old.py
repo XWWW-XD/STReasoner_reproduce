@@ -25,6 +25,13 @@ from typing import Any
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from cache_config import TRANSFORMERS_CACHE_PATH, apply_cache_config
+
+apply_cache_config()
+
 RESULT_ROOT = PROJECT_ROOT / "repro_kaggle/experiments/stage1_results/experiment1_precision_resource"
 DOC_ROOT = PROJECT_ROOT / "repro_kaggle/experiments/stage1_docs"
 SCRIPT_PATH = PROJECT_ROOT / "repro_kaggle/experiments/scripts/stage1_script/run_experiment1_precision_resource.py"
@@ -328,12 +335,7 @@ def is_correct_prediction(pred: Any, gold: Any, task: str) -> bool:
 
 
 def set_hf_cache_env() -> None:
-    os.environ.setdefault("HF_HOME", "/kaggle/working/hf_cache")
-    os.environ.setdefault("TRANSFORMERS_CACHE", "/kaggle/working/hf_cache/transformers")
-    os.environ.setdefault("HF_DATASETS_CACHE", "/kaggle/working/hf_cache/datasets")
-    Path(os.environ["HF_HOME"]).mkdir(parents=True, exist_ok=True)
-    Path(os.environ["TRANSFORMERS_CACHE"]).mkdir(parents=True, exist_ok=True)
-    Path(os.environ["HF_DATASETS_CACHE"]).mkdir(parents=True, exist_ok=True)
+    apply_cache_config()
 
 
 def import_repro_loader() -> Any:
@@ -471,6 +473,7 @@ def load_model(spec: ConfigSpec, logger: TeeLogger) -> tuple[Any, Any, Any, floa
         "device_map": device_map_for(spec),
         "torch_dtype": torch.float16,
         "config": config,
+        "cache_dir": TRANSFORMERS_CACHE_PATH,
     }
     if qconfig is not None:
         kwargs["quantization_config"] = qconfig

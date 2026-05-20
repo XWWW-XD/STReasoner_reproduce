@@ -14,6 +14,8 @@
 
 from typing import TYPE_CHECKING, Optional, Union
 
+from cache_config import TRANSFORMERS_CACHE_PATH
+
 import torch
 from peft import PeftModel
 from transformers import AutoModelForCausalLM
@@ -84,17 +86,29 @@ def load_reference_model(
     current_device = get_current_device()
     if add_valuehead:
         model: AutoModelForCausalLMWithValueHead = AutoModelForCausalLMWithValueHead.from_pretrained(
-            model_path, torch_dtype=torch.float16, device_map=current_device
+            model_path,
+            torch_dtype=torch.float16,
+            device_map=current_device,
+            cache_dir=TRANSFORMERS_CACHE_PATH,
         )
         if not is_trainable:
             model.v_head = model.v_head.to(torch.float16)
 
         return model
 
-    model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.float16, device_map=current_device)
+    model = AutoModelForCausalLM.from_pretrained(
+        model_path,
+        torch_dtype=torch.float16,
+        device_map=current_device,
+        cache_dir=TRANSFORMERS_CACHE_PATH,
+    )
     if use_lora or use_pissa:
         model = PeftModel.from_pretrained(
-            model, lora_path, subfolder="pissa_init" if use_pissa else None, is_trainable=is_trainable
+            model,
+            lora_path,
+            subfolder="pissa_init" if use_pissa else None,
+            is_trainable=is_trainable,
+            cache_dir=TRANSFORMERS_CACHE_PATH,
         )
         for param in filter(lambda p: p.requires_grad, model.parameters()):
             param.data = param.data.to(torch.float32)

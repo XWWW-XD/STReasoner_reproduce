@@ -15,7 +15,10 @@
 The main entry point to run the PPO algorithm
 """
 
+import os
 from typing import Literal, Optional, Union, cast
+
+from cache_config import TRANSFORMERS_CACHE_PATH
 
 import numpy as np
 import psutil
@@ -175,11 +178,15 @@ class FSDPWorker(Worker):
                 bos_token_id=self.tokenizer.bos_token_id,
                 eos_token_id=self.tokenizer.eos_token_id,
                 pad_token_id=self.tokenizer.pad_token_id,
+                cache_dir=TRANSFORMERS_CACHE_PATH,
                 **model_config.override_config,
             )
 
             try:
-                self.generation_config = GenerationConfig.from_pretrained(model_config.model_path)
+                self.generation_config = GenerationConfig.from_pretrained(
+                    model_config.model_path,
+                    cache_dir=TRANSFORMERS_CACHE_PATH,
+                )
             except Exception:
                 self.generation_config = GenerationConfig.from_model_config(self.model_config)
 
@@ -210,6 +217,7 @@ class FSDPWorker(Worker):
                 device_map="cpu" if fsdp_config.enable_rank0_init else "cuda",
                 low_cpu_mem_usage=True,
                 trust_remote_code=model_config.trust_remote_code,
+                cache_dir=TRANSFORMERS_CACHE_PATH,
             )
         else:
             with no_init_weights(), init_empty_weights():

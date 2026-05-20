@@ -3,7 +3,19 @@ import collections
 import glob
 import json
 import os
+import sys
+from pathlib import Path
+
 import numpy as np
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from cache_config import TRANSFORMERS_CACHE_PATH, apply_cache_config
+
+apply_cache_config()
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -28,7 +40,11 @@ def analyze_and_filter_timeseries(input_directory, output_directory, min_len=32,
             print("Loading tokenizer for length checking...")
             if model_path is None:
                 model_path = os.path.join(REPO_ROOT, "base_model", "Qwen2.5-7B")
-            processor = AutoProcessor.from_pretrained(model_path, trust_remote_code=True)
+            processor = AutoProcessor.from_pretrained(
+                model_path,
+                trust_remote_code=True,
+                cache_dir=TRANSFORMERS_CACHE_PATH,
+            )
             print(f"✓ Tokenizer loaded from {model_path}")
             print(f"  TS token IDs: <ts>={ts_token_start_index}, <ts/>={ts_token_end_index}")
         except Exception as e:

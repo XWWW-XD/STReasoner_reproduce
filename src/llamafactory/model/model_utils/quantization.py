@@ -26,6 +26,8 @@ from transformers import BitsAndBytesConfig, EetqConfig, GPTQConfig, HqqConfig
 from transformers.integrations import is_deepspeed_zero3_enabled
 from transformers.modeling_utils import is_fsdp_enabled
 
+from cache_config import resolve_datasets_cache_dir
+
 from ...extras import logging
 from ...extras.constants import FILEEXT2TYPE, QuantizationMethod
 from ...extras.misc import check_version, get_current_device
@@ -53,7 +55,7 @@ def _get_quantization_dataset(tokenizer: "PreTrainedTokenizer", model_args: "Mod
         path=data_path,
         data_files=data_files,
         split="train",
-        cache_dir=model_args.cache_dir,
+        cache_dir=resolve_datasets_cache_dir(model_args.cache_dir),
         token=model_args.hf_hub_token,
     )
 

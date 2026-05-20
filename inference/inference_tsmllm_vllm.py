@@ -20,10 +20,22 @@
 # [Important Note] This script is still under development and may not work as expected.
 
 import argparse
+import os
+import sys
+from pathlib import Path
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from cache_config import TRANSFORMERS_CACHE_PATH, apply_cache_config
+
+apply_cache_config()
+
 import inference.vllm.chatts_vllm
 from vllm import SamplingParams
 from inference.llm_utils import LLMClient
-import os
 import json
 from loguru import logger
 import numpy as np
@@ -277,7 +289,11 @@ def main() -> None:
     logger.info(f"Prepared {len(question_list)} prompts for generation")
 
     # Load tokenizer for counting text tokens
-    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(
+        model_path,
+        trust_remote_code=True,
+        cache_dir=TRANSFORMERS_CACHE_PATH,
+    )
     
     # Calculate input tokens for each sample: text_tokens + ts_tokens
     input_token_counts: List[int] = []

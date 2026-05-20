@@ -19,6 +19,8 @@ from typing import Any, Literal, Optional
 
 from huggingface_hub import hf_hub_download
 
+from cache_config import resolve_hub_cache_dir
+
 from ..extras.constants import DATA_CONFIG
 from ..extras.misc import use_modelscope, use_openmind
 
@@ -100,7 +102,12 @@ def get_dataset_list(dataset_names: Optional[list[str]], dataset_dir: str) -> li
         dataset_info = None
     else:
         if dataset_dir.startswith("REMOTE:"):
-            config_path = hf_hub_download(repo_id=dataset_dir[7:], filename=DATA_CONFIG, repo_type="dataset")
+            config_path = hf_hub_download(
+                repo_id=dataset_dir[7:],
+                filename=DATA_CONFIG,
+                repo_type="dataset",
+                cache_dir=resolve_hub_cache_dir(),
+            )
         else:
             config_path = os.path.join(dataset_dir, DATA_CONFIG)
 

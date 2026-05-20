@@ -15,11 +15,14 @@
 
 from typing import Optional
 
+from cache_config import resolve_transformers_cache_dir
+
 from transformers import AutoProcessor, AutoTokenizer, PreTrainedTokenizer, ProcessorMixin
 
 
 def get_tokenizer(model_path: str, override_chat_template: Optional[str] = None, **kwargs) -> PreTrainedTokenizer:
     """Create a huggingface pretrained tokenizer."""
+    kwargs["cache_dir"] = resolve_transformers_cache_dir(kwargs.get("cache_dir"))
     tokenizer = AutoTokenizer.from_pretrained(model_path, **kwargs)
     if override_chat_template is not None:
         with open(override_chat_template) as f:
@@ -42,6 +45,7 @@ def get_tokenizer(model_path: str, override_chat_template: Optional[str] = None,
 
 def get_processor(model_path: str, override_chat_template: Optional[str] = None, **kwargs) -> Optional[ProcessorMixin]:
     """Create a huggingface pretrained processor."""
+    kwargs["cache_dir"] = resolve_transformers_cache_dir(kwargs.get("cache_dir"))
     processor = AutoProcessor.from_pretrained(model_path, **kwargs)
     if override_chat_template is not None:
         with open(override_chat_template) as f:

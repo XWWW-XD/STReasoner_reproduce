@@ -1,0 +1,184 @@
+=== Experiment 1 New Version: 8bit_single / 8bit单卡 ===
+CUDA_VISIBLE_DEVICES=0
+environment={"visible_gpu_count": 1, "gpu_names": ["Tesla T4"], "gpu_total_gib": {"gpu0": 14.563}}
+[ERROR] model loading failed: FileNotFoundError: [Errno 2] No such file or directory: '/kaggle/working/STReasoner_reproduce/repro_kaggle/scripts/03_load_streasoner_smoke.py'
+Traceback (most recent call last):
+  File "/kaggle/working/STReasoner_reproduce/repro_kaggle/experiments/scripts/stage1_script/run_experiment1_new_version.py", line 1382, in run_config
+    model, processor, tokenizer, load_time_sec, load_info = load_model_and_processors(spec, logger)
+                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/working/STReasoner_reproduce/repro_kaggle/experiments/scripts/stage1_script/run_experiment1_new_version.py", line 418, in load_model_and_processors
+    repro_loader = import_repro_loader()
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/working/STReasoner_reproduce/repro_kaggle/experiments/scripts/stage1_script/run_experiment1_new_version.py", line 259, in import_repro_loader
+    return load_module(REPRO_ROOT / "scripts/03_load_streasoner_smoke.py", "experiment1_new_repro_loader")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/working/STReasoner_reproduce/repro_kaggle/experiments/scripts/stage1_script/run_experiment1_new_version.py", line 170, in load_module
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1132, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1190, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '/kaggle/working/STReasoner_reproduce/repro_kaggle/scripts/03_load_streasoner_smoke.py'
+
+=== Official Eval Layer ===
+author evaluate_qa.py: evaluation/evaluate_qa.py
+all/reasoning_entity: {"task": "reasoning_entity", "total_samples": 1, "evaluated_samples": 0, "missing_predictions": 1, "coverage": 0.0, "accuracy": null, "dataset_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/all/reasoning_entity/dataset.jsonl", "prediction_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/all/reasoning_entity/generated_answer_new.json", "author_evaluate_qa": "evaluation/evaluate_qa.py"}
+all/reasoning_forecasting: {"task": "reasoning_forecasting", "total_samples": 1, "evaluated_samples": 0, "missing_predictions": 1, "coverage": 0.0, "mae": null, "mape": null, "target_stats": {"mean": null, "abs_mean": null, "min": null, "max": null, "total_values": 0}, "missing_indices": [0], "dataset_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/all/reasoning_forecasting/dataset.jsonl", "prediction_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/all/reasoning_forecasting/generated_answer_new.json", "author_evaluate_qa": "evaluation/evaluate_qa.py"}
+main/reasoning_entity: {"task": "reasoning_entity", "total_samples": 1, "evaluated_samples": 0, "missing_predictions": 1, "coverage": 0.0, "accuracy": null, "dataset_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/main/reasoning_entity/dataset.jsonl", "prediction_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/main/reasoning_entity/generated_answer_new.json", "author_evaluate_qa": "evaluation/evaluate_qa.py"}
+main/reasoning_forecasting: {"task": "reasoning_forecasting", "total_samples": 1, "evaluated_samples": 0, "missing_predictions": 1, "coverage": 0.0, "mae": null, "mape": null, "target_stats": {"mean": null, "abs_mean": null, "min": null, "max": null, "total_values": 0}, "missing_indices": [0], "dataset_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/main/reasoning_forecasting/dataset.jsonl", "prediction_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/main/reasoning_forecasting/generated_answer_new.json", "author_evaluate_qa": "evaluation/evaluate_qa.py"}
+=== Summary ===
+{
+  "config": "8bit_single",
+  "label": "8bit单卡",
+  "model": "Time-HD-Anonymous/STReasoner-8B",
+  "batch_size": 1,
+  "max_new_tokens": 2048,
+  "precision": "8bit",
+  "cuda_visible_devices_requested_by_run_all": "0",
+  "environment": {
+    "visible_gpu_count": 1,
+    "gpu_names": [
+      "Tesla T4"
+    ],
+    "gpu_total_gib": {
+      "gpu0": 14.563
+    }
+  },
+  "load": {
+    "success": false,
+    "error": "FileNotFoundError: [Errno 2] No such file or directory: '/kaggle/working/STReasoner_reproduce/repro_kaggle/scripts/03_load_streasoner_smoke.py'",
+    "time_sec": null,
+    "info": {}
+  },
+  "counts": {
+    "main": 2
+  },
+  "run_layer_metrics": {
+    "generate_success_rate": 0.0,
+    "decode_success_rate": 0.0,
+    "avg_input_tokens": null,
+    "avg_actual_new_tokens": null,
+    "avg_latency_sec": null,
+    "max_latency_sec": null,
+    "avg_tokens_per_sec": null,
+    "config_level_generate_peak_memory": {},
+    "final_memory": {
+      "gpu0": {
+        "allocated_gib": 0.0,
+        "reserved_gib": 0.0
+      }
+    }
+  },
+  "strict_diagnostic_metrics": {
+    "strict_format_success_rate": 0.0,
+    "strict_error_counts": {
+      "no_decoded_text": 2
+    },
+    "note": "Strict diagnostic is for output-format debugging only; it is not author official evaluation."
+  },
+  "official_eval_summary": {
+    "official_choice_accuracy_micro": null,
+    "official_choice_evaluated_samples": 0,
+    "official_forecasting_mae": null,
+    "official_forecasting_mape": null,
+    "official_forecasting_coverage": 0.0,
+    "official_metrics_note": "Official metrics are produced by evaluation/evaluate_qa.py. Forecasting is reported as MAE/MAPE/coverage, not exact accuracy."
+  },
+  "official_eval_by_scope_and_task": {
+    "all": {
+      "reasoning_entity": {
+        "task": "reasoning_entity",
+        "total_samples": 1,
+        "evaluated_samples": 0,
+        "missing_predictions": 1,
+        "coverage": 0.0,
+        "accuracy": null,
+        "dataset_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/all/reasoning_entity/dataset.jsonl",
+        "prediction_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/all/reasoning_entity/generated_answer_new.json",
+        "author_evaluate_qa": "evaluation/evaluate_qa.py"
+      },
+      "reasoning_forecasting": {
+        "task": "reasoning_forecasting",
+        "total_samples": 1,
+        "evaluated_samples": 0,
+        "missing_predictions": 1,
+        "coverage": 0.0,
+        "mae": null,
+        "mape": null,
+        "target_stats": {
+          "mean": null,
+          "abs_mean": null,
+          "min": null,
+          "max": null,
+          "total_values": 0
+        },
+        "missing_indices": [
+          0
+        ],
+        "dataset_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/all/reasoning_forecasting/dataset.jsonl",
+        "prediction_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/all/reasoning_forecasting/generated_answer_new.json",
+        "author_evaluate_qa": "evaluation/evaluate_qa.py"
+      }
+    },
+    "main": {
+      "reasoning_entity": {
+        "task": "reasoning_entity",
+        "total_samples": 1,
+        "evaluated_samples": 0,
+        "missing_predictions": 1,
+        "coverage": 0.0,
+        "accuracy": null,
+        "dataset_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/main/reasoning_entity/dataset.jsonl",
+        "prediction_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/main/reasoning_entity/generated_answer_new.json",
+        "author_evaluate_qa": "evaluation/evaluate_qa.py"
+      },
+      "reasoning_forecasting": {
+        "task": "reasoning_forecasting",
+        "total_samples": 1,
+        "evaluated_samples": 0,
+        "missing_predictions": 1,
+        "coverage": 0.0,
+        "mae": null,
+        "mape": null,
+        "target_stats": {
+          "mean": null,
+          "abs_mean": null,
+          "min": null,
+          "max": null,
+          "total_values": 0
+        },
+        "missing_indices": [
+          0
+        ],
+        "dataset_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/main/reasoning_forecasting/dataset.jsonl",
+        "prediction_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/main/reasoning_forecasting/generated_answer_new.json",
+        "author_evaluate_qa": "evaluation/evaluate_qa.py"
+      }
+    }
+  },
+  "failure_count_by_stage": {
+    "model_loading": 2
+  },
+  "bottleneck_counts": {},
+  "first_error": "model_loading 阶段失败：FileNotFoundError: [Errno 2] No such file or directory: '/kaggle/working/STReasoner_reproduce/repro_kaggle/scripts/03_load_streasoner_smoke.py'",
+  "post_config_health_check": {
+    "success": false,
+    "errors": [
+      "load failed: FileNotFoundError: [Errno 2] No such file or directory: '/kaggle/working/STReasoner_reproduce/repro_kaggle/scripts/03_load_streasoner_smoke.py'",
+      "missing load_after_memory",
+      "missing model_distribution",
+      "main/tiny20_forecasting_01_line87: generate failed",
+      "main/tiny20_forecasting_01_line87: decode failed",
+      "main/tiny20_forecasting_01_line87: decoded_text missing",
+      "main/tiny20_forecasting_01_line87: input_tokens missing",
+      "main/tiny20_forecasting_01_line87: actual_new_tokens missing",
+      "main/tiny20_forecasting_01_line87: gpu_peak_memory_during_generate missing",
+      "main/tiny20_entity_02_line529: generate failed",
+      "main/tiny20_entity_02_line529: decode failed",
+      "main/tiny20_entity_02_line529: decoded_text missing",
+      "main/tiny20_entity_02_line529: input_tokens missing",
+      "main/tiny20_entity_02_line529: actual_new_tokens missing",
+      "main/tiny20_entity_02_line529: gpu_peak_memory_during_generate missing"
+    ]
+  }
+}
+[STOP] post-config health check failed; run-all must not continue.

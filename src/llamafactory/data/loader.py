@@ -18,6 +18,8 @@ from typing import TYPE_CHECKING, Literal, Optional, Union
 import numpy as np
 from datasets import Dataset, load_dataset, load_from_disk
 
+from cache_config import resolve_datasets_cache_dir
+
 from ..extras import logging
 from ..extras.constants import FILEEXT2TYPE
 from ..extras.misc import check_version, has_tokenized_data
@@ -93,9 +95,8 @@ def _load_single_dataset(
     if dataset_attr.load_from == "ms_hub":
         check_version("modelscope>=1.14.0", mandatory=True)
         from modelscope import MsDataset  # type: ignore
-        from modelscope.utils.config_ds import MS_DATASETS_CACHE  # type: ignore
 
-        cache_dir = model_args.cache_dir or MS_DATASETS_CACHE
+        cache_dir = resolve_datasets_cache_dir(model_args.cache_dir)
         dataset = MsDataset.load(
             dataset_name=data_path,
             subset_name=data_name,
@@ -112,9 +113,8 @@ def _load_single_dataset(
     elif dataset_attr.load_from == "om_hub":
         check_version("openmind>=0.8.0", mandatory=True)
         from openmind import OmDataset  # type: ignore
-        from openmind.utils.hub import OM_DATASETS_CACHE  # type: ignore
 
-        cache_dir = model_args.cache_dir or OM_DATASETS_CACHE
+        cache_dir = resolve_datasets_cache_dir(model_args.cache_dir)
         dataset = OmDataset.load_dataset(
             path=data_path,
             name=data_name,
@@ -134,7 +134,7 @@ def _load_single_dataset(
             data_dir=data_dir,
             data_files=data_files,
             split=dataset_attr.split,
-            cache_dir=model_args.cache_dir,
+            cache_dir=resolve_datasets_cache_dir(model_args.cache_dir),
             token=model_args.hf_hub_token,
             num_proc=data_args.preprocessing_num_workers,
             trust_remote_code=model_args.trust_remote_code,

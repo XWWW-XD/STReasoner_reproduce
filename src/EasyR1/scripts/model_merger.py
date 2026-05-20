@@ -15,7 +15,18 @@
 import argparse
 import os
 import re
+import sys
 from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from cache_config import TRANSFORMERS_CACHE_PATH, apply_cache_config
+
+apply_cache_config()
 
 import numpy as np
 import torch
@@ -160,7 +171,7 @@ if __name__ == "__main__":
 
     print("Merge completed.")
     hf_path = os.path.join(local_dir, "huggingface")
-    config: PretrainedConfig = AutoConfig.from_pretrained(hf_path)
+    config: PretrainedConfig = AutoConfig.from_pretrained(hf_path, cache_dir=TRANSFORMERS_CACHE_PATH)
     architectures: list[str] = getattr(config, "architectures", ["Unknown"])
 
     if "ForTokenClassification" in architectures[0]:

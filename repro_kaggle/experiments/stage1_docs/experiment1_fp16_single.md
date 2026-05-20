@@ -1,5 +1,7 @@
 # 实验一：fp16单卡
 
+> 本轮 SmartTest / max_new_tokens=2048 实验未运行到该配置。根据 prompt2 的停止规则，`8bit_single` 出现 model loading 失败后已停止；下方旧内容来自此前 main20/paper/stress、max_new_tokens=512 的历史记录，不作为本轮结论。
+
 ## 固定配置
 
 - 模型：`STReasoner_8B` / `Time-HD-Anonymous/STReasoner-8B`

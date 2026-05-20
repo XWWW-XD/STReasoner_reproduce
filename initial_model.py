@@ -1,4 +1,8 @@
 import argparse
+from cache_config import TRANSFORMERS_CACHE_PATH, apply_cache_config
+
+apply_cache_config()
+
 import torch
 from transformers import AutoModelForCausalLM, AutoProcessor
 import transformers
@@ -56,6 +60,7 @@ def main():
     model = AutoModelForCausalLM.from_pretrained(
         model_path,
         trust_remote_code=True,
+        cache_dir=TRANSFORMERS_CACHE_PATH,
         device_map="auto" # Use "cpu" if you don't have a GPU or run into memory issues
     )
 
@@ -71,7 +76,11 @@ def main():
     
     # The processor doesn't need changes, but it's good practice to save it alongside the model.
     try:
-        processor = AutoProcessor.from_pretrained(model_path, trust_remote_code=True)
+        processor = AutoProcessor.from_pretrained(
+            model_path,
+            trust_remote_code=True,
+            cache_dir=TRANSFORMERS_CACHE_PATH,
+        )
         processor.save_pretrained(output_path)
         print("Processor saved successfully.")
     except Exception as e:

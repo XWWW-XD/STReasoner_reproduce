@@ -29,6 +29,13 @@ from typing import Any
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from cache_config import TRANSFORMERS_CACHE_PATH, apply_cache_config
+
+apply_cache_config()
+
 REPRO_ROOT = PROJECT_ROOT / "repro_kaggle"
 RESULT_ROOT = REPRO_ROOT / "experiments/stage1_results/experiment1_precision_resource"
 DOC_ROOT = REPRO_ROOT / "experiments/stage1_docs"
@@ -36,15 +43,17 @@ SCRIPT_PATH = Path(__file__).resolve()
 AUTHOR_EVALUATE_QA = PROJECT_ROOT / "evaluation/evaluate_qa.py"
 
 MODEL_NAME = "Time-HD-Anonymous/STReasoner-8B"
-DEFAULT_MAX_NEW_TOKENS = 512
+DEFAULT_MAX_NEW_TOKENS = 2048
 PATCH_SIZE = 8
 
-MAIN_DATA = (
+SMART_DATA = (
     REPRO_ROOT
-    / "experiments/stage1_subsets/exp1_resource_tiny20/st_test_tiny20_seed20260519/tiny20_all.jsonl"
+    / "experiments/stage1_subsets/exp1_resource_tiny20/smart_test/SmartTest.jsonl"
 )
+MAIN_DATA = SMART_DATA
 PAPER_DATA = REPRO_ROOT / "experiments/stage1_subsets/exp1_resource_tiny20/paper_cases/paper_cases_matched.jsonl"
 STRESS_DATA = REPRO_ROOT / "experiments/stage1_subsets/exp1_resource_tiny20/stress_case/stress_longest_input_1.jsonl"
+SUMMARY_DOC = DOC_ROOT / "experiment_summary_2.md"
 
 ANSWER_TAG_RE = re.compile(r"<answer>\s*(.*?)\s*</answer>", re.IGNORECASE | re.DOTALL)
 STRICT_CHOICE_RE = re.compile(r"^[A-Da-d]$")
@@ -68,8 +77,6 @@ CONFIGS: dict[str, ConfigSpec] = {
 
 DATA_GROUPS = {
     "main": MAIN_DATA,
-    "paper": PAPER_DATA,
-    "stress": STRESS_DATA,
 }
 
 TASK_TO_OFFICIAL = {
@@ -201,21 +208,18 @@ def validate_sample_file(path: Path, expected_count: int, group_name: str) -> li
 
 
 def validate_inputs() -> dict[str, Any]:
-    main = validate_sample_file(MAIN_DATA, 20, "main")
-    paper = validate_sample_file(PAPER_DATA, 4, "paper")
-    stress = validate_sample_file(STRESS_DATA, 1, "stress")
+    main = validate_sample_file(MAIN_DATA, 2, "SmartTest")
     counts = Counter(sample_task(row) for row in main)
-    expected = {"forecasting": 5, "entity": 5, "etiological": 5, "correlation": 5}
-    if dict(counts) != expected:
-        raise ValueError(f"main task counts mismatch: expected {expected}, got {dict(counts)}")
+    non_forecasting = sum(count for task, count in counts.items() if task != "forecasting")
+    if counts.get("forecasting") != 1 or non_forecasting != 1:
+        raise ValueError(
+            "SmartTest task counts mismatch: expected 1 forecasting and 1 non-forecasting, "
+            f"got {dict(counts)}"
+        )
     return {
         "main": main,
-        "paper": paper,
-        "stress": stress,
         "counts": {
             "main": len(main),
-            "paper": len(paper),
-            "stress": len(stress),
             "main_task_counts": dict(counts),
         },
     }
@@ -248,12 +252,7 @@ def evidence_section(max_new_tokens: int = DEFAULT_MAX_NEW_TOKENS) -> str:
 
 
 def set_hf_cache_env() -> None:
-    os.environ.setdefault("HF_HOME", "/kaggle/working/hf_cache")
-    os.environ.setdefault("TRANSFORMERS_CACHE", "/kaggle/working/hf_cache/transformers")
-    os.environ.setdefault("HF_DATASETS_CACHE", "/kaggle/working/hf_cache/datasets")
-    Path(os.environ["HF_HOME"]).mkdir(parents=True, exist_ok=True)
-    Path(os.environ["TRANSFORMERS_CACHE"]).mkdir(parents=True, exist_ok=True)
-    Path(os.environ["HF_DATASETS_CACHE"]).mkdir(parents=True, exist_ok=True)
+    apply_cache_config()
 
 
 def import_repro_loader() -> Any:
@@ -427,6 +426,7 @@ def load_model_and_processors(spec: ConfigSpec, logger: TeeLogger) -> tuple[Any,
         "device_map": device_map_for(spec),
         "torch_dtype": torch.float16,
         "config": config,
+        "cache_dir": TRANSFORMERS_CACHE_PATH,
     }
     if qconfig is not None:
         kwargs["quantization_config"] = qconfig
@@ -1031,8 +1031,6 @@ def summarize_records(
 def record_paths(out_dir: Path) -> dict[str, Path]:
     return {
         "main": out_dir / "main_predictions_new.jsonl",
-        "paper": out_dir / "paper_predictions_new.jsonl",
-        "stress": out_dir / "stress_predictions_new.jsonl",
     }
 
 
@@ -1047,6 +1045,8 @@ def write_config_report(spec: ConfigSpec, summary: dict[str, Any]) -> None:
     run_metrics = summary["run_layer_metrics"]
     strict_metrics = summary["strict_diagnostic_metrics"]
     official = summary["official_eval_summary"]
+    records = load_records_for_report(spec)
+    sample_details = format_sample_details_for_report(records)
     report = f"""# 实验一：{spec.label}
 
 ## 固定配置
@@ -1087,7 +1087,7 @@ def write_config_report(spec: ConfigSpec, summary: dict[str, Any]) -> None:
 
 ## 产物
 
-- run records：`{rel(RESULT_ROOT / spec.name / "main_predictions_new.jsonl")}`，`{rel(RESULT_ROOT / spec.name / "paper_predictions_new.jsonl")}`，`{rel(RESULT_ROOT / spec.name / "stress_predictions_new.jsonl")}`
+- run records：`{rel(RESULT_ROOT / spec.name / "main_predictions_new.jsonl")}`
 - official eval：`{rel(RESULT_ROOT / spec.name / "official_eval")}`
 - summary：`{rel(RESULT_ROOT / spec.name / "summary_new.json")}`
 - log：`{rel(RESULT_ROOT / spec.name / "run_new.log")}`
@@ -1097,9 +1097,77 @@ def write_config_report(spec: ConfigSpec, summary: dict[str, Any]) -> None:
 - failure_count_by_stage：`{json.dumps(summary["failure_count_by_stage"], ensure_ascii=False)}`
 - bottleneck_counts：`{json.dumps(summary["bottleneck_counts"], ensure_ascii=False)}`
 - first_error：{summary["first_error"]}
+- post_config_health_check：`{json.dumps(summary.get("post_config_health_check"), ensure_ascii=False)}`
+
+## 样例输入、实际输出和正确结果
+
+{sample_details}
 """
     DOC_ROOT.mkdir(parents=True, exist_ok=True)
     (DOC_ROOT / f"experiment1_{spec.name}.md").write_text(report, encoding="utf-8")
+
+
+def load_records_for_report(spec: ConfigSpec) -> list[dict[str, Any]]:
+    path = RESULT_ROOT / spec.name / "main_predictions_new.jsonl"
+    if not path.exists():
+        return []
+    records: list[dict[str, Any]] = []
+    with path.open("r", encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if line:
+                records.append(json.loads(line))
+    return records
+
+
+def format_sample_details_for_report(records: list[dict[str, Any]]) -> str:
+    if not records:
+        return "暂无 run records。"
+
+    try:
+        samples = {sample.get("sample_id"): sample for sample in validate_inputs()["main"]}
+    except Exception:
+        samples = {}
+
+    sections: list[str] = []
+    for index, record in enumerate(records, start=1):
+        sample_id = record.get("sample", {}).get("sample_id")
+        sample = samples.get(sample_id, {})
+        run = record.get("run", {})
+        sections.append(
+            "\n".join(
+                [
+                    f"### 样例 {index}: `{sample_id}`",
+                    "",
+                    f"- task：`{record.get('sample', {}).get('task')}`",
+                    f"- source_file：`{record.get('sample', {}).get('source_file')}`",
+                    f"- original_line_index：`{record.get('sample', {}).get('original_line_index')}`",
+                    f"- generate_success：{run.get('generate_success')}",
+                    f"- decode_success：{run.get('decode_success')}",
+                    f"- actual_new_tokens：{run.get('actual_new_tokens')}",
+                    f"- strict_diagnostic：`{json.dumps(record.get('strict_diagnostic'), ensure_ascii=False)}`",
+                    "",
+                    "#### 输入",
+                    "",
+                    "```text",
+                    str(sample.get("input", "")),
+                    "```",
+                    "",
+                    "#### 实际输出",
+                    "",
+                    "```text",
+                    str(run.get("decoded_text")),
+                    "```",
+                    "",
+                    "#### 正确结果",
+                    "",
+                    "```json",
+                    json.dumps(sample.get("output"), ensure_ascii=False),
+                    "```",
+                ]
+            )
+        )
+    return "\n\n".join(sections)
 
 
 def fmt(value: Any) -> str:
@@ -1165,9 +1233,7 @@ def write_experiment_summary() -> None:
 
 ## 样本与目录
 
-- 主测试样例：`{rel(MAIN_DATA)}`，共 {validation["counts"]["main"]} 条，四类任务各 5 条。
-- 论文样例：`{rel(PAPER_DATA)}`，共 {validation["counts"]["paper"]} 条。
-- 压力测试样例：`{rel(STRESS_DATA)}`，共 {validation["counts"]["stress"]} 条。
+- SmartTest 样例：`{rel(MAIN_DATA)}`，共 {validation["counts"]["main"]} 条，任务分布 `{json.dumps(validation["counts"]["main_task_counts"], ensure_ascii=False)}`。
 - 新运行脚本：`{rel(SCRIPT_PATH)}`
 - 机器可读结果目录：`{rel(RESULT_ROOT)}`
 - 官方评测逻辑：`{rel(AUTHOR_EVALUATE_QA)}`
@@ -1185,7 +1251,7 @@ def write_experiment_summary() -> None:
 |      配置项       |              配置详情               |
 | :------------: | :-----------------------------: |
 |       模型       |          STReasoner_8B          |
-|       样本       | 主测试 20 + 论文样例 4 + 压力测试 1 |
+|       样本       | SmartTest 2 条：1 条 forecasting + 1 条非 forecasting |
 |   batch size   |                1                |
 | max_new_tokens |               {DEFAULT_MAX_NEW_TOKENS}               |
 
@@ -1198,7 +1264,7 @@ def write_experiment_summary() -> None:
 - `strict diagnostic 成功率` 是我们自己的格式诊断，不等同于作者官方 parse 或 evaluation。
 """
     DOC_ROOT.mkdir(parents=True, exist_ok=True)
-    (DOC_ROOT / "experiment_summary.md").write_text(doc, encoding="utf-8")
+    SUMMARY_DOC.write_text(doc, encoding="utf-8")
 
 
 def write_prepare_docs(max_new_tokens: int) -> None:
@@ -1210,9 +1276,7 @@ def write_prepare_docs(max_new_tokens: int) -> None:
 
 ## 样本与目录
 
-- 主测试样例：`{rel(MAIN_DATA)}`，共 {validation["counts"]["main"]} 条，四类任务各 5 条。
-- 论文样例：`{rel(PAPER_DATA)}`，共 {validation["counts"]["paper"]} 条。
-- 压力测试样例：`{rel(STRESS_DATA)}`，共 {validation["counts"]["stress"]} 条。
+- SmartTest 样例：`{rel(MAIN_DATA)}`，共 {validation["counts"]["main"]} 条，任务分布 `{json.dumps(validation["counts"]["main_task_counts"], ensure_ascii=False)}`。
 - 新运行脚本：`{rel(SCRIPT_PATH)}`
 - 机器可读结果目录：`{rel(RESULT_ROOT)}`
 - 官方评测逻辑：`{rel(AUTHOR_EVALUATE_QA)}`
@@ -1239,7 +1303,48 @@ python {rel(SCRIPT_PATH)} run-all
 - Strict Diagnostic Layer 只检查 `<answer>...</answer>` 是否符合我们希望的机器格式。
 - Official Eval Layer 复用 `evaluation/evaluate_qa.py`；forecasting 使用 MAE/MAPE/coverage。
 """
-    (DOC_ROOT / "experiment_summary.md").write_text(summary, encoding="utf-8")
+    SUMMARY_DOC.write_text(summary, encoding="utf-8")
+
+
+def config_health_errors(
+    summary: dict[str, Any],
+    records_by_group: dict[str, list[dict[str, Any]]],
+) -> list[str]:
+    errors: list[str] = []
+    if not summary["load"]["success"]:
+        errors.append(f"load failed: {summary['load']['error']}")
+
+    env = summary.get("environment") or {}
+    if not env.get("gpu_total_gib"):
+        errors.append("missing gpu_total_gib")
+
+    load_info = summary.get("load", {}).get("info") or {}
+    if not load_info.get("load_after_memory"):
+        errors.append("missing load_after_memory")
+    if not load_info.get("model_distribution"):
+        errors.append("missing model_distribution")
+
+    for group, records in records_by_group.items():
+        path = record_paths(RESULT_ROOT / summary["config"]).get(group)
+        if path is None or not path.exists():
+            errors.append(f"missing output file for group={group}")
+        for record in records:
+            sample_id = record.get("sample", {}).get("sample_id")
+            run = record.get("run", {})
+            prefix = f"{group}/{sample_id}"
+            if not run.get("generate_success"):
+                errors.append(f"{prefix}: generate failed")
+            if not run.get("decode_success"):
+                errors.append(f"{prefix}: decode failed")
+            if run.get("decoded_text") is None:
+                errors.append(f"{prefix}: decoded_text missing")
+            if not isinstance(run.get("input_tokens"), int):
+                errors.append(f"{prefix}: input_tokens missing")
+            if not isinstance(run.get("actual_new_tokens"), int):
+                errors.append(f"{prefix}: actual_new_tokens missing")
+            if not run.get("gpu_peak_memory_during_generate"):
+                errors.append(f"{prefix}: gpu_peak_memory_during_generate missing")
+    return errors
 
 
 def run_config(config_name: str, max_new_tokens: int) -> int:
@@ -1250,8 +1355,6 @@ def run_config(config_name: str, max_new_tokens: int) -> int:
     validation = validate_inputs()
     samples_by_group: dict[str, list[dict[str, Any]]] = {
         "main": validation["main"],
-        "paper": validation["paper"],
-        "stress": validation["stress"],
     }
 
     out_dir = RESULT_ROOT / spec.name
@@ -1261,7 +1364,7 @@ def run_config(config_name: str, max_new_tokens: int) -> int:
         path.write_text("", encoding="utf-8")
 
     logger = TeeLogger(out_dir / "run_new.log")
-    records_by_group: dict[str, list[dict[str, Any]]] = {"main": [], "paper": [], "stress": []}
+    records_by_group: dict[str, list[dict[str, Any]]] = {group: [] for group in samples_by_group}
     load_success = False
     load_error = None
     load_time_sec = None
@@ -1318,17 +1421,24 @@ def run_config(config_name: str, max_new_tokens: int) -> int:
             official_metrics=official_metrics,
             max_new_tokens=max_new_tokens,
         )
+        health_errors = config_health_errors(summary, records_by_group)
+        summary["post_config_health_check"] = {
+            "success": not health_errors,
+            "errors": health_errors,
+        }
         write_json(out_dir / "summary_new.json", summary)
         write_config_report(spec, summary)
         logger.log("=== Summary ===")
         logger.log(json.dumps(json_safe(summary), ensure_ascii=False, indent=2))
+        if health_errors:
+            logger.log("[STOP] post-config health check failed; run-all must not continue.")
+            return 2
         return 0 if load_success else 1
     finally:
         logger.close()
 
 
 def run_all(max_new_tokens: int) -> int:
-    failures = 0
     for config_name, spec in CONFIGS.items():
         env = os.environ.copy()
         env["CUDA_VISIBLE_DEVICES"] = spec.cuda_visible_devices
@@ -1343,9 +1453,10 @@ def run_all(max_new_tokens: int) -> int:
         ]
         completed = subprocess.run(cmd, cwd=PROJECT_ROOT, env=env, check=False)
         if completed.returncode != 0:
-            failures += 1
+            write_experiment_summary()
+            return completed.returncode
     write_experiment_summary()
-    return 0 if failures == 0 else 1
+    return 0
 
 
 def parse_args() -> argparse.Namespace:
@@ -1368,7 +1479,7 @@ def main() -> int:
     command = args.command or "prepare"
     if command == "prepare":
         write_prepare_docs(args.max_new_tokens)
-        print(f"prepared: {DOC_ROOT / 'experiment_summary.md'}")
+        print(f"prepared: {SUMMARY_DOC}")
         return 0
     if command == "run-config":
         return run_config(args.config, args.max_new_tokens)
@@ -1376,7 +1487,7 @@ def main() -> int:
         return run_all(args.max_new_tokens)
     if command == "summarize":
         write_experiment_summary()
-        print(f"wrote: {DOC_ROOT / 'experiment_summary.md'}")
+        print(f"wrote: {SUMMARY_DOC}")
         return 0
     raise ValueError(f"unknown command: {command}")
 

@@ -1,0 +1,68 @@
+{
+  "all": {
+    "reasoning_entity": {
+      "task": "reasoning_entity",
+      "total_samples": 1,
+      "evaluated_samples": 1,
+      "missing_predictions": 0,
+      "coverage": 1.0,
+      "accuracy": 0.0,
+      "dataset_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/official_eval/all/reasoning_entity/dataset.jsonl",
+      "prediction_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/official_eval/all/reasoning_entity/generated_answer_new.json",
+      "author_evaluate_qa": "evaluation/evaluate_qa.py"
+    },
+    "reasoning_forecasting": {
+      "task": "reasoning_forecasting",
+      "total_samples": 1,
+      "evaluated_samples": 1,
+      "missing_predictions": 0,
+      "coverage": 1.0,
+      "mae": 113.526,
+      "mape": 87.61772173544392,
+      "target_stats": {
+        "mean": 125.926,
+        "abs_mean": 125.926,
+        "min": 72.17,
+        "max": 226.55,
+        "total_values": 5
+      },
+      "missing_indices": [],
+      "dataset_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/official_eval/all/reasoning_forecasting/dataset.jsonl",
+      "prediction_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/official_eval/all/reasoning_forecasting/generated_answer_new.json",
+      "author_evaluate_qa": "evaluation/evaluate_qa.py"
+    }
+  },
+  "main": {
+    "reasoning_entity": {
+      "task": "reasoning_entity",
+      "total_samples": 1,
+      "evaluated_samples": 1,
+      "missing_predictions": 0,
+      "coverage": 1.0,
+      "accuracy": 0.0,
+      "dataset_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/official_eval/main/reasoning_entity/dataset.jsonl",
+      "prediction_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/official_eval/main/reasoning_entity/generated_answer_new.json",
+      "author_evaluate_qa": "evaluation/evaluate_qa.py"
+    },
+    "reasoning_forecasting": {
+      "task": "reasoning_forecasting",
+      "total_samples": 1,
+      "evaluated_samples": 1,
+      "missing_predictions": 0,
+      "coverage": 1.0,
+      "mae": 113.526,
+      "mape": 87.61772173544392,
+      "target_stats": {
+        "mean": 125.926,
+        "abs_mean": 125.926,
+        "min": 72.17,
+        "max": 226.55,
+        "total_values": 5
+      },
+      "missing_indices": [],
+      "dataset_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/official_eval/main/reasoning_forecasting/dataset.jsonl",
+      "prediction_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/official_eval/main/reasoning_forecasting/generated_answer_new.json",
+      "author_evaluate_qa": "evaluation/evaluate_qa.py"
+    }
+  }
+}

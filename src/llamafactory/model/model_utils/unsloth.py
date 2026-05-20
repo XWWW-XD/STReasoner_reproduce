@@ -14,6 +14,8 @@
 
 from typing import TYPE_CHECKING, Any, Optional
 
+from cache_config import resolve_transformers_cache_dir
+
 from ...extras import logging
 from ...extras.misc import get_current_device
 
@@ -39,6 +41,7 @@ def _get_unsloth_kwargs(
         "dtype": model_args.compute_dtype,
         "load_in_4bit": model_args.quantization_bit == 4,
         "token": model_args.hf_hub_token,
+        "cache_dir": resolve_transformers_cache_dir(model_args.cache_dir),
         "full_finetuning": finetuning_args.finetuning_type == "full",
         "device_map": {"": get_current_device()},
         "rope_scaling": getattr(config, "rope_scaling", None),

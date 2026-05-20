@@ -16,6 +16,8 @@ import json
 from collections.abc import Generator
 from typing import TYPE_CHECKING, Union
 
+from cache_config import resolve_transformers_cache_dir
+
 from ...extras.constants import PEFT_METHODS
 from ...extras.misc import torch_gc
 from ...extras.packages import is_gradio_available
@@ -87,7 +89,7 @@ def save_model(
 
     args = dict(
         model_name_or_path=model_path,
-        cache_dir=user_config.get("cache_dir", None),
+        cache_dir=resolve_transformers_cache_dir(user_config.get("cache_dir")),
         finetuning_type=finetuning_type,
         template=template,
         export_dir=export_dir,

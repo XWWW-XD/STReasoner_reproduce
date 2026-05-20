@@ -17,6 +17,8 @@ from typing import TYPE_CHECKING
 import torch
 from transformers.utils import cached_file
 
+from cache_config import resolve_transformers_cache_dir
+
 from ...extras import logging
 from ...extras.constants import V_HEAD_SAFE_WEIGHTS_NAME, V_HEAD_WEIGHTS_NAME
 
@@ -35,7 +37,11 @@ def load_valuehead_params(path_or_repo_id: str, model_args: "ModelArguments") ->
 
     Returns: dict with keys `v_head.summary.weight` and `v_head.summary.bias`.
     """
-    kwargs = {"path_or_repo_id": path_or_repo_id, "cache_dir": model_args.cache_dir, "token": model_args.hf_hub_token}
+    kwargs = {
+        "path_or_repo_id": path_or_repo_id,
+        "cache_dir": resolve_transformers_cache_dir(model_args.cache_dir),
+        "token": model_args.hf_hub_token,
+    }
     err_text = ""
 
     try:
