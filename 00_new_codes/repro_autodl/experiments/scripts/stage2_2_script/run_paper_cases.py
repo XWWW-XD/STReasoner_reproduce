@@ -56,14 +56,14 @@ PAPER_CASE_SOURCE_DIR = (
 PAPER_CASE_SOURCE_PATH = PAPER_CASE_SOURCE_DIR / "paper_cases_matched.jsonl"
 STAGE22_DATA_DIR = REPRO_AUTODL_ROOT / "experiments/stage2_2_subsets/experiment1_paper_cases"
 STAGE22_DATA_PATH = STAGE22_DATA_DIR / "paper_cases_matched.jsonl"
-RESULT_ROOT = REPRO_AUTODL_ROOT / "experiments/stage2_2_results/experiment1_paper_cases"
+RESULT_ROOT = REPRO_AUTODL_ROOT / "experiments/stage2_2_paper_cases"
 AUTHOR_EVALUATE_QA = REPO_ROOT / "evaluation/evaluate_qa.py"
 SMOKE_PATCH_SOURCE = REPRO_KAGGLE_ROOT / "00_smoke_test_scripts/05_eval_sttest_tiny.py"
 
 MODEL_NAME = "Time-HD-Anonymous/STReasoner-8B"
 CONFIG_NAME = "stage2.2_fp16_a100_single"
 DEFAULT_MAX_NEW_TOKENS = 6144
-DEFAULT_AUTODL_CACHE = "/cloud/cloud-ssd1/hf_cache"
+DEFAULT_AUTODL_CACHE = "/root/autodl-tmp/cache/huggingface"
 DEFAULT_ATTN_BACKEND = "flash_attention_2"
 PATCH_SIZE = 8
 
@@ -255,8 +255,8 @@ def log_environment(logger: TeeLogger) -> None:
             ]
         )
     )
-    logger.log("df -h /cloud/cloud-ssd1:")
-    logger.log(run_command_text(["df", "-h", "/cloud/cloud-ssd1"]))
+    logger.log("df -h /root/autodl-tmp:")
+    logger.log(run_command_text(["df", "-h", "/root/autodl-tmp"]))
     for key in ("HF_HOME", "TRANSFORMERS_CACHE", "HF_HUB_CACHE"):
         logger.log(f"{key}={os.environ.get(key)}")
     logger.log(f"HF_DATASETS_CACHE={os.environ.get('HF_DATASETS_CACHE')}")

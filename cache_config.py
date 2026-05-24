@@ -35,6 +35,22 @@ def _is_windows() -> bool:
 
 
 def select_cache_paths() -> CachePaths:
+    env_hf_home = os.environ.get("HF_HOME")
+    env_hf_hub_cache = os.environ.get("HF_HUB_CACHE")
+    env_transformers_cache = os.environ.get("TRANSFORMERS_CACHE")
+    env_hf_datasets_cache = os.environ.get("HF_DATASETS_CACHE")
+    env_torch_home = os.environ.get("TORCH_HOME")
+
+    if env_hf_home:
+        hf_home = env_hf_home
+        return CachePaths(
+            hf_home=hf_home,
+            hf_hub_cache=env_hf_hub_cache or hf_home,
+            transformers_cache=env_transformers_cache or hf_home,
+            hf_datasets_cache=env_hf_datasets_cache or str(Path(hf_home) / "datasets"),
+            torch_home=env_torch_home or str(Path(hf_home) / "torch"),
+        )
+
     if _is_windows():
         return CachePaths(
             hf_home=r"D:\hf_cache",
@@ -42,6 +58,16 @@ def select_cache_paths() -> CachePaths:
             transformers_cache=r"D:\hf_cache\transformers",
             hf_datasets_cache=r"D:\hf_cache\datasets",
             torch_home=r"D:\torch_cache",
+        )
+
+    if Path("/root/autodl-tmp").exists():
+        hf_home = "/root/autodl-tmp/cache/huggingface"
+        return CachePaths(
+            hf_home=hf_home,
+            hf_hub_cache=hf_home,
+            transformers_cache=hf_home,
+            hf_datasets_cache=f"{hf_home}/datasets",
+            torch_home=f"{hf_home}/torch",
         )
 
     return CachePaths(
