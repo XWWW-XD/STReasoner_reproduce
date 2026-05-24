@@ -1,3 +1,15 @@
+'''
+evaluate.py是入口
+- 读测试集
+- 读预测文件
+- 按任务类型调用评测函数
+
+调用：
+load_jsonl_dataset()  
+load_prediction_files()  
+evaluate_predictions_for_task()
+'''
+
 import argparse
 import json
 import os

@@ -13,18 +13,18 @@
 
 ## 环境
 
-| 项目 | 记录 |
-| --- | --- |
-| 机器 | AutoDL A100 |
-| GPU | NVIDIA A100-SXM4-80GB |
-| Python | 3.10.16 |
-| PyTorch | 2.6.0+cu126 |
-| CUDA | 12.6 |
-| flash_attn | 2.7.2.post1 |
-| attention backend | `flash_attention_2` |
-| HF_HOME | `/cloud/cloud-ssd1/hf_cache` |
+| 项目                 | 记录                           |
+| ------------------ | ---------------------------- |
+| 机器                 | AutoDL A100                  |
+| GPU                | NVIDIA A100-SXM4-80GB        |
+| Python             | 3.10.16                      |
+| PyTorch            | 2.6.0+cu126                  |
+| CUDA               | 12.6                         |
+| flash_attn         | 2.7.2.post1                  |
+| attention backend  | `flash_attention_2`          |
+| HF_HOME            | `/cloud/cloud-ssd1/hf_cache` |
 | TRANSFORMERS_CACHE | `/cloud/cloud-ssd1/hf_cache` |
-| HF_HUB_CACHE | `/cloud/cloud-ssd1/hf_cache` |
+| HF_HUB_CACHE       | `/cloud/cloud-ssd1/hf_cache` |
 
 运行时 `flash_attn import check: PASS`，说明此前的 flash-attn 动态库导入问题已经解决。
 
@@ -47,10 +47,10 @@
 
 ## 样例与输出文件
 
-| case | sample_id | task | source_file | original_index | 输出文件 |
-| --- | --- | --- | --- | ---: | --- |
-| non_forecasting | `tiny20_entity_02_line529` | entity | `ST-Test/entity_test.jsonl` | 529 | `repro_autodl/experiments/stage2_results/experiment1_smarttest/non_forecasting_prediction.jsonl` |
-| forecasting | `tiny20_forecasting_01_line87` | forecasting | `ST-Test/forecasting_test.jsonl` | 87 | `repro_autodl/experiments/stage2_results/experiment1_smarttest/forecasting_prediction.jsonl` |
+| case            | sample_id                      | task        | source_file                      | original_index | 输出文件                                                                                             |
+| --------------- | ------------------------------ | ----------- | -------------------------------- | -------------: | ------------------------------------------------------------------------------------------------ |
+| non_forecasting | `tiny20_entity_02_line529`     | entity      | `ST-Test/entity_test.jsonl`      |            529 | `repro_autodl/experiments/stage2_results/experiment1_smarttest/non_forecasting_prediction.jsonl` |
+| forecasting     | `tiny20_forecasting_01_line87` | forecasting | `ST-Test/forecasting_test.jsonl` |             87 | `repro_autodl/experiments/stage2_results/experiment1_smarttest/forecasting_prediction.jsonl`     |
 
 对应 summary 文件：
 

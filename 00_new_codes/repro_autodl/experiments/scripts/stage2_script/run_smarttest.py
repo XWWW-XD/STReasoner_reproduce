@@ -10,6 +10,20 @@ No stage1 outputs, tiny20 full run, paper cases, stress cases, or run-all entry
 points are used here.
 """
 
+"""
+    base_prediction_record()
+    先建一个 record，里面字段默认 None
+    ↓
+    run_one_case()
+    生成 decoded，并填入 decoded_text / raw_response
+    ↓
+    output_paths()
+    决定写到 forecasting_prediction.jsonl 还是 non_forecasting_prediction.jsonl
+    ↓
+    append_jsonl()
+    一行一行追加写入结果文件
+"""
+
 from __future__ import annotations
 
 import argparse
