@@ -6,14 +6,14 @@
 
 ## 2. 脚本运行顺序总览
 
-| 顺序 | 脚本 | 作用 | 什么时候运行 | 成功标志 |
-|---|---|---|---|---|
-| 00 | `repro_kaggle/00_smoke_test_scripts/00_check_kaggle_env.py` | 检查 Kaggle、GPU、CUDA、Python 包和 HF cache | 每天启动后、安装依赖后 | 能看到 T4 x2、关键包版本和 cache 路径 |
-| 01 | `repro_kaggle/00_smoke_test_scripts/01_setup_kaggle_t4.sh` | 配置 cache、安装不含 flash_attn 的依赖、升级 bitsandbytes | 新 Kaggle session 或环境丢失后 | 最后自动跑通 `00_check_kaggle_env.py` |
-| 02 | `repro_kaggle/00_smoke_test_scripts/02_inspect_stbench.py` | 检查 ST-Bench 各 subset 是否能直接 `load_dataset` | 环境可用后、正式跑模型前 | 日志里出现 `LOAD_OK` / `LOAD_FAILED` 总结 |
-| 03 | `repro_kaggle/00_smoke_test_scripts/03_load_streasoner_smoke.py` | 4bit 加载 STReasoner-8B，并尝试极小生成 | 数据确认后、跑样本前 | `MODEL_LOAD_PASS` |
-| 04 | `repro_kaggle/00_smoke_test_scripts/04_run_one_sttest_sample.py` | 读取 1 条 ST-Test，走完整模型推理链路 | 03 通过后 | `ONE_SAMPLE_RUN_PASS`，并写出预测 JSON |
-| 05 | `repro_kaggle/00_smoke_test_scripts/05_eval_sttest_tiny.py` | 跑 5-20 条 ST-Test 小评测 | 04 通过后 | 写出 summary；无失败时出现 `TINY_EVAL_PASS` |
+| 顺序  | 脚本                                                               | 作用                                           | 什么时候运行                  | 成功标志                               |
+| --- | ---------------------------------------------------------------- | -------------------------------------------- | ----------------------- | ---------------------------------- |
+| 00  | `repro_kaggle/00_smoke_test_scripts/00_check_kaggle_env.py`      | 检查 Kaggle、GPU、CUDA、Python 包和 HF cache        | 每天启动后、安装依赖后             | 能看到 T4 x2、关键包版本和 cache 路径          |
+| 01  | `repro_kaggle/00_smoke_test_scripts/01_setup_kaggle_t4.sh`       | 配置 cache、安装不含 flash_attn 的依赖、升级 bitsandbytes | 新 Kaggle session 或环境丢失后 | 最后自动跑通 `00_check_kaggle_env.py`    |
+| 02  | `repro_kaggle/00_smoke_test_scripts/02_inspect_stbench.py`       | 检查 ST-Bench 各 subset 是否能直接 `load_dataset`    | 环境可用后、正式跑模型前            | 日志里出现 `LOAD_OK` / `LOAD_FAILED` 总结 |
+| 03  | `repro_kaggle/00_smoke_test_scripts/03_load_streasoner_smoke.py` | 4bit 加载 STReasoner-8B，并尝试极小生成                | 数据确认后、跑样本前              | `MODEL_LOAD_PASS`                  |
+| 04  | `repro_kaggle/00_smoke_test_scripts/04_run_one_sttest_sample.py` | 读取 1 条 ST-Test，走完整模型推理链路                     | 03 通过后                  | `ONE_SAMPLE_RUN_PASS`，并写出预测 JSON   |
+| 05  | `repro_kaggle/00_smoke_test_scripts/05_eval_sttest_tiny.py`      | 跑 5-20 条 ST-Test 小评测                         | 04 通过后                  | 写出 summary；无失败时出现 `TINY_EVAL_PASS` |
 
 ## 3. 每个脚本详细说明
 

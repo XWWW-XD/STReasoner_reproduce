@@ -1,4 +1,3 @@
-# 压力测试样本
 
 压力测试样本为 `stress_longest_etiological_line110`，来自 `ST-Test/etiological_test.jsonl` 第 `110` 行。
 
@@ -8,5 +7,3 @@
 - Input 长度：1356
 - 序列化 timeseries 长度：22363
 - 是否出现在 tiny20：False
-
-该样本只用于资源压力测试，不进入 tiny20 主测试成功率分母。

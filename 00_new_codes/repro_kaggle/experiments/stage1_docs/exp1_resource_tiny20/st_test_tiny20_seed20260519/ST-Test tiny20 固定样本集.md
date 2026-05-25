@@ -1,4 +1,3 @@
-# ST-Test tiny20 固定样本集
 
 本文档说明 `exp1_resource_tiny20` 的 `tiny20` 主测试样本集。
 

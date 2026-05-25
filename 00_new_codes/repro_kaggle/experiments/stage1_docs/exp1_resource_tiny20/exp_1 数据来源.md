@@ -1,6 +1,5 @@
-# 实验一数据集来源
+# 三个来源
 
-三个来源：
 - 论文中提到的4个样例
 - 4类推理任务 x 5条样例
 - 压力测试：input_tokens最长的样例
@@ -15,8 +14,6 @@
 - 分任务主测试文件：`forecasting_5.jsonl`、`entity_5.jsonl`、`etiological_5.jsonl`、`correlation_5.jsonl`
 - 论文样例额外复跑：`repro_kaggle/experiments/stage1_subsets/exp1_resource_tiny20/paper_cases/paper_cases_matched.jsonl`
 - 资源压力测试：`repro_kaggle/experiments/stage1_subsets/exp1_resource_tiny20/stress_case/stress_longest_input_1.jsonl`
-
-只有 `tiny20_all.jsonl` 中的 20 条样本计入主测试的 generate/decode/parse/速度成功率比较。matched 论文样例只作为额外定性检查或回归检查。unmatched 论文样例仅作记录。stress case 只用于资源压力测试，不计入 tiny20 成功率。
 
 ## 已知限制和注意事项
 
