@@ -1,0 +1,22 @@
+{
+  "task": "reasoning_forecasting",
+  "total_samples": 1,
+  "evaluated_samples": 0,
+  "missing_predictions": 1,
+  "coverage": 0.0,
+  "mae": null,
+  "mape": null,
+  "target_stats": {
+    "mean": null,
+    "abs_mean": null,
+    "min": null,
+    "max": null,
+    "total_values": 0
+  },
+  "missing_indices": [
+    0
+  ],
+  "dataset_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/fp16_dual/official_eval/main/reasoning_forecasting/dataset.jsonl",
+  "prediction_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/fp16_dual/official_eval/main/reasoning_forecasting/generated_answer_new.json",
+  "author_evaluate_qa": "evaluation/evaluate_qa.py"
+}

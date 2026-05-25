@@ -615,8 +615,8 @@ Answer: A
 ## fp16_dual
 
 - 来源文件：`00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/fp16_dual/main_predictions_new.jsonl`
-- JSONL 记录数：1
-- 注意：该配置的 `run_new.log` 显示第 2 条 SmartTest 已开始，但 `main_predictions_new.jsonl` 只写出 1 条完整记录；因此这里能整理到的完整实际输出只有 forecasting 这一条。
+- JSONL 记录数：2
+- 注意：该配置为本次 `max_new_tokens=6144` 补跑。双卡 fp16 加载成功，但两条 SmartTest 均在 `generate` 阶段失败，`decoded_text` 均为 `null`。
 
 ### fp16_dual / record 1 / tiny20_forecasting_01_line87
 
@@ -624,131 +624,26 @@ Answer: A
 - source_file：`ST-Test/forecasting_test.jsonl`
 - original_line_index：`87`
 - gold_output：`[72.17, 101.58, 126.82, 102.51, 226.55]`
-- generate_success：`True`
-- decode_success：`True`
-- actual_new_tokens：`2048`
-- latency_sec：`3735.326`
-- error_stage：`none`
+- generate_success：`False`
+- decode_success：`False`
+- actual_new_tokens：`None`
+- latency_sec：`0.988`
+- error_stage：`generate`
+- error_message：`RuntimeError: The expanded size of the tensor (980) must match the existing size (950) at non-singleton dimension 2.  Target sizes: [1, 32, 980, 980].  Tensor sizes: [1, 1, 950, 980]`
 
-实际输出 `decoded_text`：
+实际输出 `decoded_text`：`null`
 
-```text
- Historical observation window: 27-36.
+### fp16_dual / record 2 / tiny20_entity_02_line529
 
-Let me analyze the spatial-temporal data to predict Node 8's values for the next 5 steps.
+- task：`entity`
+- source_file：`ST-Test/entity_test.jsonl`
+- original_line_index：`529`
+- gold_output：`<answer>B</answer>`
+- generate_success：`False`
+- decode_success：`False`
+- actual_new_tokens：`None`
+- latency_sec：`0.014`
+- error_stage：`generate`
+- error_message：`RuntimeError: The expanded size of the tensor (388) must match the existing size (358) at non-singleton dimension 2.  Target sizes: [1, 32, 388, 388].  Tensor sizes: [1, 1, 358, 388]`
 
-First, let me examine Node 8's historical pattern:
-Full series: 99.81,90.20,101.27,106.10,106.22,102.07,94.01,89.20,87.76,81.06,79.73,81.00,76.46
-Observation window (27-36): 81.00,76.46,89.90,91.60,100.14,104.83,109.61,109.83,112.95,117.20,116.26,116.11,116.82,117.96,118.47,118.21,117.03,117.20,116.62,117.41
-
-Node 8 (positions 27-36, using 0-based indexing from position 27-36):
-Position 27: 89.90
-Position 28: 91.60
-Position 29: 100.14
-Position 30: 104.83
-Position 31: 109.61
-Position 32: 109.83
-Position 33: 112.95
-Position 34: 117.20
-Position 35: 116.26
-Position 36: 116.11
-Position 37: 116.82
-Position 38: 117.96
-Position 39: 118.47
-Position 40: 118.21
-Position 41: 117.03
-Position 42: 117.20
-Position 43: 116.62
-Position 44: 117.41
-
-Wait, I need to extract positions 27-36 (the last 10 values before prediction):
-From position 27 to 36: 112.95, 117.20, 116.26, 116.11, 116.82, 117.96, 118.47, 118.21, 117.03, 117.20
-
-Now let me look at the graph structure and Node 8's dependencies:
-- Node 7 -> Node 8
-- Node 8 -> Node 9
-
-Let me check Node 7's values in the observation window (positions 27-36):
-Node 7 positions 27-36: 100.86, 101.01, 91.02, 107.00, 100.68, 112.26, 105.72, 115.01, 108.26, 120.00
-
-Node 7 shows some volatility with a recent upward trend.
-
-Looking at the recent trend in Node 8 (positions 27-36):
-112.95, 117.20, 116.26, 116.11, 116.82, 117.96, 118.47, 118.21, 117.03, 117.20
-
-The values are oscillating around 117 with slight increases. The last value is 117.20, and recent values show: 116.82, 117.96, 118.47, 118.21, 117.03, 117.20.
-
-Given the context of "Evening shopping and leisure activities," and the recent trend showing values stabilizing around 117-118, I expect the values to continue this pattern with slight variations.
-
-The recent pattern shows:
-- General stabilization around 117-118
-- Slight oscillations
-- Slight downward then upward movement
-
-For the next 5 predictions (positions 37-41), I'll predict values continuing this pattern with slight variations around 117-118:
-
-Predicted values: 117.5, 118.3, 117.8, 118.1, 117.6
-
-Let me refine based on the momentum:
-- Position 37: 117.62 (continuing the trend)
-- Position 38: 118.35 (slight increase)
-- Position 39: 117.98 (slight decrease)
-- Position 40: 118.25 (slight increase)
-- Position 41: 117.75 (slight decrease)
-
-</reasoning>
-
-The predicted values for Node 8 for the next 5 steps are: 117.62, 118.35, 117.98, 118.25, 117.75
-</answer>
-
-The predicted values for Node 8 for the next 5 steps are: 117.62, 118.35, 117.98, 118.25, 117.75
-</answer> 
-
-Actually, let me recalculate with more precise consideration of the recent pattern (last 10 values: 112.95, 117.20, 116.26, 116.11, 116.82, 117.96, 118.47, 118.21, 117.03, 117.20):
-
-The mean of the last 10 values is approximately 117.14
-The recent trend shows: 116.82, 117.96, 118.47, 118.21, 117.03, 117.20
-
-Given the oscillating pattern around 117-118, I'll predict:
-117.85, 118.15, 117.75, 118.05, 117.55
-
-</answer>
-
-The predicted values for Node 8 for the next 5 steps are: 117.85, 118.15, 117.75, 118.05, 117.55
-</answer> 
-
-Let me provide the final answer with the most recent pattern consideration.
-</answer>
-
-The predicted values for Node 8 for the next 5 steps are: 117.85, 118.15, 117.75, 118.05, 117.55
-</answer> 
-
-Actually, let me provide a more consistent answer format as requested.
-</answer>
-
-The predicted values for Node 8 for the next 5 steps are: 117.85, 118.15, 117.75, 118.05, 117.55
-</answer> 
-
-Let me provide the answer in the requested format with the box.
-</answer>
-
-The predicted values for Node 8 for the next 5 steps are: 117.85, 118.15, 117.75, 118.05, 117.55
-
-$$
-\boxed{[117.85, 118.15, 117.75, 118.05, 117.55]}
-$$
-</answer> 
-
-Actually, let me reconsider with the most recent values and pattern analysis.
-</answer>
-
-The predicted values for Node 8 for the next 5 steps are: 117.62, 118.35, 117.98, 118.25, 117.75
-
-$$
-\boxed{[117.62, 118.35, 117.98, 118.25, 117.75]}
-$$
-</answer> 
-
-Let me provide the final answer based on the most recent
-```
-
+实际输出 `decoded_text`：`null`

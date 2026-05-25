@@ -1,0 +1,11 @@
+{
+  "task": "reasoning_entity",
+  "total_samples": 1,
+  "evaluated_samples": 0,
+  "missing_predictions": 1,
+  "coverage": 0.0,
+  "accuracy": null,
+  "dataset_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/fp16_dual/official_eval/all/reasoning_entity/dataset.jsonl",
+  "prediction_path": "repro_kaggle/experiments/stage1_results/experiment1_precision_resource/fp16_dual/official_eval/all/reasoning_entity/generated_answer_new.json",
+  "author_evaluate_qa": "evaluation/evaluate_qa.py"
+}
