@@ -1,8 +1,7 @@
 {
-  "paper_cases_path": "00_new_codes\\repro_autodl\\experiments\\stage2_2_subsets\\experiment1_paper_cases\\paper_cases_matched.jsonl",
-  "source_path": "00_new_codes\\repro_kaggle\\experiments\\stage1_subsets\\exp1_resource_tiny20\\paper_cases\\paper_cases_matched.jsonl",
-  "status": "written",
-  "selection_method": "copy_stage1_paper_cases_matched",
+  "paper_cases_path": "00_new_codes/repro_autodl/experiments/stage2_2_subsets/experiment1_paper_cases/paper_cases_matched.jsonl",
+  "source_path": "00_new_codes/repro_kaggle/experiments/stage1_subsets/exp1_resource_tiny20/paper_cases/paper_cases_matched.jsonl",
+  "status": "existing_valid",
   "rows": 4,
   "task_counts": {
     "etiological": 1,
