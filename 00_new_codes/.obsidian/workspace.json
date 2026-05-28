@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "reports/06_实验一_2.1_免费资源下模型推理能力分析最终报告.md",
+                "file": "repro_autodl/experiments/stage2_docs/2.1 实验报告 smarttest - fp16 - a100.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "06_实验一_2.1_免费资源下模型推理能力分析最终报告"
+              "title": "2.1 实验报告 smarttest - fp16 - a100"
             }
           },
           {
@@ -92,8 +92,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 248.50225448608398
   },
   "right": {
     "id": "0740de78a4ccecbe",
@@ -171,13 +170,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "reports/06_实验一_2.1_免费资源下模型推理能力分析最终报告.md",
+                "file": "repro_autodl/experiments/stage2_docs/2.1 实验报告 smarttest - fp16 - a100.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "06_实验一_2.1_免费资源下模型推理能力分析最终报告 的大纲"
+              "title": "2.1 实验报告 smarttest - fp16 - a100 的大纲"
             }
           }
         ],
@@ -185,7 +184,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 321.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -200,6 +199,15 @@
   },
   "active": "d945ce980686ec1d",
   "lastOpenFiles": [
+    "repro_autodl/experiments/stage2_docs/2.1 样例分析 smarttest - fp16 - a100.md",
+    "repro_autodl/experiments/stage2_docs/2.1 实验报告 smarttest - fp16 - a100.md",
+    "repro_autodl/experiments/stage2_docs/smarttest_stage2_two_sample_results_raw_json.md",
+    "reports/05_stage2_2_paper_cases实验脚本修改报告.md",
+    "reports/00_缓存写入本地事故修复报告.md",
+    "reports/00_缓存路径修复提示词.md",
+    "agents/readme.md",
+    "agents",
+    "AGENTS",
     "reports/07_实验一四配置SmartTest实际输出完整记录.md",
     "reports/06_实验一_2.1_免费资源下模型推理能力分析最终报告.md",
     "repro_kaggle/experiments/stage1_docs/00_experiment1_4bit_single.md",
