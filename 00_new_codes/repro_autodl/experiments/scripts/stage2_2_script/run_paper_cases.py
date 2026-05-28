@@ -18,7 +18,7 @@ from __future__ import annotations
     Generate the model text and store it in response.
     ↓
     output_paths()
-    Write to paper_cases_prediction.jsonl.
+    Write to predictions.jsonl / summary.json / run.log.
     ↓
     append_jsonl()
     一行一行追加写入结果文件
@@ -50,12 +50,12 @@ REPRO_AUTODL_ROOT = PROJECT_ROOT / "repro_autodl"
 SCRIPT_PATH = Path(__file__).resolve()
 
 PAPER_CASE_SOURCE_DIR = (
-    REPRO_KAGGLE_ROOT
-    / "experiments/stage1_subsets/exp1_resource_tiny20/paper_cases"
+    REPRO_AUTODL_ROOT
+    / "experiments/stage2_subsets/paper_cases"
 )
-PAPER_CASE_SOURCE_PATH = PAPER_CASE_SOURCE_DIR / "paper_cases_matched.jsonl"
+PAPER_CASE_SOURCE_PATH = PAPER_CASE_SOURCE_DIR / "PaperCases.jsonl"
 STAGE22_DATA_DIR = REPRO_AUTODL_ROOT / "experiments/stage2_2_subsets/experiment1_paper_cases"
-STAGE22_DATA_PATH = STAGE22_DATA_DIR / "paper_cases_matched.jsonl"
+STAGE22_DATA_PATH = STAGE22_DATA_DIR / "PaperCases.jsonl"
 RESULT_ROOT = REPRO_AUTODL_ROOT / "experiments/stage2_2_paper_cases"
 AUTHOR_EVALUATE_QA = REPO_ROOT / "evaluation/evaluate_qa.py"
 SMOKE_PATCH_SOURCE = REPRO_KAGGLE_ROOT / "00_smoke_test_scripts/05_eval_sttest_tiny.py"
@@ -134,6 +134,17 @@ def append_jsonl(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as fh:
         fh.write(json.dumps(json_safe(payload), ensure_ascii=False, separators=(",", ":")) + "\n")
+
+
+def upsert_jsonl(path: Path, payload: dict[str, Any], identity_keys: tuple[str, ...]) -> None:
+    rows = load_jsonl(path) if path.exists() else []
+    rows = [
+        row
+        for row in rows
+        if any(row.get(key) != payload.get(key) for key in identity_keys)
+    ]
+    rows.append(payload)
+    write_jsonl(path, rows)
 
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -342,7 +353,7 @@ def prepare_paper_cases(overwrite: bool, logger: TeeLogger) -> dict[str, Any]:
         "paper_cases_path": rel(STAGE22_DATA_PATH),
         "source_path": rel(PAPER_CASE_SOURCE_PATH),
         "status": "written",
-        "selection_method": "copy_stage1_paper_cases_matched",
+        "selection_method": "copy_unified_stage2_paper_cases",
         "rows": len(selected),
         "task_counts": dict(Counter(sample_task(row) for row in selected)),
         "sample_ids": [row.get("sample_id") for row in selected],
@@ -840,11 +851,10 @@ def failure_type_from(stage: str, generate_success: bool, parse_success: bool) -
 
 
 def output_paths(output_root: Path) -> dict[str, Path]:
-    prefix = "paper_cases"
     return {
-        "prediction": output_root / f"{prefix}_prediction.jsonl",
-        "summary": output_root / f"{prefix}_summary.json",
-        "log": output_root / f"{prefix}_run.log",
+        "prediction": output_root / "predictions.jsonl",
+        "summary": output_root / "summary.json",
+        "log": output_root / "run.log",
     }
 
 
@@ -1076,9 +1086,7 @@ def run_one_sample(
             )
 
     if overwrite:
-        for key in ("prediction", "summary"):
-            if paths[key].exists():
-                paths[key].unlink()
+        logger.log("Overwrite enabled; replacing only this paper-case sample in the unified prediction file.")
 
     record = base_prediction_record(sample, selected_index, max_new_tokens)
     load_success = False
@@ -1096,7 +1104,7 @@ def run_one_sample(
         record["generate_error"] = load_error
         record["failure_type"] = failure_type_from(stage, False, False, False)
         official_metrics = official_metrics_for_record(sample, record)
-        append_jsonl(paths["prediction"], record)
+        upsert_jsonl(paths["prediction"], record, ("sample_id",))
         summary = summarize_sample(
             sample,
             record,
@@ -1168,7 +1176,7 @@ def run_one_sample(
         record["failure_type"] = failure_type_from(stage, bool(record["generate_success"]), False)
 
     official_metrics = official_metrics_for_record(sample, record)
-    append_jsonl(paths["prediction"], record)
+    upsert_jsonl(paths["prediction"], record, ("sample_id",))
     summary = summarize_sample(
         sample,
         record,
@@ -1190,7 +1198,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Stage 2.2 paper-cases fp16 A100 single-GPU runner.")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    prepare = subparsers.add_parser("prepare", help="Copy and validate the Stage 1 paper_cases dataset.")
+    prepare = subparsers.add_parser("prepare", help="Copy and validate the unified paper_cases dataset.")
     prepare.add_argument("--overwrite", type=str2bool, nargs="?", const=True, default=False)
 
     subparsers.add_parser("list", help="List available Stage 2.2 paper-case samples.")
@@ -1229,7 +1237,6 @@ def main() -> int:
         logger = TeeLogger(STAGE22_DATA_DIR / "prepare.log")
         try:
             payload = prepare_paper_cases(overwrite=args.overwrite, logger=logger)
-            write_json(STAGE22_DATA_DIR / "prepare_summary.json", payload)
             logger.log(f"prepare_summary: {json.dumps(json_safe(payload), ensure_ascii=False)}")
             return 0
         finally:

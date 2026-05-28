@@ -10,6 +10,8 @@ No stage1 outputs, tiny20 full run, paper cases, stress cases, or run-all entry
 points are used here.
 """
 
+from __future__ import annotations
+
 """
     base_prediction_record()
     先建一个 record，里面字段默认 None
@@ -18,13 +20,11 @@ points are used here.
     生成 decoded，并填入 decoded_text / raw_response
     ↓
     output_paths()
-    决定写到 forecasting_prediction.jsonl 还是 non_forecasting_prediction.jsonl
+    统一写到 predictions.jsonl / summary.json / run.log
     ↓
     append_jsonl()
     一行一行追加写入结果文件
 """
-
-from __future__ import annotations
 
 import argparse
 import importlib.util
@@ -140,6 +140,17 @@ def append_jsonl(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as fh:
         fh.write(json.dumps(json_safe(payload), ensure_ascii=False, separators=(",", ":")) + "\n")
+
+
+def upsert_jsonl(path: Path, payload: dict[str, Any], identity_keys: tuple[str, ...]) -> None:
+    rows = load_jsonl(path) if path.exists() else []
+    rows = [
+        row
+        for row in rows
+        if any(row.get(key) != payload.get(key) for key in identity_keys)
+    ]
+    rows.append(payload)
+    write_jsonl(path, rows)
 
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -877,12 +888,11 @@ def failure_type_from(stage: str, generate_success: bool, decode_success: bool, 
     return "no_failure"
 
 
-def output_paths(case: str, output_root: Path) -> dict[str, Path]:
-    prefix = "forecasting" if case == "forecasting" else "non_forecasting"
+def output_paths(output_root: Path) -> dict[str, Path]:
     return {
-        "prediction": output_root / f"{prefix}_prediction.jsonl",
-        "summary": output_root / f"{prefix}_summary.json",
-        "log": output_root / f"{prefix}_run.log",
+        "prediction": output_root / "predictions.jsonl",
+        "summary": output_root / "summary.json",
+        "log": output_root / "run.log",
     }
 
 
@@ -1081,20 +1091,15 @@ def run_one_case(
 
     sample, smarttest_index = select_case_sample(case)
     validate_sample(sample, f"{case} sample")
-    paths = output_paths(case, output_root)
+    paths = output_paths(output_root)
 
     if paths["prediction"].exists() and not overwrite:
         if resume and existing_completed(paths["prediction"], sample, case):
             logger.log(f"Resume enabled; existing prediction found: {rel(paths['prediction'])}")
             return {"status": "skipped_existing", "prediction_path": rel(paths["prediction"])}
-        raise FileExistsError(
-            f"Output exists: {paths['prediction']}. Use --overwrite true or --resume true."
-        )
 
     if overwrite:
-        for key in ("prediction", "summary"):
-            if paths[key].exists():
-                paths[key].unlink()
+        logger.log("Overwrite enabled; replacing only this case/sample in the unified prediction file.")
 
     record = base_prediction_record(sample, case, smarttest_index, max_new_tokens)
     load_success = False
@@ -1112,7 +1117,7 @@ def run_one_case(
         record["generate_error"] = load_error
         record["failure_type"] = failure_type_from(stage, False, False, False)
         official_metrics = official_metrics_for_record(sample, record)
-        append_jsonl(paths["prediction"], record)
+        upsert_jsonl(paths["prediction"], record, ("case", "sample_id"))
         summary = summarize_case(
             case,
             sample,
@@ -1191,7 +1196,7 @@ def run_one_case(
         record["failure_type"] = failure_type_from(stage, bool(record["generate_success"]), False, False)
 
     official_metrics = official_metrics_for_record(sample, record)
-    append_jsonl(paths["prediction"], record)
+    upsert_jsonl(paths["prediction"], record, ("case", "sample_id"))
     summary = summarize_case(
         case,
         sample,
@@ -1238,14 +1243,13 @@ def main() -> int:
         logger = TeeLogger(SMARTTEST_DIR / "prepare.log")
         try:
             payload = prepare_smarttest(overwrite=args.overwrite, logger=logger)
-            write_json(SMARTTEST_DIR / "prepare_summary.json", payload)
             logger.log(f"prepare_summary: {json.dumps(json_safe(payload), ensure_ascii=False)}")
             return 0
         finally:
             logger.close()
 
     if args.command == "run":
-        paths = output_paths(args.case, args.output_root)
+        paths = output_paths(args.output_root)
         logger = TeeLogger(paths["log"])
         try:
             summary = run_one_case(
