@@ -1,14 +1,15 @@
 === Stage 2.2 Environment Check ===
-timestamp: 2026-05-25T00:09:32
+timestamp: 2026-05-28T12:07:47
 pwd: /root/autodl-tmp/STReasoner_reproduce
 script: 00_new_codes/repro_autodl/experiments/scripts/stage2_2_script/run_paper_cases.py
 project_root: /root/autodl-tmp/STReasoner_reproduce/00_new_codes
 repo_root: /root/autodl-tmp/STReasoner_reproduce
-git branch: main
+git branch: autodl
 git status --short:
-M 00_new_codes/repro_autodl/experiments/scripts/stage2_2_script/run_paper_cases.py
- M 00_new_codes/repro_autodl/experiments/stage2_2_subsets/experiment1_paper_cases/prepare.log
- M cache_config.py
+M 00_new_codes/repro_autodl/experiments/stage2_2_subsets/experiment1_paper_cases/prepare.log
+?? 00_new_codes/agents/
+?? 00_new_codes/reports/06_codex-vscode-reconnect-2026-05-28.md
+?? "00_new_codes/reports/07_2.2paper_case\345\256\236\351\252\214.md"
 python --version: Python 3.12.3
 torch.__version__: 2.5.1+cu124
 torch.cuda.is_available(): True
@@ -18,7 +19,7 @@ nvidia-smi:
 0, NVIDIA A100-PCIE-40GB, 40960 MiB, 4 MiB, 570.124.04
 df -h /root/autodl-tmp:
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/sdb         50G  477M   50G   1% /root/autodl-tmp
+/dev/sdb         50G   15G   36G  29% /root/autodl-tmp
 HF_HOME=/root/autodl-tmp/cache/huggingface
 TRANSFORMERS_CACHE=/root/autodl-tmp/cache/huggingface
 HF_HUB_CACHE=/root/autodl-tmp/cache/huggingface

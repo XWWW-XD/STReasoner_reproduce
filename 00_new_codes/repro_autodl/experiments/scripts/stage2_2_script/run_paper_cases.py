@@ -786,10 +786,10 @@ def build_inputs(processor: Any, tokenizer: Any, sample: dict[str, Any]) -> tupl
     }
 
 
-def decode_outputs(outputs: Any, inputs: Any, processor: Any, tokenizer: Any) -> tuple[str | None, int | None, str | None]:
-    decoder = tokenizer if tokenizer is not None else processor
-    if decoder is None or not hasattr(decoder, "decode"):
-        return None, None, "no decoder with decode(...)"
+def generated_outputs_to_response(outputs: Any, inputs: Any, processor: Any, tokenizer: Any) -> tuple[str | None, int | None, str | None]:
+    text_converter = tokenizer if tokenizer is not None else processor
+    if text_converter is None or not hasattr(text_converter, "decode"):
+        return None, None, "no tokenizer/processor method available to convert generated ids to text"
 
     try:
         generated_ids = outputs[0]
@@ -798,7 +798,7 @@ def decode_outputs(outputs: Any, inputs: Any, processor: Any, tokenizer: Any) ->
         if input_ids is not None and hasattr(input_ids, "shape"):
             actual_new_tokens = int(generated_ids.shape[-1] - input_ids.shape[-1])
             generated_ids = generated_ids[input_ids.shape[-1] :]
-        text = decoder.decode(generated_ids, skip_special_tokens=True)
+        text = text_converter.decode(generated_ids, skip_special_tokens=True)
         return text, actual_new_tokens, None
     except Exception as exc:
         return None, None, f"{exc.__class__.__name__}: {exc}"
@@ -829,13 +829,11 @@ def parse_model_answer(task: str, response: str | None) -> tuple[Any, bool, str 
     return extracted, bool(str(extracted).strip()), None if str(extracted).strip() else "empty_extracted_answer"
 
 
-def failure_type_from(stage: str, generate_success: bool, decode_success: bool, parse_success: bool) -> str:
+def failure_type_from(stage: str, generate_success: bool, parse_success: bool) -> str:
     if stage == "model_loading":
         return "load_failed"
     if not generate_success:
         return "generate_failed"
-    if not decode_success:
-        return "decode_failed"
     if not parse_success:
         return "parse_failed"
     return "no_failure"
@@ -907,7 +905,6 @@ def base_prediction_record(sample: dict[str, Any], sample_index: int, max_new_to
         "actual_new_tokens": None,
         "response": None,
         "generate_success": False,
-        "decode_success": False,
         "generate_error": None,
         "gpu_name": gpu_name,
         "gpu_total_memory": gpu_total_memory,
@@ -925,11 +922,11 @@ def base_prediction_record(sample: dict[str, Any], sample_index: int, max_new_to
 
 
 def official_metrics_for_record(sample: dict[str, Any], record: dict[str, Any]) -> dict[str, Any]:
-    if not record.get("decode_success") or record.get("response") is None:
+    if record.get("response") is None:
         return {
             "official_task": official_task_name(sample_task(sample)),
             "skipped": True,
-            "skip_reason": "decode_failed_or_missing_prediction",
+            "skip_reason": "missing_prediction",
         }
 
     evaluate_qa = evaluate_qa_module()
@@ -967,13 +964,6 @@ def explain_failure(first_error: str | None) -> dict[str, Any]:
             "plain_explanation": "CUDA ran out of GPU memory during model loading or generation.",
             "likely_stage": "cuda_memory",
             "next_step": "Check nvidia-smi and the run log memory snapshots before changing model settings.",
-        }
-
-    if "decode" in lower:
-        return {
-            "plain_explanation": "Generation may have completed, but decoding the generated token ids failed.",
-            "likely_stage": "decode",
-            "next_step": "Send the run log and prediction jsonl so the decoder/output tensor path can be checked.",
         }
 
     return {
@@ -1026,7 +1016,6 @@ def summarize_sample(
         },
         "run_metrics": {
             "generate_success": record.get("generate_success"),
-            "decode_success": record.get("decode_success"),
             "parse_success": record.get("parse_success"),
             "input_tokens": record.get("input_tokens"),
             "actual_new_tokens": record.get("actual_new_tokens"),
@@ -1142,31 +1131,26 @@ def run_one_sample(
         sync_cuda()
 
         latency = time.perf_counter() - started
-        record["generate_success"] = True
         record["latency_sec"] = round(latency, 3)
         record["gpu_peak_memory"] = gpu_peak_snapshot()
         record["gpu_memory_after_generate"] = gpu_memory_snapshot()
-        stage = "decode"
-        decoded, actual_new_tokens, decode_error = decode_outputs(outputs, inputs, processor, tokenizer)
+        response_text, actual_new_tokens, response_error = generated_outputs_to_response(outputs, inputs, processor, tokenizer)
         record["actual_new_tokens"] = actual_new_tokens
         if actual_new_tokens is not None and latency > 0:
             record["tokens_per_sec"] = round(actual_new_tokens / latency, 3)
 
-        if decode_error is not None:
-            record["decode_success"] = False
-            record["generate_error"] = decode_error
-        else:
-            record["decode_success"] = True
-            record["response"] = decoded
+        if response_error is not None:
+            raise RuntimeError(response_error)
+        record["generate_success"] = True
+        record["response"] = response_text
 
-        parsed_answer, parse_success, parse_error = parse_model_answer(sample_task(sample), decoded)
+        parsed_answer, parse_success, parse_error = parse_model_answer(sample_task(sample), response_text)
         record["parsed_answer"] = parsed_answer
         record["parse_success"] = parse_success
         record["parse_error"] = parse_error
         record["failure_type"] = failure_type_from(
             stage,
             bool(record["generate_success"]),
-            bool(record["decode_success"]),
             bool(record["parse_success"]),
         )
     except Exception as exc:
@@ -1181,7 +1165,7 @@ def run_one_sample(
         record["gpu_memory_after_generate"] = gpu_memory_snapshot()
         record["gpu_peak_memory"] = gpu_peak_snapshot()
         record["generate_error"] = message
-        record["failure_type"] = failure_type_from(stage, bool(record["generate_success"]), False, False)
+        record["failure_type"] = failure_type_from(stage, bool(record["generate_success"]), False)
 
     official_metrics = official_metrics_for_record(sample, record)
     append_jsonl(paths["prediction"], record)
