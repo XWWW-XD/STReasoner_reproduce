@@ -29,6 +29,7 @@ import importlib.util
 import json
 import math
 import os
+import re
 import subprocess
 import sys
 import time
@@ -829,6 +830,56 @@ def parse_model_answer(task: str, response: str | None) -> tuple[Any, bool, str 
     return extracted, bool(str(extracted).strip()), None if str(extracted).strip() else "empty_extracted_answer"
 
 
+def canonical_formatted_answer(task: str, parsed_answer: Any, parse_success: bool) -> str | None:
+    if not parse_success:
+        return None
+    task_key = task.lower()
+    if task_key == "forecasting":
+        if not isinstance(parsed_answer, list):
+            return None
+        values = [round(float(value), 6) for value in parsed_answer]
+        return f"<answer>{json.dumps(values, ensure_ascii=False)}</answer>"
+    if task_key in {"entity", "etiological", "correlation", "causal"}:
+        value = str(parsed_answer).strip().upper()
+        if value in {"A", "B", "C", "D"}:
+            return f"<answer>{value}</answer>"
+    if parsed_answer is not None:
+        return f"<answer>{str(parsed_answer).strip()}</answer>"
+    return None
+
+
+def answer_format_diagnostics(task: str, response: str | None, parsed_answer: Any, parse_success: bool) -> dict[str, Any]:
+    text = "" if response is None else str(response)
+    answer_open_count = len(re.findall(r"<answer\b[^>]*>", text, flags=re.IGNORECASE))
+    answer_close_count = len(re.findall(r"</answer>", text, flags=re.IGNORECASE))
+    final_answer_open_count = len(re.findall(r"<final_answer\b[^>]*>", text, flags=re.IGNORECASE))
+    final_answer_close_count = len(re.findall(r"</final_answer>", text, flags=re.IGNORECASE))
+    has_exact_answer_tag = answer_open_count == 1 and answer_close_count == 1
+    formatted_answer = canonical_formatted_answer(task, parsed_answer, parse_success)
+    if has_exact_answer_tag:
+        format_error = None
+    elif not text.strip():
+        format_error = "empty_response"
+    elif answer_open_count or answer_close_count:
+        format_error = f"answer_tag_count_mismatch: open={answer_open_count}, close={answer_close_count}"
+    elif final_answer_open_count or final_answer_close_count:
+        format_error = (
+            "uses_final_answer_tag_instead_of_answer_tag: "
+            f"open={final_answer_open_count}, close={final_answer_close_count}"
+        )
+    else:
+        format_error = "missing_answer_tag"
+    return {
+        "format_success": has_exact_answer_tag,
+        "format_error": format_error,
+        "raw_answer_tag_open_count": answer_open_count,
+        "raw_answer_tag_close_count": answer_close_count,
+        "raw_final_answer_tag_open_count": final_answer_open_count,
+        "raw_final_answer_tag_close_count": final_answer_close_count,
+        "formatted_answer": formatted_answer,
+    }
+
+
 def failure_type_from(stage: str, generate_success: bool, parse_success: bool) -> str:
     if stage == "model_loading":
         return "load_failed"
@@ -917,6 +968,13 @@ def base_prediction_record(sample: dict[str, Any], sample_index: int, max_new_to
         "gold_answer": sample.get("output"),
         "parse_success": False,
         "parse_error": None,
+        "format_success": False,
+        "format_error": None,
+        "raw_answer_tag_open_count": None,
+        "raw_answer_tag_close_count": None,
+        "raw_final_answer_tag_open_count": None,
+        "raw_final_answer_tag_close_count": None,
+        "formatted_answer": None,
         "failure_type": "unknown",
     }
 
@@ -1017,6 +1075,8 @@ def summarize_sample(
         "run_metrics": {
             "generate_success": record.get("generate_success"),
             "parse_success": record.get("parse_success"),
+            "format_success": record.get("format_success"),
+            "format_error": record.get("format_error"),
             "input_tokens": record.get("input_tokens"),
             "actual_new_tokens": record.get("actual_new_tokens"),
             "latency_sec": record.get("latency_sec"),
@@ -1051,10 +1111,17 @@ def run_one_sample(
     output_root: Path,
     logger: TeeLogger,
     attn_backend: str = DEFAULT_ATTN_BACKEND,
+    preloaded_model: Any | None = None,
+    preloaded_processor: Any | None = None,
+    preloaded_tokenizer: Any | None = None,
+    preloaded_load_time_sec: float | None = None,
+    preloaded_load_info: dict[str, Any] | None = None,
+    log_env: bool = True,
 ) -> dict[str, Any]:
     ensure_autodl_cache_env()
     ensure_single_gpu_env()
-    log_environment(logger)
+    if log_env:
+        log_environment(logger)
     logger.log("=== Stage 2.2 Paper Cases Run ===")
     logger.log(f"sample_index: {sample_index}")
     logger.log(f"sample_id: {sample_id}")
@@ -1087,29 +1154,40 @@ def run_one_sample(
     load_info: dict[str, Any] | None = None
     stage = "model_loading"
 
-    try:
-        model, processor, tokenizer, load_time_sec, load_info = load_model_and_processors(logger, attn_backend)
+    if preloaded_model is not None:
+        if preloaded_processor is None or preloaded_tokenizer is None:
+            raise RuntimeError("preloaded model requires preloaded processor and tokenizer")
+        model = preloaded_model
+        processor = preloaded_processor
+        tokenizer = preloaded_tokenizer
+        load_time_sec = preloaded_load_time_sec
+        load_info = preloaded_load_info
         load_success = True
-    except Exception as exc:
-        load_error = f"{exc.__class__.__name__}: {short_error(exc)}"
-        logger.exception("model loading failed", exc)
-        record["generate_error"] = load_error
-        record["failure_type"] = failure_type_from(stage, False, False, False)
-        official_metrics = official_metrics_for_record(sample, record)
-        append_jsonl(paths["prediction"], record)
-        summary = summarize_sample(
-            sample,
-            record,
-            load_success,
-            load_error,
-            load_time_sec,
-            load_info,
-            official_metrics,
-            output_root,
-            attn_backend,
-        )
-        write_json(paths["summary"], summary)
-        return summary
+        logger.log("Using preloaded model for this sample.")
+    else:
+        try:
+            model, processor, tokenizer, load_time_sec, load_info = load_model_and_processors(logger, attn_backend)
+            load_success = True
+        except Exception as exc:
+            load_error = f"{exc.__class__.__name__}: {short_error(exc)}"
+            logger.exception("model loading failed", exc)
+            record["generate_error"] = load_error
+            record["failure_type"] = failure_type_from(stage, False, False)
+            official_metrics = official_metrics_for_record(sample, record)
+            append_jsonl(paths["prediction"], record)
+            summary = summarize_sample(
+                sample,
+                record,
+                load_success,
+                load_error,
+                load_time_sec,
+                load_info,
+                official_metrics,
+                output_root,
+                attn_backend,
+            )
+            write_json(paths["summary"], summary)
+            return summary
 
     started = time.perf_counter()
     try:
@@ -1148,6 +1226,7 @@ def run_one_sample(
         record["parsed_answer"] = parsed_answer
         record["parse_success"] = parse_success
         record["parse_error"] = parse_error
+        record.update(answer_format_diagnostics(sample_task(sample), response_text, parsed_answer, parse_success))
         record["failure_type"] = failure_type_from(
             stage,
             bool(record["generate_success"]),
@@ -1273,6 +1352,16 @@ def main() -> int:
         rows = load_stage22_rows()
         logger = TeeLogger(paths["log"])
         try:
+            ensure_autodl_cache_env()
+            ensure_single_gpu_env()
+            log_environment(logger)
+            logger.log("=== Stage 2.2 Paper Cases Run-All ===")
+            logger.log(f"rows: {len(rows)}")
+            logger.log(f"max_new_tokens: {args.max_new_tokens}")
+            logger.log(f"attn_backend: {args.attn_backend}")
+            logger.log(f"output_root: {rel(args.output_root)}")
+            model, processor, tokenizer, load_time_sec, load_info = load_model_and_processors(logger, args.attn_backend)
+
             summaries = []
             for index, row in enumerate(rows):
                 logger.log(f"=== Stage 2.2 run-all sample {index + 1}/{len(rows)}: {row.get('sample_id')} ===")
@@ -1285,6 +1374,12 @@ def main() -> int:
                     output_root=args.output_root,
                     logger=logger,
                     attn_backend=args.attn_backend,
+                    preloaded_model=model,
+                    preloaded_processor=processor,
+                    preloaded_tokenizer=tokenizer,
+                    preloaded_load_time_sec=load_time_sec,
+                    preloaded_load_info=load_info,
+                    log_env=False,
                 )
                 summaries.append(summary)
             aggregate = {

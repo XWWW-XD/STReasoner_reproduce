@@ -1,5 +1,5 @@
 === Stage 2.2 Environment Check ===
-timestamp: 2026-05-29T00:53:44
+timestamp: 2026-05-28T12:07:47
 pwd: /root/autodl-tmp/STReasoner_reproduce
 script: 00_new_codes/repro_autodl/experiments/scripts/stage2_2_script/run_paper_cases.py
 project_root: /root/autodl-tmp/STReasoner_reproduce/00_new_codes
@@ -7,11 +7,11 @@ repo_root: /root/autodl-tmp/STReasoner_reproduce
 git branch: autodl
 git status --short:
 M 00_new_codes/repro_autodl/experiments/stage2_2_subsets/experiment1_paper_cases/prepare.log
- D 00_new_codes/repro_autodl/experiments/stage2_2_subsets/experiment1_paper_cases/prepare_summary.json
-?? 00_new_codes/repro_autodl/experiments/stage2_2_subsets_origin/
-?? paper/
-python --version: Python 3.10.20
-torch.__version__: 2.6.0+cu124
+?? 00_new_codes/agents/
+?? 00_new_codes/reports/06_codex-vscode-reconnect-2026-05-28.md
+?? "00_new_codes/reports/07_2.2paper_case\345\256\236\351\252\214.md"
+python --version: Python 3.12.3
+torch.__version__: 2.5.1+cu124
 torch.cuda.is_available(): True
 torch.version.cuda: 12.4
 torch.cuda.get_device_name(0): NVIDIA A100-PCIE-40GB
@@ -19,7 +19,7 @@ nvidia-smi:
 0, NVIDIA A100-PCIE-40GB, 40960 MiB, 4 MiB, 570.124.04
 df -h /root/autodl-tmp:
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/sdb         50G   30G   21G  60% /root/autodl-tmp
+/dev/sdb         50G   15G   36G  29% /root/autodl-tmp
 HF_HOME=/root/autodl-tmp/cache/huggingface
 TRANSFORMERS_CACHE=/root/autodl-tmp/cache/huggingface
 HF_HUB_CACHE=/root/autodl-tmp/cache/huggingface
@@ -29,5 +29,4 @@ TORCH_HOME=/root/autodl-tmp/cache/huggingface/torch
 source paper cases dir: 00_new_codes/repro_kaggle/experiments/stage1_subsets/exp1_resource_tiny20/paper_cases
 source paper cases file: 00_new_codes/repro_kaggle/experiments/stage1_subsets/exp1_resource_tiny20/paper_cases/paper_cases_matched.jsonl
 stage 2.2 paper cases file: 00_new_codes/repro_autodl/experiments/stage2_2_subsets/experiment1_paper_cases/paper_cases_matched.jsonl
-Wrote stage 2.2 paper cases: 00_new_codes/repro_autodl/experiments/stage2_2_subsets/experiment1_paper_cases/paper_cases_matched.jsonl
-prepare_summary: {"paper_cases_path": "00_new_codes/repro_autodl/experiments/stage2_2_subsets/experiment1_paper_cases/paper_cases_matched.jsonl", "source_path": "00_new_codes/repro_kaggle/experiments/stage1_subsets/exp1_resource_tiny20/paper_cases/paper_cases_matched.jsonl", "status": "written", "selection_method": "copy_stage1_paper_cases_matched", "rows": 4, "task_counts": {"etiological": 1, "entity": 1, "correlation": 1, "forecasting": 1}, "sample_ids": ["paper_appendix_h_table6_etiological_line118", "paper_appendix_h_table7_entity_line982", "paper_appendix_h_table8_correlation_line547", "paper_appendix_h_table9_forecasting_line9"]}
+prepare_summary: {"paper_cases_path": "00_new_codes/repro_autodl/experiments/stage2_2_subsets/experiment1_paper_cases/paper_cases_matched.jsonl", "source_path": "00_new_codes/repro_kaggle/experiments/stage1_subsets/exp1_resource_tiny20/paper_cases/paper_cases_matched.jsonl", "status": "existing_valid", "rows": 4, "task_counts": {"etiological": 1, "entity": 1, "correlation": 1, "forecasting": 1}, "sample_ids": ["paper_appendix_h_table6_etiological_line118", "paper_appendix_h_table7_entity_line982", "paper_appendix_h_table8_correlation_line547", "paper_appendix_h_table9_forecasting_line9"]}
