@@ -36,6 +36,21 @@ ChatTS-Training
 bedrock_batch_inputs
 bedrock_batch_outputs
 *.safetensors
+*.safetensors.index.json
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.gguf
+*.onnx
+.cache/
+**/.cache/
+cache/
+model_cache/
+hf_cache/
+huggingface_cache/
+transformers_cache/
+**/models--*/
 Video-R1-rs
 Video-R1
 qwen-vl-utils
@@ -50,6 +65,7 @@ tmp_ts_images/
 run.sh
 
 # base model
+base_model/
 base_model/Qwen3-8B
 base_model/Qwen2.5-7B
 base_model/Qwen2.5-14B-Instruct
