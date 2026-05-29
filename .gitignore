@@ -121,3 +121,7 @@ wheels/
 *.incomplete
 *.lock
 __pycache__/
+
+# Python cache
+__pycache__/
+*.pyc
