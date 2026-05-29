@@ -130,7 +130,10 @@ def worker_vllm(input_queue, output_queue, gpu_id, batch_size, sample_n, finishe
                     break
             
             if batch_prompts:
-                answers = llm.generate(batch_prompts, sampling_params, use_tqdm=False)
+                request_sampling_params = sampling_params
+                if batch_args and batch_args[0] and isinstance(batch_args[0][-1], SamplingParams):
+                    request_sampling_params = batch_args[0][-1]
+                answers = llm.generate(batch_prompts, request_sampling_params, use_tqdm=False)
                 if sample_n > 1:
                     answers = [i.outputs for i in answers]
                     answers = [[j.text for j in i] for i in answers]
@@ -180,7 +183,10 @@ def worker_vllm_ts(input_queue, output_queue, gpu_id, batch_size, sample_n, fini
                     break
             
             if batch_inputs:
-                answers = llm.generate(batch_inputs, sampling_params, use_tqdm=False)
+                request_sampling_params = sampling_params
+                if batch_args and batch_args[0] and isinstance(batch_args[0][-1], SamplingParams):
+                    request_sampling_params = batch_args[0][-1]
+                answers = llm.generate(batch_inputs, request_sampling_params, use_tqdm=False)
                 if sample_n > 1:
                     answers = [i.outputs for i in answers]
                     answers = [[j.text for j in i] for i in answers]

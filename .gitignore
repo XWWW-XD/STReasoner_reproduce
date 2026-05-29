@@ -124,3 +124,20 @@ scripts/qwen3-14b/train_stage1+2+3_w_spatial_54.201.sh
 # scripts/qwen3-8b/train_stage3_w_spatial.sh
 # scripts/qwen3-8b/train_stage3.sh
 wheels/
+base_model/
+hf_cache/
+cache/
+wheels/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.gguf
+*.incomplete
+*.lock
+__pycache__/
+
+# Python cache
+__pycache__/
+*.pyc

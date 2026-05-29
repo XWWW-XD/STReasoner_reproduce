@@ -8,7 +8,7 @@
 
 ## 实验配置选择经验
 
-- 先按仓库 requirements 选解释器；本项目优先用 `/root/autodl-tmp/conda/envs/str-py310/bin/python`。
+- 先按仓库 requirements 选解释器；不能使用默认 /root/miniconda3/bin/python，本项目优先用 `/root/autodl-tmp/conda/envs/str-py310/bin/python`。
 - 跑正式实验前先做最小链路检查：编译、数据、parser import、1 条样例 smoke。
 - 模型后端优先保持脚本默认配置；不要为了跑通擅自切换 attention backend。
 - 输出放独立 smoke 目录，避免污染正式实验结果。
@@ -33,6 +33,18 @@
 - 选择题 parser 不要只看文本开头，要优先读末尾 `Answer: X`、`\boxed{X}` 等最终答案。
 - forecasting parser 不要抽全文所有数字，优先读最终 JSON/list 预测数组。
 - 修 parser 时只能写通用规则，不按 sample_id 或 gold 写特例。
+- raw response 格式和 parser 结果要分开记：`format_success` 看原文是否严格有 `<answer>`，`formatted_answer` 是通用后处理结果。
+- paper_cases / SmartTest 小样例不能当作论文整体效果；验证论文真实效果要另跑完整 ST-Test 四类任务。
+
+## ST-Test 经验
+
+- ST-Test 四类数据在 `data/ST-Bench/ST-Test/`；完整验证不要用 SmartTest 或 paper_cases 替代。
+- 优先使用仓库原始 `inference/inference_tsmllm_vllm.py` 和 `evaluation/evaluate.py`。
+- 从文件路径直接跑 `evaluation/evaluate.py` 时加 `PYTHONPATH=.`，否则可能 import 不到 `evaluation` 包。
+- 完整跑 ST-Test 时不要每条样例重新加载 vLLM/8B 模型，按任务长进程连续生成。
+- ST-Test 正式实验必须用 `max_tokens=6144`；低于 6144 的结果只能记为预跑/链路检查，不能当正式结果。
+- `inference/llm_utils.py` 里 worker 要确认真的使用调用方传入的 `SamplingParams`，否则 CLI 的 `--max_tokens` 可能只是摆设。
+- 本轮完整 ST-Test `max_tokens=6144` 输出在 `exp/sttest_full_*_6144/`；逐条 raw/gold 对齐在 `00_new_codes/reports/artifacts/sttest_full_6144_outputs_with_gold.jsonl`。
 
 ## 术语经验
 
@@ -51,6 +63,7 @@
 
 - codex需在reports下建XX-YY-MM-DD-id，其中XX是你顺着序号往后数一个，YY-MM-DD是今天日期，id从1开始，表示是今天的第几个日志
 
+<<<<<<< HEAD
 - 内容需要你从你在对话框中的输出填写，填写HH-MM：发生了什么事情。
 
 
@@ -62,3 +75,9 @@
 ## 文件名
 
 - stage2包括2.1, 2.2等实验
+=======
+- 内容需要你从你在对话框中的输出填写，填写"HH:MM：发生了什么事情"。
+
+- 请写日志的时候，将这次任务执行中对话框的所有阶段性进展全部写入日志文件中，不要再去修改措辞。
+
+>>>>>>> origin/autodl
