@@ -1,0 +1,18 @@
+{
+  "paper_cases_path": "00_new_codes/repro_autodl/experiments/stage2_2_subsets/experiment1_paper_cases/paper_cases_matched.jsonl",
+  "source_path": "00_new_codes/repro_kaggle/experiments/stage1_subsets/exp1_resource_tiny20/paper_cases/paper_cases_matched.jsonl",
+  "status": "existing_valid",
+  "rows": 4,
+  "task_counts": {
+    "etiological": 1,
+    "entity": 1,
+    "correlation": 1,
+    "forecasting": 1
+  },
+  "sample_ids": [
+    "paper_appendix_h_table6_etiological_line118",
+    "paper_appendix_h_table7_entity_line982",
+    "paper_appendix_h_table8_correlation_line547",
+    "paper_appendix_h_table9_forecasting_line9"
+  ]
+}

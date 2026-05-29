@@ -23,6 +23,21 @@
 - 同一 AutoDL 数据盘正常关机/开机后通常不用重下模型，直接加载即可；释放实例、换机器、清盘才需要重下。
 - 跑 smoke 或正式实验可加 `HF_HUB_OFFLINE=1`，用于确认脚本命中本地模型，不重新联网拉权重。
 - Stage 2.2 当前脚本硬编码模型名 `Time-HD-Anonymous/STReasoner-8B`，不要误改成未确认的本地别名。
+<<<<<<< HEAD
+=======
+
+## Stage 2.2 paper_cases 经验
+
+- `run-all` 不应每条样例重新加载一次 8B 模型；优先一次加载、循环复用。
+- 先区分“生成失败”和“评测提取失败”；paper_cases 里模型可能答对但没有 `<answer>` 标签。
+- 选择题 parser 不要只看文本开头，要优先读末尾 `Answer: X`、`\boxed{X}` 等最终答案。
+- forecasting parser 不要抽全文所有数字，优先读最终 JSON/list 预测数组。
+- 修 parser 时只能写通用规则，不按 sample_id 或 gold 写特例。
+
+## 术语经验
+
+- `Qwen3TSForCausalLM` 是 STReasoner-8B 的加载架构类名，不代表换成了别的实验模型。
+>>>>>>> origin/autodl
 - tokenizer 的 `.decode()` 只是 token id 转字符串的 API，不要把它写成独立实验阶段或正式指标。
 
 ## 必须遵守的规则

@@ -21,7 +21,7 @@ def _normalize_text(text: Any) -> str:
     return str(text).strip()
 
 
-# 选择题：先抽<answer>，再找其中的A/B/C/D
+# 选择题：优先抽显式最终答案；没有时再退回旧的开头匹配。
 def _normalize_choice(text: Any) -> str:
     if text is None:
         return ""
@@ -29,6 +29,27 @@ def _normalize_choice(text: Any) -> str:
     if not value:
         return ""
     value = _extract_tag_content(value, "answer")
+
+    boxed_matches = re.findall(r"\\boxed\{\s*([A-Da-d])\s*\}", value)
+    if boxed_matches:
+        return boxed_matches[-1].upper()
+
+    answer_matches = re.findall(
+        r"(?:final\s+)?answer\s*[:：]\s*(?:option\s*)?([A-Da-d])\b",
+        value,
+        flags=re.IGNORECASE,
+    )
+    if answer_matches:
+        return answer_matches[-1].upper()
+
+    option_matches = re.findall(
+        r"\boption\s+([A-Da-d])\b[^\n.]{0,160}\b(?:best|correct|accurate|fits|captures|answer|selected|most)\b",
+        value,
+        flags=re.IGNORECASE,
+    )
+    if option_matches:
+        return option_matches[-1].upper()
+
     match = re.match(r"\s*([A-Da-d])[\.\)\s-]*", value)
     if match:
         return match.group(1).upper()
@@ -66,6 +87,23 @@ def _parse_series(text: Any) -> List[float]:
             return [float(parsed)]
     except json.JSONDecodeError:
         pass
+
+    prediction_lists = re.findall(
+        r'"(?:predictions?|forecast|answer)"\s*:\s*(\[[^\[\]]+\])',
+        text,
+        flags=re.IGNORECASE,
+    )
+    for candidate in reversed(prediction_lists):
+        parsed = _parse_series(candidate)
+        if parsed:
+            return parsed
+
+    bracket_lists = re.findall(r"\[[^\[\]]+\]", text)
+    for candidate in reversed(bracket_lists):
+        numbers = re.findall(r"-?\d+\.?\d*", candidate)
+        if numbers and len(numbers) <= 20:
+            return [float(n) for n in numbers]
+
     numbers = re.findall(r"-?\d+\.?\d*", text)
     return [float(n) for n in numbers]
 
