@@ -932,8 +932,6 @@ def base_prediction_record(sample: dict[str, Any], case: str, smarttest_index: i
         "generate_error": None,
         "gpu_name": gpu_name,
         "gpu_total_memory": gpu_total_memory,
-        "gpu_memory_before_generate": None,
-        "gpu_memory_after_generate": None,
         "gpu_peak_memory": None,
         "latency_sec": None,
         "tokens_per_sec": None,
@@ -1050,8 +1048,6 @@ def summarize_case(
             "actual_new_tokens": record.get("actual_new_tokens"),
             "latency_sec": record.get("latency_sec"),
             "tokens_per_sec": record.get("tokens_per_sec"),
-            "gpu_memory_before_generate": record.get("gpu_memory_before_generate"),
-            "gpu_memory_after_generate": record.get("gpu_memory_after_generate"),
             "gpu_peak_memory": record.get("gpu_peak_memory"),
         },
         "official_metrics": official_metrics,
@@ -1143,7 +1139,6 @@ def run_one_case(
         logger.log(f"token_info: {json.dumps(json_safe(token_info), ensure_ascii=False)}")
 
         inputs = move_inputs_to_device(inputs, first_model_device(model))
-        record["gpu_memory_before_generate"] = gpu_memory_snapshot()
         sync_cuda()
         reset_gpu_peak_stats()
 
@@ -1156,7 +1151,6 @@ def run_one_case(
         record["generate_success"] = True
         record["latency_sec"] = round(latency, 3)
         record["gpu_peak_memory"] = gpu_peak_snapshot()
-        record["gpu_memory_after_generate"] = gpu_memory_snapshot()
         stage = "decode"
         decoded, actual_new_tokens, decode_error = decode_outputs(outputs, inputs, processor, tokenizer)
         record["actual_new_tokens"] = actual_new_tokens
@@ -1190,7 +1184,6 @@ def run_one_case(
         message = f"{exc.__class__.__name__}: {short_error(exc)}"
         logger.exception(f"{stage} failed", exc)
         record["latency_sec"] = round(latency, 3)
-        record["gpu_memory_after_generate"] = gpu_memory_snapshot()
         record["gpu_peak_memory"] = gpu_peak_snapshot()
         record["generate_error"] = message
         record["failure_type"] = failure_type_from(stage, bool(record["generate_success"]), False, False)

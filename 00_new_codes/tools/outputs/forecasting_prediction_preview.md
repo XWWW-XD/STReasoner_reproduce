@@ -28,10 +28,6 @@
 | `generate_error` |  |
 | `gpu_name` | NVIDIA A100-SXM4-80GB |
 | `gpu_total_memory` | 79.251 |
-| `gpu_memory_before_generate.gpu0.allocated_gib` | 15.384 |
-| `gpu_memory_before_generate.gpu0.reserved_gib` | 15.48 |
-| `gpu_memory_after_generate.gpu0.allocated_gib` | 15.392 |
-| `gpu_memory_after_generate.gpu0.reserved_gib` | 18.824 |
 | `gpu_peak_memory.gpu0.max_allocated_gib` | 15.696 |
 | `gpu_peak_memory.gpu0.max_reserved_gib` | 18.824 |
 | `latency_sec` | 375.926 |

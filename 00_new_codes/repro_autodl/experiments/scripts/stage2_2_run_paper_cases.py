@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Stage 2.2 paper-cases runner for AutoDL A100 fp16 single-GPU inference.
+"""Stage 2.2 subset runner for AutoDL A100 fp16 single-GPU inference.
 
-This script was copied from the stage2 SmartTest runner, then adapted to:
-- use the Stage 1 paper-case dataset from the paper examples;
-- run by paper-case sample_id or sample_index instead of forecasting/non_forecasting;
-- use evaluation/evaluate_qa.py parsing helpers rather than strict local parsing;
-- write one model text field named "response", matching evaluation/load_prediction_files.
+Runs any ST-Bench-style JSONL subset (mixed tasks supported) with:
+- HuggingFace generate + Qwen3TSProcessor (AutoDL single-GPU path);
+- official `inference/prompt.json` format suffix appended by default;
+- one model load reused in `run-all`;
+- outputs compatible with `evaluation/evaluate_qa.py` (`response` field).
+
+For full single-task ST-Test at scale, prefer `inference/inference_tsmllm_vllm.py`.
 """
 
 from __future__ import annotations
@@ -29,7 +31,6 @@ import importlib.util
 import json
 import math
 import os
-import re
 import subprocess
 import sys
 import time
@@ -58,6 +59,7 @@ PAPER_CASE_SOURCE_PATH = PAPER_CASE_SOURCE_DIR / "PaperCases.jsonl"
 STAGE22_DATA_DIR = REPRO_AUTODL_ROOT / "experiments/stage2_2_subsets/experiment1_paper_cases"
 STAGE22_DATA_PATH = STAGE22_DATA_DIR / "PaperCases.jsonl"
 RESULT_ROOT = REPRO_AUTODL_ROOT / "experiments/stage2_2_paper_cases"
+ACTIVE_DATASET_PATH: Path = STAGE22_DATA_PATH
 AUTHOR_EVALUATE_QA = REPO_ROOT / "evaluation/evaluate_qa.py"
 SMOKE_PATCH_SOURCE = REPRO_KAGGLE_ROOT / "00_smoke_test_scripts/05_eval_sttest_tiny.py"
 
@@ -67,6 +69,9 @@ DEFAULT_MAX_NEW_TOKENS = 6144
 DEFAULT_AUTODL_CACHE = "/root/autodl-tmp/cache/huggingface"
 DEFAULT_ATTN_BACKEND = "flash_attention_2"
 PATCH_SIZE = 8
+
+
+from inference.prompt_utils import get_prompt_suffix  # noqa: E402
 
 
 TASK_TO_OFFICIAL = {
@@ -276,7 +281,7 @@ def log_environment(logger: TeeLogger) -> None:
 
 
 def sample_task(sample: dict[str, Any]) -> str:
-    return str(sample.get("task") or sample.get("category") or "unknown").lower()
+    return str(sample.get("category") or "unknown").lower()
 
 
 def official_task_name(task: str) -> str:
@@ -284,6 +289,14 @@ def official_task_name(task: str) -> str:
     if task_key not in TASK_TO_OFFICIAL:
         raise ValueError(f"Unsupported task for official evaluation: {task}")
     return TASK_TO_OFFICIAL[task_key]
+
+
+def compose_model_prompt(sample: dict[str, Any], use_format_prompt: bool) -> str:
+    prompt = sample["input"]
+    if not use_format_prompt:
+        return prompt
+    suffix = get_prompt_suffix(official_task_name(sample_task(sample)))
+    return f"{prompt.rstrip()}\n\n{suffix}" if suffix else prompt
 
 
 def validate_sample(sample: dict[str, Any], row_name: str) -> None:
@@ -304,15 +317,20 @@ def validate_sample(sample: dict[str, Any], row_name: str) -> None:
     official_task_name(sample_task(sample))
 
 
-def validate_paper_case_rows(rows: list[dict[str, Any]]) -> None:
+def validate_dataset_rows(rows: list[dict[str, Any]]) -> None:
     if not rows:
-        raise ValueError("Stage 2.2 paper cases file is empty")
+        raise ValueError("dataset file is empty")
     for idx, sample in enumerate(rows):
-        validate_sample(sample, f"paper_cases row {idx}")
-    sample_ids = [row.get("sample_id") for row in rows]
-    duplicate_ids = [sample_id for sample_id, count in Counter(sample_ids).items() if count > 1]
-    if duplicate_ids:
-        raise ValueError(f"paper_cases has duplicate sample_id values: {duplicate_ids}")
+        validate_sample(sample, f"dataset row {idx}")
+    sample_ids = [row.get("sample_id") for row in rows if row.get("sample_id")]
+    if sample_ids:
+        duplicate_ids = [sample_id for sample_id, count in Counter(sample_ids).items() if count > 1]
+        if duplicate_ids:
+            raise ValueError(f"dataset has duplicate sample_id values: {duplicate_ids}")
+
+
+def validate_paper_case_rows(rows: list[dict[str, Any]]) -> None:
+    validate_dataset_rows(rows)
 
 
 def stage22_data_exists_and_valid(logger: TeeLogger) -> bool:
@@ -766,14 +784,17 @@ def estimate_timeseries_patch_tokens(timeseries: Any) -> int:
     return total
 
 
-def build_inputs(processor: Any, tokenizer: Any, sample: dict[str, Any]) -> tuple[Any, dict[str, Any]]:
+def build_inputs(
+    processor: Any,
+    tokenizer: Any,
+    sample: dict[str, Any],
+    use_format_prompt: bool = True,
+) -> tuple[Any, dict[str, Any]]:
     if processor is None:
         raise RuntimeError("AutoProcessor is unavailable; cannot build text + timeseries inputs.")
 
-    prompt = sample.get("input")
+    prompt = compose_model_prompt(sample, use_format_prompt)
     timeseries = sample.get("timeseries")
-    if not isinstance(prompt, str):
-        raise TypeError("sample['input'] must be a string")
     if not isinstance(timeseries, list):
         raise TypeError("sample['timeseries'] must be a list")
     placeholder_count = prompt.count("<ts><ts/>")
@@ -795,6 +816,7 @@ def build_inputs(processor: Any, tokenizer: Any, sample: dict[str, Any]) -> tupl
         "processor_input_ids_length": processor_input_tokens,
         "timeseries_patch_tokens_estimate": ts_tokens,
         "input_tokens_metric": input_token_metric,
+        "format_prompt_applied": use_format_prompt,
     }
 
 
@@ -817,7 +839,7 @@ def generated_outputs_to_response(outputs: Any, inputs: Any, processor: Any, tok
 
 
 def parse_model_answer(task: str, response: str | None) -> tuple[Any, bool, str | None]:
-    """Parse with the same permissive helpers used by evaluation/evaluate_qa.py."""
+    """Parse with the same tag-first helpers used by evaluation/evaluate_qa.py."""
 
     if response is None:
         return None, False, "no_response"
@@ -841,56 +863,6 @@ def parse_model_answer(task: str, response: str | None) -> tuple[Any, bool, str 
     return extracted, bool(str(extracted).strip()), None if str(extracted).strip() else "empty_extracted_answer"
 
 
-def canonical_formatted_answer(task: str, parsed_answer: Any, parse_success: bool) -> str | None:
-    if not parse_success:
-        return None
-    task_key = task.lower()
-    if task_key == "forecasting":
-        if not isinstance(parsed_answer, list):
-            return None
-        values = [round(float(value), 6) for value in parsed_answer]
-        return f"<answer>{json.dumps(values, ensure_ascii=False)}</answer>"
-    if task_key in {"entity", "etiological", "correlation", "causal"}:
-        value = str(parsed_answer).strip().upper()
-        if value in {"A", "B", "C", "D"}:
-            return f"<answer>{value}</answer>"
-    if parsed_answer is not None:
-        return f"<answer>{str(parsed_answer).strip()}</answer>"
-    return None
-
-
-def answer_format_diagnostics(task: str, response: str | None, parsed_answer: Any, parse_success: bool) -> dict[str, Any]:
-    text = "" if response is None else str(response)
-    answer_open_count = len(re.findall(r"<answer\b[^>]*>", text, flags=re.IGNORECASE))
-    answer_close_count = len(re.findall(r"</answer>", text, flags=re.IGNORECASE))
-    final_answer_open_count = len(re.findall(r"<final_answer\b[^>]*>", text, flags=re.IGNORECASE))
-    final_answer_close_count = len(re.findall(r"</final_answer>", text, flags=re.IGNORECASE))
-    has_exact_answer_tag = answer_open_count == 1 and answer_close_count == 1
-    formatted_answer = canonical_formatted_answer(task, parsed_answer, parse_success)
-    if has_exact_answer_tag:
-        format_error = None
-    elif not text.strip():
-        format_error = "empty_response"
-    elif answer_open_count or answer_close_count:
-        format_error = f"answer_tag_count_mismatch: open={answer_open_count}, close={answer_close_count}"
-    elif final_answer_open_count or final_answer_close_count:
-        format_error = (
-            "uses_final_answer_tag_instead_of_answer_tag: "
-            f"open={final_answer_open_count}, close={final_answer_close_count}"
-        )
-    else:
-        format_error = "missing_answer_tag"
-    return {
-        "format_success": has_exact_answer_tag,
-        "format_error": format_error,
-        "raw_answer_tag_open_count": answer_open_count,
-        "raw_answer_tag_close_count": answer_close_count,
-        "raw_final_answer_tag_open_count": final_answer_open_count,
-        "raw_final_answer_tag_close_count": final_answer_close_count,
-        "formatted_answer": formatted_answer,
-    }
-
-
 def failure_type_from(stage: str, generate_success: bool, parse_success: bool) -> str:
     if stage == "model_loading":
         return "load_failed"
@@ -909,23 +881,27 @@ def output_paths(output_root: Path) -> dict[str, Path]:
     }
 
 
-def load_stage22_rows() -> list[dict[str, Any]]:
-    if not STAGE22_DATA_PATH.exists():
-        if not PAPER_CASE_SOURCE_PATH.exists():
-            raise FileNotFoundError(
-                f"stage 2.2 data not found: {STAGE22_DATA_PATH}; source also missing: {PAPER_CASE_SOURCE_PATH}"
-            )
-        rows = load_jsonl(PAPER_CASE_SOURCE_PATH)
-        validate_paper_case_rows(rows)
-        write_jsonl(STAGE22_DATA_PATH, rows)
-    rows = load_jsonl(STAGE22_DATA_PATH)
-    validate_paper_case_rows(rows)
+def load_dataset_rows(dataset_path: Path | None = None) -> list[dict[str, Any]]:
+    path = dataset_path or ACTIVE_DATASET_PATH
+    if not path.exists():
+        if path == STAGE22_DATA_PATH and PAPER_CASE_SOURCE_PATH.exists():
+            rows = load_jsonl(PAPER_CASE_SOURCE_PATH)
+            validate_dataset_rows(rows)
+            write_jsonl(STAGE22_DATA_PATH, rows)
+        else:
+            raise FileNotFoundError(f"dataset not found: {path}")
+    rows = load_jsonl(path)
+    validate_dataset_rows(rows)
     return rows
+
+
+def load_stage22_rows() -> list[dict[str, Any]]:
+    return load_dataset_rows(ACTIVE_DATASET_PATH)
 
 
 def list_sample_choices(rows: list[dict[str, Any]]) -> str:
     return "\n".join(
-        f"{idx}: sample_id={row.get('sample_id')} task={sample_task(row)} "
+        f"{idx}: sample_id={row.get('sample_id')} category={sample_task(row)} "
         f"paper_case_id={row.get('paper_case_id')}"
         for idx, row in enumerate(rows)
     )
@@ -956,11 +932,11 @@ def base_prediction_record(sample: dict[str, Any], sample_index: int, max_new_to
         "original_index": sample.get("original_line_index"),
         "sample_index": sample_index,
         "paper_case_id": sample.get("paper_case_id"),
-        "paper_location": sample.get("paper_location"),
-        "task": sample_task(sample),
         "category": sample.get("category"),
+        "official_task": official_task_name(sample_task(sample)),
         "source_file": sample.get("source_file"),
         "input_preview": preview(sample.get("input")),
+        "format_prompt_applied": None,
         "input_tokens": None,
         "max_new_tokens": max_new_tokens,
         "actual_new_tokens": None,
@@ -969,8 +945,6 @@ def base_prediction_record(sample: dict[str, Any], sample_index: int, max_new_to
         "generate_error": None,
         "gpu_name": gpu_name,
         "gpu_total_memory": gpu_total_memory,
-        "gpu_memory_before_generate": None,
-        "gpu_memory_after_generate": None,
         "gpu_peak_memory": None,
         "latency_sec": None,
         "tokens_per_sec": None,
@@ -978,13 +952,6 @@ def base_prediction_record(sample: dict[str, Any], sample_index: int, max_new_to
         "gold_answer": sample.get("output"),
         "parse_success": False,
         "parse_error": None,
-        "format_success": False,
-        "format_error": None,
-        "raw_answer_tag_open_count": None,
-        "raw_answer_tag_close_count": None,
-        "raw_final_answer_tag_open_count": None,
-        "raw_final_answer_tag_close_count": None,
-        "formatted_answer": None,
         "failure_type": "unknown",
     }
 
@@ -1069,11 +1036,9 @@ def summarize_sample(
             "sample_id": sample.get("sample_id"),
             "sample_index": record.get("sample_index"),
             "original_index": sample.get("original_line_index"),
-            "task": sample_task(sample),
             "category": sample.get("category"),
             "source_file": sample.get("source_file"),
             "paper_case_id": sample.get("paper_case_id"),
-            "paper_location": sample.get("paper_location"),
             "gold_answer": sample.get("output"),
         },
         "load": {
@@ -1085,14 +1050,10 @@ def summarize_sample(
         "run_metrics": {
             "generate_success": record.get("generate_success"),
             "parse_success": record.get("parse_success"),
-            "format_success": record.get("format_success"),
-            "format_error": record.get("format_error"),
             "input_tokens": record.get("input_tokens"),
             "actual_new_tokens": record.get("actual_new_tokens"),
             "latency_sec": record.get("latency_sec"),
             "tokens_per_sec": record.get("tokens_per_sec"),
-            "gpu_memory_before_generate": record.get("gpu_memory_before_generate"),
-            "gpu_memory_after_generate": record.get("gpu_memory_after_generate"),
             "gpu_peak_memory": record.get("gpu_peak_memory"),
         },
         "official_metrics": official_metrics,
@@ -1127,6 +1088,7 @@ def run_one_sample(
     preloaded_load_time_sec: float | None = None,
     preloaded_load_info: dict[str, Any] | None = None,
     log_env: bool = True,
+    use_format_prompt: bool = True,
 ) -> dict[str, Any]:
     ensure_autodl_cache_env()
     ensure_single_gpu_env()
@@ -1138,6 +1100,7 @@ def run_one_sample(
     logger.log(f"max_new_tokens: {max_new_tokens}")
     logger.log(f"attn_backend: {attn_backend}")
     logger.log(f"output_root: {rel(output_root)}")
+    logger.log(f"format_prompt_applied: {use_format_prompt}")
 
     sample, selected_index = select_paper_case_sample(sample_index, sample_id)
     validate_sample(sample, f"paper_cases sample {selected_index}")
@@ -1156,6 +1119,7 @@ def run_one_sample(
         logger.log("Overwrite enabled; replacing only this paper-case sample in the unified prediction file.")
 
     record = base_prediction_record(sample, selected_index, max_new_tokens)
+    record["format_prompt_applied"] = use_format_prompt
     load_success = False
     load_error = None
     load_time_sec = None
@@ -1171,28 +1135,6 @@ def run_one_sample(
         load_time_sec = preloaded_load_time_sec
         load_info = preloaded_load_info
         load_success = True
-<<<<<<< HEAD
-    except Exception as exc:
-        load_error = f"{exc.__class__.__name__}: {short_error(exc)}"
-        logger.exception("model loading failed", exc)
-        record["generate_error"] = load_error
-        record["failure_type"] = failure_type_from(stage, False, False, False)
-        official_metrics = official_metrics_for_record(sample, record)
-        upsert_jsonl(paths["prediction"], record, ("sample_id",))
-        summary = summarize_sample(
-            sample,
-            record,
-            load_success,
-            load_error,
-            load_time_sec,
-            load_info,
-            official_metrics,
-            output_root,
-            attn_backend,
-        )
-        write_json(paths["summary"], summary)
-        return summary
-=======
         logger.log("Using preloaded model for this sample.")
     else:
         try:
@@ -1204,7 +1146,7 @@ def run_one_sample(
             record["generate_error"] = load_error
             record["failure_type"] = failure_type_from(stage, False, False)
             official_metrics = official_metrics_for_record(sample, record)
-            append_jsonl(paths["prediction"], record)
+            upsert_jsonl(paths["prediction"], record, ("sample_id",))
             summary = summarize_sample(
                 sample,
                 record,
@@ -1218,19 +1160,17 @@ def run_one_sample(
             )
             write_json(paths["summary"], summary)
             return summary
->>>>>>> origin/autodl
 
     started = time.perf_counter()
     try:
         import torch
 
         stage = "processor"
-        inputs, token_info = build_inputs(processor, tokenizer, sample)
+        inputs, token_info = build_inputs(processor, tokenizer, sample, use_format_prompt=use_format_prompt)
         record["input_tokens"] = token_info["input_tokens_metric"]
         logger.log(f"token_info: {json.dumps(json_safe(token_info), ensure_ascii=False)}")
 
         inputs = move_inputs_to_device(inputs, first_model_device(model))
-        record["gpu_memory_before_generate"] = gpu_memory_snapshot()
         sync_cuda()
         reset_gpu_peak_stats()
 
@@ -1242,7 +1182,6 @@ def run_one_sample(
         latency = time.perf_counter() - started
         record["latency_sec"] = round(latency, 3)
         record["gpu_peak_memory"] = gpu_peak_snapshot()
-        record["gpu_memory_after_generate"] = gpu_memory_snapshot()
         response_text, actual_new_tokens, response_error = generated_outputs_to_response(outputs, inputs, processor, tokenizer)
         record["actual_new_tokens"] = actual_new_tokens
         if actual_new_tokens is not None and latency > 0:
@@ -1257,7 +1196,6 @@ def run_one_sample(
         record["parsed_answer"] = parsed_answer
         record["parse_success"] = parse_success
         record["parse_error"] = parse_error
-        record.update(answer_format_diagnostics(sample_task(sample), response_text, parsed_answer, parse_success))
         record["failure_type"] = failure_type_from(
             stage,
             bool(record["generate_success"]),
@@ -1272,7 +1210,6 @@ def run_one_sample(
         message = f"{exc.__class__.__name__}: {short_error(exc)}"
         logger.exception(f"{stage} failed", exc)
         record["latency_sec"] = round(latency, 3)
-        record["gpu_memory_after_generate"] = gpu_memory_snapshot()
         record["gpu_peak_memory"] = gpu_peak_snapshot()
         record["generate_error"] = message
         record["failure_type"] = failure_type_from(stage, bool(record["generate_success"]), False)
@@ -1296,6 +1233,26 @@ def run_one_sample(
     return summary
 
 
+def add_dataset_arg(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument(
+        "--dataset",
+        type=Path,
+        default=None,
+        help="ST-Bench-style JSONL subset. Defaults to stage2_2 PaperCases.jsonl.",
+    )
+
+
+def add_format_prompt_arg(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument(
+        "--format-prompt",
+        type=str2bool,
+        nargs="?",
+        const=True,
+        default=True,
+        help="Append official inference/prompt.json suffix before generation (default: true).",
+    )
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Stage 2.2 paper-cases fp16 A100 single-GPU runner.")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -1303,9 +1260,10 @@ def parse_args() -> argparse.Namespace:
     prepare = subparsers.add_parser("prepare", help="Copy and validate the unified paper_cases dataset.")
     prepare.add_argument("--overwrite", type=str2bool, nargs="?", const=True, default=False)
 
-    subparsers.add_parser("list", help="List available Stage 2.2 paper-case samples.")
+    list_parser = subparsers.add_parser("list", help="List available dataset samples.")
+    add_dataset_arg(list_parser)
 
-    run = subparsers.add_parser("run", help="Run exactly one paper-case sample.")
+    run = subparsers.add_parser("run", help="Run exactly one dataset sample.")
     selector = run.add_mutually_exclusive_group(required=True)
     selector.add_argument("--sample-index", type=int, default=None)
     selector.add_argument("--sample-id", type=str, default=None)
@@ -1318,8 +1276,10 @@ def parse_args() -> argparse.Namespace:
         choices=["flash_attention_2", "sdpa", "eager"],
         default=DEFAULT_ATTN_BACKEND,
     )
+    add_dataset_arg(run)
+    add_format_prompt_arg(run)
 
-    run_all = subparsers.add_parser("run-all", help="Run all Stage 2.2 paper-case samples sequentially.")
+    run_all = subparsers.add_parser("run-all", help="Run all dataset samples sequentially with one model load.")
     run_all.add_argument("--max-new-tokens", type=int, default=DEFAULT_MAX_NEW_TOKENS)
     run_all.add_argument("--overwrite", type=str2bool, nargs="?", const=True, default=False)
     run_all.add_argument("--resume", type=str2bool, nargs="?", const=True, default=False)
@@ -1329,12 +1289,23 @@ def parse_args() -> argparse.Namespace:
         choices=["flash_attention_2", "sdpa", "eager"],
         default=DEFAULT_ATTN_BACKEND,
     )
+    add_dataset_arg(run_all)
+    add_format_prompt_arg(run_all)
 
     return parser.parse_args()
 
 
+def set_active_dataset(dataset: Path | None) -> Path:
+    global ACTIVE_DATASET_PATH
+    if dataset is not None:
+        ACTIVE_DATASET_PATH = dataset
+    return ACTIVE_DATASET_PATH
+
+
 def main() -> int:
     args = parse_args()
+    if args.command in {"list", "run", "run-all"}:
+        set_active_dataset(getattr(args, "dataset", None))
     if args.command == "prepare":
         logger = TeeLogger(STAGE22_DATA_DIR / "prepare.log")
         try:
@@ -1362,6 +1333,7 @@ def main() -> int:
                 output_root=args.output_root,
                 logger=logger,
                 attn_backend=args.attn_backend,
+                use_format_prompt=args.format_prompt,
             )
             logger.log(f"run_summary: {json.dumps(json_safe(summary), ensure_ascii=False)}")
             return 0
@@ -1390,6 +1362,8 @@ def main() -> int:
             logger.log(f"max_new_tokens: {args.max_new_tokens}")
             logger.log(f"attn_backend: {args.attn_backend}")
             logger.log(f"output_root: {rel(args.output_root)}")
+            logger.log(f"dataset: {rel(ACTIVE_DATASET_PATH)}")
+            logger.log(f"format_prompt_applied: {args.format_prompt}")
             model, processor, tokenizer, load_time_sec, load_info = load_model_and_processors(logger, args.attn_backend)
 
             summaries = []
@@ -1410,6 +1384,7 @@ def main() -> int:
                     preloaded_load_time_sec=load_time_sec,
                     preloaded_load_info=load_info,
                     log_env=False,
+                    use_format_prompt=args.format_prompt,
                 )
                 summaries.append(summary)
             aggregate = {

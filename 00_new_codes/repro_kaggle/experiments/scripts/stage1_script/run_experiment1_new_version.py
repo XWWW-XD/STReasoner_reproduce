@@ -593,9 +593,7 @@ def base_record(sample: dict[str, Any], group: str, local_index: int) -> dict[st
             "input_tokens": None,
             "actual_new_tokens": None,
             "token_details": None,
-            "gpu_memory_before_generate": None,
-            "gpu_memory_after_generate": None,
-            "gpu_peak_memory_during_generate": None,
+            "gpu_peak_memory": None,
             "error_stage": "none",
             "error_type": None,
             "error_message": None,
@@ -650,7 +648,6 @@ def run_one_sample(
         record["run"]["input_tokens"] = token_info["input_tokens_metric"]
         inputs = move_inputs_to_device(inputs, first_model_device(model))
 
-        record["run"]["gpu_memory_before_generate"] = gpu_memory_snapshot()
         sync_cuda()
         reset_gpu_peak_stats()
 
@@ -662,8 +659,7 @@ def run_one_sample(
         latency = time.perf_counter() - started
         record["run"]["generate_success"] = True
         record["run"]["latency_sec"] = round(latency, 3)
-        record["run"]["gpu_peak_memory_during_generate"] = gpu_peak_snapshot()
-        record["run"]["gpu_memory_after_generate"] = gpu_memory_snapshot()
+        record["run"]["gpu_peak_memory"] = gpu_peak_snapshot()
 
         stage = "decode"
         decoded, actual_new_tokens, decode_error = decode_outputs(outputs, inputs, processor, tokenizer)
@@ -702,8 +698,7 @@ def run_one_sample(
         record["run"].update(
             {
                 "latency_sec": round(latency, 3),
-                "gpu_memory_after_generate": gpu_memory_snapshot(),
-                "gpu_peak_memory_during_generate": gpu_peak_snapshot(),
+                "gpu_peak_memory": gpu_peak_snapshot(),
                 "error_stage": stage,
                 "error_type": exc.__class__.__name__,
                 "error_message": message,
@@ -927,7 +922,7 @@ def summarize_official_metrics(metrics_by_scope: dict[str, Any]) -> dict[str, An
 def max_peak_memory(records: list[dict[str, Any]]) -> dict[str, dict[str, float]]:
     peak: dict[str, dict[str, float]] = {}
     for record in records:
-        sample_peak = record["run"].get("gpu_peak_memory_during_generate") or {}
+        sample_peak = record["run"].get("gpu_peak_memory") or {}
         for gpu, stats in sample_peak.items():
             peak.setdefault(gpu, {"max_allocated_gib": 0.0, "max_reserved_gib": 0.0})
             for key in ("max_allocated_gib", "max_reserved_gib"):
@@ -1367,8 +1362,8 @@ def config_health_errors(
                 errors.append(f"{prefix}: input_tokens missing")
             if not isinstance(run.get("actual_new_tokens"), int):
                 errors.append(f"{prefix}: actual_new_tokens missing")
-            if not run.get("gpu_peak_memory_during_generate"):
-                errors.append(f"{prefix}: gpu_peak_memory_during_generate missing")
+            if not run.get("gpu_peak_memory"):
+                errors.append(f"{prefix}: gpu_peak_memory missing")
     return errors
 
 

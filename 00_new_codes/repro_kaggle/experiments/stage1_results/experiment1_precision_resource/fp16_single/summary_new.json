@@ -145,13 +145,13 @@
       "main/tiny20_forecasting_01_line87: decoded_text missing",
       "main/tiny20_forecasting_01_line87: input_tokens missing",
       "main/tiny20_forecasting_01_line87: actual_new_tokens missing",
-      "main/tiny20_forecasting_01_line87: gpu_peak_memory_during_generate missing",
+      "main/tiny20_forecasting_01_line87: gpu_peak_memory missing",
       "main/tiny20_entity_02_line529: generate failed",
       "main/tiny20_entity_02_line529: decode failed",
       "main/tiny20_entity_02_line529: decoded_text missing",
       "main/tiny20_entity_02_line529: input_tokens missing",
       "main/tiny20_entity_02_line529: actual_new_tokens missing",
-      "main/tiny20_entity_02_line529: gpu_peak_memory_during_generate missing"
+      "main/tiny20_entity_02_line529: gpu_peak_memory missing"
     ]
   }
 }

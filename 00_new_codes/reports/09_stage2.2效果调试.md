@@ -8,107 +8,31 @@
 - 4条样例均跑通
 - 原始效果不好，主要有以下问题：
 - 脚本写的 `run-all` 每条样例都会重新加载一次 STReasoner-8B
-- 
-2. 模型加载失败分支里 `failure_type_from()` 参数数量写错，导致本应记录失败时二次崩溃。
-3. parser 太朴素：选择题只看回答开头，forecasting 把全文所有数字都当预测值，导致模型已经写出的最终答案被评错。
+
+具体修改：
+
+- parser问题：原逻辑???，新逻辑？？？
 
 修复后结果：
-
 - 生成：4/4 成功。
 - 解析：4/4 成功。
 - 选择题：3/3 正确。
 - forecasting：提取预测 `[20.02, 20.13, 20.23]`，gold 为 `[19.86, 19.97, 20.05]`，MAE `0.1667`，MAPE `0.8349%`。
 
-仍然存在的问题：
-
-- 模型没有按 `<answer>...</answer>` 输出，选择题多为自然语言末尾 `Answer: D` / `\boxed{C}`。
-- forecasting 输出过长，重复大量 `</final_answer>`，`actual_new_tokens=6031`，接近 `max_new_tokens=6144`。
-- 这次没有修改 prompt，也没有硬编码答案；改善来自运行器资源管理和 parser/评测提取逻辑。
-- 进一步补充了格式诊断：raw response 的 `<answer>` 格式成功率是 `0/4`，但可从 raw response 通用抽取出规范化 `formatted_answer`。
-
 ## 实验与输出路径
 
-数据源：
+数据集：paper_cases 4 samples
 
-```text
-00_new_codes/repro_kaggle/experiments/stage1_subsets/exp1_resource_tiny20/paper_cases/paper_cases_matched.jsonl
-```
+### baseline_current_6144
 
-Stage 2.2 快照：
+在源代码基础上，修复过reuse问题、parser逻辑问题
 
-```text
-00_new_codes/repro_autodl/experiments/stage2_2_subsets/experiment1_paper_cases/paper_cases_matched.jsonl
-```
-
-当前 4 条样例：
-
-| index | task | sample_id | gold |
-|---:|---|---|---|
-| 0 | etiological | `paper_appendix_h_table6_etiological_line118` | `<answer>D</answer>` |
-| 1 | entity | `paper_appendix_h_table7_entity_line982` | `<answer>C</answer>` |
-| 2 | correlation | `paper_appendix_h_table8_correlation_line547` | `<answer>D</answer>` |
-| 3 | forecasting | `paper_appendix_h_table9_forecasting_line9` | `[19.86, 19.97, 20.05]` |
-
-主要输出：
-
-```text
-00_new_codes/repro_autodl/experiments/stage2_2_paper_cases/baseline_current_6144/
-00_new_codes/repro_autodl/experiments/stage2_2_paper_cases/fixed_reuse_model_6144/
-00_new_codes/repro_autodl/experiments/stage2_2_paper_cases/parserfix_reparse_existing_6144/
-00_new_codes/repro_autodl/experiments/stage2_2_paper_cases/formatfix_reparse_existing_6144/
-```
-
-PDF 解析文本：
-
-```text
-paper/STReasoner_ACL_2026.txt
-```
-
-## 修改 1：修复 run-all 重复加载模型
-
-修改文件：
-
-```text
-00_new_codes/repro_autodl/experiments/scripts/stage2_2_script/run_paper_cases.py
-```
-
-修改原因：
-
-- 原 `run-all` 内部循环每条样例都调用 `run_one_sample()`。
-- `run_one_sample()` 每次都会重新 `load_model_and_processors()`。
-- 第 1 条后显存约 17G，第 2 条后显存约 33G，第 3 条加载模型时 OOM。
-
-修改内容：
-
-- `run-all` 开始时只加载一次 model / processor / tokenizer。
-- `run_one_sample()` 增加可选的 `preloaded_model` / `preloaded_processor` / `preloaded_tokenizer` 参数。
-- `run-all` 循环内复用已经加载好的模型。
-- 保留单条 `run` 的原行为，单条运行仍可独立加载模型。
-
-同时修复：
-
-- 加载失败分支原来写成：
-
-```python
-failure_type_from(stage, False, False, False)
-```
-
-- 但函数只接收 3 个参数，已改为：
-
-```python
-failure_type_from(stage, False, False)
-```
-
-修改前结果：
-
-- `baseline_current_6144` 跑到第 3 条时 OOM。
-- 失败后又触发 `TypeError: failure_type_from() takes 3 positional arguments but 4 were given`。
-- 未得到完整 4 条正式结果。
-
-修改后结果：
-
-- `fixed_reuse_model_6144` 4 条全部完成生成。
-- 只加载一次模型，日志中后续样例显示 `Using preloaded model for this sample.`。
+| index | task | len(response) | parsed_answer | gold_answer |
+|---:|---|---:|---|---|
+| 0 | etiological | 1183 | D | `<answer>D</answer>` |
+| 1 | entity | 806 | C | `<answer>C</answer>` |
+| 2 | correlation | 1354 | D | `<answer>D</answer>` |
+| 3 | forecasting | 6031 | `[20.02, 20.13, 20.23]` | `[19.86, 19.97, 20.05]` |
 
 ## 修改 2：修复 parser / evaluate 提取逻辑
 
@@ -197,7 +121,6 @@ inference/llm_utils.py
 | `baseline_current_6144` | 第 3 条重复加载模型时 OOM，未完整跑通 |
 | `fixed_reuse_model_6144` | 4 条全部生成成功 |
 | `parserfix_reparse_existing_6144` | 基于同一批生成文本，4 条全部解析成功 |
-| `formatfix_reparse_existing_6144` | 基于同一批生成文本，补充 raw 格式诊断和 `formatted_answer` |
 
 ### parser 修复前后
 
@@ -217,34 +140,6 @@ choice_accuracy        = 3 / 3 = 1.0
 forecasting_mae        = 0.1667
 forecasting_mape       = 0.8349%
 ```
-
-### raw 格式与 formatted_answer
-
-用户指出“模型不按照格式输出”是准确的。parser 修复只能解决“能否从模型回答中读出答案”，不能证明模型原始输出已经符合 `<answer>...</answer>` 规范。
-
-因此补充了格式层诊断：
-
-- `format_success`：raw response 是否严格包含 1 对 `<answer>...</answer>`。
-- `format_error`：缺少 `<answer>`、answer tag 数量不匹配、误用 `<final_answer>` 等。
-- `formatted_answer`：不改 raw response，只把 parser 抽到的答案规范化成 `<answer>...</answer>`，供保存和后续评估/报告使用。
-
-基于已有 4 条输出重解析：
-
-| sample | raw format | format_error | formatted_answer |
-|---|---:|---|---|
-| table6 etiological | 失败 | `missing_answer_tag` | `<answer>D</answer>` |
-| table7 entity | 失败 | `missing_answer_tag` | `<answer>C</answer>` |
-| table8 correlation | 失败 | `missing_answer_tag` | `<answer>D</answer>` |
-| table9 forecasting | 失败 | `uses_final_answer_tag_instead_of_answer_tag`，且重复大量 `</final_answer>` | `<answer>[20.02, 20.13, 20.23]</answer>` |
-
-结论：
-
-- 模型 raw 输出格式仍不好，raw `<answer>` 格式成功率为 `0/4`。
-- 这不影响“答案内容是否能被通用 parser 提取”的结论，但需要在报告中分开写：
-  - `raw format success = 0/4`
-  - `parse success = 4/4`
-  - `formatted answer available = 4/4`
-- 当前没有改 prompt，所以没有从生成端强迫模型输出 `<answer>`；只是做了通用后处理和诊断。
 
 ## 为什么之前看起来不好
 

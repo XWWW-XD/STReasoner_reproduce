@@ -177,8 +177,6 @@ forecasting_run.log
 资源与速度：
 - gpu_name
 - gpu_total_memory
-- gpu_memory_before_generate
-- gpu_memory_after_generate
 - gpu_peak_memory
 - latency_sec
 - tokens_per_sec

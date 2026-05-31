@@ -19,11 +19,9 @@
     "trace_fields": [
       "category",
       "sample_id",
-      "task",
       "source_file",
       "original_line_index",
       "paper_case_id",
-      "paper_location",
       "paper_note"
     ]
   },
@@ -285,11 +283,9 @@
       "output": "<answer>D</answer>",
       "category": "etiological",
       "sample_id": "paper_appendix_h_table6_etiological_line118",
-      "task": "etiological",
       "source_file": "ST-Test/etiological_test.jsonl",
       "original_line_index": 118,
       "paper_case_id": "appendix_h_table6_etiological",
-      "paper_location": "Appendix H, Table 6",
       "paper_note": "Strict match to the paper case by task, graph structure, question/options, and gold answer."
     },
     {
@@ -799,11 +795,9 @@
       "output": "<answer>C</answer>",
       "category": "entity",
       "sample_id": "paper_appendix_h_table7_entity_line982",
-      "task": "entity",
       "source_file": "ST-Test/entity_test.jsonl",
       "original_line_index": 982,
       "paper_case_id": "appendix_h_table7_entity",
-      "paper_location": "Appendix H, Table 7",
       "paper_note": "Strict match to the paper case by task, graph structure, question/options, and gold answer."
     },
     {
@@ -3233,11 +3227,9 @@
       "output": "<answer>D</answer>",
       "category": "correlation",
       "sample_id": "paper_appendix_h_table8_correlation_line547",
-      "task": "correlation",
       "source_file": "ST-Test/correlation_test.jsonl",
       "original_line_index": 547,
       "paper_case_id": "appendix_h_table8_correlation",
-      "paper_location": "Appendix H, Table 8",
       "paper_note": "Strict match to the paper case by task, graph structure, question/options, and gold answer."
     },
     {
@@ -3361,11 +3353,9 @@
       "output": "[19.86, 19.97, 20.05]",
       "category": "forecasting",
       "sample_id": "paper_appendix_h_table9_forecasting_line9",
-      "task": "forecasting",
       "source_file": "ST-Test/forecasting_test.jsonl",
       "original_line_index": 9,
       "paper_case_id": "appendix_h_table9_forecasting",
-      "paper_location": "Appendix H, Table 9",
       "paper_note": "Input matches the paper case. The ST-Test gold output is [19.86, 19.97, 20.05], while the paper displays STReasoner prediction [19.88, 19.89, 19.90]; keep the dataset gold output for reproducible evaluation."
     }
   ]

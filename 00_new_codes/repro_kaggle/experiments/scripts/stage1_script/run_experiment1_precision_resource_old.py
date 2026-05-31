@@ -620,8 +620,6 @@ def base_record(sample: dict[str, Any], group: str) -> dict[str, Any]:
         "tokens_per_sec": None,
         "input_tokens": None,
         "actual_new_tokens": None,
-        "gpu_memory_before": None,
-        "gpu_memory_after": None,
         "gpu_peak_memory": None,
         "error_stage": "none",
         "error_message": None,
@@ -649,8 +647,8 @@ def run_sample(model: Any, processor: Any, tokenizer: Any, sample: dict[str, Any
         record.update(token_info)
         record["input_tokens"] = token_info["input_tokens_metric"]
         inputs = move_inputs_to_device(inputs, first_model_device(model))
-        record["gpu_memory_before"] = gpu_memory_snapshot()
         sync_cuda()
+        reset_gpu_peak()
         with torch.inference_mode():
             outputs = model.generate(**inputs, max_new_tokens=MAX_NEW_TOKENS, do_sample=False)
         sync_cuda()
@@ -661,7 +659,6 @@ def run_sample(model: Any, processor: Any, tokenizer: Any, sample: dict[str, Any
         record["latency_sec"] = round(latency, 3)
         if actual_new_tokens and latency > 0:
             record["tokens_per_sec"] = round(actual_new_tokens / latency, 3)
-        record["gpu_memory_after"] = gpu_memory_snapshot()
         record["gpu_peak_memory"] = gpu_peak_snapshot()
         if not decode_ok:
             record["error_stage"] = "decode"
@@ -692,7 +689,6 @@ def run_sample(model: Any, processor: Any, tokenizer: Any, sample: dict[str, Any
     except Exception as exc:
         latency = time.perf_counter() - started
         record["latency_sec"] = round(latency, 3)
-        record["gpu_memory_after"] = gpu_memory_snapshot()
         record["gpu_peak_memory"] = gpu_peak_snapshot()
         record["error_stage"] = "generate"
         record["error_message"] = f"{exc.__class__.__name__}: {exc}"
@@ -726,15 +722,12 @@ def summarize_records(
     new_tokens = [int(r["actual_new_tokens"]) for r in generated if isinstance(r.get("actual_new_tokens"), int)]
     bottlenecks = Counter(r.get("bottleneck_type") for r in all_records if r.get("bottleneck_type"))
     peak_memory: dict[str, dict[str, float]] = {}
-    final_memory: dict[str, dict[str, float]] = {}
+    final_memory: dict[str, dict[str, float]] = gpu_memory_snapshot()
     for record in all_records:
         for gpu, stats in (record.get("gpu_peak_memory") or {}).items():
             peak_memory.setdefault(gpu, {"max_allocated_gib": 0.0, "max_reserved_gib": 0.0})
             for key in ("max_allocated_gib", "max_reserved_gib"):
                 peak_memory[gpu][key] = max(peak_memory[gpu][key], float(stats.get(key) or 0.0))
-        if record.get("gpu_memory_after"):
-            final_memory = record["gpu_memory_after"]
-
     def rate(n: int, d: int) -> float | None:
         return round(n / d, 4) if d else None
 

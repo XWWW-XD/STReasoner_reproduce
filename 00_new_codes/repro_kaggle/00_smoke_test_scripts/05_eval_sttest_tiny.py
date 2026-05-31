@@ -221,6 +221,17 @@ def gpu_peak_snapshot() -> tuple[dict[str, float], dict[str, float]]:
     return max_allocated, max_reserved
 
 
+def gpu_peak_memory_snapshot() -> dict[str, dict[str, float]]:
+    max_allocated, max_reserved = gpu_peak_snapshot()
+    return {
+        gpu: {
+            "max_allocated_gib": max_allocated.get(gpu),
+            "max_reserved_gib": max_reserved.get(gpu),
+        }
+        for gpu in sorted(set(max_allocated) | set(max_reserved))
+    }
+
+
 def reset_cuda_peak_stats() -> None:
     import torch
 
@@ -651,8 +662,7 @@ def base_record(
         "answer_format_prompt": args.answer_format_prompt,
         "actual_device_map": json_safe(device_map),
         "is_actually_multi_gpu": is_multi_gpu,
-        "gpu_memory_before_generate": None,
-        "gpu_memory_after_generate": None,
+        "gpu_peak_memory": None,
         "parse_failed": None,
         "error_stage": "none",
         "error_type": None,
@@ -959,10 +969,10 @@ def main() -> int:
             logger.log("-" * 80)
             logger.log(f"[{offset}/{len(selected_samples)}] index={index}, category={sample.get('category')}")
             record = base_record(index, sample, args, precision, device_map, is_multi_gpu)
-            record["gpu_memory_before_generate"] = gpu_memory_snapshot()
             sample_started = time.perf_counter()
             try:
                 synchronize_cuda()
+                reset_cuda_peak_stats()
                 prediction = generate_prediction(
                     model,
                     processor,
@@ -975,7 +985,7 @@ def main() -> int:
                 latency = time.perf_counter() - sample_started
                 record["prediction"] = prediction
                 record["latency_sec"] = round(latency, 3)
-                record["gpu_memory_after_generate"] = gpu_memory_snapshot()
+                record["gpu_peak_memory"] = gpu_peak_memory_snapshot()
                 logger.log(f"GENERATE_PASS index={index} latency_sec={latency:.3f}")
 
                 target_answer, target_error = parse_choice(sample.get("output"))
@@ -998,7 +1008,7 @@ def main() -> int:
             except Exception as exc:  # noqa: BLE001 - keep evaluating remaining samples.
                 synchronize_cuda()
                 record["latency_sec"] = round(time.perf_counter() - sample_started, 3)
-                record["gpu_memory_after_generate"] = gpu_memory_snapshot()
+                record["gpu_peak_memory"] = gpu_peak_memory_snapshot()
                 stage = "generate"
                 message = str(exc).lower()
                 if "placeholder" in message or "timeseries" in message or "processor" in message:
