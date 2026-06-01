@@ -41,14 +41,14 @@ from pathlib import Path
 from typing import Any
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[4]
-REPO_ROOT = PROJECT_ROOT.parent
-for import_root in (PROJECT_ROOT, REPO_ROOT):
+NEW_CODES_ROOT = Path(__file__).resolve().parents[3]
+REPO_ROOT = NEW_CODES_ROOT.parent
+for import_root in (NEW_CODES_ROOT, REPO_ROOT):
     if str(import_root) not in sys.path:
         sys.path.insert(0, str(import_root))
 
-REPRO_KAGGLE_ROOT = PROJECT_ROOT / "repro_kaggle"
-REPRO_AUTODL_ROOT = PROJECT_ROOT / "repro_autodl"
+REPRO_KAGGLE_ROOT = NEW_CODES_ROOT / "repro_kaggle"
+REPRO_AUTODL_ROOT = NEW_CODES_ROOT / "repro_autodl"
 SCRIPT_PATH = Path(__file__).resolve()
 
 PAPER_CASE_SOURCE_DIR = (
@@ -168,7 +168,7 @@ def rel(path: Path) -> str:
         return str(path.relative_to(REPO_ROOT))
     except ValueError:
         try:
-            return str(path.relative_to(PROJECT_ROOT))
+            return str(path.relative_to(NEW_CODES_ROOT))
         except ValueError:
             return str(path)
 
@@ -239,7 +239,7 @@ def log_environment(logger: TeeLogger) -> None:
     logger.log(f"timestamp: {datetime.now().isoformat(timespec='seconds')}")
     logger.log(f"pwd: {Path.cwd()}")
     logger.log(f"script: {rel(SCRIPT_PATH)}")
-    logger.log(f"project_root: {PROJECT_ROOT}")
+    logger.log(f"new_codes_root: {NEW_CODES_ROOT}")
     logger.log(f"repo_root: {REPO_ROOT}")
     logger.log(f"git branch: {run_command_text(['git', 'branch', '--show-current'], REPO_ROOT)}")
     logger.log("git status --short:")
@@ -820,10 +820,10 @@ def build_inputs(
     }
 
 
-def generated_outputs_to_response(outputs: Any, inputs: Any, processor: Any, tokenizer: Any) -> tuple[str | None, int | None, str | None]:
+def generated_outputs_to_response(outputs: Any, inputs: Any, processor: Any, tokenizer: Any) -> tuple[str | None, int | None, str | None, dict[str, Any]]:
     text_converter = tokenizer if tokenizer is not None else processor
     if text_converter is None or not hasattr(text_converter, "decode"):
-        return None, None, "no tokenizer/processor method available to convert generated ids to text"
+        return None, None, "no tokenizer/processor method available to convert generated ids to text", {}
 
     try:
         generated_ids = outputs[0]
@@ -832,10 +832,19 @@ def generated_outputs_to_response(outputs: Any, inputs: Any, processor: Any, tok
         if input_ids is not None and hasattr(input_ids, "shape"):
             actual_new_tokens = int(generated_ids.shape[-1] - input_ids.shape[-1])
             generated_ids = generated_ids[input_ids.shape[-1] :]
+        new_token_ids = generated_ids.detach().cpu().tolist() if hasattr(generated_ids, "detach") else []
         text = text_converter.decode(generated_ids, skip_special_tokens=True)
-        return text, actual_new_tokens, None
+        text_with_special = text_converter.decode(generated_ids, skip_special_tokens=False)
+        token_texts = []
+        if tokenizer is not None and hasattr(tokenizer, "convert_ids_to_tokens"):
+            token_texts = tokenizer.convert_ids_to_tokens(new_token_ids[:20])
+        return text, actual_new_tokens, None, {
+            "new_token_ids_head": new_token_ids[:20],
+            "new_token_texts_head": token_texts,
+            "decoded_with_special_tokens_head": preview(text_with_special, 240),
+        }
     except Exception as exc:
-        return None, None, f"{exc.__class__.__name__}: {exc}"
+        return None, None, f"{exc.__class__.__name__}: {exc}", {}
 
 
 def parse_model_answer(task: str, response: str | None) -> tuple[Any, bool, str | None]:
@@ -937,9 +946,11 @@ def base_prediction_record(sample: dict[str, Any], sample_index: int, max_new_to
         "source_file": sample.get("source_file"),
         "input_preview": preview(sample.get("input")),
         "format_prompt_applied": None,
+        "generation_params": None,
         "input_tokens": None,
         "max_new_tokens": max_new_tokens,
         "actual_new_tokens": None,
+        "generation_debug": None,
         "response": None,
         "generate_success": False,
         "generate_error": None,
@@ -1029,7 +1040,7 @@ def summarize_sample(
         "precision": "fp16",
         "attn_backend": attn_backend,
         "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES"),
-        "paper_cases_path": rel(STAGE22_DATA_PATH),
+        "paper_cases_path": rel(ACTIVE_DATASET_PATH),
         "source_paper_cases_path": rel(PAPER_CASE_SOURCE_PATH),
         "result_root": rel(output_root),
         "sample": {
@@ -1089,6 +1100,9 @@ def run_one_sample(
     preloaded_load_info: dict[str, Any] | None = None,
     log_env: bool = True,
     use_format_prompt: bool = True,
+    do_sample: bool = False,
+    temperature: float | None = None,
+    top_p: float | None = None,
 ) -> dict[str, Any]:
     ensure_autodl_cache_env()
     ensure_single_gpu_env()
@@ -1101,6 +1115,9 @@ def run_one_sample(
     logger.log(f"attn_backend: {attn_backend}")
     logger.log(f"output_root: {rel(output_root)}")
     logger.log(f"format_prompt_applied: {use_format_prompt}")
+    logger.log(f"do_sample: {do_sample}")
+    logger.log(f"temperature: {temperature}")
+    logger.log(f"top_p: {top_p}")
 
     sample, selected_index = select_paper_case_sample(sample_index, sample_id)
     validate_sample(sample, f"paper_cases sample {selected_index}")
@@ -1120,6 +1137,12 @@ def run_one_sample(
 
     record = base_prediction_record(sample, selected_index, max_new_tokens)
     record["format_prompt_applied"] = use_format_prompt
+    generation_params = {
+        "do_sample": do_sample,
+        "temperature": temperature,
+        "top_p": top_p,
+    }
+    record["generation_params"] = generation_params
     load_success = False
     load_error = None
     load_time_sec = None
@@ -1175,15 +1198,26 @@ def run_one_sample(
         reset_gpu_peak_stats()
 
         stage = "generate"
+        generation_kwargs = {
+            "max_new_tokens": max_new_tokens,
+            "do_sample": do_sample,
+        }
+        if do_sample and temperature is not None:
+            generation_kwargs["temperature"] = temperature
+        if do_sample and top_p is not None:
+            generation_kwargs["top_p"] = top_p
         with torch.inference_mode():
-            outputs = model.generate(**inputs, max_new_tokens=max_new_tokens, do_sample=False)
+            outputs = model.generate(**inputs, **generation_kwargs)
         sync_cuda()
 
         latency = time.perf_counter() - started
         record["latency_sec"] = round(latency, 3)
         record["gpu_peak_memory"] = gpu_peak_snapshot()
-        response_text, actual_new_tokens, response_error = generated_outputs_to_response(outputs, inputs, processor, tokenizer)
+        response_text, actual_new_tokens, response_error, generation_debug = generated_outputs_to_response(
+            outputs, inputs, processor, tokenizer
+        )
         record["actual_new_tokens"] = actual_new_tokens
+        record["generation_debug"] = generation_debug
         if actual_new_tokens is not None and latency > 0:
             record["tokens_per_sec"] = round(actual_new_tokens / latency, 3)
 
@@ -1253,6 +1287,29 @@ def add_format_prompt_arg(parser: argparse.ArgumentParser) -> None:
     )
 
 
+def add_generation_args(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument(
+        "--do-sample",
+        type=str2bool,
+        nargs="?",
+        const=True,
+        default=False,
+        help="Use sampling during generation instead of greedy decoding (default: false).",
+    )
+    parser.add_argument(
+        "--temperature",
+        type=float,
+        default=None,
+        help="Sampling temperature; only used when --do-sample true.",
+    )
+    parser.add_argument(
+        "--top-p",
+        type=float,
+        default=None,
+        help="Nucleus sampling top_p; only used when --do-sample true.",
+    )
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Stage 2.2 paper-cases fp16 A100 single-GPU runner.")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -1278,6 +1335,7 @@ def parse_args() -> argparse.Namespace:
     )
     add_dataset_arg(run)
     add_format_prompt_arg(run)
+    add_generation_args(run)
 
     run_all = subparsers.add_parser("run-all", help="Run all dataset samples sequentially with one model load.")
     run_all.add_argument("--max-new-tokens", type=int, default=DEFAULT_MAX_NEW_TOKENS)
@@ -1291,6 +1349,7 @@ def parse_args() -> argparse.Namespace:
     )
     add_dataset_arg(run_all)
     add_format_prompt_arg(run_all)
+    add_generation_args(run_all)
 
     return parser.parse_args()
 
@@ -1334,6 +1393,9 @@ def main() -> int:
                 logger=logger,
                 attn_backend=args.attn_backend,
                 use_format_prompt=args.format_prompt,
+                do_sample=args.do_sample,
+                temperature=args.temperature,
+                top_p=args.top_p,
             )
             logger.log(f"run_summary: {json.dumps(json_safe(summary), ensure_ascii=False)}")
             return 0
@@ -1364,6 +1426,9 @@ def main() -> int:
             logger.log(f"output_root: {rel(args.output_root)}")
             logger.log(f"dataset: {rel(ACTIVE_DATASET_PATH)}")
             logger.log(f"format_prompt_applied: {args.format_prompt}")
+            logger.log(f"do_sample: {args.do_sample}")
+            logger.log(f"temperature: {args.temperature}")
+            logger.log(f"top_p: {args.top_p}")
             model, processor, tokenizer, load_time_sec, load_info = load_model_and_processors(logger, args.attn_backend)
 
             summaries = []
@@ -1385,6 +1450,9 @@ def main() -> int:
                     preloaded_load_info=load_info,
                     log_env=False,
                     use_format_prompt=args.format_prompt,
+                    do_sample=args.do_sample,
+                    temperature=args.temperature,
+                    top_p=args.top_p,
                 )
                 summaries.append(summary)
             aggregate = {

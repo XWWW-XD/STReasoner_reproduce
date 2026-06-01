@@ -1,0 +1,254 @@
+{
+  "experiment": "stage2.4_graph_ablation_sttest_6144_compare",
+  "date": "2026-05-31",
+  "with_graph_baseline_source": "exp/sttest_full_*_6144 plus 00_new_codes/reports/artifacts/sttest_full_6144_summary.json",
+  "without_graph_source": "/root/autodl-tmp/STReasoner_reproduce/00_new_codes/repro_autodl/experiments/results/stage2.4_graph_ablation_sttest_6144",
+  "max_tokens": 6144,
+  "remove_graph_regex": "Graph Structure:.*?(?=please analyze)",
+  "gpu_memory_observations": {
+    "device": "NVIDIA A100-PCIE-40GB",
+    "total_mib": 40960,
+    "peak_observed_mib": 39053,
+    "peak_observed_time": "2026-05-31 19:28:07 UTC",
+    "note": "official worker_vllm_ts uses gpu_memory_utilization=0.95"
+  },
+  "choice_weighted": {
+    "with_graph_correct": 2415,
+    "without_graph_correct": 2216,
+    "total": 2993,
+    "with_graph_accuracy": 0.8068827263615101,
+    "without_graph_accuracy": 0.7403942532576011,
+    "delta": -0.06648847310390904
+  },
+  "rows": [
+    {
+      "task": "reasoning_etiological",
+      "samples": 207,
+      "with_graph_metrics": {
+        "task": "reasoning_etiological",
+        "total_samples": 207,
+        "evaluated_samples": 207,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "accuracy": 0.9565217391304348,
+        "total_input_tokens": 79543,
+        "avg_input_tokens": 384.27,
+        "samples_with_token_info": 207
+      },
+      "without_graph_metrics": {
+        "task": "reasoning_etiological",
+        "total_samples": 207,
+        "evaluated_samples": 207,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "accuracy": 0.9420289855072463,
+        "total_input_tokens": 69202,
+        "avg_input_tokens": 334.31,
+        "samples_with_token_info": 207
+      },
+      "with_graph_diag": {
+        "avg_spatial_term_mentions": 32.12,
+        "avg_explicit_edge_mentions": 2.44,
+        "avg_response_chars": 2761.37
+      },
+      "without_graph_diag": {
+        "exact_answer_tag_pair": 207,
+        "empty_response": 0,
+        "avg_response_chars": 2589.99,
+        "avg_spatial_term_mentions": 20.0,
+        "avg_explicit_edge_mentions": 0.06
+      },
+      "without_graph_dataset": "/root/autodl-tmp/STReasoner_reproduce/00_new_codes/repro_autodl/experiments/results/stage2.4_graph_ablation_sttest_6144/datasets/without_graph/etiological_test.jsonl",
+      "without_graph_exp": "exp/stage2.4_graph_ablation_sttest_6144_without_graph_reasoning_etiological",
+      "metric_name": "accuracy",
+      "with_graph_score": 0.9565217391304348,
+      "without_graph_score": 0.9420289855072463,
+      "delta": -0.01449275362318847
+    },
+    {
+      "task": "reasoning_entity",
+      "samples": 1194,
+      "with_graph_metrics": {
+        "task": "reasoning_entity",
+        "total_samples": 1194,
+        "evaluated_samples": 1194,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "accuracy": 0.7479061976549414,
+        "total_input_tokens": 495068,
+        "avg_input_tokens": 414.63,
+        "samples_with_token_info": 1194
+      },
+      "without_graph_metrics": {
+        "task": "reasoning_entity",
+        "total_samples": 1194,
+        "evaluated_samples": 1194,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "accuracy": 0.6541038525963149,
+        "total_input_tokens": 420222,
+        "avg_input_tokens": 351.94,
+        "samples_with_token_info": 1194
+      },
+      "with_graph_diag": {
+        "avg_spatial_term_mentions": 37.84,
+        "avg_explicit_edge_mentions": 3.77,
+        "avg_response_chars": 2484.01
+      },
+      "without_graph_diag": {
+        "exact_answer_tag_pair": 1180,
+        "empty_response": 0,
+        "avg_response_chars": 2518.85,
+        "avg_spatial_term_mentions": 16.84,
+        "avg_explicit_edge_mentions": 0.04
+      },
+      "without_graph_dataset": "/root/autodl-tmp/STReasoner_reproduce/00_new_codes/repro_autodl/experiments/results/stage2.4_graph_ablation_sttest_6144/datasets/without_graph/entity_test.jsonl",
+      "without_graph_exp": "exp/stage2.4_graph_ablation_sttest_6144_without_graph_reasoning_entity",
+      "metric_name": "accuracy",
+      "with_graph_score": 0.7479061976549414,
+      "without_graph_score": 0.6541038525963149,
+      "delta": -0.0938023450586265
+    },
+    {
+      "task": "reasoning_correlation",
+      "samples": 1592,
+      "with_graph_metrics": {
+        "task": "reasoning_correlation",
+        "total_samples": 1592,
+        "evaluated_samples": 1592,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "accuracy": 0.8316582914572864,
+        "total_input_tokens": 717765,
+        "avg_input_tokens": 450.86,
+        "samples_with_token_info": 1592
+      },
+      "without_graph_metrics": {
+        "task": "reasoning_correlation",
+        "total_samples": 1592,
+        "evaluated_samples": 1592,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "accuracy": 0.7788944723618091,
+        "total_input_tokens": 614509,
+        "avg_input_tokens": 386.0,
+        "samples_with_token_info": 1592
+      },
+      "with_graph_diag": {
+        "avg_spatial_term_mentions": 41.08,
+        "avg_explicit_edge_mentions": 4.75,
+        "avg_response_chars": 2315.02
+      },
+      "without_graph_diag": {
+        "exact_answer_tag_pair": 1509,
+        "empty_response": 0,
+        "avg_response_chars": 2361.85,
+        "avg_spatial_term_mentions": 21.64,
+        "avg_explicit_edge_mentions": 0.33
+      },
+      "without_graph_dataset": "/root/autodl-tmp/STReasoner_reproduce/00_new_codes/repro_autodl/experiments/results/stage2.4_graph_ablation_sttest_6144/datasets/without_graph/correlation_test.jsonl",
+      "without_graph_exp": "exp/stage2.4_graph_ablation_sttest_6144_without_graph_reasoning_correlation",
+      "metric_name": "accuracy",
+      "with_graph_score": 0.8316582914572864,
+      "without_graph_score": 0.7788944723618091,
+      "delta": -0.05276381909547734
+    },
+    {
+      "task": "reasoning_forecasting",
+      "samples": 280,
+      "with_graph_metrics": {
+        "task": "reasoning_forecasting",
+        "total_samples": 280,
+        "evaluated_samples": 280,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "mae": 68.31705555122797,
+        "mape": 123.28914871837621,
+        "target_stats": {
+          "mean": 92.41808823529406,
+          "abs_mean": 92.41808823529406,
+          "min": 0.0,
+          "max": 1850.0,
+          "total_values": 2652
+        },
+        "missing_indices": [],
+        "total_input_tokens": 77434,
+        "avg_input_tokens": 276.55,
+        "samples_with_token_info": 280
+      },
+      "without_graph_metrics": {
+        "task": "reasoning_forecasting",
+        "total_samples": 280,
+        "evaluated_samples": 280,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "mae": 67.57010477672064,
+        "mape": 137.65043003118083,
+        "target_stats": {
+          "mean": 92.41808823529406,
+          "abs_mean": 92.41808823529406,
+          "min": 0.0,
+          "max": 1850.0,
+          "total_values": 2652
+        },
+        "missing_indices": [],
+        "total_input_tokens": 64554,
+        "avg_input_tokens": 230.55,
+        "samples_with_token_info": 280
+      },
+      "with_graph_diag": {
+        "avg_spatial_term_mentions": 31.19,
+        "avg_explicit_edge_mentions": 3.2,
+        "avg_response_chars": 2255.9
+      },
+      "without_graph_diag": {
+        "exact_answer_tag_pair": 280,
+        "empty_response": 0,
+        "avg_response_chars": 2064.54,
+        "avg_spatial_term_mentions": 12.36,
+        "avg_explicit_edge_mentions": 0.0
+      },
+      "without_graph_dataset": "/root/autodl-tmp/STReasoner_reproduce/00_new_codes/repro_autodl/experiments/results/stage2.4_graph_ablation_sttest_6144/datasets/without_graph/forecasting_test.jsonl",
+      "without_graph_exp": "exp/stage2.4_graph_ablation_sttest_6144_without_graph_reasoning_forecasting",
+      "metric_name": "mae_mape",
+      "with_graph_mae": 68.31705555122797,
+      "without_graph_mae": 67.57010477672064,
+      "delta_mae": -0.7469507745073258,
+      "with_graph_mape": 123.28914871837621,
+      "without_graph_mape": 137.65043003118083,
+      "delta_mape": 14.361281312804621
+    }
+  ],
+  "without_graph_runtime": [
+    {
+      "task": "reasoning_etiological",
+      "seconds": 264.614,
+      "minutes": 4.41,
+      "start_time": "2026-05-31T18:54:53",
+      "end_time": "2026-05-31T18:59:18"
+    },
+    {
+      "task": "reasoning_entity",
+      "seconds": 1776.004,
+      "minutes": 29.6,
+      "start_time": "2026-05-31T18:59:18",
+      "end_time": "2026-05-31T19:28:54"
+    },
+    {
+      "task": "reasoning_correlation",
+      "seconds": 4521.405,
+      "minutes": 75.36,
+      "start_time": "2026-05-31T19:28:54",
+      "end_time": "2026-05-31T20:44:16"
+    },
+    {
+      "task": "reasoning_forecasting",
+      "seconds": 377.548,
+      "minutes": 6.29,
+      "start_time": "2026-05-31T20:44:16",
+      "end_time": "2026-05-31T20:50:34"
+    }
+  ],
+  "without_graph_total_inference_seconds": 6939.571,
+  "without_graph_total_inference_minutes": 115.66
+}

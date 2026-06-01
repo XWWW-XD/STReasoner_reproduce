@@ -1,0 +1,16 @@
+$ /root/autodl-tmp/conda/envs/str-py310/bin/python3.10 evaluation/evaluate.py --task reasoning_correlation --dataset /root/autodl-tmp/STReasoner_reproduce/00_new_codes/repro_autodl/experiments/results/stage2.4_graph_ablation_sttest_6144/datasets/without_graph/correlation_test.jsonl --exp_path /root/autodl-tmp/STReasoner_reproduce/exp/stage2.4_graph_ablation_sttest_6144_without_graph_reasoning_correlation --pred_pattern generated_answer --repo_root /root/autodl-tmp/STReasoner_reproduce
+
+
+--- Evaluation Metrics ---
+task: reasoning_correlation
+total_samples: 1592
+evaluated_samples: 1592
+missing_predictions: 0
+coverage: 1.000000
+accuracy: 0.778894
+total_input_tokens: 614509
+avg_input_tokens: 386.000000
+samples_with_token_info: 1592
+--------------------------
+
+Saved metrics to /root/autodl-tmp/STReasoner_reproduce/exp/stage2.4_graph_ablation_sttest_6144_without_graph_reasoning_correlation/evaluation_metrics.json

@@ -1,0 +1,19 @@
+$ /root/autodl-tmp/conda/envs/str-py310/bin/python3.10 evaluation/evaluate.py --task reasoning_forecasting --dataset /root/autodl-tmp/STReasoner_reproduce/00_new_codes/repro_autodl/experiments/results/stage2.4_graph_ablation_sttest_6144/datasets/without_graph/forecasting_test.jsonl --exp_path /root/autodl-tmp/STReasoner_reproduce/exp/stage2.4_graph_ablation_sttest_6144_without_graph_reasoning_forecasting --pred_pattern generated_answer --repo_root /root/autodl-tmp/STReasoner_reproduce
+
+
+--- Evaluation Metrics ---
+task: reasoning_forecasting
+total_samples: 280
+evaluated_samples: 280
+missing_predictions: 0
+coverage: 1.000000
+mae: 67.570105
+mape: 137.650430
+target_stats: {'mean': 92.41808823529406, 'abs_mean': 92.41808823529406, 'min': 0.0, 'max': 1850.0, 'total_values': 2652}
+missing_indices: []
+total_input_tokens: 64554
+avg_input_tokens: 230.550000
+samples_with_token_info: 280
+--------------------------
+
+Saved metrics to /root/autodl-tmp/STReasoner_reproduce/exp/stage2.4_graph_ablation_sttest_6144_without_graph_reasoning_forecasting/evaluation_metrics.json

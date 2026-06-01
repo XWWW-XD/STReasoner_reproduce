@@ -1,0 +1,16 @@
+$ /root/autodl-tmp/conda/envs/str-py310/bin/python3.10 evaluation/evaluate.py --task reasoning_entity --dataset /root/autodl-tmp/STReasoner_reproduce/00_new_codes/repro_autodl/experiments/results/stage2.4_graph_ablation_paper_cases_6144/datasets/without_graph/01_reasoning_entity_appendix_h_table7_entity_without_graph.jsonl --exp_path /root/autodl-tmp/STReasoner_reproduce/exp/stage2.4_graph_ablation_paper_cases_6144_without_graph_01_entity --pred_pattern generated_answer --repo_root /root/autodl-tmp/STReasoner_reproduce
+
+
+--- Evaluation Metrics ---
+task: reasoning_entity
+total_samples: 1
+evaluated_samples: 1
+missing_predictions: 0
+coverage: 1.000000
+accuracy: 1.000000
+total_input_tokens: 321
+avg_input_tokens: 321.000000
+samples_with_token_info: 1
+--------------------------
+
+Saved metrics to /root/autodl-tmp/STReasoner_reproduce/exp/stage2.4_graph_ablation_paper_cases_6144_without_graph_01_entity/evaluation_metrics.json

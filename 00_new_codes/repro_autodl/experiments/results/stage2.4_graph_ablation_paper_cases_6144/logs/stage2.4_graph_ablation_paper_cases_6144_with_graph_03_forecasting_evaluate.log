@@ -1,0 +1,19 @@
+$ /root/autodl-tmp/conda/envs/str-py310/bin/python3.10 evaluation/evaluate.py --task reasoning_forecasting --dataset /root/autodl-tmp/STReasoner_reproduce/00_new_codes/repro_autodl/experiments/results/stage2.4_graph_ablation_paper_cases_6144/datasets/with_graph/03_reasoning_forecasting_appendix_h_table9_forecasting_with_graph.jsonl --exp_path /root/autodl-tmp/STReasoner_reproduce/exp/stage2.4_graph_ablation_paper_cases_6144_with_graph_03_forecasting --pred_pattern generated_answer --repo_root /root/autodl-tmp/STReasoner_reproduce
+
+
+--- Evaluation Metrics ---
+task: reasoning_forecasting
+total_samples: 1
+evaluated_samples: 1
+missing_predictions: 0
+coverage: 1.000000
+mae: 0.120000
+mape: 0.599595
+target_stats: {'mean': 19.959999999999997, 'abs_mean': 19.959999999999997, 'min': 19.86, 'max': 20.05, 'total_values': 3}
+missing_indices: []
+total_input_tokens: 182
+avg_input_tokens: 182.000000
+samples_with_token_info: 1
+--------------------------
+
+Saved metrics to /root/autodl-tmp/STReasoner_reproduce/exp/stage2.4_graph_ablation_paper_cases_6144_with_graph_03_forecasting/evaluation_metrics.json
