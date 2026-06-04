@@ -1,0 +1,14 @@
+model_dir=/root/autodl-tmp/STReasoner_reproduce/base_model/Qwen3-4B-Instruct-2507
+adapter_dir=/root/autodl-tmp/STReasoner_reproduce/output/single_a100_qwen3_4b_stage1_lora_1500steps_from1000
+tokenizer_class=Qwen2TokenizerFast
+processor_class=Qwen3TSProcessor
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.76s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:06<00:00,  3.17s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:06<00:00,  3.26s/it]
+base_model_class=Qwen3TSForCausalLM
+base_model_type=qwen3
+has_ts_encoder=True
+peft_model_class=PeftModelForCausalLM
+active_adapter=default
+peft_config_keys=['default']
+adapter_loaded=/root/autodl-tmp/STReasoner_reproduce/output/single_a100_qwen3_4b_stage1_lora_1500steps_from1000
+nonzero_lora_B=257/257
+adapter_load_check=ok

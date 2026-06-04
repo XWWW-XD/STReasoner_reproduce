@@ -1,0 +1,92 @@
+model_dir=/root/autodl-tmp/STReasoner_reproduce/base_model/Qwen3-4B-Instruct-2507
+adapter_dir=/root/autodl-tmp/STReasoner_reproduce/output/single_a100_qwen3_4b_stage1_lora_1500steps_from1000
+data_file=/root/autodl-tmp/STReasoner_reproduce/data/ST-Bench/ST-Align/alignment_train.jsonl
+sample_indices=[0, 4, 8, 11, 14, 1, 5, 9, 12, 15, 2, 6, 10, 13, 16, 3, 31, 56, 61, 66, 7, 35, 57, 62, 67, 20, 48, 58, 63, 68, 24, 52, 60, 65, 70, 59, 64, 69, 498, 503]
+max_new_tokens=32
+out_file=/root/autodl-tmp/STReasoner_reproduce/00_new_codes/repro_autodl/experiments/results/stage1_lora_1500steps_from1000_temporal_balanced_probe40_20260604_202856.jsonl
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.62s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.20s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.26s/it]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The `seen_tokens` attribute is deprecated and will be removed in v4.41. Use the `cache_position` model input instead.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+{"sample_index": 0, "category": "temporal", "gold": "8.0", "response": "20.0", "generated_new_tokens": 5, "prompt_tokens": 492, "exact_match_simple": false}
+{"sample_index": 4, "category": "temporal", "gold": "8.0", "response": "20.0", "generated_new_tokens": 5, "prompt_tokens": 492, "exact_match_simple": false}
+{"sample_index": 8, "category": "temporal", "gold": "8.0", "response": "20.0", "generated_new_tokens": 5, "prompt_tokens": 492, "exact_match_simple": false}
+{"sample_index": 11, "category": "temporal", "gold": "8.0", "response": "20.0", "generated_new_tokens": 5, "prompt_tokens": 492, "exact_match_simple": false}
+{"sample_index": 14, "category": "temporal", "gold": "8.0", "response": "20.0", "generated_new_tokens": 5, "prompt_tokens": 492, "exact_match_simple": false}
+{"sample_index": 1, "category": "temporal", "gold": "0.0654", "response": "0.0364", "generated_new_tokens": 7, "prompt_tokens": 492, "exact_match_simple": false}
+{"sample_index": 5, "category": "temporal", "gold": "0.0654", "response": "0.0364", "generated_new_tokens": 7, "prompt_tokens": 492, "exact_match_simple": false}
+{"sample_index": 9, "category": "temporal", "gold": "0.0654", "response": "0.0364", "generated_new_tokens": 7, "prompt_tokens": 492, "exact_match_simple": false}
+{"sample_index": 12, "category": "temporal", "gold": "0.0654", "response": "0.0364", "generated_new_tokens": 7, "prompt_tokens": 492, "exact_match_simple": false}
+{"sample_index": 15, "category": "temporal", "gold": "0.0654", "response": "0.0364", "generated_new_tokens": 7, "prompt_tokens": 492, "exact_match_simple": false}
+{"sample_index": 2, "category": "temporal", "gold": "1.5708", "response": "-1.5708", "generated_new_tokens": 8, "prompt_tokens": 492, "exact_match_simple": false}
+{"sample_index": 6, "category": "temporal", "gold": "1.5708", "response": "-1.5708", "generated_new_tokens": 8, "prompt_tokens": 492, "exact_match_simple": false}
+{"sample_index": 10, "category": "temporal", "gold": "1.5708", "response": "-1.5708", "generated_new_tokens": 8, "prompt_tokens": 492, "exact_match_simple": false}
+{"sample_index": 13, "category": "temporal", "gold": "1.5708", "response": "-1.5708", "generated_new_tokens": 8, "prompt_tokens": 492, "exact_match_simple": false}
+{"sample_index": 16, "category": "temporal", "gold": "1.5708", "response": "-1.5708", "generated_new_tokens": 8, "prompt_tokens": 492, "exact_match_simple": false}
+{"sample_index": 3, "category": "temporal", "gold": "sinusoidal", "response": "sinusoidal", "generated_new_tokens": 4, "prompt_tokens": 488, "exact_match_simple": true}
+{"sample_index": 31, "category": "temporal", "gold": "sinusoidal", "response": "mean_reverting", "generated_new_tokens": 4, "prompt_tokens": 488, "exact_match_simple": false}
+{"sample_index": 56, "category": "temporal", "gold": "mean_reverting", "response": "mean_reverting", "generated_new_tokens": 4, "prompt_tokens": 488, "exact_match_simple": true}
+{"sample_index": 61, "category": "temporal", "gold": "mean_reverting", "response": "mean_reverting", "generated_new_tokens": 4, "prompt_tokens": 488, "exact_match_simple": true}
+{"sample_index": 66, "category": "temporal", "gold": "mean_reverting", "response": "mean_reverting", "generated_new_tokens": 4, "prompt_tokens": 488, "exact_match_simple": true}
+{"sample_index": 7, "category": "temporal", "gold": "12.0", "response": "100", "generated_new_tokens": 4, "prompt_tokens": 490, "exact_match_simple": false}
+{"sample_index": 35, "category": "temporal", "gold": "15.0", "response": "120", "generated_new_tokens": 4, "prompt_tokens": 490, "exact_match_simple": false}
+{"sample_index": 57, "category": "temporal", "gold": "13.0", "response": "100", "generated_new_tokens": 4, "prompt_tokens": 490, "exact_match_simple": false}
+{"sample_index": 62, "category": "temporal", "gold": "14.0", "response": "100", "generated_new_tokens": 4, "prompt_tokens": 490, "exact_match_simple": false}
+{"sample_index": 67, "category": "temporal", "gold": "12.0", "response": "10.0", "generated_new_tokens": 5, "prompt_tokens": 490, "exact_match_simple": false}
+{"sample_index": 20, "category": "temporal", "gold": "0.3", "response": "0.3", "generated_new_tokens": 4, "prompt_tokens": 494, "exact_match_simple": true}
+{"sample_index": 48, "category": "temporal", "gold": "0.3", "response": "0.3", "generated_new_tokens": 4, "prompt_tokens": 494, "exact_match_simple": true}
+{"sample_index": 58, "category": "temporal", "gold": "0.2", "response": "0.3", "generated_new_tokens": 4, "prompt_tokens": 494, "exact_match_simple": false}
+{"sample_index": 63, "category": "temporal", "gold": "0.15", "response": "0.3", "generated_new_tokens": 4, "prompt_tokens": 494, "exact_match_simple": false}
+{"sample_index": 68, "category": "temporal", "gold": "0.15", "response": "0.3", "generated_new_tokens": 4, "prompt_tokens": 494, "exact_match_simple": false}
+{"sample_index": 24, "category": "temporal", "gold": "0.01", "response": "0.03", "generated_new_tokens": 5, "prompt_tokens": 493, "exact_match_simple": false}
+{"sample_index": 52, "category": "temporal", "gold": "0.01", "response": "0.004", "generated_new_tokens": 6, "prompt_tokens": 493, "exact_match_simple": false}
+{"sample_index": 60, "category": "temporal", "gold": "0.015", "response": "0.004", "generated_new_tokens": 6, "prompt_tokens": 493, "exact_match_simple": false}
+{"sample_index": 65, "category": "temporal", "gold": "0.015", "response": "0.004", "generated_new_tokens": 6, "prompt_tokens": 493, "exact_match_simple": false}
+{"sample_index": 70, "category": "temporal", "gold": "0.015", "response": "0.008", "generated_new_tokens": 6, "prompt_tokens": 493, "exact_match_simple": false}
+{"sample_index": 59, "category": "temporal", "gold": "1.4", "response": "1.5", "generated_new_tokens": 4, "prompt_tokens": 491, "exact_match_simple": false}
+{"sample_index": 64, "category": "temporal", "gold": "1.3", "response": "1.5", "generated_new_tokens": 4, "prompt_tokens": 491, "exact_match_simple": false}
+{"sample_index": 69, "category": "temporal", "gold": "1.3", "response": "1.5", "generated_new_tokens": 4, "prompt_tokens": 491, "exact_match_simple": false}
+{"sample_index": 498, "category": "temporal", "gold": "1.4", "response": "0.75", "generated_new_tokens": 5, "prompt_tokens": 953, "exact_match_simple": false}
+{"sample_index": 503, "category": "temporal", "gold": "1.4", "response": "0.1", "generated_new_tokens": 4, "prompt_tokens": 953, "exact_match_simple": false}
+probe_exact_match_simple=6/40
+cuda_max_memory_allocated_gb=8.67
+cuda_max_memory_reserved_gb=8.77
+adapter_probe=ok

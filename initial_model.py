@@ -61,11 +61,13 @@ def main():
         model_path,
         trust_remote_code=True,
         cache_dir=TRANSFORMERS_CACHE_PATH,
+        torch_dtype=torch.float16,
         device_map="auto" # Use "cpu" if you don't have a GPU or run into memory issues
     )
 
     # Apply the custom initialization
     model = initialize_ts_encoder(model)
+    model = model.half()
 
     # Define the output path. Here we save it back to the same directory.
     # You can change this to a new directory if you want to keep the original.

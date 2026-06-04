@@ -1,0 +1,17 @@
+/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+model_dir=/root/autodl-tmp/STReasoner_reproduce/base_model/Qwen3-4B-Instruct-2507
+adapter_dir=/root/autodl-tmp/STReasoner_reproduce/output/single_a100_qwen3_4b_stage1_lora_100steps
+data_file=/root/autodl-tmp/STReasoner_reproduce/data/ST-Bench/ST-Align/alignment_train.jsonl
+sample_index=0
+max_new_tokens=16
+category=temporal
+gold=8.0
+input_ids_shape=(1, 492)
+timeseries_shape=(5, 192, 1)
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.78s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.30s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.37s/it]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The `seen_tokens` attribute is deprecated and will be removed in v4.41. Use the `cache_position` model input instead.
+generated_new_tokens=16
+response='ręcz bied(length Uniform bied bied bied Eventually|.\n:/ Chi buttons|.\n arisen bied Eventually'
+adapter_generate_check=ok

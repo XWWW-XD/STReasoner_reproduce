@@ -78,6 +78,13 @@ _register_timeseries_model(
     modules_to_save=[],
 )
 
+_register_timeseries_model(
+    model_type="qwen3",
+    encoder_key="ts_encoder",
+    lora_target_prefixes=["ts_encoder.mlp"],
+    modules_to_save=[],
+)
+
 
 def _collect_ts_target_modules(model: "PreTrainedModel", prefixes: list[str]) -> list[str]:
     if not prefixes:

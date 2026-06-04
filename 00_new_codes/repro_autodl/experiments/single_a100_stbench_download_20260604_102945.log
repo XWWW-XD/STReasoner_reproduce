@@ -1,0 +1,12 @@
+Filesystem      Size  Used Avail Use% Mounted on
+overlay          30G  3.0G   28G  10% /
+/dev/sdb         50G   23G   28G  46% /root/autodl-tmp
+/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/huggingface_hub/file_download.py:979: UserWarning: `local_dir_use_symlinks` parameter is deprecated and will be ignored. The process to download files to a local folder has been updated and do not rely on symlinks anymore. You only need to pass a destination folder as`local_dir`.
+For more details, check out https://huggingface.co/docs/huggingface_hub/main/en/guides/download#download-files-to-local-folder.
+  warnings.warn(
+Downloading ST-Bench dataset to /root/autodl-tmp/STReasoner_reproduce/data/ST-Bench...
+Fetching 38 files:   0%|          | 0/38 [00:00<?, ?it/s]Fetching 38 files:   8%|▊         | 3/38 [02:31<29:24, 50.42s/it]Fetching 38 files: 100%|██████████| 38/38 [02:31<00:00,  3.98s/it]
+Download completed! Dataset saved to: /root/autodl-tmp/STReasoner_reproduce/data/ST-Bench
+Filesystem      Size  Used Avail Use% Mounted on
+overlay          30G  3.0G   28G  10% /
+/dev/sdb         50G   27G   24G  53% /root/autodl-tmp
