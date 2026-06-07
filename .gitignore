@@ -1,5 +1,9 @@
 *.DS_Store
+Thumbs.db
 *__pycache__
+*.log
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
 evaluation/dataset/*
 config/datagen_config_bak.yaml
 !evaluation/dataset/.gitkeep
