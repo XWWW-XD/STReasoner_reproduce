@@ -4,7 +4,7 @@
 
 ## 说明
 
-ST-Test 四类任务已按 `max_tokens=6144` 全量跑完（见 `10-ST-TEST数据集效果.md`）。
+ST-Test 四类任务已按 `max_tokens=6144` 全量跑完（见 `10-ST-Test数据集效果.md`）。
 本报告不再单独跑 paper_cases，而是从全量附件
 `artifacts/sttest_full_6144_outputs_with_gold.jsonl` 中，按 `PaperCases.jsonl` 记录的
 `source_file` + `original_line_index` 抽取同一条样本的 response。
@@ -346,13 +346,13 @@ CoT 完整闭合（`</think>` + `<answer>D</answer>`），parsed 与 gold 一致
 
 ### 总体
 
-1. **四题在全量 ST-Test 6144 中表现正常**：4/4 唯一 `<answer>`、0/4 触顶、选择题全对；paper_cases 对应 index **未落入**全量长尾异常（对比 entity max idx=838 的 6043 tokens 退化，见 `10-1-entity_idx838_6043tokens超长response样例.md`）。
+1. **四题在全量 ST-Test 6144 中表现正常**：4/4 唯一 `<answer>`、0/4 触顶、选择题全对；paper_cases 对应 index **未落入**全量长尾异常（对比 entity max idx=838 的 6043 tokens 退化，见 `10.1-超长response样例.md`）。
 
 2. **长度**：本 4 条 response 均在 613–857 tokens，彼此接近；说明论文附录样例在全量跑批里属于「中等长度、正常收束」子集，不能代表 ST-Test 里 forecasting/entity 的极端长尾分布。
 
 3. **与 report 15 的关系**：report 15 为同 index 单独 vLLM 重跑；本报告为全量 `exp/sttest_full_*_6144/` 快照。当前抽取结果与 report 15 在答案与 MAE 上高度一致，可互相印证「官方链路 + prompt.json 下 paper_cases 合规」。
 
-4. **使用建议**：写 PPT/周报时，paper_cases 可直接引用本报告全文 response；全量 benchmark 数字仍以 `10-ST-TEST数据集效果.md` 为准；个案异常以 `10-1` 为例说明长尾风险即可。
+4. **使用建议**：写 PPT/周报时，paper_cases 可直接引用本报告全文 response；全量 benchmark 数字仍以 `10-ST-Test数据集效果.md` 为准；个案异常以 `10-1` 为例说明长尾风险即可。
 
 ## 附件
 

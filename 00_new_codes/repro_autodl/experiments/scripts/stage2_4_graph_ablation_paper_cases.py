@@ -417,7 +417,7 @@ def md_value(value: Any) -> str:
 
 
 def write_report(args: argparse.Namespace, summary: Dict[str, Any]) -> Path:
-    report_path = REPO_ROOT / "00_new_codes" / "reports" / "16-2026-05-31-3.md"
+    report_path = REPO_ROOT / "00_new_codes" / "reports" / "16-stage2.4paper消融.md"
     rows = summary["rows"]
     lines: List[str] = []
     lines.append("# Stage 2.4 paper_cases graph ablation 报告")

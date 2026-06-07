@@ -269,8 +269,8 @@ Stage 2.2 特点：
 
 | 类型 | 示例文件 |
 |------|----------|
-| 实验设计 prompt | `01_prompt1_抽取三种数据集.md`、`02_prompt2_四种不同配置实验设计.md`、`03_prompt3_单张A100实验设计.md` |
-| 排查/进展报告 | `04_vsc连接远程服务器错误排查.md`、`09_stage2.2paper_cases效果调试.md` |
+| 实验设计 prompt | `01-三种数据集抽取设计.md`、`02-四配置实验设计.md`、`03-单卡A100实验设计.md` |
+| 排查/进展报告 | `04-VSC远程连接排查.md`、`09_stage2.2paper_cases效果调试.md` |
 | 字段/输出收敛 | `13-2026-05-29-stage2输出文件收敛报告.md`、`16-2026-05-30-gpu_memory字段收敛报告.md` |
 | 待办 | `17-后续需要修改的问题.md` |
 | artifacts | `artifacts/sttest_full_6144_summary.json` 等 |

@@ -422,7 +422,7 @@ smoke 成功后，不要马上跑 100 steps。先分析：
 建议新写报告：
 
 ```text
-00_new_codes/reports/22-Stage1单卡4B训练smoke与小步数实验报告.md
+00_new_codes/reports/22-Stage1单卡4B实验.md
 ```
 
 报告必须写清：
@@ -714,7 +714,7 @@ output/single_a100_qwen3_4b_stage1_lora_2000steps_from1500_save_state/checkpoint
 已新增专门索引报告：
 
 ```text
-00_new_codes/reports/32-Stage1当前输出索引与继续训练清单.md
+00_new_codes/reports/32-Stage1输出索引清单.md
 ```
 
 该报告汇总了当前所有 Stage 1 LoRA 输出目录、训练方式、loss、runtime、目录大小、标准加载状态、是否可严格 resume、探针结果、关键日志和下次继续训练前检查清单。后续继续 Stage 1 前优先阅读这份索引。

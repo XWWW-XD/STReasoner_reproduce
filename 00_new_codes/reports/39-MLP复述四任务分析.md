@@ -2,7 +2,7 @@
 
 ## 0. 结论先行
 
-本报告重新核查 `37-MLP时间序列编码器边界分析报告.md` 中“模型在 `<think>` 中复述时间序列和 raw time series 对不上”的统计。这里的“对不上”只按一个标准判断：
+本报告重新核查 `37-MLP编码器边界分析.md` 中“模型在 `<think>` 中复述时间序列和 raw time series 对不上”的统计。这里的“对不上”只按一个标准判断：
 
 - 模型 response 的 `<think>` 中显式写出 `Node k [a-b]: 数值列表` 或 `Node k (steps a-b): 数值列表`。
 - 在原始 ST-Test JSONL 中取同一 sample、同一 node、同一 window 的 raw time series。

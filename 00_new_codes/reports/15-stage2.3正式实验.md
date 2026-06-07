@@ -2,7 +2,7 @@
 
 ## 结论
 
-本次补做 `13-0531实验进度总结和实验计划.md` 中的 paper_cases 实验，最终采用仓库官方 vLLM 推理链路完成 Stage 2.3：
+本次补做 `13-evaluate与ST-Test对比.md` 中的 paper_cases 实验，最终采用仓库官方 vLLM 推理链路完成 Stage 2.3：
 
 - 推理入口：`inference/inference_tsmllm_vllm.py`
 - 评估入口：`evaluation/evaluate.py`

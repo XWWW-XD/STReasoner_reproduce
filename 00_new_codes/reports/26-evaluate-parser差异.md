@@ -102,7 +102,7 @@ git：`0be4f2b..HEAD` 中 `evaluation/evaluate_qa.py` 仅此函数体变化（�
 
 ### 4.3 曾讨论但未留在 evaluate 里的「宽 parser」
 
-`09_stage2.2效果调试.md` 记录过临时方案：在 `_normalize_choice` 中增加 `\boxed{}`、`Answer:`、末尾 Option 等规则。  
+`09-stage2.2效果调试.md` 记录过临时方案：在 `_normalize_choice` 中增加 `\boxed{}`、`Answer:`、末尾 Option 等规则。  
 
 **当前 `evaluate_qa.py` 中不存在这些规则**；0531 计划（`13-2.3提示词存档.md`、`19-...`）明确 **收严为 tag-first**，与官方对齐。  
 该宽逻辑若存在过，**未进入当前 git 的 evaluate_qa.py**（或已回滚）。

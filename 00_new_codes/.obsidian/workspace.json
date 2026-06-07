@@ -27,7 +27,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "reports/07_实验一四配置SmartTest实际输出完整记录.md",
+                "file": "reports/07-四配置SmartTest输出.md",
                 "mode": "source",
                 "source": false
               },
@@ -151,7 +151,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "reports/06_实验一_2.1_免费资源下模型推理能力分析最终报告.md",
+                "file": "reports/06-实验一2.1推理分析.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -202,14 +202,14 @@
     "repro_autodl/experiments/stage2_docs/2.1 样例分析 smarttest - fp16 - a100.md",
     "repro_autodl/experiments/stage2_docs/2.1 实验报告 smarttest - fp16 - a100.md",
     "repro_autodl/experiments/stage2_docs/smarttest_stage2_two_sample_results_raw_json.md",
-    "reports/05_stage2_2_paper_cases实验脚本修改报告.md",
-    "reports/00_缓存写入本地事故修复报告.md",
+    "reports/05-stage2.2脚本修改.md",
+    "reports/00-缓存事故修复.md",
     "reports/00_缓存路径修复提示词.md",
     "guides/agents修改文件必读规则.md",
     "agents",
     "AGENTS",
-    "reports/07_实验一四配置SmartTest实际输出完整记录.md",
-    "reports/06_实验一_2.1_免费资源下模型推理能力分析最终报告.md",
+    "reports/07-四配置SmartTest输出.md",
+    "reports/06-实验一2.1推理分析.md",
     "repro_kaggle/experiments/stage1_docs/00_experiment1_4bit_single.md",
     "repro_kaggle/experiments/stage1_docs/exp1_resource_tiny20/exp_1 数据来源.md",
     "repro_kaggle/experiments/stage1_docs/exp1_resource_tiny20/stress_case/stress_case 样本集.md",

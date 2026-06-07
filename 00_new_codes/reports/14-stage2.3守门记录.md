@@ -15,7 +15,7 @@
 
 ## 过程日志
 
-- 16:45：开始按新目标重新读代码库和 Markdown 文档，重点阅读 `13-0531实验进度总结和实验计划.md`、`guides/修改文件必读规则.md`、`guides/pipeline_map.md`、`guides/dataset-ST-Bench使用说明.md`、README、ST-Bench README、08/09/10/11 号相关报告。
+- 16:45：开始按新目标重新读代码库和 Markdown 文档，重点阅读 `13-evaluate与ST-Test对比.md`、`guides/修改文件必读规则.md`、`guides/pipeline_map.md`、`guides/dataset-ST-Bench使用说明.md`、README、ST-Bench README、08/09/10/11 号相关报告。
 - 16:45：确认 report13 的核心要求：paper_cases 需要用 `format-prompt=true` 重跑；评分只走 tag-first 的 `evaluation/evaluate_qa.py`；不再写 decode 阶段指标；`max_new_tokens` 固定为 6144。
 - 16:45：确认当前数据文件为 `00_new_codes/repro_autodl/experiments/stage2_subsets/paper_cases/PaperCases.jsonl`，共 4 条。
 - 16:45：确认模型权重在 `base_model/STReasoner-8B/`，A100 40GB 空闲。
