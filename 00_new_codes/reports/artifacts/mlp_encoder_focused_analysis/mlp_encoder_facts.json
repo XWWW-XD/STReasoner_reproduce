@@ -1,0 +1,33 @@
+{
+  "modeling_file": "base_model/Qwen3-4B-Instruct-2507/modeling_qwen3_ts.py",
+  "processing_file": "base_model/Qwen3-4B-Instruct-2507/processing_qwen3_ts.py",
+  "config_file": "base_model/Qwen3-4B-Instruct-2507/config.json",
+  "class_name": "TimeSeriesEmbedding",
+  "model_class": "Qwen3TSForCausalLM",
+  "processor_class": "Qwen3TSProcessor",
+  "encoder_config": {
+    "embedding_dim": 16,
+    "hidden_size": 2560,
+    "max_length": 32768,
+    "max_sequence_length": 32768,
+    "num_features": 2,
+    "num_layers": 5,
+    "patch_size": 8,
+    "use_layer_norm": false,
+    "use_position_embedding": true,
+    "use_position_idx": false
+  },
+  "derived_mlp_input_dim": 136,
+  "mlp_hidden_dim": 2560,
+  "mlp_output_dim": 2560,
+  "num_linear_layers": 5,
+  "num_gelu_layers": 4,
+  "activation": "GELU after each non-final Linear",
+  "layer_norm": false,
+  "dropout": "not present in TimeSeriesEmbedding.mlp",
+  "patch_embedding_count": "one embedding vector per patch",
+  "normalization": "sp_encoding subtracts mean; if max abs centered value >= 3, divide by max_abs/3; prompt stores offset/scaling/length/max/min/left/right",
+  "patchify": "valid values selected by mask, pad to multiple of patch_size with last valid value, reshape to (num_patches, patch_size)",
+  "llm_merge": "Qwen3TSForCausalLM.forward calls ts_encoder(timeseries), then _merge_input_ids_with_time_series_features replaces <ts> placeholder span in inputs_embeds with patch embeddings",
+  "cross_patch_dependency_in_encoder": "No explicit cross-patch operation in TimeSeriesEmbedding; patches are concatenated into batch dimension and passed independently through the same MLP. Cross-patch reasoning can only occur later through LLM self-attention over patch embeddings."
+}
