@@ -140,17 +140,7 @@ PYTHONPATH=. python evaluation/evaluate.py \
 
 ---
 
-## 6. 复现行动清单（更新版）
-
-1. **已做**：Stage 2.2 默认 `--format-prompt true`；evaluate 收严为 tag-first（与报告 13、19 一致）。
-2. **待跑**：用新默认重跑 paper_cases 4 条，看 **evaluate coverage / accuracy** 是否与 ST-Test 同 index 接近。
-3. **报告写法**：**Run 诊断**（链路/资源）+ **evaluate 指标**（含 coverage）；附件可选 raw 标签计数，不另算一套分。
-4. **全量 ST-Test**：继续以 `exp/sttest_full_*_6144/` 为准，不重复烧卡。
-5. **不再做**：放宽 evaluate、用 `Answer: X` 兜底、或维护 Strict/Official 双层评测。
-
----
-
-## 7. 相关文件
+## 6. 相关文件
 
 | 文件 | 作用 |
 |---|---|

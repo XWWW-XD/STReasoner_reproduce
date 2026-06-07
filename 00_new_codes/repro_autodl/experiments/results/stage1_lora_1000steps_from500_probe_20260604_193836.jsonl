@@ -1,0 +1,6 @@
+{"sample_index": 0, "category": "temporal", "gold": "8.0", "response": "200", "generated_new_tokens": 4, "prompt_tokens": 492, "exact_match_simple": false}
+{"sample_index": 1, "category": "temporal", "gold": "0.0654", "response": "0.036", "generated_new_tokens": 6, "prompt_tokens": 492, "exact_match_simple": false}
+{"sample_index": 71, "category": "spatial", "gold": "no", "response": "no", "generated_new_tokens": 2, "prompt_tokens": 482, "exact_match_simple": true}
+{"sample_index": 72, "category": "spatial", "gold": "no", "response": "no", "generated_new_tokens": 2, "prompt_tokens": 490, "exact_match_simple": true}
+{"sample_index": 121, "category": "spatial_temporal", "gold": "demand_source", "response": "demand_source", "generated_new_tokens": 3, "prompt_tokens": 482, "exact_match_simple": true}
+{"sample_index": 122, "category": "spatial_temporal", "gold": "demand_source", "response": "demand_source", "generated_new_tokens": 3, "prompt_tokens": 482, "exact_match_simple": true}

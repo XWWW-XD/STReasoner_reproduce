@@ -1,0 +1,33 @@
+{
+  "task": "reasoning_entity",
+  "idx": 838,
+  "response_tokens_tokenizer": 6043,
+  "response_chars": 6876,
+  "reached_max_tokens_6144": false,
+  "gold_output": "<answer>B</answer>",
+  "parsed_prediction": "<think>\nlet me analyze the spatial-temporal data and graph structure to determine what node 2 represents.\n\n**graph structure analysis:**\n- node 0 → node 2\n- node 1 → node 2\nthis means node 2 receives ",
+  "choice_correct": false,
+  "answer_tag_open_count": 0,
+  "answer_tag_close_count": 0,
+  "input_tokens_recorded": 260,
+  "dataset_path": "data/ST-Bench/ST-Test/entity_test.jsonl",
+  "prediction_path": "exp/sttest_full_entity_6144/generated_answer.json",
+  "per_task_max": {
+    "reasoning_entity": {
+      "idx": 838,
+      "tokens": 6043
+    },
+    "reasoning_etiological": {
+      "idx": 198,
+      "tokens": 1060
+    },
+    "reasoning_correlation": {
+      "idx": 1565,
+      "tokens": 6071
+    },
+    "reasoning_forecasting": {
+      "idx": 23,
+      "tokens": 6094
+    }
+  }
+}

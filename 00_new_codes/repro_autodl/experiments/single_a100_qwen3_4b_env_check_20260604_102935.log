@@ -1,0 +1,67 @@
+== GPU ==
+Thu Jun  4 10:29:35 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.124.04             Driver Version: 570.124.04     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-PCIE-40GB          On  |   00000000:00:0D.0 Off |                  Off |
+| N/A   27C    P0             32W /  250W |       1MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+== Disk ==
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sdb         50G   23G   28G  46% /root/autodl-tmp
+
+== Python ==
+Python 3.10.20
+
+== Required local config ==
+local config ok
+
+== Dataset presence ==
+missing data/ST-Bench/ST-Align/alignment_train.jsonl
+missing data/ST-Bench/ST-CoT/entity_cot.jsonl
+missing data/ST-Bench/ST-CoT/etiological_cot.jsonl
+missing data/ST-Bench/ST-CoT/correlation_cot.jsonl
+missing data/ST-Bench/ST-CoT/forecasting_cot.jsonl
+missing data/ST-Bench/ST-RL/entity_rl.jsonl
+missing data/ST-Bench/ST-RL/etiological_rl.jsonl
+missing data/ST-Bench/ST-RL/correlation_rl.jsonl
+missing data/ST-Bench/ST-RL/forecasting_rl.jsonl
+ok      data/ST-Bench/ST-Test/entity_test.jsonl
+ok      data/ST-Bench/ST-Test/etiological_test.jsonl
+ok      data/ST-Bench/ST-Test/correlation_test.jsonl
+ok      data/ST-Bench/ST-Test/forecasting_test.jsonl
+
+== Qwen3-4B model ==
+base_model/Qwen3-4B-Instruct-2507/.gitattributes
+base_model/Qwen3-4B-Instruct-2507/LICENSE
+base_model/Qwen3-4B-Instruct-2507/README.md
+base_model/Qwen3-4B-Instruct-2507/added_tokens.json
+base_model/Qwen3-4B-Instruct-2507/chat_template.jinja
+base_model/Qwen3-4B-Instruct-2507/config.json
+base_model/Qwen3-4B-Instruct-2507/configuration_qwen3_ts.py
+base_model/Qwen3-4B-Instruct-2507/generation_config.json
+base_model/Qwen3-4B-Instruct-2507/merges.txt
+base_model/Qwen3-4B-Instruct-2507/model-00001-of-00002.safetensors
+base_model/Qwen3-4B-Instruct-2507/model-00002-of-00002.safetensors
+base_model/Qwen3-4B-Instruct-2507/model.safetensors.index.json
+base_model/Qwen3-4B-Instruct-2507/modeling_qwen3_ts.py
+base_model/Qwen3-4B-Instruct-2507/processing_qwen3_ts.py
+base_model/Qwen3-4B-Instruct-2507/processor_config.json
+base_model/Qwen3-4B-Instruct-2507/special_tokens_map.json
+base_model/Qwen3-4B-Instruct-2507/tokenizer.json
+base_model/Qwen3-4B-Instruct-2507/tokenizer_config.json
+base_model/Qwen3-4B-Instruct-2507/vocab.json

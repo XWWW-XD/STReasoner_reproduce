@@ -1,0 +1,285 @@
+# Stage 1 LoRA smoke started at 2026-06-04T11:50:34+08:00
+# command: bash 00_new_codes/repro_autodl/experiments/scripts/single_a100_qwen3_4b_stage1_lora_smoke.sh
+# pre-run disk
+Filesystem      Size  Used Avail Use% Mounted on
+overlay          30G  3.0G   28G  10% /
+/dev/sdb         50G   32G   19G  63% /root/autodl-tmp
+# pre-run gpu
+NVIDIA A100-PCIE-40GB, 40960 MiB, 1 MiB, 0 %
+/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+[INFO|2026-06-04 11:50:42] llamafactory.hparams.parser:410 >> Process rank: 0, world size: 1, device: cuda:0, distributed training: False, compute dtype: torch.float16
+[INFO|hub.py:411] 2026-06-04 11:50:42,338 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:1879] 2026-06-04 11:50:42,342 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:2021] 2026-06-04 11:50:42,342 >> loading file vocab.json
+[INFO|tokenization_utils_base.py:2021] 2026-06-04 11:50:42,342 >> loading file merges.txt
+[INFO|tokenization_utils_base.py:2021] 2026-06-04 11:50:42,343 >> loading file tokenizer.json
+[INFO|tokenization_utils_base.py:2021] 2026-06-04 11:50:42,343 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2021] 2026-06-04 11:50:42,343 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2021] 2026-06-04 11:50:42,343 >> loading file tokenizer_config.json
+[INFO|tokenization_utils_base.py:2021] 2026-06-04 11:50:42,343 >> loading file chat_template.jinja
+[INFO|tokenization_utils_base.py:2299] 2026-06-04 11:50:42,863 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[INFO|hub.py:411] 2026-06-04 11:50:42,863 >> Offline mode: forcing local_files_only=True
+[INFO|processing_utils.py:759] 2026-06-04 11:50:42,864 >> Offline mode: forcing local_files_only=True
+[INFO|processing_utils.py:928] 2026-06-04 11:50:42,864 >> loading configuration file ./base_model/Qwen3-4B-Instruct-2507/processor_config.json
+[INFO|dynamic_module_utils.py:355] 2026-06-04 11:50:42,864 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:411] 2026-06-04 11:50:42,867 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:1879] 2026-06-04 11:50:42,867 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:2021] 2026-06-04 11:50:42,868 >> loading file vocab.json
+[INFO|tokenization_utils_base.py:2021] 2026-06-04 11:50:42,868 >> loading file merges.txt
+[INFO|tokenization_utils_base.py:2021] 2026-06-04 11:50:42,868 >> loading file tokenizer.json
+[INFO|tokenization_utils_base.py:2021] 2026-06-04 11:50:42,868 >> loading file added_tokens.json
+[INFO|tokenization_utils_base.py:2021] 2026-06-04 11:50:42,868 >> loading file special_tokens_map.json
+[INFO|tokenization_utils_base.py:2021] 2026-06-04 11:50:42,868 >> loading file tokenizer_config.json
+[INFO|tokenization_utils_base.py:2021] 2026-06-04 11:50:42,868 >> loading file chat_template.jinja
+[INFO|tokenization_utils_base.py:2299] 2026-06-04 11:50:43,350 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[INFO|processing_utils.py:759] 2026-06-04 11:50:43,351 >> Offline mode: forcing local_files_only=True
+[INFO|processing_utils.py:928] 2026-06-04 11:50:43,351 >> loading configuration file ./base_model/Qwen3-4B-Instruct-2507/processor_config.json
+[INFO|processing_utils.py:990] 2026-06-04 11:50:43,948 >> Processor Qwen3TSProcessor:
+- tokenizer: Qwen2TokenizerFast(name_or_path='./base_model/Qwen3-4B-Instruct-2507', vocab_size=151643, model_max_length=1010000, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'eos_token': '<|im_end|>', 'pad_token': '<|endoftext|>', 'additional_special_tokens': ['<ts>', '<ts/>']}, clean_up_tokenization_spaces=False, added_tokens_decoder={
+	151643: AddedToken("<|endoftext|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151644: AddedToken("<|im_start|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151645: AddedToken("<|im_end|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151646: AddedToken("<|object_ref_start|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151647: AddedToken("<|object_ref_end|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151648: AddedToken("<|box_start|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151649: AddedToken("<|box_end|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151650: AddedToken("<|quad_start|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151651: AddedToken("<|quad_end|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151652: AddedToken("<|vision_start|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151653: AddedToken("<|vision_end|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151654: AddedToken("<|vision_pad|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151655: AddedToken("<|image_pad|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151656: AddedToken("<|video_pad|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151657: AddedToken("<tool_call>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151658: AddedToken("</tool_call>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151659: AddedToken("<|fim_prefix|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151660: AddedToken("<|fim_middle|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151661: AddedToken("<|fim_suffix|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151662: AddedToken("<|fim_pad|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151663: AddedToken("<|repo_name|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151664: AddedToken("<|file_sep|>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151665: AddedToken("<tool_response>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151666: AddedToken("</tool_response>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151667: AddedToken("<think>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151668: AddedToken("</think>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=False),
+	151669: AddedToken("<ts>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	151670: AddedToken("<ts/>", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+}
+)
+
+{
+  "processor_class": "Qwen3TSProcessor"
+}
+
+[INFO|2026-06-04 11:50:44] llamafactory.data.loader:143 >> Loading dataset ST-Bench/ST-Align/alignment_train.jsonl...
+[INFO|hub.py:411] 2026-06-04 11:50:44,450 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:696] 2026-06-04 11:50:44,451 >> loading configuration file ./base_model/Qwen3-4B-Instruct-2507/config.json
+[INFO|dynamic_module_utils.py:355] 2026-06-04 11:50:44,451 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:411] 2026-06-04 11:50:44,453 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:696] 2026-06-04 11:50:44,453 >> loading configuration file ./base_model/Qwen3-4B-Instruct-2507/config.json
+[INFO|configuration_utils.py:770] 2026-06-04 11:50:44,455 >> Model config Qwen3TSConfig {
+  "architectures": [
+    "Qwen3TSForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "auto_map": {
+    "AutoConfig": "configuration_qwen3_ts.Qwen3TSConfig",
+    "AutoModel": "modeling_qwen3_ts.Qwen3TSForCausalLM",
+    "AutoModelForCausalLM": "modeling_qwen3_ts.Qwen3TSForCausalLM",
+    "AutoProcessor": "processing_qwen3_ts.Qwen3TSProcessor"
+  },
+  "bos_token_id": 151643,
+  "eos_token_id": 151645,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 2560,
+  "ignore_index": -100,
+  "initializer_range": 0.02,
+  "intermediate_size": 9728,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 262144,
+  "max_window_layers": 36,
+  "model_type": "qwen3",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 36,
+  "num_key_value_heads": 8,
+  "pad_token_id": 151643,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 5000000,
+  "sliding_window": null,
+  "tie_word_embeddings": false,
+  "torch_dtype": "float16",
+  "transformers_version": "4.52.4",
+  "ts": {
+    "embedding_dim": 16,
+    "hidden_size": 2560,
+    "max_length": 32768,
+    "max_sequence_length": 32768,
+    "num_features": 2,
+    "num_layers": 5,
+    "patch_size": 8,
+    "use_layer_norm": false,
+    "use_position_embedding": true,
+    "use_position_idx": false
+  },
+  "ts_token_end_index": 151670,
+  "ts_token_start_index": 151669,
+  "use_cache": false,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[before _get_preprocessed_dataset] dataset columns: ['_prompt', '_response', '_system', '_tools', '_images', '_videos', '_audios', '_timeseries']
+training example:
+input_ids:
+[151644, 8948, 198, 2610, 525, 264, 10950, 17847, 13, 151645, 198, 151644, 872, 198, 2610, 525, 264, 27979, 35915, 6358, 6203, 13, 6018, 220, 15, 882, 4013, 448, 3084, 315, 220, 24, 21, 25, 508, 3176, 10829, 16, 17, 13, 15, 15, 17, 17, 91, 93052, 28, 17, 13, 21, 20, 20, 24, 91, 4129, 28, 24, 21, 43755, 28, 16, 24, 13, 24, 22, 15, 15, 59583, 28, 19, 13, 16, 17, 15, 15, 91, 2359, 28, 16, 24, 13, 24, 22, 15, 15, 91, 1291, 28, 16, 24, 13, 22, 15, 15, 15, 60, 151669, 151670, 26, 6018, 220, 16, 882, 4013, 448, 3084, 315, 220, 24, 21, 25, 508, 3176, 10829, 16, 19, 13, 24, 23, 23, 15, 91, 93052, 28, 16, 13, 21, 19, 22, 18, 91, 4129, 28, 24, 21, 43755, 28, 16, 24, 13, 24, 18, 15, 15, 59583, 28, 16, 15, 13, 16, 15, 15, 15, 91, 2359, 28, 16, 23, 13, 23, 23, 15, 15, 91, 1291, 28, 16, 24, 13, 18, 22, 15, 15, 60, 151669, 151670, 26, 6018, 220, 17, 882, 4013, 448, 3084, 315, 220, 24, 21, 25, 508, 3176, 10829, 16, 17, 13, 17, 18, 20, 24, 91, 93052, 28, 19, 13, 15, 22, 23, 21, 91, 4129, 28, 24, 21, 43755, 28, 16, 20, 13, 20, 23, 15, 15, 59583, 28, 15, 13, 15, 15, 15, 15, 91, 2359, 28, 16, 17, 13, 24, 15, 15, 15, 91, 1291, 28, 16, 20, 13, 18, 15, 15, 15, 60, 151669, 151670, 26, 6018, 220, 18, 882, 4013, 448, 3084, 315, 220, 24, 21, 25, 508, 3176, 10829, 16, 18, 13, 20, 21, 23, 15, 91, 93052, 28, 19, 13, 17, 24, 24, 18, 91, 4129, 28, 24, 21, 43755, 28, 16, 21, 13, 16, 17, 15, 15, 59583, 28, 15, 13, 21, 22, 15, 15, 91, 2359, 28, 16, 19, 13, 17, 15, 15, 15, 91, 1291, 28, 16, 21, 13, 16, 17, 15, 15, 60, 151669, 151670, 26, 6018, 220, 19, 882, 4013, 448, 3084, 315, 220, 24, 21, 25, 508, 3176, 10829, 16, 17, 13, 20, 16, 20, 18, 91, 93052, 28, 18, 13, 22, 18, 23, 19, 91, 4129, 28, 24, 21, 43755, 28, 16, 20, 13, 16, 19, 15, 15, 59583, 28, 16, 13, 18, 15, 15, 15, 91, 2359, 28, 16, 16, 13, 23, 24, 15, 15, 91, 1291, 28, 16, 19, 13, 17, 18, 15, 15, 60, 151669, 151670, 26, 12165, 28596, 25, 6018, 220, 15, 405, 1955, 220, 17, 26, 6018, 220, 16, 405, 1955, 220, 18, 26, 6018, 220, 17, 405, 1955, 220, 18, 26, 6018, 220, 17, 405, 1955, 220, 19, 26, 6018, 220, 18, 405, 1955, 220, 19, 11, 4486, 23643, 279, 27979, 35915, 821, 323, 4226, 279, 2701, 3405, 25, 3555, 374, 279, 75814, 70816, 44109, 320, 32, 8, 315, 2436, 220, 15, 2337, 279, 882, 2088, 508, 15, 11, 220, 24, 21, 49964, 151645, 198, 151644, 77091, 198, 23, 13, 15, 151645, 198]
+inputs:
+<|im_start|>system
+You are a helpful assistant.<|im_end|>
+<|im_start|>user
+You are a spatial temporal analysis expert. Node 0 time series with length of 96: [offset=-12.0022|scaling=2.6559|length=96|max=19.9700|min=4.1200|left=19.9700|right=19.7000]<ts><ts/>; Node 1 time series with length of 96: [offset=-14.9880|scaling=1.6473|length=96|max=19.9300|min=10.1000|left=18.8800|right=19.3700]<ts><ts/>; Node 2 time series with length of 96: [offset=-12.2359|scaling=4.0786|length=96|max=15.5800|min=0.0000|left=12.9000|right=15.3000]<ts><ts/>; Node 3 time series with length of 96: [offset=-13.5680|scaling=4.2993|length=96|max=16.1200|min=0.6700|left=14.2000|right=16.1200]<ts><ts/>; Node 4 time series with length of 96: [offset=-12.5153|scaling=3.7384|length=96|max=15.1400|min=1.3000|left=11.8900|right=14.2300]<ts><ts/>; Graph Structure: Node 0->Node 2; Node 1->Node 3; Node 2->Node 3; Node 2->Node 4; Node 3->Node 4, please analyze the spatial temporal data and answer the following question: What is the sinusoidal amplitude (A) of node 0 during the time range [0, 96]?<|im_end|>
+<|im_start|>assistant
+8.0<|im_end|>
+
+label_ids:
+[-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 23, 13, 15, 151645, 198]
+labels:
+8.0<|im_end|>
+
+[after _get_preprocessed_dataset] dataset columns: ['input_ids', 'attention_mask', 'labels', 'images', 'videos', 'audios', 'timeseries']
+[INFO|2026-06-04 11:50:44] llamafactory.model.model_utils.kv_cache:143 >> KV cache is disabled during training.
+[INFO|dynamic_module_utils.py:355] 2026-06-04 11:50:45,011 >> Offline mode: forcing local_files_only=True
+[INFO|modeling_utils.py:4319] 2026-06-04 11:50:45,025 >> Offline mode: forcing local_files_only=True
+[INFO|modeling_utils.py:1148] 2026-06-04 11:50:45,025 >> loading weights file ./base_model/Qwen3-4B-Instruct-2507/model.safetensors.index.json
+[INFO|modeling_utils.py:2241] 2026-06-04 11:50:45,026 >> Instantiating Qwen3TSForCausalLM model under default dtype torch.float16.
+[INFO|configuration_utils.py:1135] 2026-06-04 11:50:45,028 >> Generate config GenerationConfig {
+  "bos_token_id": 151643,
+  "eos_token_id": 151645,
+  "pad_token_id": 151643,
+  "use_cache": false
+}
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.77s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.37s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.43s/it]
+[INFO|modeling_utils.py:5131] 2026-06-04 11:50:49,950 >> All model checkpoint weights were used when initializing Qwen3TSForCausalLM.
+
+[INFO|modeling_utils.py:5139] 2026-06-04 11:50:49,950 >> All the weights of Qwen3TSForCausalLM were initialized from the model checkpoint at ./base_model/Qwen3-4B-Instruct-2507.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use Qwen3TSForCausalLM for predictions without further training.
+[INFO|configuration_utils.py:1088] 2026-06-04 11:50:49,955 >> loading configuration file ./base_model/Qwen3-4B-Instruct-2507/generation_config.json
+[INFO|configuration_utils.py:1135] 2026-06-04 11:50:49,956 >> Generate config GenerationConfig {
+  "bos_token_id": 151643,
+  "do_sample": true,
+  "eos_token_id": [
+    151645,
+    151643
+  ],
+  "pad_token_id": 151643,
+  "temperature": 0.7,
+  "top_k": 20,
+  "top_p": 0.8
+}
+
+[INFO|2026-06-04 11:50:49] llamafactory.model.model_utils.checkpointing:143 >> Gradient checkpointing enabled.
+[INFO|2026-06-04 11:50:49] llamafactory.model.model_utils.attention:143 >> Using torch SDPA for faster training and inference.
+[INFO|2026-06-04 11:50:49] llamafactory.model.adapter:143 >> Upcasting trainable params to float32.
+[INFO|2026-06-04 11:50:49] llamafactory.model.adapter:143 >> Fine-tuning method: LoRA
+[INFO|2026-06-04 11:50:49] llamafactory.model.model_utils.misc:143 >> Found linear modules: gate_proj,q_proj,up_proj,down_proj,6,8,2,k_proj,4,o_proj,0,v_proj
+[INFO|2026-06-04 11:50:49] llamafactory.model.model_utils.timeseries:143 >> Extend LoRA target modules with time-series components: ts_encoder.mlp.0,ts_encoder.mlp.2,ts_encoder.mlp.4,ts_encoder.mlp.6,ts_encoder.mlp.8.
+Traceback (most recent call last):
+  File "/root/autodl-tmp/STReasoner_reproduce/src/train.py", line 40, in <module>
+    main()
+  File "/root/autodl-tmp/STReasoner_reproduce/src/train.py", line 31, in main
+    run_exp()
+  File "/root/autodl-tmp/STReasoner_reproduce/src/llamafactory/train/tuner.py", line 118, in run_exp
+    _training_function(config={"args": args, "callbacks": callbacks})
+  File "/root/autodl-tmp/STReasoner_reproduce/src/llamafactory/train/tuner.py", line 72, in _training_function
+    run_sft(model_args, data_args, training_args, finetuning_args, generating_args, callbacks)
+  File "/root/autodl-tmp/STReasoner_reproduce/src/llamafactory/train/sft/workflow.py", line 53, in run_sft
+    model = load_model(tokenizer, model_args, finetuning_args, training_args.do_train)
+  File "/root/autodl-tmp/STReasoner_reproduce/src/llamafactory/model/loader.py", line 186, in load_model
+    model = init_adapter(config, model, model_args, finetuning_args, is_trainable)
+  File "/root/autodl-tmp/STReasoner_reproduce/src/llamafactory/model/adapter.py", line 322, in init_adapter
+    model = _setup_lora_tuning(
+  File "/root/autodl-tmp/STReasoner_reproduce/src/llamafactory/model/adapter.py", line 269, in _setup_lora_tuning
+    model = get_peft_model(model, lora_config)
+  File "/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/peft/mapping_func.py", line 123, in get_peft_model
+    return MODEL_TYPE_TO_PEFT_MODEL_MAPPING[peft_config.task_type](
+  File "/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/peft/peft_model.py", line 1721, in __init__
+    super().__init__(model, peft_config, adapter_name, **kwargs)
+  File "/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/peft/peft_model.py", line 132, in __init__
+    self.base_model = cls(model, {adapter_name: peft_config}, adapter_name)
+  File "/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/peft/tuners/lora/model.py", line 142, in __init__
+    super().__init__(model, config, adapter_name, low_cpu_mem_usage=low_cpu_mem_usage)
+  File "/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/peft/tuners/tuners_utils.py", line 180, in __init__
+    self.inject_adapter(self.model, adapter_name, low_cpu_mem_usage=low_cpu_mem_usage)
+  File "/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/peft/tuners/tuners_utils.py", line 508, in inject_adapter
+    self._create_and_replace(peft_config, adapter_name, target, target_name, parent, current_key=key)
+  File "/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/peft/tuners/lora/model.py", line 237, in _create_and_replace
+    new_module = self._create_new_module(lora_config, adapter_name, target, device_map=device_map, **kwargs)
+  File "/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/peft/tuners/lora/model.py", line 348, in _create_new_module
+    raise ValueError(
+ValueError: Target module Qwen3DecoderLayer(
+  (self_attn): Qwen3Attention(
+    (q_proj): Linear(in_features=2560, out_features=4096, bias=False)
+    (k_proj): Linear(in_features=2560, out_features=1024, bias=False)
+    (v_proj): Linear(in_features=2560, out_features=1024, bias=False)
+    (o_proj): Linear(in_features=4096, out_features=2560, bias=False)
+    (q_norm): Qwen3RMSNorm((128,), eps=1e-06)
+    (k_norm): Qwen3RMSNorm((128,), eps=1e-06)
+  )
+  (mlp): Qwen3MLP(
+    (gate_proj): Linear(in_features=2560, out_features=9728, bias=False)
+    (up_proj): Linear(in_features=2560, out_features=9728, bias=False)
+    (down_proj): Linear(in_features=9728, out_features=2560, bias=False)
+    (act_fn): SiLU()
+  )
+  (input_layernorm): Qwen3RMSNorm((2560,), eps=1e-06)
+  (post_attention_layernorm): Qwen3RMSNorm((2560,), eps=1e-06)
+) is not supported. Currently, only the following modules are supported: `torch.nn.Linear`, `torch.nn.Embedding`, `torch.nn.Conv1d`, `torch.nn.Conv2d`, `torch.nn.Conv3d`, `transformers.pytorch_utils.Conv1D`, `torch.nn.MultiheadAttention.`.
+# Stage 1 LoRA smoke ended at 2026-06-04T11:50:51+08:00
+# post-run disk
+Filesystem      Size  Used Avail Use% Mounted on
+overlay          30G  3.0G   28G  10% /
+/dev/sdb         50G   32G   19G  63% /root/autodl-tmp
+# post-run output size
+# post-run gpu
+NVIDIA A100-PCIE-40GB, 40960 MiB, 1 MiB, 0 %
