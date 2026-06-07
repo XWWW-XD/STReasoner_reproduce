@@ -1,0 +1,122 @@
+{
+  "forecasting": {
+    "window_length": {
+      "count": 474,
+      "median": 10.0,
+      "mean": 12.521097046413502,
+      "min": 4.0,
+      "max": 50.0
+    },
+    "window_ratio": {
+      "count": 474,
+      "median": 0.17142857142857143,
+      "mean": 0.25014713790588883,
+      "min": 0.04950495049504951,
+      "max": 0.8372093023255814
+    },
+    "mean_abs_diff": {
+      "count": 474,
+      "median": 6.048787878787879,
+      "mean": 25.758805904287993,
+      "min": 0.004815384615384597,
+      "max": 604.3133333333334
+    },
+    "max_abs_diff": {
+      "count": 474,
+      "median": 12.094999999999995,
+      "mean": 49.98019831223629,
+      "min": 0.011899999999999994,
+      "max": 1142.95
+    }
+  },
+  "correlation": {
+    "window_length": {
+      "count": 1179,
+      "median": 13.0,
+      "mean": 14.996607294317219,
+      "min": 3.0,
+      "max": 61.0
+    },
+    "window_ratio": {
+      "count": 1179,
+      "median": 0.14583333333333334,
+      "mean": 0.17116881739973344,
+      "min": 0.0125,
+      "max": 0.7708333333333334
+    },
+    "mean_abs_diff": {
+      "count": 1179,
+      "median": 20.464736842105264,
+      "mean": 64.38028170791017,
+      "min": 0.040000000000002194,
+      "max": 1383.1
+    },
+    "max_abs_diff": {
+      "count": 1179,
+      "median": 47.91,
+      "mean": 148.37188295165396,
+      "min": 0.060000000000002274,
+      "max": 3571.92
+    }
+  },
+  "entity": {
+    "window_length": {
+      "count": 0,
+      "median": null,
+      "mean": null,
+      "min": null,
+      "max": null
+    },
+    "window_ratio": {
+      "count": 0,
+      "median": null,
+      "mean": null,
+      "min": null,
+      "max": null
+    },
+    "mean_abs_diff": {
+      "count": 0,
+      "median": null,
+      "mean": null,
+      "min": null,
+      "max": null
+    },
+    "max_abs_diff": {
+      "count": 0,
+      "median": null,
+      "mean": null,
+      "min": null,
+      "max": null
+    }
+  },
+  "etiological": {
+    "window_length": {
+      "count": 0,
+      "median": null,
+      "mean": null,
+      "min": null,
+      "max": null
+    },
+    "window_ratio": {
+      "count": 0,
+      "median": null,
+      "mean": null,
+      "min": null,
+      "max": null
+    },
+    "mean_abs_diff": {
+      "count": 0,
+      "median": null,
+      "mean": null,
+      "min": null,
+      "max": null
+    },
+    "max_abs_diff": {
+      "count": 0,
+      "median": null,
+      "mean": null,
+      "min": null,
+      "max": null
+    }
+  }
+}
