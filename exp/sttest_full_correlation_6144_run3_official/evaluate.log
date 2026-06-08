@@ -1,0 +1,14 @@
+
+--- Evaluation Metrics ---
+task: reasoning_correlation
+total_samples: 1592
+evaluated_samples: 1592
+missing_predictions: 0
+coverage: 1.000000
+accuracy: 0.822236
+total_input_tokens: 717765
+avg_input_tokens: 450.860000
+samples_with_token_info: 1592
+--------------------------
+
+Saved metrics to /root/autodl-tmp/STReasoner_reproduce/exp/sttest_full_correlation_6144_run3_official/evaluation_metrics.json

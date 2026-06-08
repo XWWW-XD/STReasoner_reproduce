@@ -9,8 +9,6 @@ sensitive_info_result.txt
 .vscode/*
 !.vscode/extensions.json
 .env
-exp/
-exp_images/
 ckpt
 vllm_input.txt
 output
