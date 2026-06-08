@@ -1,14 +1,6 @@
 # evaluate 与 raw 格式诊断的差异，及 paper_cases / ST-Test 对比说明
 
-日期：2026-05-30（2026-05-30 修订：evaluate 收严为 tag-first；Stage 2.2 默认 `--format-prompt true`）
-
-## 结论
-
-1. **正式评分只走作者 `evaluation/evaluate_qa.py`**（tag-first：选择题只认 `<answer>` 内单个 A–D；forecasting 读标签内 JSON/数组）。不另维护「Strict 层 / Official 层」两套尺子。
-2. ST-Test 全量 6144 上 `<answer>` 标签合规率很高（例如 entity 1175/1194），因为走了官方推理：**vLLM + `inference/prompt.json` 格式后缀**。
-3. paper_cases 4 条与 ST-Test 同源（同 index）。**早期** Stage 2.2 用 HF `model.generate()` 且未追加格式后缀，raw 无标签、coverage/accuracy 差；**不是**模型在这 4 题上“不会写格式”——同 index 在 vLLM+后缀下可合规。
-4. **已修复生成侧**：`stage2_2_run_paper_cases.py` 默认 `--format-prompt true`，与官方一样追加 `prompt.json` 后缀；**已收严 evaluate**，不再用 `Answer:` / `\boxed{}` 等兜底评分。
-5. 附件里对 raw 的「标签计数」（`answer_tag_open_count` 等）仅作**报告诊断**，与 evaluate 使用同一 tag-first 原则；**coverage 低即 parse 失败**，不存在「strict 失败但 official 仍高分」的口径。
+日期：2026-05-30
 
 ---
 
@@ -84,43 +76,6 @@ Output Format: <think>Your step-by-step reasoning process</think><answer>Your fi
 
 **在收严 evaluate 下**，旧 paper_cases 的 `Answer: D` **不能**再被 parser 抽成正确 accuracy；须重跑带 `--format-prompt true` 后再评。
 
----
-
-## 5. 复现行动建议（更新版）
-
-### 5.1 已做
-
-1. Stage 2.2 默认 `--format-prompt true`（`get_prompt_suffix()` + `inference/prompt.json`）。
-2. `evaluate_qa.py` 收严为 tag-first；复现脚本 `parse_model_answer()` 与 evaluate 共用同一套 helper。
-
-### 5.2 待跑
-
-3. 用新默认 **重跑 paper_cases 4 条**（6144，`run-all`），看 evaluate coverage / accuracy 与同 index ST-Test 附件是否接近。
-4. **不要改 gold、不要事后改写 raw response**（遵守 `guides/agents修改文件必读规则.md`）。
-
-### 5.3 推理入口
-
-5. **ST-Test 正式结果**以 `inference/inference_tsmllm_vllm.py` 为准（`max_tokens=6144`）。
-6. 评估统一：`PYTHONPATH=. python evaluation/evaluate.py ...`，dataset 指向 `data/ST-Bench/ST-Test/*.jsonl`。
-
-### 5.4 报告写法
-
-7. 正文写清：**是否追加 format prompt**、**evaluate coverage**、**accuracy/MAE**；标签计数仅作附件说明。
-8. paper_cases 结论写 **链路差异（早期无后缀 vs 当前已对齐）**，不要写成模型能力问题。
-
-### 5.5 不建议
-
-9. 不要用旧 paper_cases raw 0/4 否定 ST-Test 6144 结论。
-10. 不要在评测前把 `Answer: D` 改写成 `<answer>D</answer>`。
-11. 不要为 paper_cases 再放宽 evaluate 或写 sample 特例 parser。
-
-### 5.6 建议验证顺序
-
-```text
-1. py_compile stage2_2_run_paper_cases.py evaluation/evaluate_qa.py
-2. paper_cases 4 条 run-all --format-prompt true，看 coverage 与 ST-Test 同 index
-3. 全量 ST-Test 仍以 exp/sttest_full_*_6144/ 与附件为准
-```
 
 ---
 
@@ -138,6 +93,6 @@ Output Format: <think>Your step-by-step reasoning process</think><answer>Your fi
 
 ---
 
-## 7. 一句话收束
+## 7. 总结
 
 **评分只认作者 tag-first evaluate。** ST-Test 标签合规率高，是因为 vLLM 推理**每次都加了 `prompt.json` 后缀**；paper_cases 早期差，是因为 HF 路径**漏了这一步**——已在 Stage 2.2 默认补上；重跑后用 **coverage + accuracy** 验收，不必再维护 Strict/Official 双层。
