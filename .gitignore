@@ -13,7 +13,11 @@ sensitive_info_result.txt
 .vscode/*
 !.vscode/extensions.json
 .env
-exp/
+# exp: track json/jsonl for local analysis; logs already ignored by *.log
+exp/**
+!exp/**/
+!exp/**/*.json
+!exp/**/*.jsonl
 exp_images/
 ckpt
 vllm_input.txt
@@ -24,16 +28,31 @@ batch_inputs_qa
 output_qa
 datasets
 test_data
-# data
-data/alignment
-data/reasoning
-data/reasoning_before_filter
-data/reasoning_image
-data/reasoning_text
-data/forecasting_qa.json
-data/list_files.json
-data/reasoning_qa.json
-data/ST-Bench
+# data — json/jsonl trackable; other formats stay ignored where noted
+data/alignment/**
+!data/alignment/**/
+!data/alignment/**/*.json
+!data/alignment/**/*.jsonl
+data/reasoning/**
+!data/reasoning/**/
+!data/reasoning/**/*.json
+!data/reasoning/**/*.jsonl
+data/reasoning_before_filter/**
+!data/reasoning_before_filter/**/
+!data/reasoning_before_filter/**/*.json
+!data/reasoning_before_filter/**/*.jsonl
+data/reasoning_image/**
+!data/reasoning_image/**/
+!data/reasoning_image/**/*.json
+!data/reasoning_image/**/*.jsonl
+data/reasoning_text/**
+!data/reasoning_text/**/
+!data/reasoning_text/**/*.json
+!data/reasoning_text/**/*.jsonl
+data/ST-Bench/**
+!data/ST-Bench/**/
+!data/ST-Bench/**/*.json
+!data/ST-Bench/**/*.jsonl
 
 ChatTS
 ChatTS-Training
@@ -83,7 +102,6 @@ evaluation/visualize_sample.py
 evaluation/run_llm_judge.sh
 
 
-data_generation/list_files.json
 data_generation/batch_output/
 data_generation/batch_inputs/
 data_generation/batch_inputs_qa/

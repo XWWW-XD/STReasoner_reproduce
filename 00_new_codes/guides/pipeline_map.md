@@ -201,7 +201,7 @@
   - `00_new_codes/guides/agents修改文件必读规则.md`
   - `00_new_codes/guides/dataset-ST-Bench使用说明.md`
 
-> **本地注意**：`base_model/` 与 `data/ST-Bench/` 常被 `.gitignore` 忽略，克隆后需运行 `download_model.py` / `download_dataset.py`。
+> **本地注意**：`base_model/` 仍被 `.gitignore` 忽略，克隆后需运行 `download_model.py`。`data/ST-Bench/` 与 `exp/` 下的 **`.json` / `.jsonl`** 可入库；其他大文件（`.pkl`、模型权重等）仍忽略。
 
 ---
 
