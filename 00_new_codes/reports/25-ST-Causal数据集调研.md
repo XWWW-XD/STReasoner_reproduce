@@ -1,19 +1,12 @@
 # 25 — ST-Causal 与类似数据集调研报告
 
-> 对应 `15-0531晚上实验.md` §5「数据集调研」。  
-> 调研时间：2026-05-31。主要来源：STReasoner 论文（arXiv:2601.03248）、HuggingFace `Time-HD-Anonymous/ST-Bench`、CausalRivers 官网与 GitHub、以及 Time-MQA / TSRBench / STARK 等公开资料。
-
----
 
 ## 1. 核心结论（先读）
 
 | 问题 | 结论 |
 |---|---|
-| **ST-Causal 是否对应论文 §5.2？** | **是。** 代码中的 `ST-Causal/causal.jsonl` 即论文 *Zero-Shot Results on Real-World Data*（§5.2）基于 **CausalRivers** 构造的 real-world zero-shot causal QA 评测集。 |
-| **与 ST-Test 的关系** | **独立 split。** ST-Test 四类（entity / etiological / correlation / forecasting）是合成 ST-Bench 主评测；ST-Causal **不参与** Stage 1–3 训练注册（不在 ST-CoT / ST-RL 中），仅 zero-shot 外推评测。 |
-| **命名** | 仓库与 HF 均为 **ST-Causal**（Causal），不是 Casual。 |
 | **其他论文是否用过 ST-Causal？** | **截至 2026-05-31，仅 STReasoner 原文 Table 2 报告该 QA 集结果**；CausalRivers 本体被大量因果发现工作使用，但「CausalRivers → LLM 因果 QA」这一转化目前几乎只为 STReasoner 服务。 |
-| **本仓库能否直接跑** | 推理入口已支持 `--task reasoning_causal`；需 `python download_dataset.py` 下载 `ST-Causal/causal.jsonl`。注意 `evaluation/evaluate.py` 里 `reasoning_causal` 的默认 dataset 路径与推理脚本不一致（见 §4.3）。 |
+| **本仓库能否直接跑** | 推理入口已支持 `--task reasoning_causal`；需 `python download_dataset.py` 下载 `ST-Causal/causal.jsonl`。评估路径已与推理对齐；IDE 可查看 `artifacts/st_causal_preview.jsonl`。 |
 
 ---
 
@@ -112,7 +105,16 @@ CausalRivers 真值图 + 河流 CSV
 
 ### 4.3 跑 ST-Causal 的注意事项
 
-**推理（正确默认路径）：**
+**数据获取：** `data/ST-Bench/` 在 `.gitignore` 中，克隆仓库后需自行下载：
+
+```bash
+python download_dataset.py
+# 或仅 ST-Causal：见 HF datasets/Time-HD-Anonymous/ST-Bench ST-Causal/causal.jsonl
+```
+
+**IDE 查看：** 完整 `causal.jsonl` 约 14 MB、1183 条，不宜在编辑器中整文件打开。可查看仓库内预览样例：[`00_new_codes/reports/artifacts/st_causal_preview.jsonl`](artifacts/st_causal_preview.jsonl)（每条 `timeseries` 仅保留前 5 个点）。
+
+**推理：**
 
 ```bash
 python inference/inference_tsmllm_vllm.py \
@@ -122,17 +124,11 @@ python inference/inference_tsmllm_vllm.py \
 # 默认 dataset: data/ST-Bench/ST-Causal/causal.jsonl
 ```
 
-**评估（需显式 `--dataset`，否则路径错误）：**
-
-- `inference_tsmllm_vllm.py` → `data/ST-Bench/ST-Causal/causal.jsonl` ✓  
-- `evaluation/evaluate.py` 内置 `DEFAULT_TASK_CONFIG` → `data/reasoning/causal.jsonl` ✗（与 ST-Bench 不一致）
-
-建议：
+**评估：** `evaluation/evaluate.py` 默认路径已与推理脚本对齐为 `data/ST-Bench/ST-Causal/causal.jsonl`。
 
 ```bash
 PYTHONPATH=. python evaluation/evaluate.py \
   --task reasoning_causal \
-  --dataset data/ST-Bench/ST-Causal/causal.jsonl \
   --exp_path <exp_dir>
 ```
 

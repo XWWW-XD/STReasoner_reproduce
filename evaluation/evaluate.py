@@ -87,7 +87,7 @@ DEFAULT_TASK_CONFIG: Dict[str, Dict[str, str]] = {
         "task": "reasoning_correlation",
     },
     "reasoning_causal": {
-        "dataset": os.path.join("data", "reasoning", "causal.jsonl"),
+        "dataset": os.path.join("data", "ST-Bench", "ST-Causal", "causal.jsonl"),
         "task": "reasoning_causal",
     },
 }

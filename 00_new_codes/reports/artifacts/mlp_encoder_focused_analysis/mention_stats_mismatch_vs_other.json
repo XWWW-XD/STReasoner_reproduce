@@ -1,0 +1,115 @@
+{
+  "definition": {
+    "broad_mention": "Deduped spans in <think> where a Node is tied to a numeric list (>=3 numbers): strict window lines, inline (steps a-b) lists, Node-prefixed numeric lines.",
+    "strict_window_line_only": "NODE_WINDOW_LINE_RE matches with >=3 numbers (no raw alignment).",
+    "mean": "mention_sum / sample_count"
+  },
+  "tasks": {
+    "forecasting": {
+      "total_samples": 280,
+      "groups": {
+        "all": {
+          "sample_count": 280,
+          "mention_sum": 1054,
+          "strict_window_line_sum": 0,
+          "mean_mentions_per_sample": 3.7643
+        },
+        "mismatch": {
+          "sample_count": 141,
+          "mention_sum": 602,
+          "strict_window_line_sum": 0,
+          "mean_mentions_per_sample": 4.2695
+        },
+        "other": {
+          "sample_count": 139,
+          "mention_sum": 452,
+          "strict_window_line_sum": 0,
+          "mean_mentions_per_sample": 3.2518
+        }
+      }
+    },
+    "correlation": {
+      "total_samples": 1592,
+      "groups": {
+        "all": {
+          "sample_count": 1592,
+          "mention_sum": 5438,
+          "strict_window_line_sum": 0,
+          "mean_mentions_per_sample": 3.4158
+        },
+        "mismatch": {
+          "sample_count": 347,
+          "mention_sum": 1649,
+          "strict_window_line_sum": 0,
+          "mean_mentions_per_sample": 4.7522
+        },
+        "other": {
+          "sample_count": 1245,
+          "mention_sum": 3789,
+          "strict_window_line_sum": 0,
+          "mean_mentions_per_sample": 3.0434
+        }
+      }
+    },
+    "entity": {
+      "total_samples": 1194,
+      "groups": {
+        "all": {
+          "sample_count": 1194,
+          "mention_sum": 2408,
+          "strict_window_line_sum": 0,
+          "mean_mentions_per_sample": 2.0168
+        },
+        "mismatch": {
+          "sample_count": 0,
+          "mention_sum": 0,
+          "strict_window_line_sum": 0,
+          "mean_mentions_per_sample": null
+        },
+        "other": {
+          "sample_count": 1194,
+          "mention_sum": 2408,
+          "strict_window_line_sum": 0,
+          "mean_mentions_per_sample": 2.0168
+        }
+      }
+    },
+    "etiological": {
+      "total_samples": 207,
+      "groups": {
+        "all": {
+          "sample_count": 207,
+          "mention_sum": 516,
+          "strict_window_line_sum": 0,
+          "mean_mentions_per_sample": 2.4928
+        },
+        "mismatch": {
+          "sample_count": 0,
+          "mention_sum": 0,
+          "strict_window_line_sum": 0,
+          "mean_mentions_per_sample": null
+        },
+        "other": {
+          "sample_count": 207,
+          "mention_sum": 516,
+          "strict_window_line_sum": 0,
+          "mean_mentions_per_sample": 2.4928
+        }
+      }
+    }
+  },
+  "sanity": {
+    "strict_window_line_totals_by_task": {
+      "forecasting": 0,
+      "correlation": 0,
+      "entity": 0,
+      "etiological": 0
+    },
+    "broad_mention_totals_by_task": {
+      "forecasting": 1054,
+      "correlation": 5438,
+      "entity": 2408,
+      "etiological": 516
+    }
+  }
+}

@@ -61,6 +61,8 @@
 | entity | 0/1194 | 0 | 0 | [] | 当前严格 node-window 数值列表抽取口径下未发现对不上；不等价于模型无此类问题 |
 | etiological | 0/207 | 0 | 0 | [] | 当前严格 node-window 数值列表抽取口径下未发现对不上；不等价于模型无此类问题 |
 
+总体比例：488/3273 = 14.66%
+
 解读：
 
 - forecasting 和 correlation 的可统计证据确实比较多，值得做下一步复述 probe。
@@ -183,4 +185,127 @@
 可以汇报为：
 
 > 我们重新核查了 STReasoner-8B 在 full ST-Test 6144 输出中的 `<think>` 时间序列复述。按严格 node-window 数值列表口径，并同时尝试 0-based/1-based 保守对齐后，forecasting 有 141/280 个样本至少出现一处复述值和 raw time series 不一致，correlation 有 347/1592 个样本出现此现象；entity 和 etiological 当前没有足够严格可抽取的数值列表证据，不能说明没有问题。分组效果显示，有复述错误的样本并不一定任务效果更差，因此该现象目前只能说明模型显式复述时间序列时存在数值不保真，不能直接证明 5 层 MLP 是最终任务错误的原因。下一步需要做受控的 node/window 复述 probe 和 raw numeric side-channel 对照。
+
+## 9. §5 代表样例完整材料
+
+以下四例与 §5 表格一一对应，材料来自 `sttest_full_6144_outputs_with_gold.jsonl` 与 `mismatch_sample_cards.json`（`00_new_codes/reports/artifacts/mlp_encoder_focused_analysis/`）。题干中的 `<ts><ts/>` 为原始 embedding 占位，未展开为明文数值。
+
+### 9.1 forecasting，idx 19（§5 代表窗口：Node 1，27-32）
+
+**题干**：Given the context Evening commute flow reaches suburb, predict the value of node 0 for the next 3 steps. Historical observation window: 27-32.
+
+**复述对不上窗口**（0-based/1-based 取误差更小对齐；`max_abs_diff > 0.01` 记为 mismatch）：
+
+| node | window | 对齐 | raw time series | 模型复述 | max_abs_diff | 原文行 |
+| ---: | --- | --- | --- | --- | ---: | --- |
+| 1 | 27-32 | 0-based | [425.44, 415.47, 407.05, 415.2, 425.13, 118.85] | [1550.0, 188.64, 1550.0, 115.54, 1257.01, 118.85] | 1142.95 | `Node 1 [27-32]: 1550.00, 188.64, 1550.00, 115.54, 1257.01, 118.85` |
+| 2 | 27-32 | 1-based | [254.38, 267.09, 293.57, 280.34, 272.95, 260.38] | [1250.0, 112.33, 1250.0, 125.0, 1091.32, 261.61] | 995.62 | `Node 2 [27-32]: 1250.00, 112.33, 1250.00, 125.00, 1091.32, 261.61` |
+| 0 | 27-32 | 1-based | [719.68, 685.18, 709.34, 760.08, 821.91, 920.55] | [390.1, 482.22, 551.37, 636.13, 731.99, 890.67] | 329.58 | `Node 0 [27-32]: 390.10, 482.22, 551.37, 636.13, 731.99, 890.67` |
+
+**模型输出（摘录）**：
+
+```
+Node 0 [27-32]: 390.10, 482.22, 551.37, 636.13, 731.99, 890.67
+Node 1 [27-32]: 1550.00, 188.64, 1550.00, 115.54, 1257.01, 118.85
+Node 2 [27-32]: 1250.00, 112.33, 1250.00, 125.00, 1091.32, 261.61
+```
+
+最终答案：`<answer>[1210, 1330, 1450]</answer>`（gold：`[0.0, 1250.0, 0.0]`）。
+
+### 9.2 forecasting，idx 179（§5 代表窗口：Node 2，62-67）
+
+**题干**：Given the context Evening exodus from business district, predict the value of node 1 for the next 3 steps. Historical observation window: 62-67.
+
+| node | window | 对齐 | raw time series | 模型复述 | max_abs_diff | 原文行 |
+| ---: | --- | --- | --- | --- | ---: | --- |
+| 2 | 62-67 | 0-based | [756.59, 736.69, 712.12, 676.66, 642.34, 607.78] | [121.71, 122.12, 122.29, 122.29, 122.25, 122.12] | 634.88 | `Node 2 [62-67]: 121.71, 122.12, 122.29, 122.29, 122.25, 122.12` |
+| 1 | 62-67 | 0-based | [340.75, 334.69, 328.09, 325.3, 314.06, 303.07] | [106.95, 110.39, 113.28, 116.75, 122.93, 126.21] | 233.8 | `Node 1 [62-67]: 106.95, 110.39, 113.28, 116.75, 122.93, 126.21` |
+| 0 | 62-67 | 0-based | [0.0, 0.0, 0.0, 13.68, 37.82, 71.28] | [29.5, 31.89, 39.92, 47.96, 56.91, 66.59] | 39.92 | `Node 0 [62-67]: 29.50, 31.89, 39.92, 47.96, 56.91, 66.59` |
+
+**模型输出（摘录）**：
+
+```
+Node 0 [62-67]: 29.50, 31.89, 39.92, 47.96, 56.91, 66.59
+Node 1 [62-67]: 106.95, 110.39, 113.28, 116.75, 122.93, 126.21
+Node 2 [62-67]: 121.71, 122.12, 122.29, 122.29, 122.25, 122.12
+```
+
+最终答案：`<answer>[131.5, 136.8, 142.0]</answer>`（gold：`[0.0, 349.77, 0.0]`）。
+
+### 9.3 correlation，idx 503（§5 代表窗口：Node 4，68-78）
+
+**题干**：Which statement best describes the relationship between Node 0 and Node 4 during time steps 68-78 (1 time step = 15 minutes)? Options: A. Morning commuters travel from outer area to CBD via multiple transit points B. Evening commuters flow from CBD (Node 0) to outer area (Node 4) via transit hub (Node 1) during peak exodus C. There is direct traffic flow between CBD and outer area without intermediate stops D. Local traffic circulates between neighboring nodes without clear directional pattern
+
+| node | window | 对齐 | raw time series | 模型复述 | max_abs_diff | 原文行 |
+| ---: | --- | --- | --- | --- | ---: | --- |
+| 4 | 68-78 | 1-based | [407.67, 822.89, 2101.15, 0.0, 2341.63, 345.85, 3942.12, 519.68, 1339.75, 2971.15, 0.0] | [370.16, 370.19, 370.21, 370.19, 370.2, 370.19, 370.2, 370.2, 370.2, 370.2, 370.2] | 3571.92 | `Node 4 (steps 68-78): 370.16, 370.19, ...` |
+| 1 | 68-78 | 0-based | [1658.61, 1041.98, 1254.24, 1545.15, 2347.4, 2457.98, 1027.98, 2450.53, 49.46, 1592.19, 18.25] | [660.91, 1109.0, 975.1, 1220.21, 1002.29, 1429.15, 709.36, 1711.49, 152.9, 2457.98, 14.74] | 1345.11 | `Node 1 (steps 68-78): 660.91, 1109.00, ...` |
+| 0 | 68-78 | 0-based | [1371.17, 1262.46, 1421.44, 1985.19, 2534.61, 1908.89, 1811.26, 1101.14, 854.71, 694.87, 721.11] | [999.22, 1103.71, 1201.5, 1212.26, 1205.01, 1209.06, 1027.21, 909.06, 776.99, 662.11, 553.58] | 1329.6 | `Node 0 (steps 68-78): 999.22, 1103.71, ...` |
+
+**模型输出（摘录）**：
+
+```
+Node 0 (steps 68-78): 999.22, 1103.71, 1201.50, 1212.26, 1205.01, 1209.06, 1027.21, 909.06, 776.99, 662.11, 553.58
+Node 1 (steps 68-78): 660.91, 1109.00, 975.10, 1220.21, 1002.29, 1429.15, 709.36, 1711.49, 152.90, 2457.98, 14.74
+Node 4 (steps 68-78): 370.16, 370.19, 370.21, 370.19, 370.20, 370.19, 370.20, 370.20, 370.20, 370.20, 370.20
+```
+
+最终答案：`<answer>B</answer>`（gold：B，选对）。
+
+### 9.4 correlation，idx 480（§5 代表窗口：Node 4，67-73）
+
+**题干**：During time steps 68-74 (1 time step = 15 minutes), which of the following best describes the influence experienced by Node 1? Options: A. Receives from Industrial Zone B. Transmits to CBD C. Receives from CBD D. Connects with Suburban Area
+
+| node | window | 对齐 | raw time series | 模型复述 | max_abs_diff | 原文行 |
+| ---: | --- | --- | --- | --- | ---: | --- |
+| 4 | 67-73 | 1-based | [411.61, 407.67, 822.89, 2101.15, 0.0, 2341.63, 345.85] | [370.15, 370.1, 370.09, 370.11, 370.11, 370.12, 370.12] | 1971.51 | `Node 4 [67-73]: 370.15, 370.10, ...` |
+| 1 | 67-73 | 1-based | [691.73, 616.12, 1658.61, 1041.98, 1254.24, 1545.15, 2347.4] | [601.11, 601.94, 602.2, 602.66, 602.91, 603.21, 603.4] | 1744.0 | `Node 1 [67-73]: 601.11, 601.94, ...` |
+| 0 | 67-73 | 1-based | [1022.91, 1119.11, 1371.17, 1262.46, 1421.44, 1985.19, 2534.61] | [221.26, 491.26, 709.9, 921.22, 1136.02, 1327.76, 1501.5] | 1033.11 | `Node 0 [67-73]: 221.26, 491.26, ...` |
+
+**模型输出（摘录）**：
+
+```
+Node 0 [67-73]: 221.26, 491.26, 709.90, 921.22, 1136.02, 1327.76, 1501.50
+Node 1 [67-73]: 601.11, 601.94, 602.20, 602.66, 602.91, 603.21, 603.40
+Node 4 [67-73]: 370.15, 370.10, 370.09, 370.11, 370.11, 370.12, 370.12
+```
+
+最终答案：`<answer>C</answer>`（gold：C，选对）。
+
+四例共同特征：模型在 `<think>` 中会写出较完整的 node-window 数值列表并据此推理，但多处数值与 raw time series 明显偏离；correlation 两例尽管复述偏差大，最终选择题仍答对。
+
+## 10. 时间序列提及次数统计（broad 口径）
+
+### 10.1 口径说明
+
+§1–§5 的「复述对不上」沿用 **strict mismatch**：`find_bad_cases.py` 抽取 `Node k [a-b]:` / `Node k (steps a-b):` 数值列表，再与 ST-Test raw time series 做 0-based/1-based 保守对齐。
+
+本节另用 **broad 提及** 统计模型在 `<think>` 中「把 Node 与一段数值列表绑在一起」的次数，用于观察复述行为密度，**不与 strict mismatch 窗口数直接对比**。Broad 规则（`count_ts_mentions.py`）：在 thinking 中去重计数以下 span——严格 window 行、`Node k (steps a-b):` 行内列表、`Node k [a-b]:` 行内列表、以及带足够数字的 `Node k` 数值行（排除图边 `->` 行）；同一文本区间只计一次。
+
+数据源：`00_new_codes/reports/artifacts/sttest_full_6144_outputs_with_gold.jsonl`（3273 条，含 `raw_response`）。分组标签来自 `task_level_reconstruction_mismatch.json` 的 mismatch idx 列表（与 §2 一致）。均值 = 提及次数总和 / 样本数；mismatch 样本数为 0 时均值记 N/A。
+
+### 10.2 四任务 × 三行统计表
+
+| 任务 | 分组 | 样本数 | 提及次数总和 | 均值 (总和/样本数) |
+| --- | --- | ---: | ---: | ---: |
+| forecasting | all | 280 | 1054 | 3.7643 |
+| forecasting | mismatch | 141 | 602 | 4.2695 |
+| forecasting | other | 139 | 452 | 3.2518 |
+| correlation | all | 1592 | 5438 | 3.4158 |
+| correlation | mismatch | 347 | 1649 | 4.7522 |
+| correlation | other | 1245 | 3789 | 3.0434 |
+| entity | all | 1194 | 2408 | 2.0168 |
+| entity | mismatch | 0 | 0 | N/A |
+| entity | other | 1194 | 2408 | 2.0168 |
+| etiological | all | 207 | 516 | 2.4928 |
+| etiological | mismatch | 0 | 0 | N/A |
+| etiological | other | 207 | 516 | 2.4928 |
+
+artifact：`mention_stats_mismatch_vs_other.json` / `.md`，脚本 `00_new_codes/tools/mlp_encoder_focused_analysis/count_ts_mentions.py`。
+
+### 10.3 解读
+
+- forecasting / correlation 的 **mismatch 组 broad 均值高于 other 组**（4.27 vs 3.25；4.75 vs 3.04），说明被 strict 规则标为「复述对不上」的样本，往往也在 thinking 里更密集地写出 node-数值列表——与 §3「复述错误组任务指标未必更差」并存，更像样本选择（更爱显式列数的 response 更容易被检出 mismatch），而非「少复述就更准」。
+- entity / etiological 在 strict 口径下 mismatch 数为 0，但 broad 均值仍有 2.0 / 2.5，表明模型仍会偶发写出带数字的 Node 描述；只是多数不是可对齐的 `Node k [a-b]:` 严格列表，故进不了 §2 的 mismatch 集合。
+- 本表只统计提及密度，不判断数值是否正确；是否与 raw 一致仍以 §1–§5 strict 对齐为准。
 
