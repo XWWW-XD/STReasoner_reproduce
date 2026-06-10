@@ -1,0 +1,24 @@
+{
+  "correlation": {
+    "constant_fill": {
+      "n_samples": 66,
+      "accuracy_mean_3run": 0.8788
+    },
+    "local_drift": {
+      "n_samples": 66,
+      "accuracy_mean_3run": 0.7828
+    },
+    "magnitude_offset": {
+      "n_samples": 11,
+      "accuracy_mean_3run": 1.0
+    },
+    "other_large_error": {
+      "n_samples": 46,
+      "accuracy_mean_3run": 0.8913
+    },
+    "spike_hallucination": {
+      "n_samples": 1,
+      "accuracy_mean_3run": 1.0
+    }
+  }
+}

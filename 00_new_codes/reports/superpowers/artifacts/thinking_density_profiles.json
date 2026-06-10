@@ -1,0 +1,105 @@
+{
+  "forecasting": {
+    "all": {
+      "n": 280,
+      "broad_mean_median": 3.67,
+      "strict_lines_mean_median": 0.0,
+      "think_len_mean_median": 2097.0
+    },
+    "mismatch_run1": {
+      "n": 141,
+      "broad_mean_median": 4,
+      "strict_lines_mean_median": 0,
+      "think_len_mean_median": 2088
+    },
+    "persistent_all3": {
+      "n": 104,
+      "broad_mean_median": 4.0,
+      "strict_lines_mean_median": 0.0,
+      "think_len_mean_median": 2085.2
+    },
+    "correctness_flip": {
+      "n": 1,
+      "broad_mean_median": 3.33,
+      "strict_lines_mean_median": 0,
+      "think_len_mean_median": 1630
+    },
+    "stable_correct": null
+  },
+  "correlation": {
+    "all": {
+      "n": 1592,
+      "broad_mean_median": 3.0,
+      "strict_lines_mean_median": 0.0,
+      "think_len_mean_median": 2126.5
+    },
+    "mismatch_run1": {
+      "n": 347,
+      "broad_mean_median": 4,
+      "strict_lines_mean_median": 0,
+      "think_len_mean_median": 2242
+    },
+    "persistent_all3": {
+      "n": 190,
+      "broad_mean_median": 4.0,
+      "strict_lines_mean_median": 0.0,
+      "think_len_mean_median": 2280.3
+    },
+    "correctness_flip": {
+      "n": 261,
+      "broad_mean_median": 3,
+      "strict_lines_mean_median": 0,
+      "think_len_mean_median": 2534.3
+    },
+    "stable_correct": {
+      "n": 1181,
+      "broad_mean_median": 3.33,
+      "strict_lines_mean_median": 0,
+      "think_len_mean_median": 2060.7
+    }
+  },
+  "entity": {
+    "all": {
+      "n": 1194,
+      "broad_mean_median": 1.33,
+      "strict_lines_mean_median": 0.0,
+      "think_len_mean_median": 2368.5
+    },
+    "mismatch_run1": null,
+    "persistent_all3": null,
+    "correctness_flip": {
+      "n": 357,
+      "broad_mean_median": 1.33,
+      "strict_lines_mean_median": 0,
+      "think_len_mean_median": 2496
+    },
+    "stable_correct": {
+      "n": 689,
+      "broad_mean_median": 1.33,
+      "strict_lines_mean_median": 0,
+      "think_len_mean_median": 2291.3
+    }
+  },
+  "etiological": {
+    "all": {
+      "n": 207,
+      "broad_mean_median": 2,
+      "strict_lines_mean_median": 0,
+      "think_len_mean_median": 2711
+    },
+    "mismatch_run1": null,
+    "persistent_all3": null,
+    "correctness_flip": {
+      "n": 27,
+      "broad_mean_median": 3.33,
+      "strict_lines_mean_median": 0,
+      "think_len_mean_median": 2845.3
+    },
+    "stable_correct": {
+      "n": 178,
+      "broad_mean_median": 1.83,
+      "strict_lines_mean_median": 0.0,
+      "think_len_mean_median": 2681.3
+    }
+  }
+}

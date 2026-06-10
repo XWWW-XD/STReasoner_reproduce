@@ -1,0 +1,28 @@
+{
+  "correlation": {
+    "count": 18,
+    "flip_intersection": 17,
+    "mismatch_run1": 0,
+    "flip_patterns": {
+      "RWW": 6,
+      "WRW": 7,
+      "WWR": 4,
+      "WWW": 1
+    },
+    "all_three_wrong": 1,
+    "any_run_correct": 17
+  },
+  "entity": {
+    "count": 31,
+    "flip_intersection": 30,
+    "mismatch_run1": 0,
+    "flip_patterns": {
+      "WWW": 1,
+      "RWW": 13,
+      "WRW": 11,
+      "WWR": 6
+    },
+    "all_three_wrong": 1,
+    "any_run_correct": 30
+  }
+}

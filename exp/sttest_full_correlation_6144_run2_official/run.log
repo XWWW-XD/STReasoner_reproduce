@@ -1,0 +1,61 @@
+/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+INFO 06-08 15:27:18 [importing.py:53] Triton module has been replaced with a placeholder.
+INFO 06-08 15:27:18 [__init__.py:239] Automatically detected platform cuda.
+2026-06-08 15:27:22.870 | INFO     | __main__:main:279 - Experiment directory: exp/sttest_full_correlation_6144_run2_official
+2026-06-08 15:27:23.128 | INFO     | __main__:main:282 - Loaded 1592 samples from data/ST-Bench/ST-Test/correlation_test.jsonl
+2026-06-08 15:27:23.840 | INFO     | __main__:main:289 - Prepared 1592 prompts for generation
+2026-06-08 15:27:25.663 | INFO     | __main__:main:310 - Total input tokens: 717765, Average: 450.9
+2026-06-08 15:27:25.663 | INFO     | __main__:main:314 - Starting generation with vLLM...
+[ChatTS VLLM] Qwen2TSForCausalLM registered in vLLM!
+[ChatTS VLLM] Qwen3TSForCausalLM registered in vLLM!
+/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+INFO 06-08 15:27:29 [importing.py:53] Triton module has been replaced with a placeholder.
+INFO 06-08 15:27:30 [__init__.py:239] Automatically detected platform cuda.
+[LLMClient] Starting worker 0 on GPU 0
+/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+INFO 06-08 15:27:38 [importing.py:53] Triton module has been replaced with a placeholder.
+INFO 06-08 15:27:38 [__init__.py:239] Automatically detected platform cuda.
+[ChatTS VLLM] Qwen2TSForCausalLM registered in vLLM!
+[ChatTS VLLM] Qwen3TSForCausalLM registered in vLLM!
+INFO 06-08 15:27:42 [config.py:2968] Downcasting torch.float32 to torch.float16.
+INFO 06-08 15:27:42 [config.py:717] This model supports multiple tasks: {'classify', 'reward', 'score', 'generate', 'embed'}. Defaulting to 'generate'.
+INFO 06-08 15:27:42 [config.py:2003] Chunked prefill is enabled with max_num_batched_tokens=8192.
+INFO 06-08 15:27:43 [core.py:58] Initializing a V1 LLM engine (v0.8.5) with config: model='/root/autodl-tmp/STReasoner_reproduce/base_model/STReasoner-8B', speculative_config=None, tokenizer='/root/autodl-tmp/STReasoner_reproduce/base_model/STReasoner-8B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.float16, max_seq_len=6500, download_dir='/root/autodl-tmp/cache/huggingface', load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='auto', reasoning_backend=None), observability_config=ObservabilityConfig(show_hidden_metrics=False, otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=None, served_model_name=/root/autodl-tmp/STReasoner_reproduce/base_model/STReasoner-8B, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=True, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"level":3,"custom_ops":["none"],"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"use_inductor":true,"compile_sizes":[],"use_cudagraph":true,"cudagraph_num_of_warmups":1,"cudagraph_capture_sizes":[512,504,496,488,480,472,464,456,448,440,432,424,416,408,400,392,384,376,368,360,352,344,336,328,320,312,304,296,288,280,272,264,256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":512}
+WARNING 06-08 15:27:43 [utils.py:2522] Methods determine_num_available_blocks,device_config,get_cache_block_size_bytes,initialize_cache not implemented in <vllm.v1.worker.gpu_worker.Worker object at 0x7f68b53845b0>
+INFO 06-08 15:27:44 [parallel_state.py:1004] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0
+INFO 06-08 15:27:44 [cuda.py:221] Using Flash Attention backend on V1 engine.
+WARNING 06-08 15:27:47 [topk_topp_sampler.py:69] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+INFO 06-08 15:27:47 [gpu_model_runner.py:1329] Starting to load model /root/autodl-tmp/STReasoner_reproduce/base_model/STReasoner-8B...
+INFO 06-08 15:27:47 [config.py:3614] cudagraph sizes specified by model runner [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 264, 272, 280, 288, 296, 304, 312, 320, 328, 336, 344, 352, 360, 368, 376, 384, 392, 400, 408, 416, 424, 432, 440, 448, 456, 464, 472, 480, 488, 496, 504, 512] is overridden by config [512, 384, 256, 128, 4, 2, 1, 392, 264, 136, 8, 400, 272, 144, 16, 408, 280, 152, 24, 416, 288, 160, 32, 424, 296, 168, 40, 432, 304, 176, 48, 440, 312, 184, 56, 448, 320, 192, 64, 456, 328, 200, 72, 464, 336, 208, 80, 472, 344, 216, 88, 120, 480, 352, 248, 224, 96, 488, 504, 360, 232, 104, 496, 368, 240, 112, 376]
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:02<00:06,  2.30s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:04<00:04,  2.38s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:07<00:02,  2.47s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:08<00:00,  1.89s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:08<00:00,  2.08s/it]
+
+INFO 06-08 15:27:55 [loader.py:458] Loading weights took 8.37 seconds
+INFO 06-08 15:27:56 [gpu_model_runner.py:1347] Model loading took 15.3953 GiB and 8.748997 seconds
+INFO 06-08 15:27:56 [gpu_model_runner.py:1620] Encoder cache will be initialized with a budget of 8192 tokens, and profiled with 2 timeseries items of the maximum feature size.
+INFO 06-08 15:28:11 [backends.py:420] Using cache directory: /root/.cache/vllm/torch_compile_cache/dc1511dfba/rank_0_0 for vLLM's torch.compile
+INFO 06-08 15:28:11 [backends.py:430] Dynamo bytecode transform time: 15.19 s
+INFO 06-08 15:28:22 [backends.py:118] Directly load the compiled graph(s) for shape None from the cache, took 9.678 s
+INFO 06-08 15:28:24 [monitor.py:33] torch.compile takes 15.19 s in total
+INFO 06-08 15:28:25 [kv_cache_utils.py:634] GPU KV cache size: 146,320 tokens
+INFO 06-08 15:28:25 [kv_cache_utils.py:637] Maximum concurrency for 6,500 tokens per request: 22.51x
+INFO 06-08 15:28:54 [gpu_model_runner.py:1686] Graph capturing finished in 30 secs, took 0.59 GiB
+INFO 06-08 15:28:54 [core.py:159] init engine (profile, create kv cache, warmup model) took 58.77 seconds
+INFO 06-08 15:28:55 [core_client.py:439] Core engine process 0 ready.
+[LLMClient] 1 workers started.
+[LLMClient] All workers are ready!
+Generating:   0%|          | 0/1592 [00:00<?, ?it/s]Generating:   0%|          | 1/1592 [01:43<45:50:43, 103.74s/it]Generating:   2%|▏         | 33/1592 [02:14<1:22:32,  3.18s/it] Generating:   4%|▍         | 65/1592 [02:41<46:08,  1.81s/it]  Generating:   6%|▌         | 97/1592 [04:23<1:00:31,  2.43s/it]Generating:   8%|▊         | 129/1592 [05:25<54:39,  2.24s/it] Generating:  10%|█         | 161/1592 [07:00<59:34,  2.50s/it]Generating:  12%|█▏        | 193/1592 [07:50<50:56,  2.19s/it]Generating:  14%|█▍        | 225/1592 [08:20<40:27,  1.78s/it]Generating:  16%|█▌        | 257/1592 [10:05<50:11,  2.26s/it]Generating:  18%|█▊        | 289/1592 [11:40<53:50,  2.48s/it]Generating:  20%|██        | 321/1592 [12:05<41:24,  1.95s/it]Generating:  22%|██▏       | 353/1592 [12:38<34:29,  1.67s/it]Generating:  24%|██▍       | 385/1592 [14:09<40:42,  2.02s/it]Generating:  26%|██▌       | 417/1592 [15:52<46:44,  2.39s/it]Generating:  28%|██▊       | 449/1592 [17:23<48:05,  2.52s/it]Generating:  30%|███       | 481/1592 [19:06<50:41,  2.74s/it]Generating:  32%|███▏      | 513/1592 [20:43<50:44,  2.82s/it]Generating:  34%|███▍      | 545/1592 [22:13<49:19,  2.83s/it]Generating:  36%|███▌      | 577/1592 [23:46<48:09,  2.85s/it]Generating:  38%|███▊      | 609/1592 [25:23<47:35,  2.90s/it]Generating:  40%|████      | 641/1592 [27:07<47:36,  3.00s/it]Generating:  42%|████▏     | 673/1592 [28:58<48:11,  3.15s/it]Generating:  44%|████▍     | 705/1592 [30:44<47:16,  3.20s/it]Generating:  46%|████▋     | 737/1592 [32:34<46:36,  3.27s/it]Generating:  48%|████▊     | 769/1592 [34:15<44:19,  3.23s/it]Generating:  50%|█████     | 801/1592 [34:42<33:09,  2.51s/it]Generating:  52%|█████▏    | 833/1592 [35:15<26:10,  2.07s/it]Generating:  54%|█████▍    | 865/1592 [35:52<21:49,  1.80s/it]Generating:  56%|█████▋    | 897/1592 [36:25<18:10,  1.57s/it]Generating:  58%|█████▊    | 929/1592 [38:09<22:49,  2.07s/it]Generating:  60%|██████    | 961/1592 [39:54<25:37,  2.44s/it]Generating:  62%|██████▏   | 993/1592 [41:37<26:40,  2.67s/it]Generating:  64%|██████▍   | 1025/1592 [43:14<26:15,  2.78s/it]Generating:  66%|██████▋   | 1057/1592 [44:58<26:00,  2.92s/it]Generating:  68%|██████▊   | 1089/1592 [46:16<23:14,  2.77s/it]Generating:  70%|███████   | 1121/1592 [47:48<22:01,  2.81s/it]Generating:  72%|███████▏  | 1153/1592 [49:35<21:42,  2.97s/it]Generating:  74%|███████▍  | 1185/1592 [51:25<21:03,  3.10s/it]Generating:  76%|███████▋  | 1217/1592 [52:03<15:50,  2.54s/it]Generating:  78%|███████▊  | 1249/1592 [53:46<15:39,  2.74s/it]Generating:  80%|████████  | 1281/1592 [54:23<11:43,  2.26s/it]Generating:  82%|████████▏ | 1313/1592 [55:57<11:28,  2.47s/it]Generating:  84%|████████▍ | 1345/1592 [56:35<08:35,  2.09s/it]Generating:  86%|████████▋ | 1377/1592 [57:18<06:40,  1.86s/it]Generating:  89%|████████▊ | 1409/1592 [58:56<06:45,  2.22s/it]Generating:  91%|█████████ | 1441/1592 [59:49<05:10,  2.05s/it]Generating:  93%|█████████▎| 1473/1592 [1:00:41<03:48,  1.92s/it]Generating:  95%|█████████▍| 1505/1592 [1:01:12<02:22,  1.64s/it]Generating:  97%|█████████▋| 1537/1592 [1:02:56<01:56,  2.12s/it]Generating:  99%|█████████▊| 1569/1592 [1:04:38<00:56,  2.44s/it]Generating: 100%|██████████| 1592/1592 [1:04:38<00:00,  2.44s/it]
+[worker 0] Initialization finished.
+[ChatTS VLLM] Qwen2TSForCausalLM registered in vLLM!
+[ChatTS VLLM] Qwen3TSForCausalLM registered in vLLM!
+2026-06-08 16:33:42.837 | INFO     | __main__:main:338 - Results saved to exp/sttest_full_correlation_6144_run2_official/generated_answer.json
+2026-06-08 16:33:42.837 | INFO     | __main__:main:339 - Token stats - Total: 717765, Average: 450.9
+[LLMClient] Killing workers...
+[LLMClient] All workers have been killed!

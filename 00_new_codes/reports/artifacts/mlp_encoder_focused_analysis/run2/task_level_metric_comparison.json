@@ -1,0 +1,192 @@
+{
+  "forecasting": {
+    "existing_metrics_file": {
+      "task": "reasoning_forecasting",
+      "total_samples": 280,
+      "evaluated_samples": 278,
+      "missing_predictions": 2,
+      "coverage": 0.9928571428571429,
+      "mae": 64.29745386844488,
+      "mape": 135.20376818354646,
+      "target_stats": {
+        "mean": 93.07763137254898,
+        "abs_mean": 93.07763137254898,
+        "min": 0.0,
+        "max": 1850.0,
+        "total_values": 2550
+      },
+      "missing_indices": [
+        84,
+        262
+      ],
+      "total_input_tokens": 77434,
+      "avg_input_tokens": 276.55,
+      "samples_with_token_info": 280
+    },
+    "current_parser_validation": {
+      "matches_existing_metrics_file": true,
+      "note": "Group metrics are recomputed with the current repository parser; existing evaluation_metrics.json may have been produced by an earlier parser/run."
+    },
+    "groups": {
+      "all": {
+        "sample_count": 280,
+        "evaluated_samples": 278,
+        "missing_predictions": 2,
+        "mae": 64.29745386844488,
+        "mape": 135.20376818354646,
+        "missing_indices": [
+          84,
+          262
+        ]
+      },
+      "mismatch": {
+        "sample_count": 141,
+        "evaluated_samples": 141,
+        "missing_predictions": 0,
+        "mae": 43.784268841108855,
+        "mape": 97.43493101758183,
+        "missing_indices": []
+      },
+      "other": {
+        "sample_count": 139,
+        "evaluated_samples": 137,
+        "missing_predictions": 2,
+        "mae": 85.40956400606812,
+        "mape": 174.07534512078004,
+        "missing_indices": [
+          84,
+          262
+        ]
+      }
+    }
+  },
+  "correlation": {
+    "existing_metrics_file": {
+      "task": "reasoning_correlation",
+      "total_samples": 1592,
+      "evaluated_samples": 1592,
+      "missing_predictions": 0,
+      "coverage": 1.0,
+      "accuracy": 0.8310301507537688,
+      "total_input_tokens": 717765,
+      "avg_input_tokens": 450.86,
+      "samples_with_token_info": 1592
+    },
+    "current_parser_validation": {
+      "matches_existing_metrics_file": true,
+      "note": "Group metrics are recomputed with the current repository parser."
+    },
+    "groups": {
+      "all": {
+        "sample_count": 1592,
+        "evaluated_samples": 1592,
+        "missing_predictions": 0,
+        "correct": 1323,
+        "accuracy": 0.8310301507537688,
+        "missing_indices": []
+      },
+      "mismatch": {
+        "sample_count": 326,
+        "evaluated_samples": 326,
+        "missing_predictions": 0,
+        "correct": 285,
+        "accuracy": 0.8742331288343558,
+        "missing_indices": []
+      },
+      "other": {
+        "sample_count": 1266,
+        "evaluated_samples": 1266,
+        "missing_predictions": 0,
+        "correct": 1038,
+        "accuracy": 0.8199052132701422,
+        "missing_indices": []
+      }
+    }
+  },
+  "entity": {
+    "existing_metrics_file": {
+      "task": "reasoning_entity",
+      "total_samples": 1194,
+      "evaluated_samples": 1194,
+      "missing_predictions": 0,
+      "coverage": 1.0,
+      "accuracy": 0.7336683417085427,
+      "total_input_tokens": 495068,
+      "avg_input_tokens": 414.63,
+      "samples_with_token_info": 1194
+    },
+    "current_parser_validation": {
+      "matches_existing_metrics_file": true,
+      "note": "Group metrics are recomputed with the current repository parser."
+    },
+    "groups": {
+      "all": {
+        "sample_count": 1194,
+        "evaluated_samples": 1194,
+        "missing_predictions": 0,
+        "correct": 876,
+        "accuracy": 0.7336683417085427,
+        "missing_indices": []
+      },
+      "mismatch": {
+        "sample_count": 1,
+        "evaluated_samples": 1,
+        "missing_predictions": 0,
+        "correct": 0,
+        "accuracy": 0.0,
+        "missing_indices": []
+      },
+      "other": {
+        "sample_count": 1193,
+        "evaluated_samples": 1193,
+        "missing_predictions": 0,
+        "correct": 876,
+        "accuracy": 0.7342833193629505,
+        "missing_indices": []
+      }
+    }
+  },
+  "etiological": {
+    "existing_metrics_file": {
+      "task": "reasoning_etiological",
+      "total_samples": 207,
+      "evaluated_samples": 207,
+      "missing_predictions": 0,
+      "coverage": 1.0,
+      "accuracy": 0.927536231884058,
+      "total_input_tokens": 79543,
+      "avg_input_tokens": 384.27,
+      "samples_with_token_info": 207
+    },
+    "current_parser_validation": {
+      "matches_existing_metrics_file": true,
+      "note": "Group metrics are recomputed with the current repository parser."
+    },
+    "groups": {
+      "all": {
+        "sample_count": 207,
+        "evaluated_samples": 207,
+        "missing_predictions": 0,
+        "correct": 192,
+        "accuracy": 0.927536231884058,
+        "missing_indices": []
+      },
+      "mismatch": {
+        "sample_count": 0,
+        "evaluated_samples": 0,
+        "missing_predictions": 0,
+        "correct": 0,
+        "accuracy": null,
+        "missing_indices": []
+      },
+      "other": {
+        "sample_count": 207,
+        "evaluated_samples": 207,
+        "missing_predictions": 0,
+        "correct": 192,
+        "accuracy": 0.927536231884058,
+        "missing_indices": []
+      }
+    }
+  }
+}

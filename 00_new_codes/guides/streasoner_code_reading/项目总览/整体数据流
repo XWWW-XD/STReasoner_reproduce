@@ -1,0 +1,10 @@
+ST-Bench 数据
+→ timeseries 输入
+→ <ts> 占位符
+→ time series encoder / ts_encoder
+→ Qwen LLM
+→ Stage 1 SFT 对齐
+→ Stage 2 SFT reasoning cold start
+→ Stage 3 S-GRPO 强化学习
+→ inference
+→ evaluation

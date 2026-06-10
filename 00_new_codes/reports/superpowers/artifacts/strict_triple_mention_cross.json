@@ -1,0 +1,86 @@
+{
+  "correlation": {
+    "corpus_run1": {
+      "n": 1592,
+      "think_len_median": 2092.0,
+      "think_len_mean": 2280.8,
+      "broad_mention_median": 3.0,
+      "broad_mention_mean": 3.42,
+      "zero_mention_share": 0.211
+    },
+    "strict_triple_diverse": {
+      "n": 18,
+      "think_len_median": 2299.5,
+      "think_len_mean": 2408,
+      "broad_mention_median": 2.0,
+      "broad_mention_mean": 2.94,
+      "zero_mention_share": 0.278
+    },
+    "loose_triple_parser_noise": {
+      "n": 49,
+      "think_len_median": 5351,
+      "think_len_mean": 4778.9,
+      "broad_mention_median": 1,
+      "broad_mention_mean": 1.59,
+      "zero_mention_share": 0.367
+    },
+    "flip_not_triple": {
+      "n": 211,
+      "think_len_median": 2279,
+      "think_len_mean": 2636.2,
+      "broad_mention_median": 3,
+      "broad_mention_mean": 3.67,
+      "zero_mention_share": 0.204
+    },
+    "stable_all_correct": {
+      "n": 1181,
+      "think_len_median": 2031,
+      "think_len_mean": 2106.8,
+      "broad_mention_median": 3,
+      "broad_mention_mean": 3.49,
+      "zero_mention_share": 0.194
+    }
+  },
+  "entity": {
+    "corpus_run1": {
+      "n": 1194,
+      "think_len_median": 2340.5,
+      "think_len_mean": 2449.4,
+      "broad_mention_median": 1.0,
+      "broad_mention_mean": 2.02,
+      "zero_mention_share": 0.398
+    },
+    "strict_triple_diverse": {
+      "n": 31,
+      "think_len_median": 2466,
+      "think_len_mean": 2531.5,
+      "broad_mention_median": 1,
+      "broad_mention_mean": 1.77,
+      "zero_mention_share": 0.387
+    },
+    "loose_triple_parser_noise": {
+      "n": 9,
+      "think_len_median": 5558,
+      "think_len_mean": 4396.8,
+      "broad_mention_median": 1,
+      "broad_mention_mean": 1.11,
+      "zero_mention_share": 0.444
+    },
+    "flip_not_triple": {
+      "n": 321,
+      "think_len_median": 2470,
+      "think_len_mean": 2572.5,
+      "broad_mention_median": 1,
+      "broad_mention_mean": 2.17,
+      "zero_mention_share": 0.368
+    },
+    "stable_all_correct": {
+      "n": 689,
+      "think_len_median": 2286,
+      "think_len_mean": 2334.9,
+      "broad_mention_median": 1,
+      "broad_mention_mean": 1.93,
+      "zero_mention_share": 0.412
+    }
+  }
+}

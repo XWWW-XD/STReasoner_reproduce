@@ -1,0 +1,11 @@
+{
+  "task": "reasoning_correlation",
+  "total_samples": 1592,
+  "evaluated_samples": 1,
+  "missing_predictions": 1591,
+  "coverage": 0.000628140703517588,
+  "accuracy": 0.0,
+  "total_input_tokens": 257,
+  "avg_input_tokens": 257.0,
+  "samples_with_token_info": 1
+}

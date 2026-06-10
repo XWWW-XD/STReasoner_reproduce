@@ -1,0 +1,2001 @@
+{
+  "scope_note": "Only existing STReasoner-8B full ST-Test 6144-token outputs are used. Stage1/LoRA probe outputs are intentionally excluded.",
+  "mismatch_definition": {
+    "alignment": "For each model-stated node/window, both 0-based and 1-based raw alignments are tried; the smaller-difference alignment is used.",
+    "max_abs_diff_threshold": 0.01
+  },
+  "counts": {
+    "reasoning_numeric_reconstruction_cases": 474,
+    "cross_node_reasoning_numeric_reconstruction_cases": 348,
+    "cross_node_cases_with_numeric_reconstruction_check": 348
+  },
+  "representatives": {
+    "numeric_fidelity_in_reasoning": [
+      {
+        "boundary": "numeric_fidelity_in_reasoning",
+        "evidence_type": "model_reconstructs_input_window_incorrectly",
+        "idx": 19,
+        "line_no": 20,
+        "data_file": "data/ST-Bench/ST-Test/forecasting_test.jsonl",
+        "generated_file": "exp/sttest_full_forecasting_6144_run3_official/generated_answer.json",
+        "task_type": "forecasting",
+        "node": 1,
+        "target_node": 0,
+        "horizon": 3,
+        "prompt_window": [
+          27,
+          32
+        ],
+        "alignment_basis": "0-based",
+        "stated_window": [
+          27,
+          32
+        ],
+        "raw_values": [
+          425.44,
+          415.47,
+          407.05,
+          415.2,
+          425.13,
+          118.85
+        ],
+        "model_stated_values": [
+          1550.0,
+          1550.0,
+          1550.0,
+          1550.0,
+          1550.0,
+          115.37
+        ],
+        "mean_abs_diff_between_stated_and_raw": 944.1983333333333,
+        "max_abs_diff_between_stated_and_raw": 1142.95,
+        "raw_nonint_ratio": 1.0,
+        "model_stated_int_ratio": 0.8333333333333334,
+        "reasoning_line": "Node 1 [27-32]: 1550.00, 1550.00, 1550.00, 1550.00, 1550.00, 115.37",
+        "why_this_supports_boundary": "The model explicitly reconstructs numeric values from the <ts> embedding in its reasoning, but those values do not match the raw time series window in the dataset."
+      },
+      {
+        "boundary": "numeric_fidelity_in_reasoning",
+        "evidence_type": "model_reconstructs_input_window_incorrectly",
+        "idx": 19,
+        "line_no": 20,
+        "data_file": "data/ST-Bench/ST-Test/forecasting_test.jsonl",
+        "generated_file": "exp/sttest_full_forecasting_6144_run3_official/generated_answer.json",
+        "task_type": "forecasting",
+        "node": 2,
+        "target_node": 0,
+        "horizon": 3,
+        "prompt_window": [
+          27,
+          32
+        ],
+        "alignment_basis": "0-based",
+        "stated_window": [
+          27,
+          32
+        ],
+        "raw_values": [
+          267.09,
+          293.57,
+          280.34,
+          272.95,
+          260.38,
+          259.84
+        ],
+        "model_stated_values": [
+          1250.0,
+          1250.0,
+          1250.0,
+          1250.0,
+          1250.0,
+          261.33
+        ],
+        "mean_abs_diff_between_stated_and_raw": 812.86,
+        "max_abs_diff_between_stated_and_raw": 989.62,
+        "raw_nonint_ratio": 1.0,
+        "model_stated_int_ratio": 0.8333333333333334,
+        "reasoning_line": "Node 2 [27-32]: 1250.00, 1250.00, 1250.00, 1250.00, 1250.00, 261.33",
+        "why_this_supports_boundary": "The model explicitly reconstructs numeric values from the <ts> embedding in its reasoning, but those values do not match the raw time series window in the dataset."
+      },
+      {
+        "boundary": "numeric_fidelity_in_reasoning",
+        "evidence_type": "model_reconstructs_input_window_incorrectly",
+        "idx": 146,
+        "line_no": 147,
+        "data_file": "data/ST-Bench/ST-Test/forecasting_test.jsonl",
+        "generated_file": "exp/sttest_full_forecasting_6144_run3_official/generated_answer.json",
+        "task_type": "forecasting",
+        "node": 2,
+        "target_node": 3,
+        "horizon": 5,
+        "prompt_window": [
+          57,
+          66
+        ],
+        "alignment_basis": "0-based",
+        "stated_window": [
+          57,
+          66
+        ],
+        "raw_values": [
+          1075.66,
+          1065.31,
+          1051.14,
+          1033.9,
+          1013.71,
+          990.7,
+          964.35,
+          935.62,
+          903.48,
+          869.13
+        ],
+        "model_stated_values": [
+          661.72,
+          563.36,
+          463.81,
+          363.12,
+          261.68,
+          190.11,
+          127.1,
+          75.23,
+          34.96,
+          7.65
+        ],
+        "mean_abs_diff_between_stated_and_raw": 715.426,
+        "max_abs_diff_between_stated_and_raw": 868.52,
+        "raw_nonint_ratio": 1.0,
+        "model_stated_int_ratio": 0.0,
+        "reasoning_line": "Node 2 (steps 57-66): 661.72, 563.36, 463.81, 363.12, 261.68, 190.11, 127.10, 75.23, 34.96, 7.65",
+        "why_this_supports_boundary": "The model explicitly reconstructs numeric values from the <ts> embedding in its reasoning, but those values do not match the raw time series window in the dataset."
+      },
+      {
+        "boundary": "numeric_fidelity_in_reasoning",
+        "evidence_type": "model_reconstructs_input_window_incorrectly",
+        "idx": 25,
+        "line_no": 26,
+        "data_file": "data/ST-Bench/ST-Test/forecasting_test.jsonl",
+        "generated_file": "exp/sttest_full_forecasting_6144_run3_official/generated_answer.json",
+        "task_type": "forecasting",
+        "node": 2,
+        "target_node": 1,
+        "horizon": 9,
+        "prompt_window": [
+          50,
+          67
+        ],
+        "alignment_basis": "0-based",
+        "stated_window": [
+          50,
+          67
+        ],
+        "raw_values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "model_stated_values": [
+          102.61,
+          210.99,
+          650.0,
+          0.0,
+          650.0,
+          0.0,
+          650.0,
+          0.0,
+          650.0,
+          0.0,
+          650.0,
+          0.0,
+          650.0,
+          0.0,
+          19.2,
+          133.57,
+          169.92,
+          182.83
+        ],
+        "mean_abs_diff_between_stated_and_raw": 262.17333333333335,
+        "max_abs_diff_between_stated_and_raw": 650.0,
+        "raw_nonint_ratio": 0.0,
+        "model_stated_int_ratio": 0.6666666666666666,
+        "reasoning_line": "Node 2 (steps 50-67): 102.61, 210.99, 650.00, 0.00, 650.00, 0.00, 650.00, 0.00, 650.00, 0.00, 650.00, 0.00, 650.00, 0.00, 19.20, 133.57, 169.92, 182.83",
+        "why_this_supports_boundary": "The model explicitly reconstructs numeric values from the <ts> embedding in its reasoning, but those values do not match the raw time series window in the dataset."
+      },
+      {
+        "boundary": "numeric_fidelity_in_reasoning",
+        "evidence_type": "model_reconstructs_input_window_incorrectly",
+        "idx": 179,
+        "line_no": 180,
+        "data_file": "data/ST-Bench/ST-Test/forecasting_test.jsonl",
+        "generated_file": "exp/sttest_full_forecasting_6144_run3_official/generated_answer.json",
+        "task_type": "forecasting",
+        "node": 2,
+        "target_node": 1,
+        "horizon": 3,
+        "prompt_window": [
+          62,
+          67
+        ],
+        "alignment_basis": "0-based",
+        "stated_window": [
+          61,
+          66
+        ],
+        "raw_values": [
+          775.47,
+          756.59,
+          736.69,
+          712.12,
+          676.66,
+          642.34
+        ],
+        "model_stated_values": [
+          212.69,
+          212.33,
+          212.92,
+          213.55,
+          213.27,
+          213.61
+        ],
+        "mean_abs_diff_between_stated_and_raw": 503.5833333333333,
+        "max_abs_diff_between_stated_and_raw": 562.78,
+        "raw_nonint_ratio": 1.0,
+        "model_stated_int_ratio": 0.0,
+        "reasoning_line": "- Node 2 [61-66]: 212.69, 212.33, 212.92, 213.55, 213.27, 213.61",
+        "why_this_supports_boundary": "The model explicitly reconstructs numeric values from the <ts> embedding in its reasoning, but those values do not match the raw time series window in the dataset."
+      }
+    ],
+    "cross_patch_cross_node_reasoning_error": [
+      {
+        "boundary": "cross_patch_cross_node_reasoning_error",
+        "evidence_type": "cross_node_reasoning_reconstructs_input_window_incorrectly",
+        "idx": 9,
+        "line_no": 10,
+        "data_file": "data/ST-Bench/ST-Test/correlation_test.jsonl",
+        "generated_file": "exp/sttest_full_correlation_6144_run3_official/generated_answer.json",
+        "task_type": "correlation",
+        "graph": "Node 0->Node 2; Node 0->Node 3; Node 1->Node 4; Node 1->Node 3; Node 2->Node 5; Node 2->Node 6; Node 3->Node 7; Node 4->Node 8; Node 5->Node 9; Node 6->Node 9; Node 7->Node 9; Node 8->Node 9; Node 9->Node 0; Node 9->Node 1",
+        "edge_count": 14,
+        "node_count": 10,
+        "reasoning_excerpt": "Let me analyze the spatial-temporal data for Node 7 during time steps 29-33. First, let me identify the time period: - 1 time step = 15 minutes - Time steps 29-33 correspond to: 29×15 = 435 minutes = 7 hours 15 minutes from start - If we assume the data starts at midnight (00:00), time steps 29-33 would be approximately 7:15 AM to 8:15 AM Node 7 values at time steps 29-33: - Step 29: 271.90 - Step 30: 272.11 - Step 31: 272.13 - Step 32: 272.12 - Step 33: 272.11 Now let me trace the causal influence path to Node 7: - Node 7 is influenced by Node 3 (Node 3->Node 7) - Node 3 is influenced by Node 0 and Node 1 (Node 0->Node 3, Node 1->Node 3) Let me check the patterns at these nodes during steps 29-33: Node 0 (steps 29-33): 120.37, 1850.00, 0.00, 1850.00, 0.00 - Shows extreme spikes and drops, indicating a major event Node 1 (steps 29-33): 270.61, 270.97, 271.33, 271.69, 271.95 - Shows steady increase Node 3 (steps 29-33): 116.91, 691.19, 0.00, 1250.00, 0.00 - Shows extreme volatility with spikes The pattern shows: 1. Time period is around 7:15-8:15 AM (morning hours) 2. Node 0 shows extreme spikes suggesting a major traffic event 3. This propagates through Node 3 to Node 7 4. The timing (7:15-8:15 AM) is characteristic of morning rush hour Given the time period and the pattern of extreme increases followed by drops (characteristic of traffic congestion patterns), this best matches morning traffic flow patterns.",
+        "reasoning_numeric_checks": [
+          {
+            "alignment_basis": "1-based",
+            "node": 0,
+            "stated_window": [
+              29,
+              33
+            ],
+            "raw_values": [
+              10.69,
+              0.0,
+              0.0,
+              1389.75,
+              0.0
+            ],
+            "model_stated_values": [
+              120.37,
+              1850.0,
+              0.0,
+              1850.0,
+              0.0
+            ],
+            "mean_abs_diff_between_stated_and_raw": 483.98600000000005,
+            "max_abs_diff_between_stated_and_raw": 1850.0,
+            "reasoning_line": "Node 0 (steps 29-33): 120.37, 1850.00, 0.00, 1850.00, 0.00"
+          },
+          {
+            "alignment_basis": "0-based",
+            "node": 3,
+            "stated_window": [
+              29,
+              33
+            ],
+            "raw_values": [
+              344.61,
+              353.54,
+              355.67,
+              749.88,
+              107.95
+            ],
+            "model_stated_values": [
+              116.91,
+              691.19,
+              0.0,
+              1250.0,
+              0.0
+            ],
+            "mean_abs_diff_between_stated_and_raw": 305.818,
+            "max_abs_diff_between_stated_and_raw": 500.12,
+            "reasoning_line": "Node 3 (steps 29-33): 116.91, 691.19, 0.00, 1250.00, 0.00"
+          },
+          {
+            "alignment_basis": "1-based",
+            "node": 1,
+            "stated_window": [
+              29,
+              33
+            ],
+            "raw_values": [
+              348.47,
+              384.13,
+              388.28,
+              513.61,
+              476.12
+            ],
+            "model_stated_values": [
+              270.61,
+              270.97,
+              271.33,
+              271.69,
+              271.95
+            ],
+            "mean_abs_diff_between_stated_and_raw": 150.81199999999998,
+            "max_abs_diff_between_stated_and_raw": 241.92000000000002,
+            "reasoning_line": "Node 1 (steps 29-33): 270.61, 270.97, 271.33, 271.69, 271.95"
+          }
+        ],
+        "top_reasoning_numeric_check": {
+          "alignment_basis": "1-based",
+          "node": 0,
+          "stated_window": [
+            29,
+            33
+          ],
+          "raw_values": [
+            10.69,
+            0.0,
+            0.0,
+            1389.75,
+            0.0
+          ],
+          "model_stated_values": [
+            120.37,
+            1850.0,
+            0.0,
+            1850.0,
+            0.0
+          ],
+          "mean_abs_diff_between_stated_and_raw": 483.98600000000005,
+          "max_abs_diff_between_stated_and_raw": 1850.0,
+          "reasoning_line": "Node 0 (steps 29-33): 120.37, 1850.00, 0.00, 1850.00, 0.00"
+        },
+        "question_excerpt": "You are a spatial temporal analysis expert. Node 0 time series with length of 96: <ts><ts/>; Node 1 time series with length of 96: <ts><ts/>; Node 2 time series with length of 96: <ts><ts/>; Node 3 time series with length of 96: <ts><ts/>; Node 4 time series with length of 96: <ts><ts/>; Node 5 time series with length of 96: <ts><ts/>; Node 6 time series with length of 96: <ts><ts/>; Node 7 time series with length of 96: <ts><ts/>; Node 8 time series with length of 96: <ts><ts/>; Node 9 time series with length of 96: <ts><ts/>; Graph Structure: Node 0->Node 2; Node 0->Node 3; Node 1->Node 4; Node 1->Node 3; Node 2->Node 5; Node 2->Node 6; Node 3->Node 7; Node 4->Node 8; Node 5->Node 9; Node 6->Node 9; Node 7->Node 9; Node 8->Node 9; Node 9->Node 0; Node 9->Node 1, please analyze the spatial temporal data and answer the following question: Based on the observed patterns during time steps ",
+        "why_this_supports_boundary": "The reasoning trace is in a graph/time-series task and explicitly reconstructs a node-window with values that do not match the raw time series."
+      },
+      {
+        "boundary": "cross_patch_cross_node_reasoning_error",
+        "evidence_type": "cross_node_reasoning_reconstructs_input_window_incorrectly",
+        "idx": 145,
+        "line_no": 146,
+        "data_file": "data/ST-Bench/ST-Test/correlation_test.jsonl",
+        "generated_file": "exp/sttest_full_correlation_6144_run3_official/generated_answer.json",
+        "task_type": "correlation",
+        "graph": "Node 0->Node 2; Node 0->Node 3; Node 1->Node 4; Node 1->Node 3; Node 2->Node 5; Node 2->Node 6; Node 3->Node 7; Node 4->Node 8; Node 5->Node 9; Node 6->Node 9; Node 7->Node 9; Node 8->Node 9; Node 9->Node 0; Node 9->Node 1",
+        "edge_count": 14,
+        "node_count": 10,
+        "reasoning_excerpt": "Let me analyze the spatial-temporal data for Node 0 and Node 1 during time steps 28-35. First, let me extract the values: - Node 0 (steps 28-35): 371.65, 106.60, 1850.00, 0.00, 1850.00, 0.00, 1850.00, 0.00 - Node 1 (steps 28-35): 260.81, 260.81, 259.81, 260.69, 260.97, 261.02, 260.99, 261.13 Time steps 28-35 correspond to: - 1 time step = 15 minutes - Step 28 = 7:00 AM (28 × 15 min = 420 min = 7 hours from midnight) - Step 35 = 8:45 AM This is clearly morning commute time. Now let me trace the graph structure: - Node 9 -> Node 1 - Node 1 -> Node 4, Node 3 - Node 0 -> Node 2, Node 3 - Node 9 -> Node 0 Looking at the pattern: - Node 1 shows relatively stable values around 260 - Node 0 shows extreme spikes (1850.00) alternating with 0.00 values, indicating a dramatic increase in traffic The extreme values at Node 0 (1850.00) suggest a massive influx of traffic during morning hours. This pattern, combined with the time period (7:00-8:45 AM), strongly suggests morning commute traffic. Let me check the intermediate nodes during this period: - Node 3 (steps 28-35): 277.91, 1250.00, 0.00, 1250.00, 0.00, 1250.00, 0.00, 1250.00 - Node 4 (steps 28-35): 199.91, 200.61, 200.82, 201.03, 201.24, 201.45, 201.66, 201.87 The pattern shows: - Node 1 remains stable (residential area characteristic) - Node 0 shows extreme spikes (business district receiving traffic) - Node 3 shows intermediate spikes between Node 1 and Node 0 - The traffic flows through the network: Node 1 -> Node 3 -> Node 0 This indicates traffic propagating from Node 1 (residential) through intermediate nodes (Node 3) to Node 0 (business district) during morning hours. Answer: B - Morning commute traffic propagates from residential area (Node 1) to business district (Node 0) through transit corridors and intermediate nod",
+        "reasoning_numeric_checks": [
+          {
+            "alignment_basis": "1-based",
+            "node": 0,
+            "stated_window": [
+              28,
+              35
+            ],
+            "raw_values": [
+              63.89,
+              10.69,
+              0.0,
+              0.0,
+              1389.75,
+              0.0,
+              1850.0,
+              0.0
+            ],
+            "model_stated_values": [
+              371.65,
+              106.6,
+              1850.0,
+              0.0,
+              1850.0,
+              0.0,
+              1850.0,
+              0.0
+            ],
+            "mean_abs_diff_between_stated_and_raw": 339.24,
+            "max_abs_diff_between_stated_and_raw": 1850.0,
+            "reasoning_line": "- Node 0 (steps 28-35): 371.65, 106.60, 1850.00, 0.00, 1850.00, 0.00, 1850.00, 0.00"
+          },
+          {
+            "alignment_basis": "1-based",
+            "node": 3,
+            "stated_window": [
+              28,
+              35
+            ],
+            "raw_values": [
+              242.52,
+              305.52,
+              344.61,
+              353.54,
+              355.67,
+              749.88,
+              107.95,
+              1250.0
+            ],
+            "model_stated_values": [
+              277.91,
+              1250.0,
+              0.0,
+              1250.0,
+              0.0,
+              1250.0,
+              0.0,
+              1250.0
+            ],
+            "mean_abs_diff_between_stated_and_raw": 398.085,
+            "max_abs_diff_between_stated_and_raw": 944.48,
+            "reasoning_line": "- Node 3 (steps 28-35): 277.91, 1250.00, 0.00, 1250.00, 0.00, 1250.00, 0.00, 1250.00"
+          },
+          {
+            "alignment_basis": "1-based",
+            "node": 4,
+            "stated_window": [
+              28,
+              35
+            ],
+            "raw_values": [
+              222.82,
+              348.51,
+              338.77,
+              406.67,
+              357.17,
+              613.3,
+              324.34,
+              861.33
+            ],
+            "model_stated_values": [
+              199.91,
+              200.61,
+              200.82,
+              201.03,
+              201.24,
+              201.45,
+              201.66,
+              201.87
+            ],
+            "mean_abs_diff_between_stated_and_raw": 233.04,
+            "max_abs_diff_between_stated_and_raw": 659.46,
+            "reasoning_line": "- Node 4 (steps 28-35): 199.91, 200.61, 200.82, 201.03, 201.24, 201.45, 201.66, 201.87"
+          },
+          {
+            "alignment_basis": "1-based",
+            "node": 1,
+            "stated_window": [
+              28,
+              35
+            ],
+            "raw_values": [
+              294.1,
+              348.47,
+              384.13,
+              388.28,
+              513.61,
+              476.12,
+              617.31,
+              559.66
+            ],
+            "model_stated_values": [
+              260.81,
+              260.81,
+              259.81,
+              260.69,
+              260.97,
+              261.02,
+              260.99,
+              261.13
+            ],
+            "mean_abs_diff_between_stated_and_raw": 186.93125,
+            "max_abs_diff_between_stated_and_raw": 356.31999999999994,
+            "reasoning_line": "- Node 1 (steps 28-35): 260.81, 260.81, 259.81, 260.69, 260.97, 261.02, 260.99, 261.13"
+          }
+        ],
+        "top_reasoning_numeric_check": {
+          "alignment_basis": "1-based",
+          "node": 0,
+          "stated_window": [
+            28,
+            35
+          ],
+          "raw_values": [
+            63.89,
+            10.69,
+            0.0,
+            0.0,
+            1389.75,
+            0.0,
+            1850.0,
+            0.0
+          ],
+          "model_stated_values": [
+            371.65,
+            106.6,
+            1850.0,
+            0.0,
+            1850.0,
+            0.0,
+            1850.0,
+            0.0
+          ],
+          "mean_abs_diff_between_stated_and_raw": 339.24,
+          "max_abs_diff_between_stated_and_raw": 1850.0,
+          "reasoning_line": "- Node 0 (steps 28-35): 371.65, 106.60, 1850.00, 0.00, 1850.00, 0.00, 1850.00, 0.00"
+        },
+        "question_excerpt": "You are a spatial temporal analysis expert. Node 0 time series with length of 96: <ts><ts/>; Node 1 time series with length of 96: <ts><ts/>; Node 2 time series with length of 96: <ts><ts/>; Node 3 time series with length of 96: <ts><ts/>; Node 4 time series with length of 96: <ts><ts/>; Node 5 time series with length of 96: <ts><ts/>; Node 6 time series with length of 96: <ts><ts/>; Node 7 time series with length of 96: <ts><ts/>; Node 8 time series with length of 96: <ts><ts/>; Node 9 time series with length of 96: <ts><ts/>; Graph Structure: Node 0->Node 2; Node 0->Node 3; Node 1->Node 4; Node 1->Node 3; Node 2->Node 5; Node 2->Node 6; Node 3->Node 7; Node 4->Node 8; Node 5->Node 9; Node 6->Node 9; Node 7->Node 9; Node 8->Node 9; Node 9->Node 0; Node 9->Node 1, please analyze the spatial temporal data and answer the following question: Which statement best describes the relationship b",
+        "why_this_supports_boundary": "The reasoning trace is in a graph/time-series task and explicitly reconstructs a node-window with values that do not match the raw time series."
+      },
+      {
+        "boundary": "cross_patch_cross_node_reasoning_error",
+        "evidence_type": "cross_node_reasoning_reconstructs_input_window_incorrectly",
+        "idx": 550,
+        "line_no": 551,
+        "data_file": "data/ST-Bench/ST-Test/correlation_test.jsonl",
+        "generated_file": "exp/sttest_full_correlation_6144_run3_official/generated_answer.json",
+        "task_type": "correlation",
+        "graph": "Node 0->Node 2; Node 0->Node 3; Node 1->Node 5; Node 1->Node 8; Node 2->Node 4; Node 2->Node 7; Node 3->Node 6; Node 4->Node 9; Node 5->Node 8; Node 6->Node 7; Node 7->Node 9; Node 8->Node 3",
+        "edge_count": 12,
+        "node_count": 10,
+        "reasoning_excerpt": "Let me analyze the spatial-temporal data for Node 0 and Node 7 during time steps 64-76. First, let me extract the values for the relevant nodes during time steps 64-76: Node 0 (steps 64-76): 1216.21, 1216.11, 1217.82, 1217.71, 1217.72, 1217.72, 1217.71, 1217.73, 1217.72, 1217.71, 1217.71, 1217.72, 1217.72 Node 2 (steps 64-76): 1550.00, 0.00, 1202.88, 1550.00, 0.00, 1190.99, 1550.00, 0.00, 1189.26, 1550.00, 0.00, 1190.99, 1550.00 Node 7 (steps 64-76): 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00 Now let me analyze the graph structure: - Node 0 → Node 2 → Node 7 (there's a path from Node 0 to Node 7 through Node 2) Time steps 64-76 correspond to: - 1 time step = 15 minutes - Step 64 = 64 × 15 = 960 minutes = 16:00 (4 PM) - Step 76 = 76 × 15 = 1140 minutes = 19:00 (7 PM) This is the evening rush hour period (4 PM - 7 PM). Looking at the patterns: - Node 0 shows high and relatively stable values (around 1217) - Node 2 shows alternating high values (1550) and zeros - Node 7 shows alternating high values (1550) and zeros The pattern suggests traffic propagation: 1. Node 0 maintains high traffic levels (business district) 2. Node 2 (intermediary) shows high values with alternating pattern 3. Node 7 (residential) shows high values with alternating pattern The alternating pattern in Nodes 2 and 7 suggests traffic flow through these nodes, with Node 2 acting as an intermediary between Node 0 and Node 7. Given: - The time period (4 PM - 7 PM) is evening rush hour - Node 0 → Node 2 → Node 7 path exists - High traffic values propagating from Node 0 through Node 2 to Node 7 - This matches the evening commute pattern from business district to residential areas Option D best describes this: \"Evening rush hour traffic propagates from ",
+        "reasoning_numeric_checks": [
+          {
+            "alignment_basis": "0-based",
+            "node": 2,
+            "stated_window": [
+              64,
+              76
+            ],
+            "raw_values": [
+              0.0,
+              133.16,
+              55.09,
+              256.84,
+              122.84,
+              417.78,
+              169.39,
+              601.07,
+              144.91,
+              843.35,
+              65.7,
+              1202.88,
+              941.92
+            ],
+            "model_stated_values": [
+              1550.0,
+              0.0,
+              1202.88,
+              1550.0,
+              0.0,
+              1190.99,
+              1550.0,
+              0.0,
+              1189.26,
+              1550.0,
+              0.0,
+              1190.99,
+              1550.0
+            ],
+            "mean_abs_diff_between_stated_and_raw": 726.0392307692308,
+            "max_abs_diff_between_stated_and_raw": 1550.0,
+            "reasoning_line": "Node 2 (steps 64-76): 1550.00, 0.00, 1202.88, 1550.00, 0.00, 1190.99, 1550.00, 0.00, 1189.26, 1550.00, 0.00, 1190.99, 1550.00"
+          },
+          {
+            "alignment_basis": "0-based",
+            "node": 7,
+            "stated_window": [
+              64,
+              76
+            ],
+            "raw_values": [
+              251.25,
+              227.15,
+              232.35,
+              215.92,
+              315.29,
+              0.0,
+              966.13,
+              0.0,
+              1354.75,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0
+            ],
+            "model_stated_values": [
+              1550.0,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0
+            ],
+            "mean_abs_diff_between_stated_and_raw": 390.25384615384615,
+            "max_abs_diff_between_stated_and_raw": 1317.65,
+            "reasoning_line": "Node 7 (steps 64-76): 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00"
+          },
+          {
+            "alignment_basis": "0-based",
+            "node": 0,
+            "stated_window": [
+              64,
+              76
+            ],
+            "raw_values": [
+              36.74,
+              82.19,
+              129.51,
+              188.91,
+              247.33,
+              309.98,
+              365.06,
+              415.68,
+              466.28,
+              526.99,
+              586.58,
+              632.95,
+              689.63
+            ],
+            "model_stated_values": [
+              1216.21,
+              1216.11,
+              1217.82,
+              1217.71,
+              1217.72,
+              1217.72,
+              1217.71,
+              1217.73,
+              1217.72,
+              1217.71,
+              1217.71,
+              1217.72,
+              1217.72
+            ],
+            "mean_abs_diff_between_stated_and_raw": 857.6523076923077,
+            "max_abs_diff_between_stated_and_raw": 1179.47,
+            "reasoning_line": "Node 0 (steps 64-76): 1216.21, 1216.11, 1217.82, 1217.71, 1217.72, 1217.72, 1217.71, 1217.73, 1217.72, 1217.71, 1217.71, 1217.72, 1217.72"
+          }
+        ],
+        "top_reasoning_numeric_check": {
+          "alignment_basis": "0-based",
+          "node": 2,
+          "stated_window": [
+            64,
+            76
+          ],
+          "raw_values": [
+            0.0,
+            133.16,
+            55.09,
+            256.84,
+            122.84,
+            417.78,
+            169.39,
+            601.07,
+            144.91,
+            843.35,
+            65.7,
+            1202.88,
+            941.92
+          ],
+          "model_stated_values": [
+            1550.0,
+            0.0,
+            1202.88,
+            1550.0,
+            0.0,
+            1190.99,
+            1550.0,
+            0.0,
+            1189.26,
+            1550.0,
+            0.0,
+            1190.99,
+            1550.0
+          ],
+          "mean_abs_diff_between_stated_and_raw": 726.0392307692308,
+          "max_abs_diff_between_stated_and_raw": 1550.0,
+          "reasoning_line": "Node 2 (steps 64-76): 1550.00, 0.00, 1202.88, 1550.00, 0.00, 1190.99, 1550.00, 0.00, 1189.26, 1550.00, 0.00, 1190.99, 1550.00"
+        },
+        "question_excerpt": "You are a spatial temporal analysis expert. Node 0 time series with length of 96: <ts><ts/>; Node 1 time series with length of 96: <ts><ts/>; Node 2 time series with length of 96: <ts><ts/>; Node 3 time series with length of 96: <ts><ts/>; Node 4 time series with length of 96: <ts><ts/>; Node 5 time series with length of 96: <ts><ts/>; Node 6 time series with length of 96: <ts><ts/>; Node 7 time series with length of 96: <ts><ts/>; Node 8 time series with length of 96: <ts><ts/>; Node 9 time series with length of 96: <ts><ts/>; Graph Structure: Node 0->Node 2; Node 0->Node 3; Node 1->Node 5; Node 1->Node 8; Node 2->Node 4; Node 2->Node 7; Node 3->Node 6; Node 4->Node 9; Node 5->Node 8; Node 6->Node 7; Node 7->Node 9; Node 8->Node 3, please analyze the spatial temporal data and answer the following question: Which statement best describes the relationship between Node 0 and Node 7 during ",
+        "why_this_supports_boundary": "The reasoning trace is in a graph/time-series task and explicitly reconstructs a node-window with values that do not match the raw time series."
+      },
+      {
+        "boundary": "cross_patch_cross_node_reasoning_error",
+        "evidence_type": "cross_node_reasoning_reconstructs_input_window_incorrectly",
+        "idx": 597,
+        "line_no": 598,
+        "data_file": "data/ST-Bench/ST-Test/correlation_test.jsonl",
+        "generated_file": "exp/sttest_full_correlation_6144_run3_official/generated_answer.json",
+        "task_type": "correlation",
+        "graph": "Node 0->Node 2; Node 0->Node 3; Node 1->Node 5; Node 1->Node 8; Node 2->Node 4; Node 2->Node 7; Node 3->Node 6; Node 4->Node 9; Node 5->Node 8; Node 6->Node 7; Node 7->Node 9; Node 8->Node 3",
+        "edge_count": 12,
+        "node_count": 10,
+        "reasoning_excerpt": "Let me analyze the spatial-temporal data for Node 5 and Node 3 during time steps 32-40. First, let me identify the graph structure path from Node 5 to Node 3: - Node 5 -> Node 8 (direct edge) - Node 8 -> Node 3 (direct edge) So there's a two-hop path: Node 5 -> Node 8 -> Node 3 Now let me extract the values for time steps 32-40 (indices 32-40): Node 5 [32-40]: 260.31, 667.65, 229.61, 900.09, 0.00, 80.06, 429.09, 399.12, 355.76 Node 8 [32-40]: 264.91, 264.21, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00 Node 3 [32-40]: 277.19, 277.19, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00 Let me analyze the temporal patterns: - At time step 32: Node 5 = 260.31, Node 8 = 264.91, Node 3 = 277.19 - At time step 33: Node 5 = 667.65 (spike), Node 8 = 264.21, Node 3 = 277.19 - At time step 34: Node 5 = 229.61, Node 8 = 1550.00 (spike), Node 3 = 1550.00 (spike) - At time step 35: Node 5 = 900.09 (spike), Node 8 = 0.00, Node 3 = 0.00 - At time step 36: Node 5 = 0.00, Node 8 = 1550.00 (spike), Node 3 = 1550.00 (spike) - At time step 37: Node 5 = 80.06, Node 8 = 0.00, Node 3 = 0.00 - At time step 38: Node 5 = 429.09 (spike), Node 8 = 1550.00 (spike), Node 3 = 1550.00 (spike) - At time step 39: Node 5 = 399.12, Node 8 = 0.00, Node 3 = 0.00 - At time step 40: Node 5 = 355.76, Node 8 = 1550.00 (spike), Node 3 = 1550.00 (spike) The pattern shows: 1. There's a clear propagation pattern where increases in Node 5 are followed by increases in Node 8, which are then followed by increases in Node 3 2. The values show strong flows (high values like 1550.00 appearing multiple times) 3. The timing suggests a two-hop flow pattern from Node 5 → Node 8 → Node 3 Time steps 32-40 correspond to 8:00 AM - 10:00 AM (if starting from midnight), which is typical morning commute time. Option A: \"We",
+        "reasoning_numeric_checks": [
+          {
+            "alignment_basis": "0-based",
+            "node": 3,
+            "stated_window": [
+              32,
+              40
+            ],
+            "raw_values": [
+              252.22,
+              0.0,
+              688.59,
+              0.0,
+              904.78,
+              0.0,
+              54.0,
+              1550.0,
+              0.0
+            ],
+            "model_stated_values": [
+              277.19,
+              277.19,
+              1550.0,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0
+            ],
+            "mean_abs_diff_between_stated_and_raw": 711.6433333333333,
+            "max_abs_diff_between_stated_and_raw": 1550.0,
+            "reasoning_line": "Node 3 [32-40]: 277.19, 277.19, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00"
+          },
+          {
+            "alignment_basis": "0-based",
+            "node": 8,
+            "stated_window": [
+              32,
+              40
+            ],
+            "raw_values": [
+              81.31,
+              302.19,
+              130.48,
+              405.13,
+              339.34,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0
+            ],
+            "model_stated_values": [
+              264.91,
+              264.21,
+              1550.0,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0
+            ],
+            "mean_abs_diff_between_stated_and_raw": 361.8766666666667,
+            "max_abs_diff_between_stated_and_raw": 1419.52,
+            "reasoning_line": "Node 8 [32-40]: 264.91, 264.21, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00"
+          },
+          {
+            "alignment_basis": "0-based",
+            "node": 5,
+            "stated_window": [
+              32,
+              40
+            ],
+            "raw_values": [
+              80.81,
+              309.11,
+              110.67,
+              477.99,
+              105.05,
+              717.15,
+              39.45,
+              1006.09,
+              797.97
+            ],
+            "model_stated_values": [
+              260.31,
+              667.65,
+              229.61,
+              900.09,
+              0.0,
+              80.06,
+              429.09,
+              399.12,
+              355.76
+            ],
+            "mean_abs_diff_between_stated_and_raw": 362.2266666666667,
+            "max_abs_diff_between_stated_and_raw": 637.0899999999999,
+            "reasoning_line": "Node 5 [32-40]: 260.31, 667.65, 229.61, 900.09, 0.00, 80.06, 429.09, 399.12, 355.76"
+          }
+        ],
+        "top_reasoning_numeric_check": {
+          "alignment_basis": "0-based",
+          "node": 3,
+          "stated_window": [
+            32,
+            40
+          ],
+          "raw_values": [
+            252.22,
+            0.0,
+            688.59,
+            0.0,
+            904.78,
+            0.0,
+            54.0,
+            1550.0,
+            0.0
+          ],
+          "model_stated_values": [
+            277.19,
+            277.19,
+            1550.0,
+            0.0,
+            1550.0,
+            0.0,
+            1550.0,
+            0.0,
+            1550.0
+          ],
+          "mean_abs_diff_between_stated_and_raw": 711.6433333333333,
+          "max_abs_diff_between_stated_and_raw": 1550.0,
+          "reasoning_line": "Node 3 [32-40]: 277.19, 277.19, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00"
+        },
+        "question_excerpt": "You are a spatial temporal analysis expert. Node 0 time series with length of 96: <ts><ts/>; Node 1 time series with length of 96: <ts><ts/>; Node 2 time series with length of 96: <ts><ts/>; Node 3 time series with length of 96: <ts><ts/>; Node 4 time series with length of 96: <ts><ts/>; Node 5 time series with length of 96: <ts><ts/>; Node 6 time series with length of 96: <ts><ts/>; Node 7 time series with length of 96: <ts><ts/>; Node 8 time series with length of 96: <ts><ts/>; Node 9 time series with length of 96: <ts><ts/>; Graph Structure: Node 0->Node 2; Node 0->Node 3; Node 1->Node 5; Node 1->Node 8; Node 2->Node 4; Node 2->Node 7; Node 3->Node 6; Node 4->Node 9; Node 5->Node 8; Node 6->Node 7; Node 7->Node 9; Node 8->Node 3, please analyze the spatial temporal data and answer the following question: Which statement best describes the relationship between Node 5 and Node 3 during ",
+        "why_this_supports_boundary": "The reasoning trace is in a graph/time-series task and explicitly reconstructs a node-window with values that do not match the raw time series."
+      },
+      {
+        "boundary": "cross_patch_cross_node_reasoning_error",
+        "evidence_type": "cross_node_reasoning_reconstructs_input_window_incorrectly",
+        "idx": 435,
+        "line_no": 436,
+        "data_file": "data/ST-Bench/ST-Test/correlation_test.jsonl",
+        "generated_file": "exp/sttest_full_correlation_6144_run3_official/generated_answer.json",
+        "task_type": "correlation",
+        "graph": "Node 0->Node 1; Node 1->Node 3; Node 2->Node 1; Node 3->Node 4; Node 4->Node 0",
+        "edge_count": 5,
+        "node_count": 5,
+        "reasoning_excerpt": "Let me analyze the spatial-temporal data for Node 2 and Node 4 during time steps 26-32. First, let me extract the values for time steps 26-32 (indices 25-31 in 0-indexed): Node 2: 611.19, 563.65, 519.21, 477.76, 439.23, 403.59, 370.99 Node 4: 219.61, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00 Now let me understand the graph structure: - Node 2 -> Node 1 - Node 1 -> Node 3 - Node 3 -> Node 4 - Node 4 -> Node 0 - Node 0 -> Node 1 So the path from Node 2 to Node 4 is: Node 2 -> Node 1 -> Node 3 -> Node 4 Let me check Node 1 and Node 3 during this period: Node 1 (26-32): 1550.00, 1413.19, 1226.88, 1096.66, 918.06, 795.61, 621.67 Node 3 (26-32): 1550.00, 1550.00, 1550.00, 1550.00, 1550.00, 1550.00, 1550.00 Time steps 26-32 correspond to: - 1 time step = 15 minutes - Step 26 = 6.5 hours = 6:30 AM - Step 32 = 8 hours = 8:00 AM This is clearly morning rush hour time. Observations: 1. Node 2 shows a declining pattern (611.19 -> 370.99), suggesting traffic is leaving this node 2. Node 1 shows high values initially (1550.00) then declining 3. Node 3 shows consistently high values (1550.00) 4. Node 4 shows an alternating pattern (219.61, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00) The pattern suggests: - Traffic is flowing from Node 2 (declining values) through the network - Node 1 and Node 3 show high values, indicating traffic propagation - Node 4 shows alternating high values, suggesting it's receiving traffic pulses - This occurs during morning rush hour (6:30-8:00 AM) This is consistent with a morning rush hour pattern where traffic originates from a residential area (Node 2) and propagates through the network to reach Node 4. Option C best describes this: \"A strong morning rush hour traffic pattern propagates from the residential area (Node 2) through the network to reach N",
+        "reasoning_numeric_checks": [
+          {
+            "alignment_basis": "0-based",
+            "node": 3,
+            "stated_window": [
+              26,
+              32
+            ],
+            "raw_values": [
+              267.8,
+              0.0,
+              563.94,
+              0.0,
+              836.15,
+              0.0,
+              1212.48
+            ],
+            "model_stated_values": [
+              1550.0,
+              1550.0,
+              1550.0,
+              1550.0,
+              1550.0,
+              1550.0,
+              1550.0
+            ],
+            "mean_abs_diff_between_stated_and_raw": 1138.5185714285715,
+            "max_abs_diff_between_stated_and_raw": 1550.0,
+            "reasoning_line": "Node 3 (26-32): 1550.00, 1550.00, 1550.00, 1550.00, 1550.00, 1550.00, 1550.00"
+          },
+          {
+            "alignment_basis": "1-based",
+            "node": 1,
+            "stated_window": [
+              26,
+              32
+            ],
+            "raw_values": [
+              217.34,
+              0.0,
+              268.04,
+              13.06,
+              407.64,
+              5.85,
+              600.63
+            ],
+            "model_stated_values": [
+              1550.0,
+              1413.19,
+              1226.88,
+              1096.66,
+              918.06,
+              795.61,
+              621.67
+            ],
+            "mean_abs_diff_between_stated_and_raw": 872.7871428571431,
+            "max_abs_diff_between_stated_and_raw": 1413.19,
+            "reasoning_line": "Node 1 (26-32): 1550.00, 1413.19, 1226.88, 1096.66, 918.06, 795.61, 621.67"
+          }
+        ],
+        "top_reasoning_numeric_check": {
+          "alignment_basis": "0-based",
+          "node": 3,
+          "stated_window": [
+            26,
+            32
+          ],
+          "raw_values": [
+            267.8,
+            0.0,
+            563.94,
+            0.0,
+            836.15,
+            0.0,
+            1212.48
+          ],
+          "model_stated_values": [
+            1550.0,
+            1550.0,
+            1550.0,
+            1550.0,
+            1550.0,
+            1550.0,
+            1550.0
+          ],
+          "mean_abs_diff_between_stated_and_raw": 1138.5185714285715,
+          "max_abs_diff_between_stated_and_raw": 1550.0,
+          "reasoning_line": "Node 3 (26-32): 1550.00, 1550.00, 1550.00, 1550.00, 1550.00, 1550.00, 1550.00"
+        },
+        "question_excerpt": "You are a spatial temporal analysis expert. Node 0 time series with length of 96: <ts><ts/>; Node 1 time series with length of 96: <ts><ts/>; Node 2 time series with length of 96: <ts><ts/>; Node 3 time series with length of 96: <ts><ts/>; Node 4 time series with length of 96: <ts><ts/>; Graph Structure: Node 0->Node 1; Node 1->Node 3; Node 2->Node 1; Node 3->Node 4; Node 4->Node 0, please analyze the spatial temporal data and answer the following question: Which statement best describes the relationship between Node 2 and Node 4 during time steps 26-32 (1 time step = 15 minutes)? Options: A. A moderate bi-directional traffic pattern exists between Node 2 and Node 4 B. Evening peak traffic flows directly from Node 4 back to Node 2 C. A strong morning rush hour traffic pattern propagates from the residential area (Node 2) through the network to reach Node 4 D. There is no significant traf",
+        "why_this_supports_boundary": "The reasoning trace is in a graph/time-series task and explicitly reconstructs a node-window with values that do not match the raw time series."
+      }
+    ],
+    "cross_node_numeric_reconstruction": [
+      {
+        "boundary": "cross_patch_cross_node_reasoning_error",
+        "evidence_type": "cross_node_reasoning_reconstructs_input_window_incorrectly",
+        "idx": 9,
+        "line_no": 10,
+        "data_file": "data/ST-Bench/ST-Test/correlation_test.jsonl",
+        "generated_file": "exp/sttest_full_correlation_6144_run3_official/generated_answer.json",
+        "task_type": "correlation",
+        "graph": "Node 0->Node 2; Node 0->Node 3; Node 1->Node 4; Node 1->Node 3; Node 2->Node 5; Node 2->Node 6; Node 3->Node 7; Node 4->Node 8; Node 5->Node 9; Node 6->Node 9; Node 7->Node 9; Node 8->Node 9; Node 9->Node 0; Node 9->Node 1",
+        "edge_count": 14,
+        "node_count": 10,
+        "reasoning_excerpt": "Let me analyze the spatial-temporal data for Node 7 during time steps 29-33. First, let me identify the time period: - 1 time step = 15 minutes - Time steps 29-33 correspond to: 29×15 = 435 minutes = 7 hours 15 minutes from start - If we assume the data starts at midnight (00:00), time steps 29-33 would be approximately 7:15 AM to 8:15 AM Node 7 values at time steps 29-33: - Step 29: 271.90 - Step 30: 272.11 - Step 31: 272.13 - Step 32: 272.12 - Step 33: 272.11 Now let me trace the causal influence path to Node 7: - Node 7 is influenced by Node 3 (Node 3->Node 7) - Node 3 is influenced by Node 0 and Node 1 (Node 0->Node 3, Node 1->Node 3) Let me check the patterns at these nodes during steps 29-33: Node 0 (steps 29-33): 120.37, 1850.00, 0.00, 1850.00, 0.00 - Shows extreme spikes and drops, indicating a major event Node 1 (steps 29-33): 270.61, 270.97, 271.33, 271.69, 271.95 - Shows steady increase Node 3 (steps 29-33): 116.91, 691.19, 0.00, 1250.00, 0.00 - Shows extreme volatility with spikes The pattern shows: 1. Time period is around 7:15-8:15 AM (morning hours) 2. Node 0 shows extreme spikes suggesting a major traffic event 3. This propagates through Node 3 to Node 7 4. The timing (7:15-8:15 AM) is characteristic of morning rush hour Given the time period and the pattern of extreme increases followed by drops (characteristic of traffic congestion patterns), this best matches morning traffic flow patterns.",
+        "reasoning_numeric_checks": [
+          {
+            "alignment_basis": "1-based",
+            "node": 0,
+            "stated_window": [
+              29,
+              33
+            ],
+            "raw_values": [
+              10.69,
+              0.0,
+              0.0,
+              1389.75,
+              0.0
+            ],
+            "model_stated_values": [
+              120.37,
+              1850.0,
+              0.0,
+              1850.0,
+              0.0
+            ],
+            "mean_abs_diff_between_stated_and_raw": 483.98600000000005,
+            "max_abs_diff_between_stated_and_raw": 1850.0,
+            "reasoning_line": "Node 0 (steps 29-33): 120.37, 1850.00, 0.00, 1850.00, 0.00"
+          },
+          {
+            "alignment_basis": "0-based",
+            "node": 3,
+            "stated_window": [
+              29,
+              33
+            ],
+            "raw_values": [
+              344.61,
+              353.54,
+              355.67,
+              749.88,
+              107.95
+            ],
+            "model_stated_values": [
+              116.91,
+              691.19,
+              0.0,
+              1250.0,
+              0.0
+            ],
+            "mean_abs_diff_between_stated_and_raw": 305.818,
+            "max_abs_diff_between_stated_and_raw": 500.12,
+            "reasoning_line": "Node 3 (steps 29-33): 116.91, 691.19, 0.00, 1250.00, 0.00"
+          },
+          {
+            "alignment_basis": "1-based",
+            "node": 1,
+            "stated_window": [
+              29,
+              33
+            ],
+            "raw_values": [
+              348.47,
+              384.13,
+              388.28,
+              513.61,
+              476.12
+            ],
+            "model_stated_values": [
+              270.61,
+              270.97,
+              271.33,
+              271.69,
+              271.95
+            ],
+            "mean_abs_diff_between_stated_and_raw": 150.81199999999998,
+            "max_abs_diff_between_stated_and_raw": 241.92000000000002,
+            "reasoning_line": "Node 1 (steps 29-33): 270.61, 270.97, 271.33, 271.69, 271.95"
+          }
+        ],
+        "top_reasoning_numeric_check": {
+          "alignment_basis": "1-based",
+          "node": 0,
+          "stated_window": [
+            29,
+            33
+          ],
+          "raw_values": [
+            10.69,
+            0.0,
+            0.0,
+            1389.75,
+            0.0
+          ],
+          "model_stated_values": [
+            120.37,
+            1850.0,
+            0.0,
+            1850.0,
+            0.0
+          ],
+          "mean_abs_diff_between_stated_and_raw": 483.98600000000005,
+          "max_abs_diff_between_stated_and_raw": 1850.0,
+          "reasoning_line": "Node 0 (steps 29-33): 120.37, 1850.00, 0.00, 1850.00, 0.00"
+        },
+        "question_excerpt": "You are a spatial temporal analysis expert. Node 0 time series with length of 96: <ts><ts/>; Node 1 time series with length of 96: <ts><ts/>; Node 2 time series with length of 96: <ts><ts/>; Node 3 time series with length of 96: <ts><ts/>; Node 4 time series with length of 96: <ts><ts/>; Node 5 time series with length of 96: <ts><ts/>; Node 6 time series with length of 96: <ts><ts/>; Node 7 time series with length of 96: <ts><ts/>; Node 8 time series with length of 96: <ts><ts/>; Node 9 time series with length of 96: <ts><ts/>; Graph Structure: Node 0->Node 2; Node 0->Node 3; Node 1->Node 4; Node 1->Node 3; Node 2->Node 5; Node 2->Node 6; Node 3->Node 7; Node 4->Node 8; Node 5->Node 9; Node 6->Node 9; Node 7->Node 9; Node 8->Node 9; Node 9->Node 0; Node 9->Node 1, please analyze the spatial temporal data and answer the following question: Based on the observed patterns during time steps ",
+        "why_this_supports_boundary": "The reasoning trace is in a graph/time-series task and explicitly reconstructs a node-window with values that do not match the raw time series."
+      },
+      {
+        "boundary": "cross_patch_cross_node_reasoning_error",
+        "evidence_type": "cross_node_reasoning_reconstructs_input_window_incorrectly",
+        "idx": 145,
+        "line_no": 146,
+        "data_file": "data/ST-Bench/ST-Test/correlation_test.jsonl",
+        "generated_file": "exp/sttest_full_correlation_6144_run3_official/generated_answer.json",
+        "task_type": "correlation",
+        "graph": "Node 0->Node 2; Node 0->Node 3; Node 1->Node 4; Node 1->Node 3; Node 2->Node 5; Node 2->Node 6; Node 3->Node 7; Node 4->Node 8; Node 5->Node 9; Node 6->Node 9; Node 7->Node 9; Node 8->Node 9; Node 9->Node 0; Node 9->Node 1",
+        "edge_count": 14,
+        "node_count": 10,
+        "reasoning_excerpt": "Let me analyze the spatial-temporal data for Node 0 and Node 1 during time steps 28-35. First, let me extract the values: - Node 0 (steps 28-35): 371.65, 106.60, 1850.00, 0.00, 1850.00, 0.00, 1850.00, 0.00 - Node 1 (steps 28-35): 260.81, 260.81, 259.81, 260.69, 260.97, 261.02, 260.99, 261.13 Time steps 28-35 correspond to: - 1 time step = 15 minutes - Step 28 = 7:00 AM (28 × 15 min = 420 min = 7 hours from midnight) - Step 35 = 8:45 AM This is clearly morning commute time. Now let me trace the graph structure: - Node 9 -> Node 1 - Node 1 -> Node 4, Node 3 - Node 0 -> Node 2, Node 3 - Node 9 -> Node 0 Looking at the pattern: - Node 1 shows relatively stable values around 260 - Node 0 shows extreme spikes (1850.00) alternating with 0.00 values, indicating a dramatic increase in traffic The extreme values at Node 0 (1850.00) suggest a massive influx of traffic during morning hours. This pattern, combined with the time period (7:00-8:45 AM), strongly suggests morning commute traffic. Let me check the intermediate nodes during this period: - Node 3 (steps 28-35): 277.91, 1250.00, 0.00, 1250.00, 0.00, 1250.00, 0.00, 1250.00 - Node 4 (steps 28-35): 199.91, 200.61, 200.82, 201.03, 201.24, 201.45, 201.66, 201.87 The pattern shows: - Node 1 remains stable (residential area characteristic) - Node 0 shows extreme spikes (business district receiving traffic) - Node 3 shows intermediate spikes between Node 1 and Node 0 - The traffic flows through the network: Node 1 -> Node 3 -> Node 0 This indicates traffic propagating from Node 1 (residential) through intermediate nodes (Node 3) to Node 0 (business district) during morning hours. Answer: B - Morning commute traffic propagates from residential area (Node 1) to business district (Node 0) through transit corridors and intermediate nod",
+        "reasoning_numeric_checks": [
+          {
+            "alignment_basis": "1-based",
+            "node": 0,
+            "stated_window": [
+              28,
+              35
+            ],
+            "raw_values": [
+              63.89,
+              10.69,
+              0.0,
+              0.0,
+              1389.75,
+              0.0,
+              1850.0,
+              0.0
+            ],
+            "model_stated_values": [
+              371.65,
+              106.6,
+              1850.0,
+              0.0,
+              1850.0,
+              0.0,
+              1850.0,
+              0.0
+            ],
+            "mean_abs_diff_between_stated_and_raw": 339.24,
+            "max_abs_diff_between_stated_and_raw": 1850.0,
+            "reasoning_line": "- Node 0 (steps 28-35): 371.65, 106.60, 1850.00, 0.00, 1850.00, 0.00, 1850.00, 0.00"
+          },
+          {
+            "alignment_basis": "1-based",
+            "node": 3,
+            "stated_window": [
+              28,
+              35
+            ],
+            "raw_values": [
+              242.52,
+              305.52,
+              344.61,
+              353.54,
+              355.67,
+              749.88,
+              107.95,
+              1250.0
+            ],
+            "model_stated_values": [
+              277.91,
+              1250.0,
+              0.0,
+              1250.0,
+              0.0,
+              1250.0,
+              0.0,
+              1250.0
+            ],
+            "mean_abs_diff_between_stated_and_raw": 398.085,
+            "max_abs_diff_between_stated_and_raw": 944.48,
+            "reasoning_line": "- Node 3 (steps 28-35): 277.91, 1250.00, 0.00, 1250.00, 0.00, 1250.00, 0.00, 1250.00"
+          },
+          {
+            "alignment_basis": "1-based",
+            "node": 4,
+            "stated_window": [
+              28,
+              35
+            ],
+            "raw_values": [
+              222.82,
+              348.51,
+              338.77,
+              406.67,
+              357.17,
+              613.3,
+              324.34,
+              861.33
+            ],
+            "model_stated_values": [
+              199.91,
+              200.61,
+              200.82,
+              201.03,
+              201.24,
+              201.45,
+              201.66,
+              201.87
+            ],
+            "mean_abs_diff_between_stated_and_raw": 233.04,
+            "max_abs_diff_between_stated_and_raw": 659.46,
+            "reasoning_line": "- Node 4 (steps 28-35): 199.91, 200.61, 200.82, 201.03, 201.24, 201.45, 201.66, 201.87"
+          },
+          {
+            "alignment_basis": "1-based",
+            "node": 1,
+            "stated_window": [
+              28,
+              35
+            ],
+            "raw_values": [
+              294.1,
+              348.47,
+              384.13,
+              388.28,
+              513.61,
+              476.12,
+              617.31,
+              559.66
+            ],
+            "model_stated_values": [
+              260.81,
+              260.81,
+              259.81,
+              260.69,
+              260.97,
+              261.02,
+              260.99,
+              261.13
+            ],
+            "mean_abs_diff_between_stated_and_raw": 186.93125,
+            "max_abs_diff_between_stated_and_raw": 356.31999999999994,
+            "reasoning_line": "- Node 1 (steps 28-35): 260.81, 260.81, 259.81, 260.69, 260.97, 261.02, 260.99, 261.13"
+          }
+        ],
+        "top_reasoning_numeric_check": {
+          "alignment_basis": "1-based",
+          "node": 0,
+          "stated_window": [
+            28,
+            35
+          ],
+          "raw_values": [
+            63.89,
+            10.69,
+            0.0,
+            0.0,
+            1389.75,
+            0.0,
+            1850.0,
+            0.0
+          ],
+          "model_stated_values": [
+            371.65,
+            106.6,
+            1850.0,
+            0.0,
+            1850.0,
+            0.0,
+            1850.0,
+            0.0
+          ],
+          "mean_abs_diff_between_stated_and_raw": 339.24,
+          "max_abs_diff_between_stated_and_raw": 1850.0,
+          "reasoning_line": "- Node 0 (steps 28-35): 371.65, 106.60, 1850.00, 0.00, 1850.00, 0.00, 1850.00, 0.00"
+        },
+        "question_excerpt": "You are a spatial temporal analysis expert. Node 0 time series with length of 96: <ts><ts/>; Node 1 time series with length of 96: <ts><ts/>; Node 2 time series with length of 96: <ts><ts/>; Node 3 time series with length of 96: <ts><ts/>; Node 4 time series with length of 96: <ts><ts/>; Node 5 time series with length of 96: <ts><ts/>; Node 6 time series with length of 96: <ts><ts/>; Node 7 time series with length of 96: <ts><ts/>; Node 8 time series with length of 96: <ts><ts/>; Node 9 time series with length of 96: <ts><ts/>; Graph Structure: Node 0->Node 2; Node 0->Node 3; Node 1->Node 4; Node 1->Node 3; Node 2->Node 5; Node 2->Node 6; Node 3->Node 7; Node 4->Node 8; Node 5->Node 9; Node 6->Node 9; Node 7->Node 9; Node 8->Node 9; Node 9->Node 0; Node 9->Node 1, please analyze the spatial temporal data and answer the following question: Which statement best describes the relationship b",
+        "why_this_supports_boundary": "The reasoning trace is in a graph/time-series task and explicitly reconstructs a node-window with values that do not match the raw time series."
+      },
+      {
+        "boundary": "cross_patch_cross_node_reasoning_error",
+        "evidence_type": "cross_node_reasoning_reconstructs_input_window_incorrectly",
+        "idx": 550,
+        "line_no": 551,
+        "data_file": "data/ST-Bench/ST-Test/correlation_test.jsonl",
+        "generated_file": "exp/sttest_full_correlation_6144_run3_official/generated_answer.json",
+        "task_type": "correlation",
+        "graph": "Node 0->Node 2; Node 0->Node 3; Node 1->Node 5; Node 1->Node 8; Node 2->Node 4; Node 2->Node 7; Node 3->Node 6; Node 4->Node 9; Node 5->Node 8; Node 6->Node 7; Node 7->Node 9; Node 8->Node 3",
+        "edge_count": 12,
+        "node_count": 10,
+        "reasoning_excerpt": "Let me analyze the spatial-temporal data for Node 0 and Node 7 during time steps 64-76. First, let me extract the values for the relevant nodes during time steps 64-76: Node 0 (steps 64-76): 1216.21, 1216.11, 1217.82, 1217.71, 1217.72, 1217.72, 1217.71, 1217.73, 1217.72, 1217.71, 1217.71, 1217.72, 1217.72 Node 2 (steps 64-76): 1550.00, 0.00, 1202.88, 1550.00, 0.00, 1190.99, 1550.00, 0.00, 1189.26, 1550.00, 0.00, 1190.99, 1550.00 Node 7 (steps 64-76): 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00 Now let me analyze the graph structure: - Node 0 → Node 2 → Node 7 (there's a path from Node 0 to Node 7 through Node 2) Time steps 64-76 correspond to: - 1 time step = 15 minutes - Step 64 = 64 × 15 = 960 minutes = 16:00 (4 PM) - Step 76 = 76 × 15 = 1140 minutes = 19:00 (7 PM) This is the evening rush hour period (4 PM - 7 PM). Looking at the patterns: - Node 0 shows high and relatively stable values (around 1217) - Node 2 shows alternating high values (1550) and zeros - Node 7 shows alternating high values (1550) and zeros The pattern suggests traffic propagation: 1. Node 0 maintains high traffic levels (business district) 2. Node 2 (intermediary) shows high values with alternating pattern 3. Node 7 (residential) shows high values with alternating pattern The alternating pattern in Nodes 2 and 7 suggests traffic flow through these nodes, with Node 2 acting as an intermediary between Node 0 and Node 7. Given: - The time period (4 PM - 7 PM) is evening rush hour - Node 0 → Node 2 → Node 7 path exists - High traffic values propagating from Node 0 through Node 2 to Node 7 - This matches the evening commute pattern from business district to residential areas Option D best describes this: \"Evening rush hour traffic propagates from ",
+        "reasoning_numeric_checks": [
+          {
+            "alignment_basis": "0-based",
+            "node": 2,
+            "stated_window": [
+              64,
+              76
+            ],
+            "raw_values": [
+              0.0,
+              133.16,
+              55.09,
+              256.84,
+              122.84,
+              417.78,
+              169.39,
+              601.07,
+              144.91,
+              843.35,
+              65.7,
+              1202.88,
+              941.92
+            ],
+            "model_stated_values": [
+              1550.0,
+              0.0,
+              1202.88,
+              1550.0,
+              0.0,
+              1190.99,
+              1550.0,
+              0.0,
+              1189.26,
+              1550.0,
+              0.0,
+              1190.99,
+              1550.0
+            ],
+            "mean_abs_diff_between_stated_and_raw": 726.0392307692308,
+            "max_abs_diff_between_stated_and_raw": 1550.0,
+            "reasoning_line": "Node 2 (steps 64-76): 1550.00, 0.00, 1202.88, 1550.00, 0.00, 1190.99, 1550.00, 0.00, 1189.26, 1550.00, 0.00, 1190.99, 1550.00"
+          },
+          {
+            "alignment_basis": "0-based",
+            "node": 7,
+            "stated_window": [
+              64,
+              76
+            ],
+            "raw_values": [
+              251.25,
+              227.15,
+              232.35,
+              215.92,
+              315.29,
+              0.0,
+              966.13,
+              0.0,
+              1354.75,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0
+            ],
+            "model_stated_values": [
+              1550.0,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0
+            ],
+            "mean_abs_diff_between_stated_and_raw": 390.25384615384615,
+            "max_abs_diff_between_stated_and_raw": 1317.65,
+            "reasoning_line": "Node 7 (steps 64-76): 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00"
+          },
+          {
+            "alignment_basis": "0-based",
+            "node": 0,
+            "stated_window": [
+              64,
+              76
+            ],
+            "raw_values": [
+              36.74,
+              82.19,
+              129.51,
+              188.91,
+              247.33,
+              309.98,
+              365.06,
+              415.68,
+              466.28,
+              526.99,
+              586.58,
+              632.95,
+              689.63
+            ],
+            "model_stated_values": [
+              1216.21,
+              1216.11,
+              1217.82,
+              1217.71,
+              1217.72,
+              1217.72,
+              1217.71,
+              1217.73,
+              1217.72,
+              1217.71,
+              1217.71,
+              1217.72,
+              1217.72
+            ],
+            "mean_abs_diff_between_stated_and_raw": 857.6523076923077,
+            "max_abs_diff_between_stated_and_raw": 1179.47,
+            "reasoning_line": "Node 0 (steps 64-76): 1216.21, 1216.11, 1217.82, 1217.71, 1217.72, 1217.72, 1217.71, 1217.73, 1217.72, 1217.71, 1217.71, 1217.72, 1217.72"
+          }
+        ],
+        "top_reasoning_numeric_check": {
+          "alignment_basis": "0-based",
+          "node": 2,
+          "stated_window": [
+            64,
+            76
+          ],
+          "raw_values": [
+            0.0,
+            133.16,
+            55.09,
+            256.84,
+            122.84,
+            417.78,
+            169.39,
+            601.07,
+            144.91,
+            843.35,
+            65.7,
+            1202.88,
+            941.92
+          ],
+          "model_stated_values": [
+            1550.0,
+            0.0,
+            1202.88,
+            1550.0,
+            0.0,
+            1190.99,
+            1550.0,
+            0.0,
+            1189.26,
+            1550.0,
+            0.0,
+            1190.99,
+            1550.0
+          ],
+          "mean_abs_diff_between_stated_and_raw": 726.0392307692308,
+          "max_abs_diff_between_stated_and_raw": 1550.0,
+          "reasoning_line": "Node 2 (steps 64-76): 1550.00, 0.00, 1202.88, 1550.00, 0.00, 1190.99, 1550.00, 0.00, 1189.26, 1550.00, 0.00, 1190.99, 1550.00"
+        },
+        "question_excerpt": "You are a spatial temporal analysis expert. Node 0 time series with length of 96: <ts><ts/>; Node 1 time series with length of 96: <ts><ts/>; Node 2 time series with length of 96: <ts><ts/>; Node 3 time series with length of 96: <ts><ts/>; Node 4 time series with length of 96: <ts><ts/>; Node 5 time series with length of 96: <ts><ts/>; Node 6 time series with length of 96: <ts><ts/>; Node 7 time series with length of 96: <ts><ts/>; Node 8 time series with length of 96: <ts><ts/>; Node 9 time series with length of 96: <ts><ts/>; Graph Structure: Node 0->Node 2; Node 0->Node 3; Node 1->Node 5; Node 1->Node 8; Node 2->Node 4; Node 2->Node 7; Node 3->Node 6; Node 4->Node 9; Node 5->Node 8; Node 6->Node 7; Node 7->Node 9; Node 8->Node 3, please analyze the spatial temporal data and answer the following question: Which statement best describes the relationship between Node 0 and Node 7 during ",
+        "why_this_supports_boundary": "The reasoning trace is in a graph/time-series task and explicitly reconstructs a node-window with values that do not match the raw time series."
+      },
+      {
+        "boundary": "cross_patch_cross_node_reasoning_error",
+        "evidence_type": "cross_node_reasoning_reconstructs_input_window_incorrectly",
+        "idx": 597,
+        "line_no": 598,
+        "data_file": "data/ST-Bench/ST-Test/correlation_test.jsonl",
+        "generated_file": "exp/sttest_full_correlation_6144_run3_official/generated_answer.json",
+        "task_type": "correlation",
+        "graph": "Node 0->Node 2; Node 0->Node 3; Node 1->Node 5; Node 1->Node 8; Node 2->Node 4; Node 2->Node 7; Node 3->Node 6; Node 4->Node 9; Node 5->Node 8; Node 6->Node 7; Node 7->Node 9; Node 8->Node 3",
+        "edge_count": 12,
+        "node_count": 10,
+        "reasoning_excerpt": "Let me analyze the spatial-temporal data for Node 5 and Node 3 during time steps 32-40. First, let me identify the graph structure path from Node 5 to Node 3: - Node 5 -> Node 8 (direct edge) - Node 8 -> Node 3 (direct edge) So there's a two-hop path: Node 5 -> Node 8 -> Node 3 Now let me extract the values for time steps 32-40 (indices 32-40): Node 5 [32-40]: 260.31, 667.65, 229.61, 900.09, 0.00, 80.06, 429.09, 399.12, 355.76 Node 8 [32-40]: 264.91, 264.21, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00 Node 3 [32-40]: 277.19, 277.19, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00 Let me analyze the temporal patterns: - At time step 32: Node 5 = 260.31, Node 8 = 264.91, Node 3 = 277.19 - At time step 33: Node 5 = 667.65 (spike), Node 8 = 264.21, Node 3 = 277.19 - At time step 34: Node 5 = 229.61, Node 8 = 1550.00 (spike), Node 3 = 1550.00 (spike) - At time step 35: Node 5 = 900.09 (spike), Node 8 = 0.00, Node 3 = 0.00 - At time step 36: Node 5 = 0.00, Node 8 = 1550.00 (spike), Node 3 = 1550.00 (spike) - At time step 37: Node 5 = 80.06, Node 8 = 0.00, Node 3 = 0.00 - At time step 38: Node 5 = 429.09 (spike), Node 8 = 1550.00 (spike), Node 3 = 1550.00 (spike) - At time step 39: Node 5 = 399.12, Node 8 = 0.00, Node 3 = 0.00 - At time step 40: Node 5 = 355.76, Node 8 = 1550.00 (spike), Node 3 = 1550.00 (spike) The pattern shows: 1. There's a clear propagation pattern where increases in Node 5 are followed by increases in Node 8, which are then followed by increases in Node 3 2. The values show strong flows (high values like 1550.00 appearing multiple times) 3. The timing suggests a two-hop flow pattern from Node 5 → Node 8 → Node 3 Time steps 32-40 correspond to 8:00 AM - 10:00 AM (if starting from midnight), which is typical morning commute time. Option A: \"We",
+        "reasoning_numeric_checks": [
+          {
+            "alignment_basis": "0-based",
+            "node": 3,
+            "stated_window": [
+              32,
+              40
+            ],
+            "raw_values": [
+              252.22,
+              0.0,
+              688.59,
+              0.0,
+              904.78,
+              0.0,
+              54.0,
+              1550.0,
+              0.0
+            ],
+            "model_stated_values": [
+              277.19,
+              277.19,
+              1550.0,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0
+            ],
+            "mean_abs_diff_between_stated_and_raw": 711.6433333333333,
+            "max_abs_diff_between_stated_and_raw": 1550.0,
+            "reasoning_line": "Node 3 [32-40]: 277.19, 277.19, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00"
+          },
+          {
+            "alignment_basis": "0-based",
+            "node": 8,
+            "stated_window": [
+              32,
+              40
+            ],
+            "raw_values": [
+              81.31,
+              302.19,
+              130.48,
+              405.13,
+              339.34,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0
+            ],
+            "model_stated_values": [
+              264.91,
+              264.21,
+              1550.0,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0,
+              0.0,
+              1550.0
+            ],
+            "mean_abs_diff_between_stated_and_raw": 361.8766666666667,
+            "max_abs_diff_between_stated_and_raw": 1419.52,
+            "reasoning_line": "Node 8 [32-40]: 264.91, 264.21, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00"
+          },
+          {
+            "alignment_basis": "0-based",
+            "node": 5,
+            "stated_window": [
+              32,
+              40
+            ],
+            "raw_values": [
+              80.81,
+              309.11,
+              110.67,
+              477.99,
+              105.05,
+              717.15,
+              39.45,
+              1006.09,
+              797.97
+            ],
+            "model_stated_values": [
+              260.31,
+              667.65,
+              229.61,
+              900.09,
+              0.0,
+              80.06,
+              429.09,
+              399.12,
+              355.76
+            ],
+            "mean_abs_diff_between_stated_and_raw": 362.2266666666667,
+            "max_abs_diff_between_stated_and_raw": 637.0899999999999,
+            "reasoning_line": "Node 5 [32-40]: 260.31, 667.65, 229.61, 900.09, 0.00, 80.06, 429.09, 399.12, 355.76"
+          }
+        ],
+        "top_reasoning_numeric_check": {
+          "alignment_basis": "0-based",
+          "node": 3,
+          "stated_window": [
+            32,
+            40
+          ],
+          "raw_values": [
+            252.22,
+            0.0,
+            688.59,
+            0.0,
+            904.78,
+            0.0,
+            54.0,
+            1550.0,
+            0.0
+          ],
+          "model_stated_values": [
+            277.19,
+            277.19,
+            1550.0,
+            0.0,
+            1550.0,
+            0.0,
+            1550.0,
+            0.0,
+            1550.0
+          ],
+          "mean_abs_diff_between_stated_and_raw": 711.6433333333333,
+          "max_abs_diff_between_stated_and_raw": 1550.0,
+          "reasoning_line": "Node 3 [32-40]: 277.19, 277.19, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00, 1550.00"
+        },
+        "question_excerpt": "You are a spatial temporal analysis expert. Node 0 time series with length of 96: <ts><ts/>; Node 1 time series with length of 96: <ts><ts/>; Node 2 time series with length of 96: <ts><ts/>; Node 3 time series with length of 96: <ts><ts/>; Node 4 time series with length of 96: <ts><ts/>; Node 5 time series with length of 96: <ts><ts/>; Node 6 time series with length of 96: <ts><ts/>; Node 7 time series with length of 96: <ts><ts/>; Node 8 time series with length of 96: <ts><ts/>; Node 9 time series with length of 96: <ts><ts/>; Graph Structure: Node 0->Node 2; Node 0->Node 3; Node 1->Node 5; Node 1->Node 8; Node 2->Node 4; Node 2->Node 7; Node 3->Node 6; Node 4->Node 9; Node 5->Node 8; Node 6->Node 7; Node 7->Node 9; Node 8->Node 3, please analyze the spatial temporal data and answer the following question: Which statement best describes the relationship between Node 5 and Node 3 during ",
+        "why_this_supports_boundary": "The reasoning trace is in a graph/time-series task and explicitly reconstructs a node-window with values that do not match the raw time series."
+      },
+      {
+        "boundary": "cross_patch_cross_node_reasoning_error",
+        "evidence_type": "cross_node_reasoning_reconstructs_input_window_incorrectly",
+        "idx": 435,
+        "line_no": 436,
+        "data_file": "data/ST-Bench/ST-Test/correlation_test.jsonl",
+        "generated_file": "exp/sttest_full_correlation_6144_run3_official/generated_answer.json",
+        "task_type": "correlation",
+        "graph": "Node 0->Node 1; Node 1->Node 3; Node 2->Node 1; Node 3->Node 4; Node 4->Node 0",
+        "edge_count": 5,
+        "node_count": 5,
+        "reasoning_excerpt": "Let me analyze the spatial-temporal data for Node 2 and Node 4 during time steps 26-32. First, let me extract the values for time steps 26-32 (indices 25-31 in 0-indexed): Node 2: 611.19, 563.65, 519.21, 477.76, 439.23, 403.59, 370.99 Node 4: 219.61, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00 Now let me understand the graph structure: - Node 2 -> Node 1 - Node 1 -> Node 3 - Node 3 -> Node 4 - Node 4 -> Node 0 - Node 0 -> Node 1 So the path from Node 2 to Node 4 is: Node 2 -> Node 1 -> Node 3 -> Node 4 Let me check Node 1 and Node 3 during this period: Node 1 (26-32): 1550.00, 1413.19, 1226.88, 1096.66, 918.06, 795.61, 621.67 Node 3 (26-32): 1550.00, 1550.00, 1550.00, 1550.00, 1550.00, 1550.00, 1550.00 Time steps 26-32 correspond to: - 1 time step = 15 minutes - Step 26 = 6.5 hours = 6:30 AM - Step 32 = 8 hours = 8:00 AM This is clearly morning rush hour time. Observations: 1. Node 2 shows a declining pattern (611.19 -> 370.99), suggesting traffic is leaving this node 2. Node 1 shows high values initially (1550.00) then declining 3. Node 3 shows consistently high values (1550.00) 4. Node 4 shows an alternating pattern (219.61, 1550.00, 0.00, 1550.00, 0.00, 1550.00, 0.00) The pattern suggests: - Traffic is flowing from Node 2 (declining values) through the network - Node 1 and Node 3 show high values, indicating traffic propagation - Node 4 shows alternating high values, suggesting it's receiving traffic pulses - This occurs during morning rush hour (6:30-8:00 AM) This is consistent with a morning rush hour pattern where traffic originates from a residential area (Node 2) and propagates through the network to reach Node 4. Option C best describes this: \"A strong morning rush hour traffic pattern propagates from the residential area (Node 2) through the network to reach N",
+        "reasoning_numeric_checks": [
+          {
+            "alignment_basis": "0-based",
+            "node": 3,
+            "stated_window": [
+              26,
+              32
+            ],
+            "raw_values": [
+              267.8,
+              0.0,
+              563.94,
+              0.0,
+              836.15,
+              0.0,
+              1212.48
+            ],
+            "model_stated_values": [
+              1550.0,
+              1550.0,
+              1550.0,
+              1550.0,
+              1550.0,
+              1550.0,
+              1550.0
+            ],
+            "mean_abs_diff_between_stated_and_raw": 1138.5185714285715,
+            "max_abs_diff_between_stated_and_raw": 1550.0,
+            "reasoning_line": "Node 3 (26-32): 1550.00, 1550.00, 1550.00, 1550.00, 1550.00, 1550.00, 1550.00"
+          },
+          {
+            "alignment_basis": "1-based",
+            "node": 1,
+            "stated_window": [
+              26,
+              32
+            ],
+            "raw_values": [
+              217.34,
+              0.0,
+              268.04,
+              13.06,
+              407.64,
+              5.85,
+              600.63
+            ],
+            "model_stated_values": [
+              1550.0,
+              1413.19,
+              1226.88,
+              1096.66,
+              918.06,
+              795.61,
+              621.67
+            ],
+            "mean_abs_diff_between_stated_and_raw": 872.7871428571431,
+            "max_abs_diff_between_stated_and_raw": 1413.19,
+            "reasoning_line": "Node 1 (26-32): 1550.00, 1413.19, 1226.88, 1096.66, 918.06, 795.61, 621.67"
+          }
+        ],
+        "top_reasoning_numeric_check": {
+          "alignment_basis": "0-based",
+          "node": 3,
+          "stated_window": [
+            26,
+            32
+          ],
+          "raw_values": [
+            267.8,
+            0.0,
+            563.94,
+            0.0,
+            836.15,
+            0.0,
+            1212.48
+          ],
+          "model_stated_values": [
+            1550.0,
+            1550.0,
+            1550.0,
+            1550.0,
+            1550.0,
+            1550.0,
+            1550.0
+          ],
+          "mean_abs_diff_between_stated_and_raw": 1138.5185714285715,
+          "max_abs_diff_between_stated_and_raw": 1550.0,
+          "reasoning_line": "Node 3 (26-32): 1550.00, 1550.00, 1550.00, 1550.00, 1550.00, 1550.00, 1550.00"
+        },
+        "question_excerpt": "You are a spatial temporal analysis expert. Node 0 time series with length of 96: <ts><ts/>; Node 1 time series with length of 96: <ts><ts/>; Node 2 time series with length of 96: <ts><ts/>; Node 3 time series with length of 96: <ts><ts/>; Node 4 time series with length of 96: <ts><ts/>; Graph Structure: Node 0->Node 1; Node 1->Node 3; Node 2->Node 1; Node 3->Node 4; Node 4->Node 0, please analyze the spatial temporal data and answer the following question: Which statement best describes the relationship between Node 2 and Node 4 during time steps 26-32 (1 time step = 15 minutes)? Options: A. A moderate bi-directional traffic pattern exists between Node 2 and Node 4 B. Evening peak traffic flows directly from Node 4 back to Node 2 C. A strong morning rush hour traffic pattern propagates from the residential area (Node 2) through the network to reach Node 4 D. There is no significant traf",
+        "why_this_supports_boundary": "The reasoning trace is in a graph/time-series task and explicitly reconstructs a node-window with values that do not match the raw time series."
+      }
+    ]
+  },
+  "similar_indices": {
+    "numeric_fidelity_in_reasoning": [
+      19,
+      19,
+      146,
+      25,
+      179,
+      214,
+      116,
+      174,
+      173,
+      96,
+      214,
+      173,
+      214,
+      116,
+      174,
+      19,
+      173,
+      76,
+      174,
+      76,
+      244,
+      96,
+      76,
+      260,
+      29,
+      244,
+      29,
+      179,
+      260,
+      50,
+      96,
+      266,
+      149,
+      146,
+      29,
+      149,
+      25,
+      94,
+      266,
+      29,
+      187,
+      266,
+      94,
+      116,
+      116,
+      214,
+      266,
+      148,
+      76,
+      187,
+      94,
+      214,
+      25,
+      175,
+      193,
+      260,
+      194,
+      94,
+      194,
+      193,
+      176,
+      244,
+      244,
+      176,
+      164,
+      29,
+      259,
+      87,
+      96,
+      206,
+      169,
+      170,
+      92,
+      164,
+      193,
+      194,
+      187,
+      220,
+      259,
+      220
+    ],
+    "cross_patch_cross_node_reasoning_error": [
+      9,
+      145,
+      550,
+      597,
+      435,
+      540,
+      490,
+      598,
+      387,
+      607,
+      522,
+      117,
+      391,
+      1448,
+      1442,
+      1567,
+      1560,
+      486,
+      1105,
+      392,
+      1118,
+      73,
+      872,
+      1480,
+      1474,
+      602,
+      439,
+      662,
+      473,
+      458,
+      654,
+      275,
+      659,
+      740,
+      86,
+      221,
+      313,
+      218,
+      1396,
+      805,
+      1128,
+      849,
+      817,
+      37,
+      36,
+      1446,
+      1420,
+      1275,
+      1202,
+      744,
+      701,
+      47,
+      198,
+      590,
+      474,
+      136,
+      629,
+      41,
+      1207,
+      1223,
+      705,
+      580,
+      1404,
+      1303,
+      998,
+      1440,
+      222,
+      265,
+      1312,
+      256,
+      230,
+      220,
+      1119,
+      191,
+      175,
+      729,
+      1348,
+      200,
+      224,
+      424,
+      1231,
+      725,
+      703,
+      344,
+      622,
+      14,
+      276,
+      408,
+      426,
+      283,
+      1321,
+      328,
+      266,
+      1163,
+      437,
+      1224,
+      699,
+      147,
+      1025,
+      1188,
+      1095,
+      1113,
+      504,
+      1288,
+      1093,
+      158,
+      429,
+      1068,
+      269,
+      520,
+      297,
+      656,
+      333,
+      592,
+      1239,
+      1434,
+      957,
+      448,
+      428,
+      1258
+    ],
+    "cross_node_numeric_reconstruction": [
+      9,
+      145,
+      550,
+      597,
+      435,
+      540,
+      490,
+      598,
+      387,
+      607,
+      522,
+      117,
+      391,
+      1448,
+      1442,
+      1567,
+      1560,
+      486,
+      1105,
+      392,
+      1118,
+      73,
+      872,
+      1480,
+      1474,
+      602,
+      439,
+      662,
+      473,
+      458,
+      654,
+      275,
+      659,
+      740,
+      86,
+      221,
+      313,
+      218,
+      1396,
+      805,
+      1128,
+      849,
+      817,
+      37,
+      36,
+      1446,
+      1420,
+      1275,
+      1202,
+      744,
+      701,
+      47,
+      198,
+      590,
+      474,
+      136,
+      629,
+      41,
+      1207,
+      1223,
+      705,
+      580,
+      1404,
+      1303,
+      998,
+      1440,
+      222,
+      265,
+      1312,
+      256,
+      230,
+      220,
+      1119,
+      191,
+      175,
+      729,
+      1348,
+      200,
+      224,
+      424
+    ]
+  }
+}

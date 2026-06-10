@@ -1,0 +1,23 @@
+{
+  "task": "reasoning_forecasting",
+  "total_samples": 280,
+  "evaluated_samples": 278,
+  "missing_predictions": 2,
+  "coverage": 0.9928571428571429,
+  "mae": 64.29745386844488,
+  "mape": 135.20376818354646,
+  "target_stats": {
+    "mean": 93.07763137254898,
+    "abs_mean": 93.07763137254898,
+    "min": 0.0,
+    "max": 1850.0,
+    "total_values": 2550
+  },
+  "missing_indices": [
+    84,
+    262
+  ],
+  "total_input_tokens": 77434,
+  "avg_input_tokens": 276.55,
+  "samples_with_token_info": 280
+}

@@ -1,0 +1,11 @@
+{
+  "task": "reasoning_entity",
+  "total_samples": 1,
+  "evaluated_samples": 1,
+  "missing_predictions": 0,
+  "coverage": 1.0,
+  "accuracy": 0.0,
+  "total_input_tokens": 396,
+  "avg_input_tokens": 396.0,
+  "samples_with_token_info": 1
+}

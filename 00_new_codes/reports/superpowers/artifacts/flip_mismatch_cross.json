@@ -1,0 +1,24 @@
+{
+  "correlation": {
+    "flip_total": 261,
+    "mismatch_all3": 25,
+    "mismatch_any_run": 53,
+    "mismatch_no_run": 183,
+    "stable_correct_not_flip": 1181,
+    "stable_wrong_not_flip": 150,
+    "mismatch_all3_ratio": 0.0958,
+    "mismatch_any_run_ratio": 0.2031,
+    "mismatch_no_run_ratio": 0.7011
+  },
+  "forecasting": {
+    "flip_total": 1,
+    "mismatch_all3": 0,
+    "mismatch_any_run": 1,
+    "mismatch_no_run": 0,
+    "stable_correct_not_flip": 0,
+    "stable_wrong_not_flip": 274,
+    "mismatch_all3_ratio": 0.0,
+    "mismatch_any_run_ratio": 1.0,
+    "mismatch_no_run_ratio": 0.0
+  }
+}

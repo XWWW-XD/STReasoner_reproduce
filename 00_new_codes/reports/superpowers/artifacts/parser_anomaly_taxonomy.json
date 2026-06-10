@@ -1,0 +1,1077 @@
+{
+  "correlation": {
+    "count": 49,
+    "sample_buckets": {
+      "one_run_parser_issue": 3,
+      "two_runs_parser_issue": 34,
+      "all_runs_parser_issue": 12
+    },
+    "per_run_parser_class_totals": {
+      "ok_single_letter": 40,
+      "no_answer_tag": 107
+    },
+    "samples": [
+      {
+        "idx": 16,
+        "bucket": "one_run_parser_issue",
+        "failed_runs": [
+          "run2"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "ok_single_letter"
+        },
+        "loose_preds_norm": {
+          "run1": "D",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "A"
+        }
+      },
+      {
+        "idx": 98,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "B",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 175,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "D",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 191,
+        "bucket": "all_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 300,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "D",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 384,
+        "bucket": "all_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 399,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "C",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 442,
+        "bucket": "all_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 463,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "D",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 548,
+        "bucket": "all_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 614,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "B",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 619,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "C",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 622,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "B",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 624,
+        "bucket": "all_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 628,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "B",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 640,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "B",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 641,
+        "bucket": "all_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 652,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run2"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "no_answer_tag",
+          "run3": "ok_single_letter"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "A"
+        }
+      },
+      {
+        "idx": 669,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "B",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 674,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "B",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 678,
+        "bucket": "all_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 679,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "C",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 687,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "D",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 690,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "C",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 694,
+        "bucket": "all_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 698,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "C",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 709,
+        "bucket": "all_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 743,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "C",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 752,
+        "bucket": "all_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 755,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "A",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 765,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "C",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 788,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "A",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 792,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "D",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 797,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "A",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 965,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "D",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 991,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "D",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 1008,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "B",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 1009,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "D",
+          "run2": "<think>\nlet me analyze the time series d",
+          "run3": "<think>\nlet me analyze the time series d"
+        }
+      },
+      {
+        "idx": 1185,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run2"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "no_answer_tag",
+          "run3": "ok_single_letter"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "D"
+        }
+      },
+      {
+        "idx": 1189,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run2"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "no_answer_tag",
+          "run3": "ok_single_letter"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "D"
+        }
+      },
+      {
+        "idx": 1198,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "C",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 1200,
+        "bucket": "all_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 1268,
+        "bucket": "all_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 1315,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "D",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 1337,
+        "bucket": "one_run_parser_issue",
+        "failed_runs": [
+          "run1"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "ok_single_letter"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "D",
+          "run3": "A"
+        }
+      },
+      {
+        "idx": 1417,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run2"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "no_answer_tag",
+          "run3": "ok_single_letter"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "A"
+        }
+      },
+      {
+        "idx": 1436,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "D",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 1439,
+        "bucket": "one_run_parser_issue",
+        "failed_runs": [
+          "run2"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "ok_single_letter"
+        },
+        "loose_preds_norm": {
+          "run1": "D",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "C"
+        }
+      },
+      {
+        "idx": 1565,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run2"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "no_answer_tag",
+          "run3": "ok_single_letter"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "C"
+        }
+      }
+    ]
+  },
+  "entity": {
+    "count": 9,
+    "sample_buckets": {
+      "one_run_parser_issue": 7,
+      "all_runs_parser_issue": 1,
+      "two_runs_parser_issue": 1
+    },
+    "per_run_parser_class_totals": {
+      "ok_single_letter": 15,
+      "no_answer_tag": 12
+    },
+    "samples": [
+      {
+        "idx": 11,
+        "bucket": "one_run_parser_issue",
+        "failed_runs": [
+          "run2"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "ok_single_letter"
+        },
+        "loose_preds_norm": {
+          "run1": "D",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "A"
+        }
+      },
+      {
+        "idx": 125,
+        "bucket": "one_run_parser_issue",
+        "failed_runs": [
+          "run1"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "ok_single_letter"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "B",
+          "run3": "A"
+        }
+      },
+      {
+        "idx": 133,
+        "bucket": "one_run_parser_issue",
+        "failed_runs": [
+          "run2"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "no_answer_tag",
+          "run3": "ok_single_letter"
+        },
+        "loose_preds_norm": {
+          "run1": "A",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "B"
+        }
+      },
+      {
+        "idx": 339,
+        "bucket": "one_run_parser_issue",
+        "failed_runs": [
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "ok_single_letter",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "B",
+          "run2": "C",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 490,
+        "bucket": "one_run_parser_issue",
+        "failed_runs": [
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "ok_single_letter",
+          "run2": "ok_single_letter",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "A",
+          "run2": "D",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 578,
+        "bucket": "one_run_parser_issue",
+        "failed_runs": [
+          "run1"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "ok_single_letter"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "A",
+          "run3": "B"
+        }
+      },
+      {
+        "idx": 908,
+        "bucket": "one_run_parser_issue",
+        "failed_runs": [
+          "run1"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "ok_single_letter"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "D",
+          "run3": "B"
+        }
+      },
+      {
+        "idx": 1024,
+        "bucket": "all_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run2",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "no_answer_tag",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "<think>\nlet me analyze the spatial-tempo",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      },
+      {
+        "idx": 1104,
+        "bucket": "two_runs_parser_issue",
+        "failed_runs": [
+          "run1",
+          "run3"
+        ],
+        "run_parser_class": {
+          "run1": "no_answer_tag",
+          "run2": "ok_single_letter",
+          "run3": "no_answer_tag"
+        },
+        "loose_preds_norm": {
+          "run1": "<think>\nlet me analyze the spatial-tempo",
+          "run2": "C",
+          "run3": "<think>\nlet me analyze the spatial-tempo"
+        }
+      }
+    ]
+  }
+}

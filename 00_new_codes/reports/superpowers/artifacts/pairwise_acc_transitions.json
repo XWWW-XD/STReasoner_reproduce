@@ -1,0 +1,98 @@
+{
+  "correlation": {
+    "run1_to_run2": {
+      "RR": 1239,
+      "RW": 85,
+      "WR": 84,
+      "WW": 184,
+      "missing": 0,
+      "acc_delta": -0.000628,
+      "net_correct_change": -1,
+      "net_correct_change_pct_of_N": -0.000628
+    },
+    "run1_to_run3": {
+      "RR": 1231,
+      "RW": 93,
+      "WR": 78,
+      "WW": 190,
+      "missing": 0,
+      "acc_delta": -0.009422,
+      "net_correct_change": -15,
+      "net_correct_change_pct_of_N": -0.009422
+    },
+    "run2_to_run3": {
+      "RR": 1225,
+      "RW": 98,
+      "WR": 84,
+      "WW": 185,
+      "missing": 0,
+      "acc_delta": -0.008794,
+      "net_correct_change": -14,
+      "net_correct_change_pct_of_N": -0.008794
+    }
+  },
+  "entity": {
+    "run1_to_run2": {
+      "RR": 766,
+      "RW": 127,
+      "WR": 110,
+      "WW": 191,
+      "missing": 0,
+      "acc_delta": -0.014238,
+      "net_correct_change": -17,
+      "net_correct_change_pct_of_N": -0.014238
+    },
+    "run1_to_run3": {
+      "RR": 764,
+      "RW": 129,
+      "WR": 109,
+      "WW": 192,
+      "missing": 0,
+      "acc_delta": -0.01675,
+      "net_correct_change": -20,
+      "net_correct_change_pct_of_N": -0.01675
+    },
+    "run2_to_run3": {
+      "RR": 755,
+      "RW": 121,
+      "WR": 118,
+      "WW": 200,
+      "missing": 0,
+      "acc_delta": -0.002513,
+      "net_correct_change": -3,
+      "net_correct_change_pct_of_N": -0.002513
+    }
+  },
+  "etiological": {
+    "run1_to_run2": {
+      "RR": 186,
+      "RW": 12,
+      "WR": 6,
+      "WW": 3,
+      "missing": 0,
+      "acc_delta": -0.028986,
+      "net_correct_change": -6,
+      "net_correct_change_pct_of_N": -0.028986
+    },
+    "run1_to_run3": {
+      "RR": 187,
+      "RW": 11,
+      "WR": 5,
+      "WW": 4,
+      "missing": 0,
+      "acc_delta": -0.028986,
+      "net_correct_change": -6,
+      "net_correct_change_pct_of_N": -0.028986
+    },
+    "run2_to_run3": {
+      "RR": 182,
+      "RW": 10,
+      "WR": 10,
+      "WW": 5,
+      "missing": 0,
+      "acc_delta": 0.0,
+      "net_correct_change": 0,
+      "net_correct_change_pct_of_N": 0.0
+    }
+  }
+}

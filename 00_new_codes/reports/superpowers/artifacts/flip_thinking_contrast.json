@@ -1,0 +1,23 @@
+{
+  "correlation": {
+    "flip_n": 261,
+    "stable_n": 1331,
+    "flip_broad_median": 3,
+    "stable_broad_median": 3.33,
+    "delta_flip_minus_stable": -0.33
+  },
+  "entity": {
+    "flip_n": 357,
+    "stable_n": 837,
+    "flip_broad_median": 1.33,
+    "stable_broad_median": 1.33,
+    "delta_flip_minus_stable": 0.0
+  },
+  "etiological": {
+    "flip_n": 27,
+    "stable_n": 180,
+    "flip_broad_median": 3.33,
+    "stable_broad_median": 2.0,
+    "delta_flip_minus_stable": 1.33
+  }
+}

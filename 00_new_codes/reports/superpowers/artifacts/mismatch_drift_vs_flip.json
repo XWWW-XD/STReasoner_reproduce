@@ -1,0 +1,20 @@
+{
+  "forecasting": {
+    "run1_mismatch_count": 141,
+    "persistent_all3": 104,
+    "drift_from_run1": 37,
+    "persistent_all3_correctness_flip": 0,
+    "persistent_all3_correctness_flip_ratio": 0.0,
+    "drift_from_run1_correctness_flip": 0,
+    "drift_from_run1_correctness_flip_ratio": 0.0
+  },
+  "correlation": {
+    "run1_mismatch_count": 347,
+    "persistent_all3": 190,
+    "drift_from_run1": 157,
+    "persistent_all3_correctness_flip": 25,
+    "persistent_all3_correctness_flip_ratio": 0.1316,
+    "drift_from_run1_correctness_flip": 29,
+    "drift_from_run1_correctness_flip_ratio": 0.1847
+  }
+}

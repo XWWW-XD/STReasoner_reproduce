@@ -1,0 +1,187 @@
+{
+  "sft_loss_scope": [
+    {
+      "line": 20,
+      "text": "from ...extras.constants import IGNORE_INDEX",
+      "pattern": "IGNORE_INDEX"
+    },
+    {
+      "line": 36,
+      "text": "response: list[dict[str, str]],",
+      "pattern": "response"
+    },
+    {
+      "line": 46,
+      "text": "messages = self.template.mm_plugin.process_messages(prompt + response, images, videos, audios, self.processor, timeserie",
+      "pattern": "response"
+    },
+    {
+      "line": 48,
+      "text": "messages = self.template.mm_plugin.process_messages(prompt + response, images, videos, audios, self.processor)",
+      "pattern": "response"
+    },
+    {
+      "line": 49,
+      "text": "input_ids, labels = self.template.mm_plugin.process_token_ids(",
+      "pattern": "labels"
+    },
+    {
+      "line": 82,
+      "text": "source_label = [self.tokenizer.eos_token_id] + [IGNORE_INDEX] * (source_len - 1)",
+      "pattern": "IGNORE_INDEX"
+    },
+    {
+      "line": 84,
+      "text": "source_label = [IGNORE_INDEX] * source_len",
+      "pattern": "IGNORE_INDEX"
+    },
+    {
+      "line": 87,
+      "text": "target_label = [IGNORE_INDEX] * target_len",
+      "pattern": "IGNORE_INDEX"
+    },
+    {
+      "line": 93,
+      "text": "labels = source_label + target_label + labels",
+      "pattern": "labels"
+    },
+    {
+      "line": 96,
+      "text": "labels += source_label + target_label",
+      "pattern": "labels"
+    },
+    {
+      "line": 100,
+      "text": "labels += [self.tokenizer.eos_token_id]",
+      "pattern": "labels"
+    },
+    {
+      "line": 102,
+      "text": "return input_ids, labels",
+      "pattern": "labels"
+    },
+    {
+      "line": 105,
+      "text": "# build inputs with format `<bos> X Y <eos>` and labels with format `<ignore> ... <ignore> Y <eos>`",
+      "pattern": "labels"
+    },
+    {
+      "line": 106,
+      "text": "# for multiturn examples, we only mask the prompt part in each prompt-response pair.",
+      "pattern": "response"
+    },
+    {
+      "line": 109,
+      "text": "if len(examples[\"_prompt\"][i]) % 2 != 1 or len(examples[\"_response\"][i]) != 1:",
+      "pattern": "response"
+    },
+    {
+      "line": 111,
+      "text": "\"Dropped invalid example: {}\".format(examples[\"_prompt\"][i] + examples[\"_response\"][i])",
+      "pattern": "response"
+    },
+    {
+      "line": 115,
+      "text": "input_ids, labels = self._encode_data_example(",
+      "pattern": "labels"
+    },
+    {
+      "line": 117,
+      "text": "response=examples[\"_response\"][i],",
+      "pattern": "response"
+    },
+    {
+      "line": 126,
+      "text": "if input_ids is None or labels is None:",
+      "pattern": "labels"
+    },
+    {
+      "line": 132,
+      "text": "model_inputs[\"labels\"].append(labels)",
+      "pattern": "labels"
+    },
+    {
+      "line": 141,
+      "text": "valid_labels = list(filter(lambda x: x != IGNORE_INDEX, example[\"labels\"]))",
+      "pattern": "IGNORE_INDEX"
+    },
+    {
+      "line": 141,
+      "text": "valid_labels = list(filter(lambda x: x != IGNORE_INDEX, example[\"labels\"]))",
+      "pattern": "labels"
+    },
+    {
+      "line": 144,
+      "text": "print(\"label_ids:\\n{}\".format(example[\"labels\"]))",
+      "pattern": "labels"
+    },
+    {
+      "line": 145,
+      "text": "print(f\"labels:\\n{self.tokenizer.decode(valid_labels, skip_special_tokens=False)}\")",
+      "pattern": "labels"
+    },
+    {
+      "line": 153,
+      "text": "# and labels with format `<ignore> ... <ignore> Y1 <eos> <ignore> ... <ignore> Y2 <eos>`",
+      "pattern": "labels"
+    },
+    {
+      "line": 155,
+      "text": "batch_input_ids, batch_labels, batch_images, batch_videos, batch_audios, batch_timeseries = [], [], [], [], [], []",
+      "pattern": "labels"
+    },
+    {
+      "line": 159,
+      "text": "if len(examples[\"_prompt\"][i]) % 2 != 1 or len(examples[\"_response\"][i]) != 1:",
+      "pattern": "response"
+    },
+    {
+      "line": 161,
+      "text": "\"Dropped invalid example: {}\".format(examples[\"_prompt\"][i] + examples[\"_response\"][i])",
+      "pattern": "response"
+    },
+    {
+      "line": 165,
+      "text": "input_ids, labels = self._encode_data_example(",
+      "pattern": "labels"
+    },
+    {
+      "line": 167,
+      "text": "response=examples[\"_response\"][i],",
+      "pattern": "response"
+    },
+    {
+      "line": 182,
+      "text": "batch_labels.append(labels)",
+      "pattern": "labels"
+    },
+    {
+      "line": 192,
+      "text": "packed_input_ids, packed_attention_masks, packed_position_ids, packed_labels = [], [], [], []",
+      "pattern": "labels"
+    },
+    {
+      "line": 198,
+      "text": "packed_labels += batch_labels[index]",
+      "pattern": "labels"
+    },
+    {
+      "line": 212,
+      "text": "packed_labels += [IGNORE_INDEX] * pad_length",
+      "pattern": "IGNORE_INDEX"
+    },
+    {
+      "line": 212,
+      "text": "packed_labels += [IGNORE_INDEX] * pad_length",
+      "pattern": "labels"
+    },
+    {
+      "line": 224,
+      "text": "model_inputs[\"labels\"].append(packed_labels)",
+      "pattern": "labels"
+    }
+  ],
+  "links_to_phase1": {
+    "thinking_in_loss": "full thinking+answer in CE; evaluate only scores answer tag"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "forecasting": {
+    "short_le48": {
+      "total": 132,
+      "mismatch": 77,
+      "rate": 0.5833
+    },
+    "mid_49_72": {
+      "total": 65,
+      "mismatch": 31,
+      "rate": 0.4769
+    },
+    "long_ge73": {
+      "total": 83,
+      "mismatch": 33,
+      "rate": 0.3976
+    }
+  },
+  "correlation": {
+    "short_le48": {
+      "total": 407,
+      "mismatch": 95,
+      "rate": 0.2334
+    },
+    "mid_49_72": {
+      "total": 111,
+      "mismatch": 18,
+      "rate": 0.1622
+    },
+    "long_ge73": {
+      "total": 1074,
+      "mismatch": 234,
+      "rate": 0.2179
+    }
+  }
+}

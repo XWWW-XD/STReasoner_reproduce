@@ -1,0 +1,29 @@
+{
+  "rows": [
+    {
+      "phenomenon": "no_answer_tag_unclosed_thinking",
+      "code_anchor": "inference max_tokens + evaluate _extract_tag_content fallback",
+      "tier_intervention": "T1-2, T1-3, E1"
+    },
+    {
+      "phenomenon": "loose_triple_diverse",
+      "code_anchor": "evaluate_qa load_prediction_files + _normalize_choice",
+      "tier_intervention": "T0-1 strict parser"
+    },
+    {
+      "phenomenon": "flip_independent_of_mismatch",
+      "code_anchor": "evaluate ignores thinking; SFT trains full response",
+      "tier_intervention": "T1-1, T2-3"
+    },
+    {
+      "phenomenon": "graph_plus_6pp",
+      "code_anchor": "graph text in prompt; stage2.4 regex remove",
+      "tier_intervention": "T1-4, E4"
+    },
+    {
+      "phenomenon": "kaggle_not_comparable",
+      "code_anchor": "pipeline_diff repro_kaggle",
+      "tier_intervention": "do not use for official optimization"
+    }
+  ]
+}

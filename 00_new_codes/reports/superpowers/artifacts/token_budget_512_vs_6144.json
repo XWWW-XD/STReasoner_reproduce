@@ -1,0 +1,559 @@
+{
+  "forecasting": {
+    "task": "forecasting",
+    "n": 280,
+    "metrics_512": {
+      "accuracy": null,
+      "mae": 67.43053716156342
+    },
+    "metrics_6144": {
+      "accuracy": null,
+      "mae": 68.31705555122797
+    },
+    "correctness_cells": {
+      "WW": 277,
+      "RR": 1
+    },
+    "only_512_correct": 0,
+    "only_6144_correct": 0,
+    "both_wrong": 277,
+    "both_right": 1,
+    "no_answer_tag_rate": {
+      "512": 0.0,
+      "6144": 0.0
+    },
+    "flip_indices_sample": [],
+    "flip_count": 0
+  },
+  "correlation": {
+    "task": "correlation",
+    "n": 1592,
+    "metrics_512": {
+      "accuracy": 0.8624371859296482,
+      "mae": null
+    },
+    "metrics_6144": {
+      "accuracy": 0.8316582914572864,
+      "mae": null
+    },
+    "correctness_cells": {
+      "RW": 106,
+      "WW": 162,
+      "RR": 1267,
+      "WR": 57
+    },
+    "only_512_correct": 57,
+    "only_6144_correct": 106,
+    "both_wrong": 162,
+    "both_right": 1267,
+    "no_answer_tag_rate": {
+      "512": 0.0144,
+      "6144": 0.0295
+    },
+    "flip_indices_sample": [
+      {
+        "idx": 0,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 16,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 17,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 35,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 46,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "unclosed_thinking_other"
+      },
+      {
+        "idx": 47,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 78,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "unclosed_thinking_numeric_loop"
+      },
+      {
+        "idx": 111,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 112,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 119,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 135,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 140,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 142,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 154,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 156,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 158,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 165,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 174,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 176,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 179,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 180,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 184,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 191,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "unclosed_thinking_numeric_loop"
+      },
+      {
+        "idx": 199,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 200,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 206,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 220,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 227,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 229,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 235,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      }
+    ],
+    "flip_count": 163
+  },
+  "entity": {
+    "task": "entity",
+    "n": 1194,
+    "metrics_512": {
+      "accuracy": 0.7420435510887772,
+      "mae": null
+    },
+    "metrics_6144": {
+      "accuracy": 0.7479061976549414,
+      "mae": null
+    },
+    "correctness_cells": {
+      "WW": 193,
+      "RR": 778,
+      "WR": 115,
+      "RW": 108
+    },
+    "only_512_correct": 115,
+    "only_6144_correct": 108,
+    "both_wrong": 193,
+    "both_right": 778,
+    "no_answer_tag_rate": {
+      "512": 0.0042,
+      "6144": 0.0126
+    },
+    "flip_indices_sample": [
+      {
+        "idx": 9,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 10,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 11,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 16,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 19,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 24,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 37,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 45,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 48,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 55,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 60,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 65,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 71,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 76,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 83,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 84,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 93,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 98,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 102,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 105,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 115,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 125,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "unclosed_thinking_numeric_loop"
+      },
+      {
+        "idx": 129,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 133,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 140,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 142,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 147,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 157,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 161,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "unclosed_thinking_numeric_loop"
+      },
+      {
+        "idx": 163,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      }
+    ],
+    "flip_count": 223
+  },
+  "etiological": {
+    "task": "etiological",
+    "n": 207,
+    "metrics_512": {
+      "accuracy": 0.9371980676328503,
+      "mae": null
+    },
+    "metrics_6144": {
+      "accuracy": 0.9565217391304348,
+      "mae": null
+    },
+    "correctness_cells": {
+      "RR": 189,
+      "WW": 4,
+      "WR": 9,
+      "RW": 5
+    },
+    "only_512_correct": 9,
+    "only_6144_correct": 5,
+    "both_wrong": 4,
+    "both_right": 189,
+    "no_answer_tag_rate": {
+      "512": 0.0,
+      "6144": 0.0
+    },
+    "flip_indices_sample": [
+      {
+        "idx": 44,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 47,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 57,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 65,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 68,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 72,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 128,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 148,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 158,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 163,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 171,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 175,
+        "cell": "RW",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 198,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      },
+      {
+        "idx": 205,
+        "cell": "WR",
+        "512_root": "ok_or_other",
+        "6144_root": "ok_or_other"
+      }
+    ],
+    "flip_count": 14
+  }
+}

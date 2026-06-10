@@ -1,0 +1,35 @@
+{
+  "correlation": {
+    "loose_not_strict_total": 49,
+    "bucket_counts": {
+      "one_run_parser_issue": 3,
+      "two_runs_parser_issue": 34,
+      "all_runs_parser_issue": 12
+    },
+    "all_runs_indices": [
+      191,
+      384,
+      442,
+      548,
+      624,
+      641,
+      678,
+      694,
+      709,
+      752,
+      1200,
+      1268
+    ]
+  },
+  "entity": {
+    "loose_not_strict_total": 9,
+    "bucket_counts": {
+      "one_run_parser_issue": 7,
+      "all_runs_parser_issue": 1,
+      "two_runs_parser_issue": 1
+    },
+    "all_runs_indices": [
+      1024
+    ]
+  }
+}

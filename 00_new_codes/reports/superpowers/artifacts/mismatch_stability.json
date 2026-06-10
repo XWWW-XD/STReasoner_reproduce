@@ -1,0 +1,54 @@
+{
+  "forecasting": {
+    "run1_count": 141,
+    "run2_count": 141,
+    "run3_count": 137,
+    "jaccard_12": 0.6786,
+    "jaccard_13": 0.6951,
+    "jaccard_23": 0.7375,
+    "intersection_all3": 104,
+    "only_run1": 17,
+    "only_run2": 13,
+    "only_run3": 9,
+    "intersection_all3_ratio_of_run1": 0.7376
+  },
+  "correlation": {
+    "run1_count": 347,
+    "run2_count": 326,
+    "run3_count": 348,
+    "jaccard_12": 0.5192,
+    "jaccard_13": 0.5208,
+    "jaccard_23": 0.518,
+    "intersection_all3": 190,
+    "only_run1": 69,
+    "only_run2": 56,
+    "only_run3": 70,
+    "intersection_all3_ratio_of_run1": 0.5476
+  },
+  "entity": {
+    "run1_count": 0,
+    "run2_count": 1,
+    "run3_count": 0,
+    "jaccard_12": 0.0,
+    "jaccard_13": 1.0,
+    "jaccard_23": 0.0,
+    "intersection_all3": 0,
+    "only_run1": 0,
+    "only_run2": 1,
+    "only_run3": 0,
+    "intersection_all3_ratio_of_run1": null
+  },
+  "etiological": {
+    "run1_count": 0,
+    "run2_count": 0,
+    "run3_count": 0,
+    "jaccard_12": 1.0,
+    "jaccard_13": 1.0,
+    "jaccard_23": 1.0,
+    "intersection_all3": 0,
+    "only_run1": 0,
+    "only_run2": 0,
+    "only_run3": 0,
+    "intersection_all3_ratio_of_run1": null
+  }
+}

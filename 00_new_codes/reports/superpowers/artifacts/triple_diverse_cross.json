@@ -1,0 +1,137 @@
+{
+  "stats": {
+    "loose_extracted_pred": {
+      "correlation": {
+        "count": 67,
+        "indices": [
+          16,
+          98,
+          119,
+          154,
+          175,
+          191,
+          206,
+          300,
+          314,
+          384,
+          399,
+          442,
+          463,
+          527,
+          533,
+          548,
+          614,
+          619,
+          622,
+          624
+        ]
+      },
+      "entity": {
+        "count": 40,
+        "indices": [
+          0,
+          11,
+          105,
+          123,
+          125,
+          132,
+          133,
+          192,
+          242,
+          283,
+          320,
+          332,
+          339,
+          366,
+          408,
+          439,
+          446,
+          450,
+          490,
+          515
+        ]
+      }
+    },
+    "strict_single_letter": {
+      "correlation": {
+        "count": 18,
+        "indices": [
+          119,
+          154,
+          206,
+          314,
+          527,
+          533,
+          718,
+          731,
+          828,
+          953,
+          1151,
+          1162,
+          1262,
+          1311,
+          1344,
+          1435,
+          1464,
+          1466
+        ]
+      },
+      "entity": {
+        "count": 31,
+        "indices": [
+          0,
+          105,
+          123,
+          132,
+          192,
+          242,
+          283,
+          320,
+          332,
+          366,
+          408,
+          439,
+          446,
+          450,
+          515,
+          559,
+          580,
+          626,
+          644,
+          680,
+          694,
+          820,
+          847,
+          890,
+          917,
+          946,
+          1027,
+          1070,
+          1119,
+          1121,
+          1137
+        ]
+      }
+    }
+  },
+  "correlation": {
+    "triple_diverse_loose": 67,
+    "triple_diverse_strict_single_letter": 18,
+    "flip_total": 261,
+    "triple_loose_and_flip": 50,
+    "triple_loose_not_flip": 17,
+    "flip_not_triple_loose": 211,
+    "triple_loose_and_mismatch_run1": 9,
+    "parser_anomaly_only": 49
+  },
+  "entity": {
+    "triple_diverse_loose": 40,
+    "triple_diverse_strict_single_letter": 31,
+    "flip_total": 357,
+    "triple_loose_and_flip": 36,
+    "triple_loose_not_flip": 4,
+    "flip_not_triple_loose": 321,
+    "triple_loose_and_mismatch_run1": 0,
+    "parser_anomaly_only": 9
+  }
+}

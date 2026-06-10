@@ -1,0 +1,120 @@
+{
+  "rows": [
+    {
+      "run": "run1",
+      "task": "forecasting",
+      "total_samples": 280,
+      "evaluated_samples": 280,
+      "missing_predictions": 0,
+      "missing_indices": [],
+      "mae": 68.31705555122797,
+      "mape": 123.28914871837621
+    },
+    {
+      "run": "run1",
+      "task": "correlation",
+      "total_samples": 1592,
+      "evaluated_samples": 1592,
+      "missing_predictions": 0,
+      "missing_indices": [],
+      "accuracy": 0.8316582914572864
+    },
+    {
+      "run": "run1",
+      "task": "entity",
+      "total_samples": 1194,
+      "evaluated_samples": 1194,
+      "missing_predictions": 0,
+      "missing_indices": [],
+      "accuracy": 0.7479061976549414
+    },
+    {
+      "run": "run1",
+      "task": "etiological",
+      "total_samples": 207,
+      "evaluated_samples": 207,
+      "missing_predictions": 0,
+      "missing_indices": [],
+      "accuracy": 0.9565217391304348
+    },
+    {
+      "run": "run2",
+      "task": "forecasting",
+      "total_samples": 280,
+      "evaluated_samples": 278,
+      "missing_predictions": 2,
+      "missing_indices": [
+        84,
+        262
+      ],
+      "mae": 64.29745386844488,
+      "mape": 135.20376818354646
+    },
+    {
+      "run": "run2",
+      "task": "correlation",
+      "total_samples": 1592,
+      "evaluated_samples": 1592,
+      "missing_predictions": 0,
+      "missing_indices": [],
+      "accuracy": 0.8310301507537688
+    },
+    {
+      "run": "run2",
+      "task": "entity",
+      "total_samples": 1194,
+      "evaluated_samples": 1194,
+      "missing_predictions": 0,
+      "missing_indices": [],
+      "accuracy": 0.7336683417085427
+    },
+    {
+      "run": "run2",
+      "task": "etiological",
+      "total_samples": 207,
+      "evaluated_samples": 207,
+      "missing_predictions": 0,
+      "missing_indices": [],
+      "accuracy": 0.927536231884058
+    },
+    {
+      "run": "run3",
+      "task": "forecasting",
+      "total_samples": 280,
+      "evaluated_samples": 279,
+      "missing_predictions": 1,
+      "missing_indices": [
+        82
+      ],
+      "mae": 64.75481120951366,
+      "mape": 133.53972147653874
+    },
+    {
+      "run": "run3",
+      "task": "correlation",
+      "total_samples": 1592,
+      "evaluated_samples": 1592,
+      "missing_predictions": 0,
+      "missing_indices": [],
+      "accuracy": 0.8222361809045227
+    },
+    {
+      "run": "run3",
+      "task": "entity",
+      "total_samples": 1194,
+      "evaluated_samples": 1194,
+      "missing_predictions": 0,
+      "missing_indices": [],
+      "accuracy": 0.7311557788944724
+    },
+    {
+      "run": "run3",
+      "task": "etiological",
+      "total_samples": 207,
+      "evaluated_samples": 207,
+      "missing_predictions": 0,
+      "missing_indices": [],
+      "accuracy": 0.927536231884058
+    }
+  ]
+}

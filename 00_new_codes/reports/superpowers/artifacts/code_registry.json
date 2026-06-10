@@ -1,0 +1,47 @@
+{
+  "modules": [
+    {
+      "id": "inference_entry",
+      "path": "inference/inference_tsmllm_vllm.py",
+      "exists": true,
+      "size_lines": 343
+    },
+    {
+      "id": "llm_utils",
+      "path": "inference/llm_utils.py",
+      "exists": true,
+      "size_lines": 405
+    },
+    {
+      "id": "prompt_json",
+      "path": "inference/prompt.json",
+      "exists": true,
+      "size_lines": 20
+    },
+    {
+      "id": "evaluate_qa",
+      "path": "evaluation/evaluate_qa.py",
+      "exists": true,
+      "size_lines": 355
+    },
+    {
+      "id": "evaluate_main",
+      "path": "evaluation/evaluate.py",
+      "exists": true,
+      "size_lines": 191
+    },
+    {
+      "id": "supervised_processor",
+      "path": "src/llamafactory/data/processor/supervised.py",
+      "exists": true,
+      "size_lines": 230
+    },
+    {
+      "id": "chatts_vllm",
+      "path": "inference/vllm/chatts_vllm.py",
+      "exists": true,
+      "size_lines": 765
+    }
+  ],
+  "p0_count": 7
+}

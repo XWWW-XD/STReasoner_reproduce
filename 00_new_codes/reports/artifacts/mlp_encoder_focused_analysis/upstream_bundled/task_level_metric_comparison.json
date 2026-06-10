@@ -1,0 +1,163 @@
+{
+  "forecasting": {
+    "existing_metrics_file": {
+      "task": "reasoning_forecasting",
+      "total_samples": 280,
+      "evaluated_samples": 280,
+      "missing_predictions": 0,
+      "coverage": 1.0,
+      "mae": 65.5934736377407,
+      "missing_indices": []
+    },
+    "current_parser_validation": {
+      "matches_existing_metrics_file": true,
+      "note": "Group metrics are recomputed with the current repository parser; existing evaluation_metrics.json may have been produced by an earlier parser/run or omit MAPE."
+    },
+    "groups": {
+      "all": {
+        "sample_count": 280,
+        "evaluated_samples": 280,
+        "missing_predictions": 0,
+        "mae": 65.5934736377407,
+        "mape": 132.4643044746454,
+        "missing_indices": []
+      },
+      "mismatch": {
+        "sample_count": 147,
+        "evaluated_samples": 147,
+        "missing_predictions": 0,
+        "mae": 46.474551046698515,
+        "mape": 91.44481043037912,
+        "missing_indices": []
+      },
+      "other": {
+        "sample_count": 133,
+        "evaluated_samples": 133,
+        "missing_predictions": 0,
+        "mae": 86.72491439626107,
+        "mape": 177.80163999725565,
+        "missing_indices": []
+      }
+    }
+  },
+  "correlation": {
+    "existing_metrics_file": {
+      "task": "reasoning_correlation",
+      "total_samples": 1592,
+      "evaluated_samples": 1592,
+      "missing_predictions": 0,
+      "coverage": 1.0,
+      "accuracy": 0.8712311557788944
+    },
+    "current_parser_validation": {
+      "matches_existing_metrics_file": true,
+      "note": "Group metrics are recomputed with the current repository parser."
+    },
+    "groups": {
+      "all": {
+        "sample_count": 1592,
+        "evaluated_samples": 1592,
+        "missing_predictions": 0,
+        "correct": 1387,
+        "accuracy": 0.8712311557788944,
+        "missing_indices": []
+      },
+      "mismatch": {
+        "sample_count": 344,
+        "evaluated_samples": 344,
+        "missing_predictions": 0,
+        "correct": 312,
+        "accuracy": 0.9069767441860465,
+        "missing_indices": []
+      },
+      "other": {
+        "sample_count": 1248,
+        "evaluated_samples": 1248,
+        "missing_predictions": 0,
+        "correct": 1075,
+        "accuracy": 0.8613782051282052,
+        "missing_indices": []
+      }
+    }
+  },
+  "entity": {
+    "existing_metrics_file": {
+      "task": "reasoning_entity",
+      "total_samples": 1194,
+      "evaluated_samples": 1194,
+      "missing_predictions": 0,
+      "coverage": 1.0,
+      "accuracy": 0.7571189279731994
+    },
+    "current_parser_validation": {
+      "matches_existing_metrics_file": true,
+      "note": "Group metrics are recomputed with the current repository parser."
+    },
+    "groups": {
+      "all": {
+        "sample_count": 1194,
+        "evaluated_samples": 1194,
+        "missing_predictions": 0,
+        "correct": 904,
+        "accuracy": 0.7571189279731994,
+        "missing_indices": []
+      },
+      "mismatch": {
+        "sample_count": 0,
+        "evaluated_samples": 0,
+        "missing_predictions": 0,
+        "correct": 0,
+        "accuracy": null,
+        "missing_indices": []
+      },
+      "other": {
+        "sample_count": 1194,
+        "evaluated_samples": 1194,
+        "missing_predictions": 0,
+        "correct": 904,
+        "accuracy": 0.7571189279731994,
+        "missing_indices": []
+      }
+    }
+  },
+  "etiological": {
+    "existing_metrics_file": {
+      "task": "reasoning_etiological",
+      "total_samples": 207,
+      "evaluated_samples": 207,
+      "missing_predictions": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9565217391304348
+    },
+    "current_parser_validation": {
+      "matches_existing_metrics_file": true,
+      "note": "Group metrics are recomputed with the current repository parser."
+    },
+    "groups": {
+      "all": {
+        "sample_count": 207,
+        "evaluated_samples": 207,
+        "missing_predictions": 0,
+        "correct": 198,
+        "accuracy": 0.9565217391304348,
+        "missing_indices": []
+      },
+      "mismatch": {
+        "sample_count": 0,
+        "evaluated_samples": 0,
+        "missing_predictions": 0,
+        "correct": 0,
+        "accuracy": null,
+        "missing_indices": []
+      },
+      "other": {
+        "sample_count": 207,
+        "evaluated_samples": 207,
+        "missing_predictions": 0,
+        "correct": 198,
+        "accuracy": 0.9565217391304348,
+        "missing_indices": []
+      }
+    }
+  }
+}

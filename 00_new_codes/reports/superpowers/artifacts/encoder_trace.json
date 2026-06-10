@@ -1,0 +1,205 @@
+{
+  "ts_embedding": [
+    {
+      "line": 51,
+      "text": "########################MLP TS Embedding (20251015 Version)#####################",
+      "pattern": "MLP"
+    },
+    {
+      "line": 52,
+      "text": "class TimeSeriesEmbedding(nn.Module):",
+      "pattern": "TimeSeriesEmbedding"
+    },
+    {
+      "line": 52,
+      "text": "class TimeSeriesEmbedding(nn.Module):",
+      "pattern": "class"
+    },
+    {
+      "line": 54,
+      "text": "super(TimeSeriesEmbedding, self).__init__()",
+      "pattern": "TimeSeriesEmbedding"
+    },
+    {
+      "line": 55,
+      "text": "self.patch_size = config['patch_size']",
+      "pattern": "patch"
+    },
+    {
+      "line": 68,
+      "text": "input_size = 1 * self.patch_size + self.embedding_dim * self.patch_size",
+      "pattern": "patch"
+    },
+    {
+      "line": 70,
+      "text": "input_size = 2 * self.patch_size",
+      "pattern": "patch"
+    },
+    {
+      "line": 72,
+      "text": "input_size = 1 * self.patch_size",
+      "pattern": "patch"
+    },
+    {
+      "line": 74,
+      "text": "# Build MLP layers",
+      "pattern": "MLP"
+    },
+    {
+      "line": 91,
+      "text": "patch_cnt = (valid_lengths + self.patch_size - 1) // self.patch_size",
+      "pattern": "patch"
+    },
+    {
+      "line": 93,
+      "text": "patches_list = []",
+      "pattern": "patch"
+    },
+    {
+      "line": 96,
+      "text": "patch_info_list = []  # Store metadata for each patch group",
+      "pattern": "patch"
+    },
+    {
+      "line": 100,
+      "text": "pc = patch_cnt[i].item()",
+      "pattern": "patch"
+    },
+    {
+      "line": 106,
+      "text": "total_padded_length = pc * self.patch_size",
+      "pattern": "patch"
+    },
+    {
+      "line": 122,
+      "text": "# Reshape to patches",
+      "pattern": "patch"
+    },
+    {
+      "line": 123,
+      "text": "xi = xi.reshape(pc, self.patch_size)  # (num_patches, patch_size)",
+      "pattern": "patch"
+    },
+    {
+      "line": 124,
+      "text": "position_indices = position_indices.reshape(pc, self.patch_size)  # (num_patches, patch_size)",
+      "pattern": "patch"
+    },
+    {
+      "line": 129,
+      "text": "patch_info_list.append({",
+      "pattern": "patch"
+    },
+    {
+      "line": 144,
+      "text": "patch_input = xi_combined.reshape(pc, self.patch_size * 2)",
+      "pattern": "patch"
+    },
+    {
+      "line": 145,
+      "text": "patches_list.append(patch_input)",
+      "pattern": "patch"
+    },
+    {
+      "line": 147,
+      "text": "# No position embedding, use raw patches",
+      "pattern": "patch"
+    },
+    {
+      "line": 148,
+      "text": "patch_input = xi",
+      "pattern": "patch"
+    },
+    {
+      "line": 149,
+      "text": "patches_list.append(patch_input)",
+      "pattern": "patch"
+    },
+    {
+      "line": 158,
+      "text": "# Split embeddings back and create patch inputs",
+      "pattern": "patch"
+    },
+    {
+      "line": 160,
+      "text": "for patch_info in patch_info_list:",
+      "pattern": "patch"
+    },
+    {
+      "line": 161,
+      "text": "xi = patch_info['xi']",
+      "pattern": "patch"
+    },
+    {
+      "line": 162,
+      "text": "pc = patch_info['pc']",
+      "pattern": "patch"
+    },
+    {
+      "line": 169,
+      "text": "xi = xi.unsqueeze(-1)  # (num_patches, patch_size, 1)",
+      "pattern": "patch"
+    },
+    {
+      "line": 170,
+      "text": "patch_input = torch.cat([",
+      "pattern": "patch"
+    },
+    {
+      "line": 171,
+      "text": "xi.flatten(1),  # (num_patches, patch_size)",
+      "pattern": "patch"
+    },
+    {
+      "line": 172,
+      "text": "pos_emb.flatten(1)  # (num_patches, patch_size * embedding_dim)",
+      "pattern": "patch"
+    },
+    {
+      "line": 174,
+      "text": "patches_list.append(patch_input)",
+      "pattern": "patch"
+    },
+    {
+      "line": 176,
+      "text": "# Process all patches through MLP",
+      "pattern": "patch"
+    },
+    {
+      "line": 176,
+      "text": "# Process all patches through MLP",
+      "pattern": "MLP"
+    },
+    {
+      "line": 177,
+      "text": "if patches_list:",
+      "pattern": "patch"
+    },
+    {
+      "line": 178,
+      "text": "x_patches = torch.cat(patches_list, dim=0)",
+      "pattern": "patch"
+    },
+    {
+      "line": 179,
+      "text": "x = self.mlp(x_patches)",
+      "pattern": "patch"
+    },
+    {
+      "line": 184,
+      "text": "return x, patch_cnt",
+      "pattern": "patch"
+    },
+    {
+      "line": 188,
+      "text": "# get_patch_cnt: From Time Series Embedding",
+      "pattern": "patch"
+    },
+    {
+      "line": 189,
+      "text": "def get_patch_cnt(x: torch.Tensor, ts_config: PretrainedConfig):",
+      "pattern": "patch"
+    }
+  ],
+  "links_to_report39": "MLP bottleneck; verbatim numeric restatement often fails strict mismatch"
+}

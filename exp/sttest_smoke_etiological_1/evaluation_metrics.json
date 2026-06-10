@@ -1,0 +1,11 @@
+{
+  "task": "reasoning_etiological",
+  "total_samples": 207,
+  "evaluated_samples": 1,
+  "missing_predictions": 206,
+  "coverage": 0.004830917874396135,
+  "accuracy": 1.0,
+  "total_input_tokens": 366,
+  "avg_input_tokens": 366.0,
+  "samples_with_token_info": 1
+}

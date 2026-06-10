@@ -1,0 +1,28 @@
+# compute run 2026-06-09T13:27:57.591223+00:00
+
+OK	compute_registry.py	exit=0
+  stdout: wrote C:\Users\HUAWEI\Downloads\temp_git_clone\STReasoner_reproduce\00_new_codes\reports\superpowers\artifacts\experiment_registry.json (71 entries)
+OK	compute_token_budget.py	exit=0
+  stdout: wrote C:\Users\HUAWEI\Downloads\temp_git_clone\STReasoner_reproduce\00_new_codes\reports\superpowers\artifacts\token_budget_512_vs_6144.json
+OK	compute_graph_ablation.py	exit=0
+  stdout: wrote C:\Users\HUAWEI\Downloads\temp_git_clone\STReasoner_reproduce\00_new_codes\reports\superpowers\artifacts\graph_ablation_sample_ledger.json
+OK	compute_eti_paper.py	exit=0
+  stdout: wrote C:\Users\HUAWEI\Downloads\temp_git_clone\STReasoner_reproduce\00_new_codes\reports\superpowers\artifacts\etiological_stability.json
+wrote C:\Users\HUAWEI\Downloads\temp_git_clone\STReasoner_repr
+OK	compute_kaggle_precision.py	exit=0
+  stdout: wrote C:\Users\HUAWEI\Downloads\temp_git_clone\STReasoner_reproduce\00_new_codes\reports\superpowers\artifacts\kaggle_precision_audit.json
+OK	compute_code_phase3.py	exit=0
+  stdout: wrote C:\Users\HUAWEI\Downloads\temp_git_clone\STReasoner_reproduce\00_new_codes\reports\superpowers\artifacts\code_registry.json
+wrote C:\Users\HUAWEI\Downloads\temp_git_clone\STReasoner_reproduce\00
+OK	compute_e2_strict_reparse.py	exit=0
+  stdout: wrote C:\Users\HUAWEI\Downloads\temp_git_clone\STReasoner_reproduce\00_new_codes\reports\superpowers\artifacts\e2_strict_reparse_summary.json
+OK	compute_t0_2.py	exit=0
+  stdout: wrote C:\Users\HUAWEI\Downloads\temp_git_clone\STReasoner_reproduce\00_new_codes\reports\superpowers\artifacts\t0_2_parse_dashboard.json
+OK	compute_t0_3.py	exit=0
+  stdout: wrote C:\Users\HUAWEI\Downloads\temp_git_clone\STReasoner_reproduce\00_new_codes\reports\superpowers\artifacts\t0_3_num_tokens_audit.json
+OK	compute_wave25_real_flip.py	exit=0
+  stdout: wrote C:\Users\HUAWEI\Downloads\temp_git_clone\STReasoner_reproduce\00_new_codes\reports\superpowers\artifacts\real_instability_flip_ledger.json
+OK	compute_stratified_idx.py	exit=0
+  stdout: wrote C:\Users\HUAWEI\Downloads\temp_git_clone\STReasoner_reproduce\00_new_codes\reports\superpowers\artifacts\stratified_idx_lists_e4.json
+
+SUMMARY: 11/11 OK

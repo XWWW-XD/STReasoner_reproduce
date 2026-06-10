@@ -1,0 +1,46 @@
+{
+  "forecasting": {
+    "nodes_4_6_edges_gt5": {
+      "total": 3,
+      "mismatch": 2,
+      "mismatch_rate": 0.6667
+    },
+    "nodes_4_6_edges_le5": {
+      "total": 89,
+      "mismatch": 45,
+      "mismatch_rate": 0.5056
+    },
+    "nodes_ge7_edges_gt5": {
+      "total": 73,
+      "mismatch": 33,
+      "mismatch_rate": 0.4521
+    },
+    "nodes_le3_edges_le5": {
+      "total": 115,
+      "mismatch": 61,
+      "mismatch_rate": 0.5304
+    }
+  },
+  "correlation": {
+    "nodes_4_6_edges_gt5": {
+      "total": 21,
+      "mismatch": 11,
+      "mismatch_rate": 0.5238
+    },
+    "nodes_4_6_edges_le5": {
+      "total": 392,
+      "mismatch": 77,
+      "mismatch_rate": 0.1964
+    },
+    "nodes_ge7_edges_gt5": {
+      "total": 931,
+      "mismatch": 209,
+      "mismatch_rate": 0.2245
+    },
+    "nodes_le3_edges_le5": {
+      "total": 248,
+      "mismatch": 50,
+      "mismatch_rate": 0.2016
+    }
+  }
+}

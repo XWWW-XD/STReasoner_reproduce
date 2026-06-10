@@ -1,0 +1,45 @@
+{
+  "load_prediction_files": [
+    {
+      "line": 31,
+      "text": "value = _extract_tag_content(value, \"answer\")",
+      "pattern": "_extract_tag_content"
+    },
+    {
+      "line": 39,
+      "text": "def _extract_tag_content(text: str, tag: str = \"answer\") -> str:",
+      "pattern": "_extract_tag_content"
+    },
+    {
+      "line": 104,
+      "text": "def load_prediction_files(exp_dir: str, pattern: str = \"generated_answer\") -> Dict[int, str]:",
+      "pattern": "def load_prediction_files"
+    },
+    {
+      "line": 148,
+      "text": "predictions[idx] = _extract_tag_content(text)",
+      "pattern": "_extract_tag_content"
+    },
+    {
+      "line": 148,
+      "text": "predictions[idx] = _extract_tag_content(text)",
+      "pattern": "predictions\\[idx\\]"
+    }
+  ],
+  "normalize_choice": [
+    {
+      "line": 25,
+      "text": "def _normalize_choice(text: Any) -> str:",
+      "pattern": "def _normalize_choice"
+    },
+    {
+      "line": 51,
+      "text": "def _parse_series(text: Any) -> List[float]:",
+      "pattern": "def _parse_series"
+    }
+  ],
+  "links_to_wave4_6": {
+    "no_tag_fallback": "_extract_tag_content returns full text.strip() when no <answer> tag",
+    "loose_triple_diverse": "causes fake triple-diverse when thinking prefixes differ"
+  }
+}

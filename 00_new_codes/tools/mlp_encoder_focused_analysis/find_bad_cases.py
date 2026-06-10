@@ -6,14 +6,48 @@ existing full ST-Test 6144-token responses under exp/sttest_full_*_6144.
 """
 from __future__ import annotations
 
+import argparse
 import json
 import re
 from pathlib import Path
 
-ROOT = Path("/root/autodl-tmp/STReasoner_reproduce")
+_SCRIPT_DIR = Path(__file__).resolve().parent
+_DEFAULT_ROOT = _SCRIPT_DIR.parents[2]
+
+ROOT = _DEFAULT_ROOT
+EXP_SUFFIX = ""
+EXP_LAYOUT = "sttest6144"
 OUT_DIR = ROOT / "00_new_codes/reports/artifacts/mlp_encoder_focused_analysis"
 ST_TEST = ROOT / "data/ST-Bench/ST-Test"
 EXP = ROOT / "exp"
+BUNDLED_ROOT = ROOT / "exp_STReasoner-8B"
+
+
+def configure_paths(
+    root: Path | None = None,
+    exp_suffix: str = "",
+    out_subdir: str = "",
+    exp_layout: str = "sttest6144",
+) -> None:
+    global ROOT, EXP_SUFFIX, EXP_LAYOUT, OUT_DIR, ST_TEST, EXP, BUNDLED_ROOT
+    ROOT = (root or _DEFAULT_ROOT).resolve()
+    EXP_SUFFIX = exp_suffix
+    EXP_LAYOUT = exp_layout
+    base_out = ROOT / "00_new_codes/reports/artifacts/mlp_encoder_focused_analysis"
+    OUT_DIR = base_out / out_subdir if out_subdir else base_out
+    ST_TEST = ROOT / "data/ST-Bench/ST-Test"
+    EXP = ROOT / "exp"
+    BUNDLED_ROOT = ROOT / "exp_STReasoner-8B"
+
+
+def exp_dir(task: str) -> Path:
+    if EXP_LAYOUT == "bundled":
+        return BUNDLED_ROOT / f"reasoning_{task}-STReasoner-8B"
+    return EXP / f"sttest_full_{task}_6144{EXP_SUFFIX}"
+
+
+def generated_path(task: str) -> Path:
+    return exp_dir(task) / "generated_answer.json"
 
 THINK_RE = re.compile(r"<think>(.*?)</think>", re.S | re.I)
 GRAPH_RE = re.compile(r"Graph Structure: (.*?), please analyze", re.S)
@@ -38,7 +72,7 @@ NODE_WINDOW_LINE_RE = re.compile(
 
 
 def load_jsonl(path: Path) -> list[dict]:
-    return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
 
 
 def extract_think(text: str) -> str:
@@ -133,7 +167,7 @@ def extract_numeric_reconstructions(sample: dict, response: str, mismatch_only: 
 
 def forecasting_data_and_outputs() -> tuple[list[dict], list[dict]]:
     data = load_jsonl(ST_TEST / "forecasting_test.jsonl")
-    outputs = json.loads((EXP / "sttest_full_forecasting_6144/generated_answer.json").read_text())
+    outputs = json.loads(generated_path("forecasting").read_text(encoding="utf-8"))
     return data, outputs
 
 
@@ -164,7 +198,7 @@ def build_reasoning_numeric_fidelity_cases() -> list[dict]:
                     "idx": idx,
                     "line_no": line_no(idx),
                     "data_file": "data/ST-Bench/ST-Test/forecasting_test.jsonl",
-                    "generated_file": "exp/sttest_full_forecasting_6144/generated_answer.json",
+                    "generated_file": str(generated_path("forecasting").relative_to(ROOT)).replace("\\", "/"),
                     "task_type": "forecasting",
                     "node": check["node"],
                     "target_node": target_node,
@@ -193,11 +227,11 @@ def build_cross_node_reasoning_error_cases() -> list[dict]:
     cases: list[dict] = []
     for task in ["correlation", "entity", "etiological"]:
         data_path = ST_TEST / f"{task}_test.jsonl"
-        gen_path = EXP / f"sttest_full_{task}_6144/generated_answer.json"
+        gen_path = generated_path(task)
         if not data_path.exists() or not gen_path.exists():
             continue
         data = load_jsonl(data_path)
-        outputs = json.loads(gen_path.read_text())
+        outputs = json.loads(gen_path.read_text(encoding="utf-8"))
         for item in outputs:
             idx = int(item["idx"])
             sample = data[idx]
@@ -212,7 +246,7 @@ def build_cross_node_reasoning_error_cases() -> list[dict]:
                     "idx": idx,
                     "line_no": line_no(idx),
                     "data_file": f"data/ST-Bench/ST-Test/{task}_test.jsonl",
-                    "generated_file": f"exp/sttest_full_{task}_6144/generated_answer.json",
+                    "generated_file": str(gen_path.relative_to(ROOT)).replace("\\", "/"),
                     "task_type": task,
                     "graph": graph,
                     "edge_count": len(edges),
@@ -238,7 +272,36 @@ def build_cross_node_reasoning_error_cases() -> list[dict]:
     )
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--root", default=None, help="Repository root (default: auto-detect)")
+    parser.add_argument(
+        "--exp-suffix",
+        default="",
+        help='Exp dir suffix after sttest_full_{task}_6144, e.g. "_run2_official"',
+    )
+    parser.add_argument(
+        "--out-subdir",
+        default="",
+        help="Subdirectory under mlp_encoder_focused_analysis/ for artifacts",
+    )
+    parser.add_argument(
+        "--exp-layout",
+        default="sttest6144",
+        choices=["sttest6144", "bundled"],
+        help="sttest6144 → exp/sttest_full_{task}_6144; bundled → exp_STReasoner-8B/reasoning_{task}-STReasoner-8B",
+    )
+    return parser.parse_args()
+
+
 def main() -> None:
+    args = parse_args()
+    configure_paths(
+        root=Path(args.root) if args.root else None,
+        exp_suffix=args.exp_suffix,
+        out_subdir=args.out_subdir,
+        exp_layout=args.exp_layout,
+    )
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     numeric_fidelity = build_reasoning_numeric_fidelity_cases()
     cross_node = build_cross_node_reasoning_error_cases()

@@ -1,0 +1,407 @@
+{
+  "experiment": "T0_3_num_tokens_field_audit",
+  "claim": "num_tokens in generated_answer.json is input-side count, not output length",
+  "evidence": {
+    "global_ratio_resp_over_num_tokens_median": 5.798,
+    "global_ratio_p95": 12.128,
+    "unclosed_samples_ratio_min": 6.06
+  },
+  "by_task_run": {
+    "forecasting": {
+      "run1": {
+        "n": 280,
+        "with_num_tokens": 280,
+        "response_len_median": 2186.5,
+        "num_tokens_median": 240.0,
+        "ratio_resp_over_num_tokens_median": 9.326,
+        "ratio_p95": 14.423,
+        "unclosed_focus_samples": []
+      },
+      "run2": {
+        "n": 280,
+        "with_num_tokens": 280,
+        "response_len_median": 2209.5,
+        "num_tokens_median": 240.0,
+        "ratio_resp_over_num_tokens_median": 9.412,
+        "ratio_p95": 14.821,
+        "unclosed_focus_samples": []
+      },
+      "run3": {
+        "n": 280,
+        "with_num_tokens": 280,
+        "response_len_median": 2208.5,
+        "num_tokens_median": 240.0,
+        "ratio_resp_over_num_tokens_median": 9.418,
+        "ratio_p95": 13.971,
+        "unclosed_focus_samples": []
+      }
+    },
+    "correlation": {
+      "run1": {
+        "n": 1592,
+        "with_num_tokens": 1592,
+        "response_len_median": 2127.0,
+        "num_tokens_median": 456.0,
+        "ratio_resp_over_num_tokens_median": 4.975,
+        "ratio_p95": 10.927,
+        "unclosed_focus_samples": [
+          {
+            "idx": 191,
+            "num_tokens": 730,
+            "response_len": 5731,
+            "ratio": 7.85,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 384,
+            "num_tokens": 633,
+            "response_len": 5561,
+            "ratio": 8.79,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 442,
+            "num_tokens": 302,
+            "response_len": 6259,
+            "ratio": 20.73,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 548,
+            "num_tokens": 736,
+            "response_len": 5440,
+            "ratio": 7.39,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 624,
+            "num_tokens": 814,
+            "response_len": 5181,
+            "ratio": 6.36,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 641,
+            "num_tokens": 811,
+            "response_len": 5155,
+            "ratio": 6.36,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 678,
+            "num_tokens": 862,
+            "response_len": 5227,
+            "ratio": 6.06,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 694,
+            "num_tokens": 470,
+            "response_len": 6086,
+            "ratio": 12.95,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 709,
+            "num_tokens": 512,
+            "response_len": 5900,
+            "ratio": 11.52,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 752,
+            "num_tokens": 346,
+            "response_len": 6182,
+            "ratio": 17.87,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 1200,
+            "num_tokens": 869,
+            "response_len": 5277,
+            "ratio": 6.07,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 1268,
+            "num_tokens": 349,
+            "response_len": 6109,
+            "ratio": 17.5,
+            "answer_tag_count": 0
+          }
+        ]
+      },
+      "run2": {
+        "n": 1592,
+        "with_num_tokens": 1592,
+        "response_len_median": 2122.0,
+        "num_tokens_median": 456.0,
+        "ratio_resp_over_num_tokens_median": 5.046,
+        "ratio_p95": 11.2,
+        "unclosed_focus_samples": [
+          {
+            "idx": 191,
+            "num_tokens": 730,
+            "response_len": 5789,
+            "ratio": 7.93,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 384,
+            "num_tokens": 633,
+            "response_len": 5683,
+            "ratio": 8.98,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 442,
+            "num_tokens": 302,
+            "response_len": 6111,
+            "ratio": 20.24,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 548,
+            "num_tokens": 736,
+            "response_len": 5443,
+            "ratio": 7.4,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 624,
+            "num_tokens": 814,
+            "response_len": 5181,
+            "ratio": 6.36,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 641,
+            "num_tokens": 811,
+            "response_len": 5155,
+            "ratio": 6.36,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 678,
+            "num_tokens": 862,
+            "response_len": 5298,
+            "ratio": 6.15,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 694,
+            "num_tokens": 470,
+            "response_len": 6163,
+            "ratio": 13.11,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 709,
+            "num_tokens": 512,
+            "response_len": 5987,
+            "ratio": 11.69,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 752,
+            "num_tokens": 346,
+            "response_len": 6367,
+            "ratio": 18.4,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 1200,
+            "num_tokens": 869,
+            "response_len": 5277,
+            "ratio": 6.07,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 1268,
+            "num_tokens": 349,
+            "response_len": 6051,
+            "ratio": 17.34,
+            "answer_tag_count": 0
+          }
+        ]
+      },
+      "run3": {
+        "n": 1592,
+        "with_num_tokens": 1592,
+        "response_len_median": 2143.5,
+        "num_tokens_median": 456.0,
+        "ratio_resp_over_num_tokens_median": 5.137,
+        "ratio_p95": 11.31,
+        "unclosed_focus_samples": [
+          {
+            "idx": 191,
+            "num_tokens": 730,
+            "response_len": 5350,
+            "ratio": 7.33,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 384,
+            "num_tokens": 633,
+            "response_len": 5590,
+            "ratio": 8.83,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 442,
+            "num_tokens": 302,
+            "response_len": 6204,
+            "ratio": 20.54,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 548,
+            "num_tokens": 736,
+            "response_len": 5473,
+            "ratio": 7.44,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 624,
+            "num_tokens": 814,
+            "response_len": 5206,
+            "ratio": 6.4,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 641,
+            "num_tokens": 811,
+            "response_len": 5155,
+            "ratio": 6.36,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 678,
+            "num_tokens": 862,
+            "response_len": 5255,
+            "ratio": 6.1,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 694,
+            "num_tokens": 470,
+            "response_len": 6014,
+            "ratio": 12.8,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 709,
+            "num_tokens": 512,
+            "response_len": 6706,
+            "ratio": 13.1,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 752,
+            "num_tokens": 346,
+            "response_len": 6124,
+            "ratio": 17.7,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 1200,
+            "num_tokens": 869,
+            "response_len": 5268,
+            "ratio": 6.06,
+            "answer_tag_count": 0
+          },
+          {
+            "idx": 1268,
+            "num_tokens": 349,
+            "response_len": 6078,
+            "ratio": 17.42,
+            "answer_tag_count": 0
+          }
+        ]
+      }
+    },
+    "entity": {
+      "run1": {
+        "n": 1194,
+        "with_num_tokens": 1194,
+        "response_len_median": 2375.5,
+        "num_tokens_median": 412.0,
+        "ratio_resp_over_num_tokens_median": 6.046,
+        "ratio_p95": 12.019,
+        "unclosed_focus_samples": [
+          {
+            "idx": 1024,
+            "num_tokens": 435,
+            "response_len": 6001,
+            "ratio": 13.8,
+            "answer_tag_count": 0
+          }
+        ]
+      },
+      "run2": {
+        "n": 1194,
+        "with_num_tokens": 1194,
+        "response_len_median": 2368.5,
+        "num_tokens_median": 412.0,
+        "ratio_resp_over_num_tokens_median": 5.975,
+        "ratio_p95": 12.251,
+        "unclosed_focus_samples": [
+          {
+            "idx": 1024,
+            "num_tokens": 435,
+            "response_len": 5706,
+            "ratio": 13.12,
+            "answer_tag_count": 0
+          }
+        ]
+      },
+      "run3": {
+        "n": 1194,
+        "with_num_tokens": 1194,
+        "response_len_median": 2369.0,
+        "num_tokens_median": 412.0,
+        "ratio_resp_over_num_tokens_median": 5.946,
+        "ratio_p95": 11.814,
+        "unclosed_focus_samples": [
+          {
+            "idx": 1024,
+            "num_tokens": 435,
+            "response_len": 5678,
+            "ratio": 13.05,
+            "answer_tag_count": 0
+          }
+        ]
+      }
+    },
+    "etiological": {
+      "run1": {
+        "n": 207,
+        "with_num_tokens": 207,
+        "response_len_median": 2736,
+        "num_tokens_median": 327,
+        "ratio_resp_over_num_tokens_median": 8.388,
+        "ratio_p95": 11.161,
+        "unclosed_focus_samples": []
+      },
+      "run2": {
+        "n": 207,
+        "with_num_tokens": 207,
+        "response_len_median": 2720,
+        "num_tokens_median": 327,
+        "ratio_resp_over_num_tokens_median": 8.299,
+        "ratio_p95": 11.266,
+        "unclosed_focus_samples": []
+      },
+      "run3": {
+        "n": 207,
+        "with_num_tokens": 207,
+        "response_len_median": 2742,
+        "num_tokens_median": 327,
+        "ratio_resp_over_num_tokens_median": 8.389,
+        "ratio_p95": 11.181,
+        "unclosed_focus_samples": []
+      }
+    }
+  },
+  "code_anchor": "inference/inference_tsmllm_vllm.py L331 input_token_counts[idx]"
+}

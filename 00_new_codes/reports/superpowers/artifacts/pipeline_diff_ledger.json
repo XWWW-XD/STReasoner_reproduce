@@ -1,0 +1,16 @@
+{
+  "official": {
+    "inference": "inference/inference_tsmllm_vllm.py",
+    "eval": "evaluation/evaluate.py",
+    "dtype": "half/vLLM"
+  },
+  "repro_kaggle": {
+    "inference": "repro_kaggle HF generate",
+    "max_tokens": "2048 typical",
+    "comparable": false
+  },
+  "repro_autodl_stage2": {
+    "inference": "stage2 scripts HF/vLLM mix",
+    "comparable": "partial"
+  }
+}

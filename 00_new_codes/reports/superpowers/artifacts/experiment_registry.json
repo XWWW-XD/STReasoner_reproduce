@@ -1,0 +1,1068 @@
+{
+  "exp_official_count": 25,
+  "total_entries": 71,
+  "entries": [
+    {
+      "path": "exp/reasoning_correlation-STReasoner-8B-CoT",
+      "name": "reasoning_correlation-STReasoner-8B-CoT",
+      "task": "correlation",
+      "n_samples": 1,
+      "max_tokens_inferred": null,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 1.0,
+      "mae": null,
+      "evaluated_samples": 1,
+      "cited_in_reports": []
+    },
+    {
+      "path": "exp/reasoning_entity-STReasoner-8B-CoT",
+      "name": "reasoning_entity-STReasoner-8B-CoT",
+      "task": "entity",
+      "n_samples": 1,
+      "max_tokens_inferred": null,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 0.0,
+      "mae": null,
+      "evaluated_samples": 1,
+      "cited_in_reports": []
+    },
+    {
+      "path": "exp/reasoning_etiological-STReasoner-8B-CoT",
+      "name": "reasoning_etiological-STReasoner-8B-CoT",
+      "task": "etiological",
+      "n_samples": 1,
+      "max_tokens_inferred": null,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 1.0,
+      "mae": null,
+      "evaluated_samples": 1,
+      "cited_in_reports": []
+    },
+    {
+      "path": "exp/reasoning_forecasting-STReasoner-8B-CoT",
+      "name": "reasoning_forecasting-STReasoner-8B-CoT",
+      "task": "forecasting",
+      "n_samples": 1,
+      "max_tokens_inferred": null,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": null,
+      "mae": 0.07333333333333296,
+      "evaluated_samples": 1,
+      "cited_in_reports": []
+    },
+    {
+      "path": "exp/stage2.3_paper_cases_report13_6144_vllm_00_etiological",
+      "name": "stage2.3_paper_cases_report13_6144_vllm_00_etiological",
+      "task": null,
+      "n_samples": 1,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": true,
+      "accuracy": 1.0,
+      "mae": null,
+      "evaluated_samples": 1,
+      "cited_in_reports": [
+        "15-stage2.3paper_cases实验报告.md",
+        "15-stage2.3正式实验.md"
+      ]
+    },
+    {
+      "path": "exp/stage2.3_paper_cases_report13_6144_vllm_01_entity",
+      "name": "stage2.3_paper_cases_report13_6144_vllm_01_entity",
+      "task": null,
+      "n_samples": 1,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": true,
+      "accuracy": 1.0,
+      "mae": null,
+      "evaluated_samples": 1,
+      "cited_in_reports": [
+        "15-stage2.3paper_cases实验报告.md",
+        "15-stage2.3正式实验.md"
+      ]
+    },
+    {
+      "path": "exp/stage2.3_paper_cases_report13_6144_vllm_02_correlation",
+      "name": "stage2.3_paper_cases_report13_6144_vllm_02_correlation",
+      "task": null,
+      "n_samples": 1,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": true,
+      "accuracy": 1.0,
+      "mae": null,
+      "evaluated_samples": 1,
+      "cited_in_reports": [
+        "15-stage2.3paper_cases实验报告.md",
+        "15-stage2.3正式实验.md"
+      ]
+    },
+    {
+      "path": "exp/stage2.3_paper_cases_report13_6144_vllm_03_forecasting",
+      "name": "stage2.3_paper_cases_report13_6144_vllm_03_forecasting",
+      "task": null,
+      "n_samples": 1,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": true,
+      "accuracy": null,
+      "mae": 0.07333333333333296,
+      "evaluated_samples": 1,
+      "cited_in_reports": [
+        "15-stage2.3paper_cases实验报告.md",
+        "15-stage2.3正式实验.md"
+      ]
+    },
+    {
+      "path": "exp/stage2.4_graph_ablation_paper_cases_6144_with_graph_00_etiological",
+      "name": "stage2.4_graph_ablation_paper_cases_6144_with_graph_00_etiological",
+      "task": null,
+      "n_samples": 1,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": true,
+      "accuracy": 1.0,
+      "mae": null,
+      "evaluated_samples": 1,
+      "cited_in_reports": []
+    },
+    {
+      "path": "exp/stage2.4_graph_ablation_paper_cases_6144_with_graph_01_entity",
+      "name": "stage2.4_graph_ablation_paper_cases_6144_with_graph_01_entity",
+      "task": null,
+      "n_samples": 1,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": true,
+      "accuracy": 1.0,
+      "mae": null,
+      "evaluated_samples": 1,
+      "cited_in_reports": []
+    },
+    {
+      "path": "exp/stage2.4_graph_ablation_paper_cases_6144_with_graph_02_correlation",
+      "name": "stage2.4_graph_ablation_paper_cases_6144_with_graph_02_correlation",
+      "task": null,
+      "n_samples": 1,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": true,
+      "accuracy": 1.0,
+      "mae": null,
+      "evaluated_samples": 1,
+      "cited_in_reports": []
+    },
+    {
+      "path": "exp/stage2.4_graph_ablation_paper_cases_6144_with_graph_03_forecasting",
+      "name": "stage2.4_graph_ablation_paper_cases_6144_with_graph_03_forecasting",
+      "task": null,
+      "n_samples": 1,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": true,
+      "accuracy": null,
+      "mae": 0.11999999999999982,
+      "evaluated_samples": 1,
+      "cited_in_reports": []
+    },
+    {
+      "path": "exp/stage2.4_graph_ablation_paper_cases_6144_without_graph_00_etiological",
+      "name": "stage2.4_graph_ablation_paper_cases_6144_without_graph_00_etiological",
+      "task": null,
+      "n_samples": 1,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": true,
+      "accuracy": 1.0,
+      "mae": null,
+      "evaluated_samples": 1,
+      "cited_in_reports": []
+    },
+    {
+      "path": "exp/stage2.4_graph_ablation_paper_cases_6144_without_graph_01_entity",
+      "name": "stage2.4_graph_ablation_paper_cases_6144_without_graph_01_entity",
+      "task": null,
+      "n_samples": 1,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": true,
+      "accuracy": 1.0,
+      "mae": null,
+      "evaluated_samples": 1,
+      "cited_in_reports": []
+    },
+    {
+      "path": "exp/stage2.4_graph_ablation_paper_cases_6144_without_graph_02_correlation",
+      "name": "stage2.4_graph_ablation_paper_cases_6144_without_graph_02_correlation",
+      "task": null,
+      "n_samples": 1,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": true,
+      "accuracy": 1.0,
+      "mae": null,
+      "evaluated_samples": 1,
+      "cited_in_reports": []
+    },
+    {
+      "path": "exp/stage2.4_graph_ablation_paper_cases_6144_without_graph_03_forecasting",
+      "name": "stage2.4_graph_ablation_paper_cases_6144_without_graph_03_forecasting",
+      "task": null,
+      "n_samples": 1,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": true,
+      "accuracy": null,
+      "mae": 0.07333333333333296,
+      "evaluated_samples": 1,
+      "cited_in_reports": []
+    },
+    {
+      "path": "exp/stage2.4_graph_ablation_sttest_6144_without_graph_reasoning_correlation",
+      "name": "stage2.4_graph_ablation_sttest_6144_without_graph_reasoning_correlation",
+      "task": "correlation",
+      "n_samples": 1592,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": true,
+      "accuracy": 0.7788944723618091,
+      "mae": null,
+      "evaluated_samples": 1592,
+      "cited_in_reports": []
+    },
+    {
+      "path": "exp/stage2.4_graph_ablation_sttest_6144_without_graph_reasoning_entity",
+      "name": "stage2.4_graph_ablation_sttest_6144_without_graph_reasoning_entity",
+      "task": "entity",
+      "n_samples": 1194,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": true,
+      "accuracy": 0.6541038525963149,
+      "mae": null,
+      "evaluated_samples": 1194,
+      "cited_in_reports": []
+    },
+    {
+      "path": "exp/stage2.4_graph_ablation_sttest_6144_without_graph_reasoning_etiological",
+      "name": "stage2.4_graph_ablation_sttest_6144_without_graph_reasoning_etiological",
+      "task": "etiological",
+      "n_samples": 207,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": true,
+      "accuracy": 0.9420289855072463,
+      "mae": null,
+      "evaluated_samples": 207,
+      "cited_in_reports": []
+    },
+    {
+      "path": "exp/stage2.4_graph_ablation_sttest_6144_without_graph_reasoning_forecasting",
+      "name": "stage2.4_graph_ablation_sttest_6144_without_graph_reasoning_forecasting",
+      "task": "forecasting",
+      "n_samples": 280,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": true,
+      "accuracy": null,
+      "mae": 67.57010477672064,
+      "evaluated_samples": 280,
+      "cited_in_reports": []
+    },
+    {
+      "path": "exp/sttest_full_correlation_512",
+      "name": "sttest_full_correlation_512",
+      "task": "correlation_512",
+      "n_samples": 1592,
+      "max_tokens_inferred": 512,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 0.8624371859296482,
+      "mae": null,
+      "evaluated_samples": 1592,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_full_correlation_6144",
+      "name": "sttest_full_correlation_6144",
+      "task": "correlation_6144",
+      "n_samples": 1592,
+      "max_tokens_inferred": 6144,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 0.8316582914572864,
+      "mae": null,
+      "evaluated_samples": 1592,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "17-paper_cases同index对照.md",
+        "37-MLP编码器边界分析.md",
+        "39-MLP复述四任务分析.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_full_correlation_6144_run2_official",
+      "name": "sttest_full_correlation_6144_run2_official",
+      "task": "correlation_6144_run2_official",
+      "n_samples": 1592,
+      "max_tokens_inferred": 6144,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 0.8310301507537688,
+      "mae": null,
+      "evaluated_samples": 1592,
+      "cited_in_reports": [
+        "41-官方STReasoner8B三次ST-Test全量实验断点日志.md",
+        "42-官方STReasoner8B三次ST-Test全量实验结果.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_full_correlation_6144_run3_official",
+      "name": "sttest_full_correlation_6144_run3_official",
+      "task": "correlation_6144_run3_official",
+      "n_samples": 1592,
+      "max_tokens_inferred": 6144,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 0.8222361809045227,
+      "mae": null,
+      "evaluated_samples": 1592,
+      "cited_in_reports": [
+        "41-官方STReasoner8B三次ST-Test全量实验断点日志.md",
+        "42-官方STReasoner8B三次ST-Test全量实验结果.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_full_entity_512",
+      "name": "sttest_full_entity_512",
+      "task": "entity_512",
+      "n_samples": 1194,
+      "max_tokens_inferred": 512,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 0.7420435510887772,
+      "mae": null,
+      "evaluated_samples": 1194,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_full_entity_6144",
+      "name": "sttest_full_entity_6144",
+      "task": "entity_6144",
+      "n_samples": 1194,
+      "max_tokens_inferred": 6144,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 0.7479061976549414,
+      "mae": null,
+      "evaluated_samples": 1194,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "10.1-超长response样例.md",
+        "17-paper_cases同index对照.md",
+        "37-MLP编码器边界分析.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_full_entity_6144_run2_official",
+      "name": "sttest_full_entity_6144_run2_official",
+      "task": "entity_6144_run2_official",
+      "n_samples": 1194,
+      "max_tokens_inferred": 6144,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 0.7336683417085427,
+      "mae": null,
+      "evaluated_samples": 1194,
+      "cited_in_reports": [
+        "41-官方STReasoner8B三次ST-Test全量实验断点日志.md",
+        "42-官方STReasoner8B三次ST-Test全量实验结果.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_full_entity_6144_run3_official",
+      "name": "sttest_full_entity_6144_run3_official",
+      "task": "entity_6144_run3_official",
+      "n_samples": 1194,
+      "max_tokens_inferred": 6144,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 0.7311557788944724,
+      "mae": null,
+      "evaluated_samples": 1194,
+      "cited_in_reports": [
+        "41-官方STReasoner8B三次ST-Test全量实验断点日志.md",
+        "42-官方STReasoner8B三次ST-Test全量实验结果.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_full_etiological_512",
+      "name": "sttest_full_etiological_512",
+      "task": "etiological_512",
+      "n_samples": 207,
+      "max_tokens_inferred": 512,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 0.9371980676328503,
+      "mae": null,
+      "evaluated_samples": 207,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_full_etiological_6144",
+      "name": "sttest_full_etiological_6144",
+      "task": "etiological_6144",
+      "n_samples": 207,
+      "max_tokens_inferred": 6144,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 0.9565217391304348,
+      "mae": null,
+      "evaluated_samples": 207,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "17-paper_cases同index对照.md",
+        "37-MLP编码器边界分析.md",
+        "39-MLP复述四任务分析.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_full_etiological_6144_run2_official",
+      "name": "sttest_full_etiological_6144_run2_official",
+      "task": "etiological_6144_run2_official",
+      "n_samples": 207,
+      "max_tokens_inferred": 6144,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 0.927536231884058,
+      "mae": null,
+      "evaluated_samples": 207,
+      "cited_in_reports": [
+        "41-官方STReasoner8B三次ST-Test全量实验断点日志.md",
+        "42-官方STReasoner8B三次ST-Test全量实验结果.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_full_etiological_6144_run3_official",
+      "name": "sttest_full_etiological_6144_run3_official",
+      "task": "etiological_6144_run3_official",
+      "n_samples": 207,
+      "max_tokens_inferred": 6144,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 0.927536231884058,
+      "mae": null,
+      "evaluated_samples": 207,
+      "cited_in_reports": [
+        "41-官方STReasoner8B三次ST-Test全量实验断点日志.md",
+        "42-官方STReasoner8B三次ST-Test全量实验结果.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_full_forecasting_512",
+      "name": "sttest_full_forecasting_512",
+      "task": "forecasting_512",
+      "n_samples": 280,
+      "max_tokens_inferred": 512,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": null,
+      "mae": 67.43053716156342,
+      "evaluated_samples": 280,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_full_forecasting_6144",
+      "name": "sttest_full_forecasting_6144",
+      "task": "forecasting_6144",
+      "n_samples": 280,
+      "max_tokens_inferred": 6144,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": null,
+      "mae": 68.31705555122797,
+      "evaluated_samples": 280,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "17-paper_cases同index对照.md",
+        "37-MLP编码器边界分析.md",
+        "39-MLP复述四任务分析.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_full_forecasting_6144_run2_official",
+      "name": "sttest_full_forecasting_6144_run2_official",
+      "task": "forecasting_6144_run2_official",
+      "n_samples": 280,
+      "max_tokens_inferred": 6144,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": null,
+      "mae": 64.29745386844488,
+      "evaluated_samples": 278,
+      "cited_in_reports": [
+        "41-官方STReasoner8B三次ST-Test全量实验断点日志.md",
+        "42-官方STReasoner8B三次ST-Test全量实验结果.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_full_forecasting_6144_run3_official",
+      "name": "sttest_full_forecasting_6144_run3_official",
+      "task": "forecasting_6144_run3_official",
+      "n_samples": 280,
+      "max_tokens_inferred": 6144,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": null,
+      "mae": 64.75481120951366,
+      "evaluated_samples": 279,
+      "cited_in_reports": [
+        "41-官方STReasoner8B三次ST-Test全量实验断点日志.md",
+        "42-官方STReasoner8B三次ST-Test全量实验结果.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_smoke_correlation_1",
+      "name": "sttest_smoke_correlation_1",
+      "task": null,
+      "n_samples": 1,
+      "max_tokens_inferred": null,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 0.0,
+      "mae": null,
+      "evaluated_samples": 1,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_smoke_entity_1",
+      "name": "sttest_smoke_entity_1",
+      "task": null,
+      "n_samples": 1,
+      "max_tokens_inferred": null,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 0.0,
+      "mae": null,
+      "evaluated_samples": 1,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_smoke_entity_6144",
+      "name": "sttest_smoke_entity_6144",
+      "task": null,
+      "n_samples": 1,
+      "max_tokens_inferred": 6144,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 1.0,
+      "mae": null,
+      "evaluated_samples": 1,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_smoke_etiological_1",
+      "name": "sttest_smoke_etiological_1",
+      "task": null,
+      "n_samples": 1,
+      "max_tokens_inferred": null,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": 1.0,
+      "mae": null,
+      "evaluated_samples": 1,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md"
+      ]
+    },
+    {
+      "path": "exp/sttest_smoke_forecasting_1",
+      "name": "sttest_smoke_forecasting_1",
+      "task": null,
+      "n_samples": 1,
+      "max_tokens_inferred": null,
+      "pipeline": "official_vllm_exp",
+      "has_evaluation_metrics": true,
+      "accuracy": null,
+      "mae": 29.75,
+      "evaluated_samples": 1,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/official_eval/all/reasoning_entity",
+      "name": "reasoning_entity",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": true,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "10.1-超长response样例.md",
+        "11-paper_cases整理.md",
+        "12-ST-Bench使用说明.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/official_eval/all/reasoning_forecasting",
+      "name": "reasoning_forecasting",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": true,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "11-paper_cases整理.md",
+        "13-evaluate与ST-Test对比.md",
+        "15-stage2.3paper_cases实验报告.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/official_eval/main/reasoning_entity",
+      "name": "reasoning_entity",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": true,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "10.1-超长response样例.md",
+        "11-paper_cases整理.md",
+        "12-ST-Bench使用说明.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/official_eval/main/reasoning_forecasting",
+      "name": "reasoning_forecasting",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": true,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "11-paper_cases整理.md",
+        "13-evaluate与ST-Test对比.md",
+        "15-stage2.3paper_cases实验报告.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/smoke_nonforecasting_4bit_2048/official_eval/all/reasoning_entity",
+      "name": "reasoning_entity",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": true,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "10.1-超长response样例.md",
+        "11-paper_cases整理.md",
+        "12-ST-Bench使用说明.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/smoke_nonforecasting_4bit_2048/official_eval/main/reasoning_entity",
+      "name": "reasoning_entity",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": true,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "10.1-超长response样例.md",
+        "11-paper_cases整理.md",
+        "12-ST-Bench使用说明.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/all/reasoning_entity",
+      "name": "reasoning_entity",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": true,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "10.1-超长response样例.md",
+        "11-paper_cases整理.md",
+        "12-ST-Bench使用说明.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/all/reasoning_forecasting",
+      "name": "reasoning_forecasting",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": true,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "11-paper_cases整理.md",
+        "13-evaluate与ST-Test对比.md",
+        "15-stage2.3paper_cases实验报告.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/main/reasoning_entity",
+      "name": "reasoning_entity",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": true,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "10.1-超长response样例.md",
+        "11-paper_cases整理.md",
+        "12-ST-Bench使用说明.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/official_eval/main/reasoning_forecasting",
+      "name": "reasoning_forecasting",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": true,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "11-paper_cases整理.md",
+        "13-evaluate与ST-Test对比.md",
+        "15-stage2.3paper_cases实验报告.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/fp16_dual/official_eval/all/reasoning_entity",
+      "name": "reasoning_entity",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": true,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "10.1-超长response样例.md",
+        "11-paper_cases整理.md",
+        "12-ST-Bench使用说明.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/fp16_dual/official_eval/all/reasoning_forecasting",
+      "name": "reasoning_forecasting",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": true,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "11-paper_cases整理.md",
+        "13-evaluate与ST-Test对比.md",
+        "15-stage2.3paper_cases实验报告.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/fp16_dual/official_eval/main/reasoning_entity",
+      "name": "reasoning_entity",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": true,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "10.1-超长response样例.md",
+        "11-paper_cases整理.md",
+        "12-ST-Bench使用说明.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/fp16_dual/official_eval/main/reasoning_forecasting",
+      "name": "reasoning_forecasting",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": true,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "11-paper_cases整理.md",
+        "13-evaluate与ST-Test对比.md",
+        "15-stage2.3paper_cases实验报告.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/fp16_single/official_eval/all/reasoning_entity",
+      "name": "reasoning_entity",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": true,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "10.1-超长response样例.md",
+        "11-paper_cases整理.md",
+        "12-ST-Bench使用说明.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/fp16_single/official_eval/all/reasoning_forecasting",
+      "name": "reasoning_forecasting",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": true,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "11-paper_cases整理.md",
+        "13-evaluate与ST-Test对比.md",
+        "15-stage2.3paper_cases实验报告.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/fp16_single/official_eval/main/reasoning_entity",
+      "name": "reasoning_entity",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": true,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "10.1-超长response样例.md",
+        "11-paper_cases整理.md",
+        "12-ST-Bench使用说明.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/fp16_single/official_eval/main/reasoning_forecasting",
+      "name": "reasoning_forecasting",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": true,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "10-ST-Test数据集效果.md",
+        "11-paper_cases整理.md",
+        "13-evaluate与ST-Test对比.md",
+        "15-stage2.3paper_cases实验报告.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single",
+      "name": "4bit_single",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": false,
+      "cited_in_reports": [
+        "02-四配置实验设计.md",
+        "06-实验一2.1推理分析.md",
+        "07-四配置SmartTest输出.md",
+        "13-pipeline数据通路.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single",
+      "name": "8bit_single",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": false,
+      "cited_in_reports": [
+        "02-四配置实验设计.md",
+        "06-实验一2.1推理分析.md",
+        "07-四配置SmartTest输出.md",
+        "13-pipeline数据通路.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/fp16_dual",
+      "name": "fp16_dual",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": false,
+      "cited_in_reports": [
+        "02-四配置实验设计.md",
+        "06-实验一2.1推理分析.md",
+        "07-四配置SmartTest输出.md",
+        "13-pipeline数据通路.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/fp16_single",
+      "name": "fp16_single",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_kaggle",
+      "has_evaluation_metrics": false,
+      "cited_in_reports": [
+        "02-四配置实验设计.md",
+        "06-实验一2.1推理分析.md",
+        "07-四配置SmartTest输出.md",
+        "13-pipeline数据通路.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_autodl/experiments/results/2.1_smarttest_smoketest",
+      "name": "2.1_smarttest_smoketest",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": null,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": false,
+      "cited_in_reports": [
+        "13-pipeline数据通路.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_autodl/experiments/results/2.2_consequences/baseline_current_6144",
+      "name": "baseline_current_6144",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": false,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_autodl/experiments/results/2.2_consequences/parserfix_reparse_existing_6144",
+      "name": "parserfix_reparse_existing_6144",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": false,
+      "cited_in_reports": [
+        "09-stage2.2效果调试.md",
+        "13-2.3提示词存档.md",
+        "13-evaluate与ST-Test对比.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_autodl/experiments/results/stage2.3_paper_cases_report13_6144",
+      "name": "stage2.3_paper_cases_report13_6144",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": false,
+      "cited_in_reports": [
+        "14-stage2.3守门记录.md",
+        "15-stage2.3paper_cases实验报告.md",
+        "15-stage2.3正式实验.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_autodl/experiments/results/stage2.3_paper_cases_report13_6144_noformat_diag",
+      "name": "stage2.3_paper_cases_report13_6144_noformat_diag",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": false,
+      "cited_in_reports": [
+        "15-stage2.3paper_cases实验报告.md",
+        "15-stage2.3正式实验.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_autodl/experiments/results/stage2.3_paper_cases_report13_6144_sampling_diag",
+      "name": "stage2.3_paper_cases_report13_6144_sampling_diag",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": false,
+      "cited_in_reports": [
+        "15-stage2.3paper_cases实验报告.md",
+        "15-stage2.3正式实验.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_autodl/experiments/results/stage2.3_paper_cases_report13_6144_vllm",
+      "name": "stage2.3_paper_cases_report13_6144_vllm",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": false,
+      "cited_in_reports": [
+        "15-stage2.3paper_cases实验报告.md",
+        "15-stage2.3正式实验.md"
+      ]
+    },
+    {
+      "path": "00_new_codes/repro_autodl/experiments/results/stage2.4_graph_ablation_paper_cases_6144",
+      "name": "stage2.4_graph_ablation_paper_cases_6144",
+      "task": null,
+      "n_samples": null,
+      "max_tokens_inferred": 6144,
+      "pipeline": "hf_autodl_or_mixed",
+      "has_evaluation_metrics": false,
+      "cited_in_reports": [
+        "16-stage2.4paper消融.md"
+      ]
+    }
+  ]
+}

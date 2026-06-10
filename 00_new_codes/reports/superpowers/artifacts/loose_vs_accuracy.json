@@ -1,0 +1,48 @@
+{
+  "entity": {
+    "loose_only": {
+      "sample_count": 594,
+      "accuracy_run1": 0.7475,
+      "accuracy_run2": 0.7273,
+      "accuracy_run3": 0.7306,
+      "accuracy_mean_3run": 0.7351
+    },
+    "no_numeric": {
+      "sample_count": 600,
+      "accuracy_run1": 0.7483,
+      "accuracy_run2": 0.74,
+      "accuracy_run3": 0.7317,
+      "accuracy_mean_3run": 0.74
+    },
+    "strict_mismatch": {
+      "sample_count": 0,
+      "accuracy_run1": null,
+      "accuracy_run2": null,
+      "accuracy_run3": null,
+      "accuracy_mean_3run": null
+    }
+  },
+  "etiological": {
+    "loose_only": {
+      "sample_count": 142,
+      "accuracy_run1": 0.9366,
+      "accuracy_run2": 0.9085,
+      "accuracy_run3": 0.9085,
+      "accuracy_mean_3run": 0.9178
+    },
+    "no_numeric": {
+      "sample_count": 65,
+      "accuracy_run1": 1.0,
+      "accuracy_run2": 0.9692,
+      "accuracy_run3": 0.9692,
+      "accuracy_mean_3run": 0.9795
+    },
+    "strict_mismatch": {
+      "sample_count": 0,
+      "accuracy_run1": null,
+      "accuracy_run2": null,
+      "accuracy_run3": null,
+      "accuracy_mean_3run": null
+    }
+  }
+}

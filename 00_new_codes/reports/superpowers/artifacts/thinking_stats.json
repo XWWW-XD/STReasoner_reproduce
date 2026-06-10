@@ -1,0 +1,68 @@
+{
+  "run1": {
+    "forecasting": {
+      "n": 279,
+      "think_len_median": 2102,
+      "think_len_mean": 2145.0
+    },
+    "correlation": {
+      "n": 1545,
+      "think_len_median": 2078,
+      "think_len_mean": 2171.2
+    },
+    "entity": {
+      "n": 1179,
+      "think_len_median": 2336,
+      "think_len_mean": 2406.7
+    },
+    "etiological": {
+      "n": 207,
+      "think_len_median": 2701,
+      "think_len_mean": 2726.4
+    }
+  },
+  "run2": {
+    "forecasting": {
+      "n": 277,
+      "think_len_median": 2110,
+      "think_len_mean": 2139.6
+    },
+    "correlation": {
+      "n": 1539,
+      "think_len_median": 2074,
+      "think_len_mean": 2163.9
+    },
+    "entity": {
+      "n": 1184,
+      "think_len_median": 2331.0,
+      "think_len_mean": 2399.3
+    },
+    "etiological": {
+      "n": 207,
+      "think_len_median": 2685,
+      "think_len_mean": 2710.1
+    }
+  },
+  "run3": {
+    "forecasting": {
+      "n": 279,
+      "think_len_median": 2123,
+      "think_len_mean": 2148.0
+    },
+    "correlation": {
+      "n": 1526,
+      "think_len_median": 2092.0,
+      "think_len_mean": 2167.0
+    },
+    "entity": {
+      "n": 1183,
+      "think_len_median": 2329,
+      "think_len_mean": 2384.8
+    },
+    "etiological": {
+      "n": 207,
+      "think_len_median": 2707,
+      "think_len_mean": 2690.0
+    }
+  }
+}

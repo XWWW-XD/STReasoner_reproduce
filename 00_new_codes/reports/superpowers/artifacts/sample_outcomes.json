@@ -1,0 +1,51 @@
+{
+  "outcomes_count": 3273,
+  "flips": {
+    "forecasting": {
+      "answer_flip": 166,
+      "correctness_flip": 1,
+      "total": 280
+    },
+    "correlation": {
+      "answer_flip": 0,
+      "correctness_flip": 261,
+      "total": 1592
+    },
+    "entity": {
+      "answer_flip": 0,
+      "correctness_flip": 357,
+      "total": 1194
+    },
+    "etiological": {
+      "answer_flip": 0,
+      "correctness_flip": 27,
+      "total": 207
+    }
+  },
+  "flip_examples": {
+    "forecasting": [
+      27
+    ],
+    "correlation": [
+      2,
+      16,
+      24,
+      40,
+      45
+    ],
+    "entity": [
+      5,
+      8,
+      10,
+      11,
+      14
+    ],
+    "etiological": [
+      10,
+      16,
+      19,
+      20,
+      27
+    ]
+  }
+}

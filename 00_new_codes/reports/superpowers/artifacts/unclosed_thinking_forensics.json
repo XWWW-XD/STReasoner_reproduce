@@ -1,0 +1,745 @@
+{
+  "focus_samples": {
+    "correlation": {
+      "count": 12,
+      "samples": [
+        {
+          "idx": 191,
+          "runs": {
+            "run1": {
+              "response_len": 5731,
+              "answer_tag_count": 0,
+              "think_len": 5724,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.167,
+              "dominant_value": "96.59",
+              "dominant_share": 0.917,
+              "tail_num_count": 12,
+              "input_tokens_field": 730,
+              "parser_class": "no_answer_tag"
+            },
+            "run2": {
+              "response_len": 5789,
+              "answer_tag_count": 0,
+              "think_len": 5782,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_other",
+              "unique_ratio": 1.0,
+              "dominant_value": "81",
+              "dominant_share": 0.091,
+              "tail_num_count": 11,
+              "input_tokens_field": 730,
+              "parser_class": "no_answer_tag"
+            },
+            "run3": {
+              "response_len": 5350,
+              "answer_tag_count": 0,
+              "think_len": 5343,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.273,
+              "dominant_value": "101.71",
+              "dominant_share": 0.818,
+              "tail_num_count": 11,
+              "input_tokens_field": 730,
+              "parser_class": "no_answer_tag"
+            }
+          }
+        },
+        {
+          "idx": 384,
+          "runs": {
+            "run1": {
+              "response_len": 5561,
+              "answer_tag_count": 0,
+              "think_len": 5554,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.25,
+              "dominant_value": "0.00",
+              "dominant_share": 0.5,
+              "tail_num_count": 12,
+              "input_tokens_field": 633,
+              "parser_class": "no_answer_tag"
+            },
+            "run2": {
+              "response_len": 5683,
+              "answer_tag_count": 0,
+              "think_len": 5676,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.167,
+              "dominant_value": "19.21",
+              "dominant_share": 0.917,
+              "tail_num_count": 12,
+              "input_tokens_field": 633,
+              "parser_class": "no_answer_tag"
+            },
+            "run3": {
+              "response_len": 5590,
+              "answer_tag_count": 0,
+              "think_len": 5583,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.25,
+              "dominant_value": "27.80",
+              "dominant_share": 0.833,
+              "tail_num_count": 12,
+              "input_tokens_field": 633,
+              "parser_class": "no_answer_tag"
+            }
+          }
+        },
+        {
+          "idx": 442,
+          "runs": {
+            "run1": {
+              "response_len": 6259,
+              "answer_tag_count": 0,
+              "think_len": 6252,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_other",
+              "unique_ratio": 1.0,
+              "dominant_value": "255.24",
+              "dominant_share": 0.1,
+              "tail_num_count": 10,
+              "input_tokens_field": 302,
+              "parser_class": "no_answer_tag"
+            },
+            "run2": {
+              "response_len": 6111,
+              "answer_tag_count": 0,
+              "think_len": 6104,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_other",
+              "unique_ratio": 1.0,
+              "dominant_value": "176.31",
+              "dominant_share": 0.1,
+              "tail_num_count": 10,
+              "input_tokens_field": 302,
+              "parser_class": "no_answer_tag"
+            },
+            "run3": {
+              "response_len": 6204,
+              "answer_tag_count": 0,
+              "think_len": 6197,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_other",
+              "unique_ratio": 1.0,
+              "dominant_value": "3.45",
+              "dominant_share": 0.083,
+              "tail_num_count": 12,
+              "input_tokens_field": 302,
+              "parser_class": "no_answer_tag"
+            }
+          }
+        },
+        {
+          "idx": 548,
+          "runs": {
+            "run1": {
+              "response_len": 5440,
+              "answer_tag_count": 0,
+              "think_len": 5433,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.143,
+              "dominant_value": "24.82",
+              "dominant_share": 0.929,
+              "tail_num_count": 14,
+              "input_tokens_field": 736,
+              "parser_class": "no_answer_tag"
+            },
+            "run2": {
+              "response_len": 5443,
+              "answer_tag_count": 0,
+              "think_len": 5436,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.143,
+              "dominant_value": "24.82",
+              "dominant_share": 0.929,
+              "tail_num_count": 14,
+              "input_tokens_field": 736,
+              "parser_class": "no_answer_tag"
+            },
+            "run3": {
+              "response_len": 5473,
+              "answer_tag_count": 0,
+              "think_len": 5466,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.214,
+              "dominant_value": "26.14",
+              "dominant_share": 0.857,
+              "tail_num_count": 14,
+              "input_tokens_field": 736,
+              "parser_class": "no_answer_tag"
+            }
+          }
+        },
+        {
+          "idx": 624,
+          "runs": {
+            "run1": {
+              "response_len": 5181,
+              "answer_tag_count": 0,
+              "think_len": 5174,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_other",
+              "unique_ratio": 1.0,
+              "dominant_value": "1",
+              "dominant_share": 0.083,
+              "tail_num_count": 12,
+              "input_tokens_field": 814,
+              "parser_class": "no_answer_tag"
+            },
+            "run2": {
+              "response_len": 5181,
+              "answer_tag_count": 0,
+              "think_len": 5174,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_other",
+              "unique_ratio": 1.0,
+              "dominant_value": "9",
+              "dominant_share": 0.083,
+              "tail_num_count": 12,
+              "input_tokens_field": 814,
+              "parser_class": "no_answer_tag"
+            },
+            "run3": {
+              "response_len": 5206,
+              "answer_tag_count": 0,
+              "think_len": 5199,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.077,
+              "dominant_value": "0.00",
+              "dominant_share": 1.0,
+              "tail_num_count": 13,
+              "input_tokens_field": 814,
+              "parser_class": "no_answer_tag"
+            }
+          }
+        },
+        {
+          "idx": 641,
+          "runs": {
+            "run1": {
+              "response_len": 5155,
+              "answer_tag_count": 0,
+              "think_len": 5148,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_other",
+              "unique_ratio": 0.273,
+              "dominant_value": "59.12",
+              "dominant_share": 0.455,
+              "tail_num_count": 11,
+              "input_tokens_field": 811,
+              "parser_class": "no_answer_tag"
+            },
+            "run2": {
+              "response_len": 5155,
+              "answer_tag_count": 0,
+              "think_len": 5148,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_other",
+              "unique_ratio": 0.231,
+              "dominant_value": "0.00",
+              "dominant_share": 0.462,
+              "tail_num_count": 13,
+              "input_tokens_field": 811,
+              "parser_class": "no_answer_tag"
+            },
+            "run3": {
+              "response_len": 5155,
+              "answer_tag_count": 0,
+              "think_len": 5148,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_other",
+              "unique_ratio": 0.231,
+              "dominant_value": "0.00",
+              "dominant_share": 0.462,
+              "tail_num_count": 13,
+              "input_tokens_field": 811,
+              "parser_class": "no_answer_tag"
+            }
+          }
+        },
+        {
+          "idx": 678,
+          "runs": {
+            "run1": {
+              "response_len": 5227,
+              "answer_tag_count": 0,
+              "think_len": 5220,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_other",
+              "unique_ratio": 1.0,
+              "dominant_value": "237.84",
+              "dominant_share": 0.1,
+              "tail_num_count": 10,
+              "input_tokens_field": 862,
+              "parser_class": "no_answer_tag"
+            },
+            "run2": {
+              "response_len": 5298,
+              "answer_tag_count": 0,
+              "think_len": 5291,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.167,
+              "dominant_value": "51.21",
+              "dominant_share": 0.917,
+              "tail_num_count": 12,
+              "input_tokens_field": 862,
+              "parser_class": "no_answer_tag"
+            },
+            "run3": {
+              "response_len": 5255,
+              "answer_tag_count": 0,
+              "think_len": 5248,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.583,
+              "dominant_value": "0.00",
+              "dominant_share": 0.5,
+              "tail_num_count": 12,
+              "input_tokens_field": 862,
+              "parser_class": "no_answer_tag"
+            }
+          }
+        },
+        {
+          "idx": 694,
+          "runs": {
+            "run1": {
+              "response_len": 6086,
+              "answer_tag_count": 0,
+              "think_len": 6079,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.214,
+              "dominant_value": "0.00",
+              "dominant_share": 0.857,
+              "tail_num_count": 14,
+              "input_tokens_field": 470,
+              "parser_class": "no_answer_tag"
+            },
+            "run2": {
+              "response_len": 6163,
+              "answer_tag_count": 0,
+              "think_len": 6156,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.167,
+              "dominant_value": "75.01",
+              "dominant_share": 0.917,
+              "tail_num_count": 12,
+              "input_tokens_field": 470,
+              "parser_class": "no_answer_tag"
+            },
+            "run3": {
+              "response_len": 6014,
+              "answer_tag_count": 0,
+              "think_len": 6007,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_other",
+              "unique_ratio": 1.0,
+              "dominant_value": "87.57",
+              "dominant_share": 0.083,
+              "tail_num_count": 12,
+              "input_tokens_field": 470,
+              "parser_class": "no_answer_tag"
+            }
+          }
+        },
+        {
+          "idx": 709,
+          "runs": {
+            "run1": {
+              "response_len": 5900,
+              "answer_tag_count": 0,
+              "think_len": 5893,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_other",
+              "unique_ratio": 1.0,
+              "dominant_value": "103.01",
+              "dominant_share": 0.1,
+              "tail_num_count": 10,
+              "input_tokens_field": 512,
+              "parser_class": "no_answer_tag"
+            },
+            "run2": {
+              "response_len": 5987,
+              "answer_tag_count": 0,
+              "think_len": 5980,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_other",
+              "unique_ratio": 0.667,
+              "dominant_value": "78.37",
+              "dominant_share": 0.167,
+              "tail_num_count": 12,
+              "input_tokens_field": 512,
+              "parser_class": "no_answer_tag"
+            },
+            "run3": {
+              "response_len": 6706,
+              "answer_tag_count": 0,
+              "think_len": 6699,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.273,
+              "dominant_value": "77.13",
+              "dominant_share": 0.818,
+              "tail_num_count": 11,
+              "input_tokens_field": 512,
+              "parser_class": "no_answer_tag"
+            }
+          }
+        },
+        {
+          "idx": 752,
+          "runs": {
+            "run1": {
+              "response_len": 6182,
+              "answer_tag_count": 0,
+              "think_len": 6175,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.143,
+              "dominant_value": "0.00",
+              "dominant_share": 0.929,
+              "tail_num_count": 14,
+              "input_tokens_field": 346,
+              "parser_class": "no_answer_tag"
+            },
+            "run2": {
+              "response_len": 6367,
+              "answer_tag_count": 0,
+              "think_len": 6360,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.167,
+              "dominant_value": "66.19",
+              "dominant_share": 0.917,
+              "tail_num_count": 12,
+              "input_tokens_field": 346,
+              "parser_class": "no_answer_tag"
+            },
+            "run3": {
+              "response_len": 6124,
+              "answer_tag_count": 0,
+              "think_len": 6117,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.167,
+              "dominant_value": "78.01",
+              "dominant_share": 0.917,
+              "tail_num_count": 12,
+              "input_tokens_field": 346,
+              "parser_class": "no_answer_tag"
+            }
+          }
+        },
+        {
+          "idx": 1200,
+          "runs": {
+            "run1": {
+              "response_len": 5277,
+              "answer_tag_count": 0,
+              "think_len": 5270,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.273,
+              "dominant_value": "123.23",
+              "dominant_share": 0.818,
+              "tail_num_count": 11,
+              "input_tokens_field": 869,
+              "parser_class": "no_answer_tag"
+            },
+            "run2": {
+              "response_len": 5277,
+              "answer_tag_count": 0,
+              "think_len": 5270,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.273,
+              "dominant_value": "350.00",
+              "dominant_share": 0.818,
+              "tail_num_count": 11,
+              "input_tokens_field": 869,
+              "parser_class": "no_answer_tag"
+            },
+            "run3": {
+              "response_len": 5268,
+              "answer_tag_count": 0,
+              "think_len": 5261,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_other",
+              "unique_ratio": 1.0,
+              "dominant_value": "36",
+              "dominant_share": 0.091,
+              "tail_num_count": 11,
+              "input_tokens_field": 869,
+              "parser_class": "no_answer_tag"
+            }
+          }
+        },
+        {
+          "idx": 1268,
+          "runs": {
+            "run1": {
+              "response_len": 6109,
+              "answer_tag_count": 0,
+              "think_len": 6102,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.273,
+              "dominant_value": "100.01",
+              "dominant_share": 0.818,
+              "tail_num_count": 11,
+              "input_tokens_field": 349,
+              "parser_class": "no_answer_tag"
+            },
+            "run2": {
+              "response_len": 6051,
+              "answer_tag_count": 0,
+              "think_len": 6044,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.273,
+              "dominant_value": "100.01",
+              "dominant_share": 0.818,
+              "tail_num_count": 11,
+              "input_tokens_field": 349,
+              "parser_class": "no_answer_tag"
+            },
+            "run3": {
+              "response_len": 6078,
+              "answer_tag_count": 0,
+              "think_len": 6071,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.273,
+              "dominant_value": "100.01",
+              "dominant_share": 0.818,
+              "tail_num_count": 11,
+              "input_tokens_field": 349,
+              "parser_class": "no_answer_tag"
+            }
+          }
+        }
+      ]
+    },
+    "entity": {
+      "count": 1,
+      "samples": [
+        {
+          "idx": 1024,
+          "runs": {
+            "run1": {
+              "response_len": 6001,
+              "answer_tag_count": 0,
+              "think_len": 5994,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.1,
+              "dominant_value": "110.61",
+              "dominant_share": 1.0,
+              "tail_num_count": 10,
+              "input_tokens_field": 435,
+              "parser_class": "no_answer_tag"
+            },
+            "run2": {
+              "response_len": 5706,
+              "answer_tag_count": 0,
+              "think_len": 5699,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.167,
+              "dominant_value": "91.41",
+              "dominant_share": 0.917,
+              "tail_num_count": 12,
+              "input_tokens_field": 435,
+              "parser_class": "no_answer_tag"
+            },
+            "run3": {
+              "response_len": 5678,
+              "answer_tag_count": 0,
+              "think_len": 5671,
+              "has_close_think": false,
+              "has_open_think": true,
+              "root_cause": "unclosed_thinking_numeric_loop",
+              "unique_ratio": 0.273,
+              "dominant_value": "111.71",
+              "dominant_share": 0.818,
+              "tail_num_count": 11,
+              "input_tokens_field": 435,
+              "parser_class": "no_answer_tag"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "global_no_answer_rates": {
+    "correlation": {
+      "run1": {
+        "total": 1592,
+        "no_answer_tag": 47,
+        "no_answer_rate": 0.0295,
+        "unclosed_thinking": 47
+      },
+      "run2": {
+        "total": 1592,
+        "no_answer_tag": 53,
+        "no_answer_rate": 0.0333,
+        "unclosed_thinking": 53
+      },
+      "run3": {
+        "total": 1592,
+        "no_answer_tag": 66,
+        "no_answer_rate": 0.0415,
+        "unclosed_thinking": 66
+      }
+    },
+    "entity": {
+      "run1": {
+        "total": 1194,
+        "no_answer_tag": 15,
+        "no_answer_rate": 0.0126,
+        "unclosed_thinking": 15
+      },
+      "run2": {
+        "total": 1194,
+        "no_answer_tag": 10,
+        "no_answer_rate": 0.0084,
+        "unclosed_thinking": 10
+      },
+      "run3": {
+        "total": 1194,
+        "no_answer_tag": 11,
+        "no_answer_rate": 0.0092,
+        "unclosed_thinking": 11
+      }
+    },
+    "etiological": {
+      "run1": {
+        "total": 207,
+        "no_answer_tag": 0,
+        "no_answer_rate": 0.0,
+        "unclosed_thinking": 0
+      },
+      "run2": {
+        "total": 207,
+        "no_answer_tag": 0,
+        "no_answer_rate": 0.0,
+        "unclosed_thinking": 0
+      },
+      "run3": {
+        "total": 207,
+        "no_answer_tag": 0,
+        "no_answer_rate": 0.0,
+        "unclosed_thinking": 0
+      }
+    }
+  },
+  "length_contrast": {
+    "correlation": {
+      "run1": {
+        "median_len_with_answer": 2113,
+        "median_len_no_answer": 5990,
+        "mean_len_no_answer": 5890.9
+      },
+      "run2": {
+        "median_len_with_answer": 2109,
+        "median_len_no_answer": 5949,
+        "mean_len_no_answer": 5905.2
+      },
+      "run3": {
+        "median_len_with_answer": 2127.0,
+        "median_len_no_answer": 5841.0,
+        "mean_len_no_answer": 5836.4
+      }
+    },
+    "entity": {
+      "run1": {
+        "median_len_with_answer": 2371,
+        "median_len_no_answer": 5647,
+        "mean_len_no_answer": 5813
+      },
+      "run2": {
+        "median_len_with_answer": 2366.0,
+        "median_len_no_answer": 5886.0,
+        "mean_len_no_answer": 6028.9
+      },
+      "run3": {
+        "median_len_with_answer": 2364,
+        "median_len_no_answer": 5793,
+        "mean_len_no_answer": 5993
+      }
+    },
+    "etiological": {
+      "run1": {
+        "median_len_with_answer": 2736,
+        "median_len_no_answer": null,
+        "mean_len_no_answer": null
+      },
+      "run2": {
+        "median_len_with_answer": 2720,
+        "median_len_no_answer": null,
+        "mean_len_no_answer": null
+      },
+      "run3": {
+        "median_len_with_answer": 2742,
+        "median_len_no_answer": null,
+        "mean_len_no_answer": null
+      }
+    }
+  },
+  "focus_root_cause_totals": {
+    "unclosed_thinking_numeric_loop": 25,
+    "unclosed_thinking_other": 14
+  },
+  "interpretation_note": "generated_answer.json num_tokens field stores INPUT token count per inference_tsmllm_vllm.py, not output length. no_answer_tag samples align 1:1 with unclosed_thinking in this exp."
+}

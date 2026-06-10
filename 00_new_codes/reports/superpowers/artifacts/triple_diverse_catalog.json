@@ -1,0 +1,3024 @@
+{
+  "correlation": {
+    "count": 67,
+    "flip_patterns": {
+      "WWR": 11,
+      "RWW": 20,
+      "WWW": 17,
+      "WRW": 19
+    },
+    "mismatch_run1_count": 9,
+    "any_run_correct_count": 50,
+    "samples": [
+      {
+        "idx": 16,
+        "gold": "A",
+        "answers": {
+          "run1": "D",
+          "run2": null,
+          "run3": "A"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": true,
+        "think_len": {
+          "run1": 3498,
+          "run2": 6618,
+          "run3": 3098
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 98,
+        "gold": "B",
+        "answers": {
+          "run1": "B",
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2639,
+          "run2": 6240,
+          "run3": 6233
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 119,
+        "gold": "B",
+        "answers": {
+          "run1": "A",
+          "run2": "C",
+          "run3": "D"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2376,
+          "run2": 2883,
+          "run3": 2572
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 154,
+        "gold": "C",
+        "answers": {
+          "run1": "D",
+          "run2": "C",
+          "run3": "B"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2956,
+          "run2": 2286,
+          "run3": 1641
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 175,
+        "gold": "B",
+        "answers": {
+          "run1": null,
+          "run2": "D",
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": true,
+        "think_len": {
+          "run1": 5618,
+          "run2": 2725,
+          "run3": 5549
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 191,
+        "gold": "A",
+        "answers": {
+          "run1": null,
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": true,
+        "think_len": {
+          "run1": 5731,
+          "run2": 5789,
+          "run3": 5350
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 206,
+        "gold": "C",
+        "answers": {
+          "run1": "A",
+          "run2": "C",
+          "run3": "B"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2042,
+          "run2": 2261,
+          "run3": 2024
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 300,
+        "gold": "D",
+        "answers": {
+          "run1": "D",
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": true,
+        "think_len": {
+          "run1": 4893,
+          "run2": 5744,
+          "run3": 5740
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 314,
+        "gold": "C",
+        "answers": {
+          "run1": "C",
+          "run2": "D",
+          "run3": "B"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2469,
+          "run2": 3321,
+          "run3": 2640
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 384,
+        "gold": "D",
+        "answers": {
+          "run1": null,
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5560,
+          "run2": 5682,
+          "run3": 5590
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 399,
+        "gold": "C",
+        "answers": {
+          "run1": null,
+          "run2": "C",
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5468,
+          "run2": 2298,
+          "run3": 5686
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 442,
+        "gold": "D",
+        "answers": {
+          "run1": null,
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 6259,
+          "run2": 6110,
+          "run3": 6204
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 463,
+        "gold": "D",
+        "answers": {
+          "run1": "D",
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2046,
+          "run2": 5574,
+          "run3": 5560
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 527,
+        "gold": "A",
+        "answers": {
+          "run1": "C",
+          "run2": "B",
+          "run3": "A"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2219,
+          "run2": 2557,
+          "run3": 1949
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 533,
+        "gold": "C",
+        "answers": {
+          "run1": "D",
+          "run2": "C",
+          "run3": "B"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2659,
+          "run2": 2996,
+          "run3": 3391
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 548,
+        "gold": "C",
+        "answers": {
+          "run1": null,
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": true,
+        "think_len": {
+          "run1": 5440,
+          "run2": 5443,
+          "run3": 5473
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 614,
+        "gold": "D",
+        "answers": {
+          "run1": "B",
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 3078,
+          "run2": 5184,
+          "run3": 5221
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 619,
+        "gold": "C",
+        "answers": {
+          "run1": null,
+          "run2": "C",
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5366,
+          "run2": 3867,
+          "run3": 5360
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 622,
+        "gold": "B",
+        "answers": {
+          "run1": "B",
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": true,
+        "think_len": {
+          "run1": 2867,
+          "run2": 5192,
+          "run3": 5160
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 624,
+        "gold": "C",
+        "answers": {
+          "run1": null,
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5180,
+          "run2": 5180,
+          "run3": 5205
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 628,
+        "gold": "B",
+        "answers": {
+          "run1": "B",
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 3597,
+          "run2": 5183,
+          "run3": 5366
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 640,
+        "gold": "B",
+        "answers": {
+          "run1": null,
+          "run2": "B",
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5671,
+          "run2": 1952,
+          "run3": 5644
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 641,
+        "gold": "C",
+        "answers": {
+          "run1": null,
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5155,
+          "run2": 5155,
+          "run3": 5155
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 652,
+        "gold": "A",
+        "answers": {
+          "run1": null,
+          "run2": null,
+          "run3": "A"
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": true,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5183,
+          "run2": 5216,
+          "run3": 4326
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 669,
+        "gold": "B",
+        "answers": {
+          "run1": "B",
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 1968,
+          "run2": 6722,
+          "run3": 7074
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 674,
+        "gold": "B",
+        "answers": {
+          "run1": null,
+          "run2": "B",
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 6019,
+          "run2": 2235,
+          "run3": 5987
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 678,
+        "gold": "B",
+        "answers": {
+          "run1": null,
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5227,
+          "run2": 5298,
+          "run3": 5255
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 679,
+        "gold": "C",
+        "answers": {
+          "run1": "C",
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2402,
+          "run2": 5588,
+          "run3": 5588
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 687,
+        "gold": "D",
+        "answers": {
+          "run1": null,
+          "run2": "D",
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5314,
+          "run2": 3666,
+          "run3": 5307
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 690,
+        "gold": "C",
+        "answers": {
+          "run1": "C",
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2761,
+          "run2": 5583,
+          "run3": 5660
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 694,
+        "gold": "D",
+        "answers": {
+          "run1": null,
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 6086,
+          "run2": 6163,
+          "run3": 6014
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 698,
+        "gold": "C",
+        "answers": {
+          "run1": null,
+          "run2": "C",
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5307,
+          "run2": 3373,
+          "run3": 5258
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 709,
+        "gold": "D",
+        "answers": {
+          "run1": null,
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5900,
+          "run2": 5987,
+          "run3": 6706
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 718,
+        "gold": "D",
+        "answers": {
+          "run1": "C",
+          "run2": "B",
+          "run3": "D"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 1854,
+          "run2": 2181,
+          "run3": 1733
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 731,
+        "gold": "C",
+        "answers": {
+          "run1": "B",
+          "run2": "D",
+          "run3": "C"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2193,
+          "run2": 1862,
+          "run3": 1777
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 743,
+        "gold": "C",
+        "answers": {
+          "run1": null,
+          "run2": "C",
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 6272,
+          "run2": 2471,
+          "run3": 6255
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 752,
+        "gold": "A",
+        "answers": {
+          "run1": null,
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 6182,
+          "run2": 6367,
+          "run3": 6124
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 755,
+        "gold": "A",
+        "answers": {
+          "run1": "A",
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": true,
+        "think_len": {
+          "run1": 2456,
+          "run2": 5902,
+          "run3": 5938
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 765,
+        "gold": "C",
+        "answers": {
+          "run1": "C",
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2423,
+          "run2": 6321,
+          "run3": 6321
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 788,
+        "gold": "A",
+        "answers": {
+          "run1": null,
+          "run2": "A",
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 6084,
+          "run2": 3997,
+          "run3": 6053
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 792,
+        "gold": "D",
+        "answers": {
+          "run1": "D",
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2827,
+          "run2": 6055,
+          "run3": 5967
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 797,
+        "gold": "A",
+        "answers": {
+          "run1": null,
+          "run2": "A",
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 6389,
+          "run2": 2100,
+          "run3": 6325
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 828,
+        "gold": "B",
+        "answers": {
+          "run1": "B",
+          "run2": "A",
+          "run3": "C"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2648,
+          "run2": 2648,
+          "run3": 2476
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 953,
+        "gold": "B",
+        "answers": {
+          "run1": "D",
+          "run2": "B",
+          "run3": "C"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2139,
+          "run2": 2669,
+          "run3": 3118
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 965,
+        "gold": "B",
+        "answers": {
+          "run1": null,
+          "run2": "D",
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 6408,
+          "run2": 2141,
+          "run3": 6349
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 991,
+        "gold": "D",
+        "answers": {
+          "run1": "D",
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 3977,
+          "run2": 6299,
+          "run3": 6242
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1008,
+        "gold": "C",
+        "answers": {
+          "run1": null,
+          "run2": "B",
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 6252,
+          "run2": 3861,
+          "run3": 6411
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 1009,
+        "gold": "D",
+        "answers": {
+          "run1": "D",
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": true,
+        "think_len": {
+          "run1": 3195,
+          "run2": 6057,
+          "run3": 6049
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1151,
+        "gold": "B",
+        "answers": {
+          "run1": "D",
+          "run2": "B",
+          "run3": "C"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 1680,
+          "run2": 2240,
+          "run3": 1743
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1162,
+        "gold": "D",
+        "answers": {
+          "run1": "B",
+          "run2": "D",
+          "run3": "A"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2989,
+          "run2": 3881,
+          "run3": 3407
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1185,
+        "gold": "D",
+        "answers": {
+          "run1": null,
+          "run2": null,
+          "run3": "D"
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": true,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 6419,
+          "run2": 6281,
+          "run3": 2664
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1189,
+        "gold": "D",
+        "answers": {
+          "run1": null,
+          "run2": null,
+          "run3": "D"
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": true,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5358,
+          "run2": 5357,
+          "run3": 3916
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1198,
+        "gold": "C",
+        "answers": {
+          "run1": null,
+          "run2": "C",
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5361,
+          "run2": 1910,
+          "run3": 5314
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1200,
+        "gold": "B",
+        "answers": {
+          "run1": null,
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5277,
+          "run2": 5277,
+          "run3": 5268
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 1262,
+        "gold": "B",
+        "answers": {
+          "run1": "D",
+          "run2": "B",
+          "run3": "C"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 1912,
+          "run2": 2509,
+          "run3": 2849
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1268,
+        "gold": "D",
+        "answers": {
+          "run1": null,
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": true,
+        "think_len": {
+          "run1": 6109,
+          "run2": 6051,
+          "run3": 6078
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 1311,
+        "gold": "B",
+        "answers": {
+          "run1": "B",
+          "run2": "D",
+          "run3": "C"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 1774,
+          "run2": 1777,
+          "run3": 1947
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1315,
+        "gold": "D",
+        "answers": {
+          "run1": "D",
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2145,
+          "run2": 6305,
+          "run3": 6122
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1337,
+        "gold": "D",
+        "answers": {
+          "run1": null,
+          "run2": "D",
+          "run3": "A"
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5804,
+          "run2": 2154,
+          "run3": 2195
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1344,
+        "gold": "B",
+        "answers": {
+          "run1": "B",
+          "run2": "C",
+          "run3": "D"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2968,
+          "run2": 2595,
+          "run3": 2521
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1417,
+        "gold": "A",
+        "answers": {
+          "run1": null,
+          "run2": null,
+          "run3": "A"
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": true,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5749,
+          "run2": 5680,
+          "run3": 2531
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1435,
+        "gold": "A",
+        "answers": {
+          "run1": "C",
+          "run2": "D",
+          "run3": "A"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2090,
+          "run2": 2608,
+          "run3": 2256
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1436,
+        "gold": "D",
+        "answers": {
+          "run1": null,
+          "run2": "D",
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 6076,
+          "run2": 1845,
+          "run3": 5678
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1439,
+        "gold": "C",
+        "answers": {
+          "run1": "D",
+          "run2": null,
+          "run3": "C"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2934,
+          "run2": 6766,
+          "run3": 2488
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1464,
+        "gold": "B",
+        "answers": {
+          "run1": "B",
+          "run2": "D",
+          "run3": "A"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2374,
+          "run2": 2533,
+          "run3": 2114
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1466,
+        "gold": "A",
+        "answers": {
+          "run1": "A",
+          "run2": "B",
+          "run3": "D"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 3954,
+          "run2": 3108,
+          "run3": 2579
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1565,
+        "gold": "C",
+        "answers": {
+          "run1": null,
+          "run2": null,
+          "run3": "C"
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": true,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 6419,
+          "run2": 6419,
+          "run3": 4252
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      }
+    ]
+  },
+  "entity": {
+    "count": 40,
+    "flip_patterns": {
+      "WWW": 4,
+      "WWR": 8,
+      "WRW": 12,
+      "RWW": 16
+    },
+    "mismatch_run1_count": 0,
+    "any_run_correct_count": 36,
+    "samples": [
+      {
+        "idx": 0,
+        "gold": "A",
+        "answers": {
+          "run1": "B",
+          "run2": "C",
+          "run3": "D"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2271,
+          "run2": 2448,
+          "run3": 2662
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 11,
+        "gold": "A",
+        "answers": {
+          "run1": "D",
+          "run2": null,
+          "run3": "A"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2986,
+          "run2": 6635,
+          "run3": 2580
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 105,
+        "gold": "A",
+        "answers": {
+          "run1": "C",
+          "run2": "A",
+          "run3": "B"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2483,
+          "run2": 2055,
+          "run3": 2290
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 123,
+        "gold": "D",
+        "answers": {
+          "run1": "D",
+          "run2": "C",
+          "run3": "A"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 3100,
+          "run2": 1939,
+          "run3": 3443
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 125,
+        "gold": "D",
+        "answers": {
+          "run1": null,
+          "run2": "B",
+          "run3": "A"
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5565,
+          "run2": 3025,
+          "run3": 2828
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 132,
+        "gold": "A",
+        "answers": {
+          "run1": "B",
+          "run2": "A",
+          "run3": "C"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5593,
+          "run2": 2572,
+          "run3": 2368
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 133,
+        "gold": "A",
+        "answers": {
+          "run1": "A",
+          "run2": null,
+          "run3": "B"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2986,
+          "run2": 5561,
+          "run3": 2543
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 192,
+        "gold": "B",
+        "answers": {
+          "run1": "C",
+          "run2": "B",
+          "run3": "D"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2517,
+          "run2": 2729,
+          "run3": 2522
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 242,
+        "gold": "B",
+        "answers": {
+          "run1": "B",
+          "run2": "D",
+          "run3": "C"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2257,
+          "run2": 2349,
+          "run3": 2727
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 283,
+        "gold": "A",
+        "answers": {
+          "run1": "B",
+          "run2": "A",
+          "run3": "D"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2732,
+          "run2": 3718,
+          "run3": 2361
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 320,
+        "gold": "A",
+        "answers": {
+          "run1": "B",
+          "run2": "A",
+          "run3": "C"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2094,
+          "run2": 2113,
+          "run3": 2446
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 332,
+        "gold": "B",
+        "answers": {
+          "run1": "C",
+          "run2": "B",
+          "run3": "A"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2693,
+          "run2": 2174,
+          "run3": 2461
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 339,
+        "gold": "B",
+        "answers": {
+          "run1": "B",
+          "run2": "C",
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2382,
+          "run2": 2191,
+          "run3": 5678
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 366,
+        "gold": "D",
+        "answers": {
+          "run1": "A",
+          "run2": "D",
+          "run3": "C"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2223,
+          "run2": 2058,
+          "run3": 2694
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 408,
+        "gold": "A",
+        "answers": {
+          "run1": "B",
+          "run2": "D",
+          "run3": "A"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2094,
+          "run2": 2655,
+          "run3": 4285
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 439,
+        "gold": "A",
+        "answers": {
+          "run1": "D",
+          "run2": "A",
+          "run3": "C"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2463,
+          "run2": 2496,
+          "run3": 2218
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 446,
+        "gold": "C",
+        "answers": {
+          "run1": "D",
+          "run2": "C",
+          "run3": "A"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2230,
+          "run2": 2686,
+          "run3": 2128
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 450,
+        "gold": "A",
+        "answers": {
+          "run1": "C",
+          "run2": "D",
+          "run3": "A"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2202,
+          "run2": 2250,
+          "run3": 2704
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 490,
+        "gold": "A",
+        "answers": {
+          "run1": "A",
+          "run2": "D",
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2618,
+          "run2": 2085,
+          "run3": 5792
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 515,
+        "gold": "B",
+        "answers": {
+          "run1": "B",
+          "run2": "C",
+          "run3": "D"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2090,
+          "run2": 3440,
+          "run3": 2488
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 559,
+        "gold": "B",
+        "answers": {
+          "run1": "B",
+          "run2": "D",
+          "run3": "A"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2951,
+          "run2": 2640,
+          "run3": 2337
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 578,
+        "gold": "B",
+        "answers": {
+          "run1": null,
+          "run2": "A",
+          "run3": "B"
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5639,
+          "run2": 2733,
+          "run3": 1796
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 580,
+        "gold": "A",
+        "answers": {
+          "run1": "A",
+          "run2": "B",
+          "run3": "D"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2728,
+          "run2": 2645,
+          "run3": 1929
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 626,
+        "gold": "B",
+        "answers": {
+          "run1": "A",
+          "run2": "B",
+          "run3": "D"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2061,
+          "run2": 2208,
+          "run3": 2060
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 644,
+        "gold": "D",
+        "answers": {
+          "run1": "D",
+          "run2": "B",
+          "run3": "A"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2770,
+          "run2": 2186,
+          "run3": 2930
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 680,
+        "gold": "C",
+        "answers": {
+          "run1": "C",
+          "run2": "B",
+          "run3": "D"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2162,
+          "run2": 2312,
+          "run3": 2130
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 694,
+        "gold": "A",
+        "answers": {
+          "run1": "A",
+          "run2": "D",
+          "run3": "B"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2600,
+          "run2": 2978,
+          "run3": 2629
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 820,
+        "gold": "A",
+        "answers": {
+          "run1": "A",
+          "run2": "C",
+          "run3": "B"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2346,
+          "run2": 2250,
+          "run3": 2462
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 847,
+        "gold": "D",
+        "answers": {
+          "run1": "B",
+          "run2": "A",
+          "run3": "D"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2223,
+          "run2": 3330,
+          "run3": 2291
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 890,
+        "gold": "D",
+        "answers": {
+          "run1": "C",
+          "run2": "B",
+          "run3": "D"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 3119,
+          "run2": 2694,
+          "run3": 2331
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 908,
+        "gold": "D",
+        "answers": {
+          "run1": null,
+          "run2": "D",
+          "run3": "B"
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5641,
+          "run2": 2425,
+          "run3": 1962
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 917,
+        "gold": "A",
+        "answers": {
+          "run1": "A",
+          "run2": "B",
+          "run3": "C"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2501,
+          "run2": 2680,
+          "run3": 2424
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 946,
+        "gold": "B",
+        "answers": {
+          "run1": "D",
+          "run2": "A",
+          "run3": "B"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2373,
+          "run2": 2698,
+          "run3": 3091
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1024,
+        "gold": "C",
+        "answers": {
+          "run1": null,
+          "run2": null,
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": true,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 6000,
+          "run2": 5706,
+          "run3": 5678
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 1027,
+        "gold": "B",
+        "answers": {
+          "run1": "B",
+          "run2": "A",
+          "run3": "D"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2570,
+          "run2": 2747,
+          "run3": 2415
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1070,
+        "gold": "D",
+        "answers": {
+          "run1": "B",
+          "run2": "D",
+          "run3": "C"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": true,
+          "run3": false
+        },
+        "flip_pattern": "WRW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 1900,
+          "run2": 2273,
+          "run3": 2159
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1104,
+        "gold": "A",
+        "answers": {
+          "run1": null,
+          "run2": "C",
+          "run3": null
+        },
+        "parser_failed": {
+          "run1": true,
+          "run2": false,
+          "run3": true
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "WWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 5777,
+          "run2": 1904,
+          "run3": 5783
+        },
+        "any_run_correct": false,
+        "runs_correct_count": 0
+      },
+      {
+        "idx": 1119,
+        "gold": "B",
+        "answers": {
+          "run1": "A",
+          "run2": "C",
+          "run3": "B"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": false,
+          "run2": false,
+          "run3": true
+        },
+        "flip_pattern": "WWR",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2561,
+          "run2": 3010,
+          "run3": 2404
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1121,
+        "gold": "D",
+        "answers": {
+          "run1": "D",
+          "run2": "C",
+          "run3": "B"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 2569,
+          "run2": 2392,
+          "run3": 2564
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      },
+      {
+        "idx": 1137,
+        "gold": "A",
+        "answers": {
+          "run1": "A",
+          "run2": "D",
+          "run3": "C"
+        },
+        "parser_failed": {
+          "run1": false,
+          "run2": false,
+          "run3": false
+        },
+        "correct": {
+          "run1": true,
+          "run2": false,
+          "run3": false
+        },
+        "flip_pattern": "RWW",
+        "mismatch_run1": false,
+        "think_len": {
+          "run1": 1913,
+          "run2": 1971,
+          "run3": 2082
+        },
+        "any_run_correct": true,
+        "runs_correct_count": 1
+      }
+    ]
+  }
+}

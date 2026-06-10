@@ -1,0 +1,17 @@
+
+--- Evaluation Metrics ---
+task: reasoning_forecasting
+total_samples: 280
+evaluated_samples: 278
+missing_predictions: 2
+coverage: 0.992857
+mae: 64.297454
+mape: 135.203768
+target_stats: {'mean': 93.07763137254898, 'abs_mean': 93.07763137254898, 'min': 0.0, 'max': 1850.0, 'total_values': 2550}
+missing_indices: [84, 262]
+total_input_tokens: 77434
+avg_input_tokens: 276.550000
+samples_with_token_info: 280
+--------------------------
+
+Saved metrics to /root/autodl-tmp/STReasoner_reproduce/exp/sttest_full_forecasting_6144_run2_official/evaluation_metrics.json

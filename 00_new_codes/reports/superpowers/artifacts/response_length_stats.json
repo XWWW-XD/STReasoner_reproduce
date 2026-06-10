@@ -1,0 +1,92 @@
+{
+  "run1": {
+    "forecasting": {
+      "response_len_median": 2186.5,
+      "response_len_mean": 2255.9,
+      "think_len_median": 2102,
+      "think_len_mean": 2145.0,
+      "n_with_think": 279
+    },
+    "correlation": {
+      "response_len_median": 2127.0,
+      "response_len_mean": 2315.0,
+      "think_len_median": 2078,
+      "think_len_mean": 2171.2,
+      "n_with_think": 1545
+    },
+    "entity": {
+      "response_len_median": 2375.5,
+      "response_len_mean": 2484.0,
+      "think_len_median": 2336,
+      "think_len_mean": 2406.7,
+      "n_with_think": 1179
+    },
+    "etiological": {
+      "response_len_median": 2736,
+      "response_len_mean": 2761.4,
+      "think_len_median": 2701,
+      "think_len_mean": 2726.4,
+      "n_with_think": 207
+    }
+  },
+  "run2": {
+    "forecasting": {
+      "response_len_median": 2209.5,
+      "response_len_mean": 2278.0,
+      "think_len_median": 2110,
+      "think_len_mean": 2139.6,
+      "n_with_think": 277
+    },
+    "correlation": {
+      "response_len_median": 2122.0,
+      "response_len_mean": 2322.3,
+      "think_len_median": 2074,
+      "think_len_mean": 2163.9,
+      "n_with_think": 1539
+    },
+    "entity": {
+      "response_len_median": 2368.5,
+      "response_len_mean": 2464.4,
+      "think_len_median": 2331.0,
+      "think_len_mean": 2399.3,
+      "n_with_think": 1184
+    },
+    "etiological": {
+      "response_len_median": 2720,
+      "response_len_mean": 2745.1,
+      "think_len_median": 2685,
+      "think_len_mean": 2710.1,
+      "n_with_think": 207
+    }
+  },
+  "run3": {
+    "forecasting": {
+      "response_len_median": 2208.5,
+      "response_len_mean": 2257.0,
+      "think_len_median": 2123,
+      "think_len_mean": 2148.0,
+      "n_with_think": 279
+    },
+    "correlation": {
+      "response_len_median": 2143.5,
+      "response_len_mean": 2352.7,
+      "think_len_median": 2092.0,
+      "think_len_mean": 2167.0,
+      "n_with_think": 1526
+    },
+    "entity": {
+      "response_len_median": 2369.0,
+      "response_len_mean": 2452.7,
+      "think_len_median": 2329,
+      "think_len_mean": 2384.8,
+      "n_with_think": 1183
+    },
+    "etiological": {
+      "response_len_median": 2742,
+      "response_len_mean": 2725.0,
+      "think_len_median": 2707,
+      "think_len_mean": 2690.0,
+      "n_with_think": 207
+    }
+  }
+}

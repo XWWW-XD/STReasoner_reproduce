@@ -183,7 +183,7 @@
 - 流程：读 gold → 读 prediction 的 `response` → tag-first 解析 → 算指标
   - forecasting → MAE、MAPE、coverage
   - entity/etiological/correlation → accuracy（`<answer>` 内单个 A–D）
-- 示例输出：`exp_STReasoner-8B/reasoning_*-STReasoner-8B/`
+- 示例输出（**upstream-bundled 参考**，非 README 推理路径）：`exp_STReasoner-8B/reasoning_*-STReasoner-8B/` — 见 [`EXPERIMENTS.md`](EXPERIMENTS.md) 与报告 [`44-exp_STReasoner-8B-MLP复述与6144对照.md`](../reports/44-exp_STReasoner-8B-MLP复述与6144对照.md)
 
 ## 10. 当前复现实验区
 
@@ -198,10 +198,27 @@
 - 报告：
   - `00_new_codes/reports/`
 - 其他维护指南：
-  - `00_new_codes/guides/agents修改文件必读规则.md`
+  - `00_new_codes/guides/EXPERIMENTS.md`
+  - `00_new_codes/guides/分析入口说明.md`
+  - `00_new_codes/guides/修改文件必读规则.md`
   - `00_new_codes/guides/dataset-ST-Bench使用说明.md`
 
-> **本地注意**：`base_model/` 仍被 `.gitignore` 忽略，克隆后需运行 `download_model.py`。`data/ST-Bench/` 与 `exp/` 下的 **`.json` / `.jsonl`** 可入库；其他大文件（`.pkl`、模型权重等）仍忽略。
+> **本地注意**：`base_model/` 仍被 `.gitignore` 忽略，克隆后需运行 `download_model.py`。`data/ST-Bench/`、`exp/`、`exp_STReasoner-8B/` 下的 **`.json` / `.jsonl`** 可入库；`00_new_codes/repro_*/results|outputs`、`reports/artifacts/` 等复现产物见 `.gitignore` 白名单。
+
+### 远端 push 产物 checklist（正式 run 结束自检）
+
+每个正式 run 目录至少 push：
+
+- `generated_answer.json`
+- `evaluation_metrics.json`
+
+若有脚本产出，一并 push `summary.json` / `*_run.log` / `*_summary.json`。本地 `verify_reports.py`、`tools/mlp_encoder_*`、`superpowers/_analysis/` 只读固定路径；缺文件时 pull 后分析 FAIL 且难区分「未 push」与「脚本 bug」。详见 [`修改文件必读规则.md`](修改文件必读规则.md) 与 [`EXPERIMENTS.md`](EXPERIMENTS.md)。
+
+### 分析入口
+
+- 实验跑数脚本：`repro_autodl/experiments/scripts/` 等 — 见 [`分析入口说明.md`](分析入口说明.md)
+- 只读小工具 / 图表：`00_new_codes/tools/`
+- Superpowers 批算：`reports/superpowers/_analysis/`
 
 ---
 
@@ -211,8 +228,9 @@
 
 | 区域 | 核心目录 | 作用 |
 |------|----------|------|
-| **官方（论文原文/源码）** | `data/`、`data_generation/`、`src/`、`scripts/`、`inference/`、`evaluation/`、`base_model/`、`exp_STReasoner-8B/`、`paper/` | 论文完整 pipeline |
-| **复现（新代码）** | `00_new_codes/reports/`、`guides/`、`tools/`；`repro_kaggle/`、`repro_autodl/.../stage2_script/` **已存档** | 排查报告、维护指南；早期脚本仅作历史参考 |
+| **官方（论文原文/源码）** | `data/`、`data_generation/`、`src/`、`scripts/`、`inference/`、`evaluation/`、`base_model/`、`paper/` | 论文完整 pipeline |
+| **upstream-bundled** | `exp_STReasoner-8B/` | 作者 GitHub 打包参考输出（非 README 推理路径） |
+| **复现（新代码）** | `00_new_codes/reports/`、`guides/`、`tools/`、`exp/sttest_full_*`；`repro_kaggle/`、`repro_autodl/.../stage2_script/` **存档** | 排查报告、canonical 复现；早期脚本仅历史参考 |
 
 ## 2.2 官方根目录各文件夹
 
@@ -233,7 +251,7 @@
 | `ds_config/` | DeepSpeed 配置 |
 | `inference/` | vLLM 推理 |
 | `evaluation/` | 官方评测 |
-| `exp_STReasoner-8B/` | 官方示例输出 |
+| `exp_STReasoner-8B/` | **upstream-bundled** 参考输出（论文 Table 对齐）；canonical 复现见 `exp/sttest_full_*` |
 | `paper/` | 论文全文 |
 | `figures/` | 论文配图 |
 

@@ -1,0 +1,681 @@
+{
+  "experiment": "E2_T0-1_strict_reparse",
+  "runs": [
+    "run1",
+    "run2",
+    "run3"
+  ],
+  "tasks": [
+    "forecasting",
+    "correlation",
+    "entity",
+    "etiological"
+  ],
+  "official_metrics": {
+    "forecasting": {
+      "run1": {
+        "task": "reasoning_forecasting",
+        "total_samples": 280,
+        "evaluated_samples": 280,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "mae": 68.31705555122797,
+        "mape": 123.28914871837621,
+        "target_stats": {
+          "mean": 92.41808823529406,
+          "abs_mean": 92.41808823529406,
+          "min": 0.0,
+          "max": 1850.0,
+          "total_values": 2652
+        },
+        "missing_indices": [],
+        "total_input_tokens": 77434,
+        "avg_input_tokens": 276.55,
+        "samples_with_token_info": 280
+      },
+      "run2": {
+        "task": "reasoning_forecasting",
+        "total_samples": 280,
+        "evaluated_samples": 278,
+        "missing_predictions": 2,
+        "coverage": 0.9928571428571429,
+        "mae": 64.29745386844488,
+        "mape": 135.20376818354646,
+        "target_stats": {
+          "mean": 93.07763137254898,
+          "abs_mean": 93.07763137254898,
+          "min": 0.0,
+          "max": 1850.0,
+          "total_values": 2550
+        },
+        "missing_indices": [
+          84,
+          262
+        ],
+        "total_input_tokens": 77434,
+        "avg_input_tokens": 276.55,
+        "samples_with_token_info": 280
+      },
+      "run3": {
+        "task": "reasoning_forecasting",
+        "total_samples": 280,
+        "evaluated_samples": 279,
+        "missing_predictions": 1,
+        "coverage": 0.9964285714285714,
+        "mae": 64.75481120951366,
+        "mape": 133.53972147653874,
+        "target_stats": {
+          "mean": 93.16722115013505,
+          "abs_mean": 93.16722115013505,
+          "min": 0.0,
+          "max": 1850.0,
+          "total_values": 2591
+        },
+        "missing_indices": [
+          82
+        ],
+        "total_input_tokens": 77434,
+        "avg_input_tokens": 276.55,
+        "samples_with_token_info": 280
+      }
+    },
+    "correlation": {
+      "run1": {
+        "task": "reasoning_correlation",
+        "total_samples": 1592,
+        "evaluated_samples": 1592,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "accuracy": 0.8316582914572864,
+        "total_input_tokens": 717765,
+        "avg_input_tokens": 450.86,
+        "samples_with_token_info": 1592
+      },
+      "run2": {
+        "task": "reasoning_correlation",
+        "total_samples": 1592,
+        "evaluated_samples": 1592,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "accuracy": 0.8310301507537688,
+        "total_input_tokens": 717765,
+        "avg_input_tokens": 450.86,
+        "samples_with_token_info": 1592
+      },
+      "run3": {
+        "task": "reasoning_correlation",
+        "total_samples": 1592,
+        "evaluated_samples": 1592,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "accuracy": 0.8222361809045227,
+        "total_input_tokens": 717765,
+        "avg_input_tokens": 450.86,
+        "samples_with_token_info": 1592
+      }
+    },
+    "entity": {
+      "run1": {
+        "task": "reasoning_entity",
+        "total_samples": 1194,
+        "evaluated_samples": 1194,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "accuracy": 0.7479061976549414,
+        "total_input_tokens": 495068,
+        "avg_input_tokens": 414.63,
+        "samples_with_token_info": 1194
+      },
+      "run2": {
+        "task": "reasoning_entity",
+        "total_samples": 1194,
+        "evaluated_samples": 1194,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "accuracy": 0.7336683417085427,
+        "total_input_tokens": 495068,
+        "avg_input_tokens": 414.63,
+        "samples_with_token_info": 1194
+      },
+      "run3": {
+        "task": "reasoning_entity",
+        "total_samples": 1194,
+        "evaluated_samples": 1194,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "accuracy": 0.7311557788944724,
+        "total_input_tokens": 495068,
+        "avg_input_tokens": 414.63,
+        "samples_with_token_info": 1194
+      }
+    },
+    "etiological": {
+      "run1": {
+        "task": "reasoning_etiological",
+        "total_samples": 207,
+        "evaluated_samples": 207,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "accuracy": 0.9565217391304348,
+        "total_input_tokens": 79543,
+        "avg_input_tokens": 384.27,
+        "samples_with_token_info": 207
+      },
+      "run2": {
+        "task": "reasoning_etiological",
+        "total_samples": 207,
+        "evaluated_samples": 207,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "accuracy": 0.927536231884058,
+        "total_input_tokens": 79543,
+        "avg_input_tokens": 384.27,
+        "samples_with_token_info": 207
+      },
+      "run3": {
+        "task": "reasoning_etiological",
+        "total_samples": 207,
+        "evaluated_samples": 207,
+        "missing_predictions": 0,
+        "coverage": 1.0,
+        "accuracy": 0.927536231884058,
+        "total_input_tokens": 79543,
+        "avg_input_tokens": 384.27,
+        "samples_with_token_info": 207
+      }
+    }
+  },
+  "loose_reparse": {
+    "forecasting": {
+      "run1": {
+        "evaluated": 278,
+        "missing_or_fail": 2,
+        "mae": 67.81985584019641
+      },
+      "run2": {
+        "evaluated": 278,
+        "missing_or_fail": 2,
+        "mae": 64.29745386844488
+      },
+      "run3": {
+        "evaluated": 279,
+        "missing_or_fail": 1,
+        "mae": 64.75481120951366
+      }
+    },
+    "correlation": {
+      "run1": {
+        "evaluated": 1592,
+        "missing_or_fail": 0,
+        "correct": 1324,
+        "accuracy": 0.8316582914572864
+      },
+      "run2": {
+        "evaluated": 1592,
+        "missing_or_fail": 0,
+        "correct": 1323,
+        "accuracy": 0.8310301507537688
+      },
+      "run3": {
+        "evaluated": 1592,
+        "missing_or_fail": 0,
+        "correct": 1309,
+        "accuracy": 0.8222361809045227
+      }
+    },
+    "entity": {
+      "run1": {
+        "evaluated": 1194,
+        "missing_or_fail": 0,
+        "correct": 893,
+        "accuracy": 0.7479061976549414
+      },
+      "run2": {
+        "evaluated": 1194,
+        "missing_or_fail": 0,
+        "correct": 876,
+        "accuracy": 0.7336683417085427
+      },
+      "run3": {
+        "evaluated": 1194,
+        "missing_or_fail": 0,
+        "correct": 873,
+        "accuracy": 0.7311557788944724
+      }
+    },
+    "etiological": {
+      "run1": {
+        "evaluated": 207,
+        "missing_or_fail": 0,
+        "correct": 198,
+        "accuracy": 0.9565217391304348
+      },
+      "run2": {
+        "evaluated": 207,
+        "missing_or_fail": 0,
+        "correct": 192,
+        "accuracy": 0.927536231884058
+      },
+      "run3": {
+        "evaluated": 207,
+        "missing_or_fail": 0,
+        "correct": 192,
+        "accuracy": 0.927536231884058
+      }
+    }
+  },
+  "strict_reparse": {
+    "forecasting": {
+      "run1": {
+        "evaluated": 278,
+        "missing_or_fail": 2,
+        "mae": 67.81985584019641
+      },
+      "run2": {
+        "evaluated": 277,
+        "missing_or_fail": 3,
+        "mae": 64.36864804606863
+      },
+      "run3": {
+        "evaluated": 279,
+        "missing_or_fail": 1,
+        "mae": 64.75481120951366
+      }
+    },
+    "correlation": {
+      "run1": {
+        "evaluated": 1545,
+        "missing_or_fail": 47,
+        "correct": 1324,
+        "accuracy": 0.856957928802589
+      },
+      "run2": {
+        "evaluated": 1539,
+        "missing_or_fail": 53,
+        "correct": 1323,
+        "accuracy": 0.8596491228070176
+      },
+      "run3": {
+        "evaluated": 1526,
+        "missing_or_fail": 66,
+        "correct": 1309,
+        "accuracy": 0.8577981651376146
+      }
+    },
+    "entity": {
+      "run1": {
+        "evaluated": 1179,
+        "missing_or_fail": 15,
+        "correct": 893,
+        "accuracy": 0.7574215436810857
+      },
+      "run2": {
+        "evaluated": 1184,
+        "missing_or_fail": 10,
+        "correct": 876,
+        "accuracy": 0.7398648648648649
+      },
+      "run3": {
+        "evaluated": 1183,
+        "missing_or_fail": 11,
+        "correct": 873,
+        "accuracy": 0.7379543533389687
+      }
+    },
+    "etiological": {
+      "run1": {
+        "evaluated": 207,
+        "missing_or_fail": 0,
+        "correct": 198,
+        "accuracy": 0.9565217391304348
+      },
+      "run2": {
+        "evaluated": 207,
+        "missing_or_fail": 0,
+        "correct": 192,
+        "accuracy": 0.927536231884058
+      },
+      "run3": {
+        "evaluated": 207,
+        "missing_or_fail": 0,
+        "correct": 192,
+        "accuracy": 0.927536231884058
+      }
+    }
+  },
+  "parse_fail": {
+    "forecasting": {
+      "n": 280,
+      "per_run": {
+        "run1": {
+          "parse_fail": 2,
+          "parse_ok": 278,
+          "parse_fail_rate": 0.0071
+        },
+        "run2": {
+          "parse_fail": 3,
+          "parse_ok": 277,
+          "parse_fail_rate": 0.0107
+        },
+        "run3": {
+          "parse_fail": 1,
+          "parse_ok": 279,
+          "parse_fail_rate": 0.0036
+        }
+      },
+      "any_run_fail": 6,
+      "all_three_fail": 0
+    },
+    "correlation": {
+      "n": 1592,
+      "per_run": {
+        "run1": {
+          "parse_fail": 47,
+          "parse_ok": 1545,
+          "parse_fail_rate": 0.0295
+        },
+        "run2": {
+          "parse_fail": 53,
+          "parse_ok": 1539,
+          "parse_fail_rate": 0.0333
+        },
+        "run3": {
+          "parse_fail": 66,
+          "parse_ok": 1526,
+          "parse_fail_rate": 0.0415
+        }
+      },
+      "any_run_fail": 108,
+      "all_three_fail": 12
+    },
+    "entity": {
+      "n": 1194,
+      "per_run": {
+        "run1": {
+          "parse_fail": 15,
+          "parse_ok": 1179,
+          "parse_fail_rate": 0.0126
+        },
+        "run2": {
+          "parse_fail": 10,
+          "parse_ok": 1184,
+          "parse_fail_rate": 0.0084
+        },
+        "run3": {
+          "parse_fail": 11,
+          "parse_ok": 1183,
+          "parse_fail_rate": 0.0092
+        }
+      },
+      "any_run_fail": 33,
+      "all_three_fail": 1
+    },
+    "etiological": {
+      "n": 207,
+      "per_run": {
+        "run1": {
+          "parse_fail": 0,
+          "parse_ok": 207,
+          "parse_fail_rate": 0.0
+        },
+        "run2": {
+          "parse_fail": 0,
+          "parse_ok": 207,
+          "parse_fail_rate": 0.0
+        },
+        "run3": {
+          "parse_fail": 0,
+          "parse_ok": 207,
+          "parse_fail_rate": 0.0
+        }
+      },
+      "any_run_fail": 0,
+      "all_three_fail": 0
+    }
+  },
+  "parse_fail_vs_no_tag": {
+    "forecasting": {
+      "parse_fail_and_no_tag": 6,
+      "parse_fail_but_has_tag": 0
+    },
+    "correlation": {
+      "parse_fail_and_no_tag": 166,
+      "parse_fail_but_has_tag": 0
+    },
+    "entity": {
+      "parse_fail_and_no_tag": 36,
+      "parse_fail_but_has_tag": 0
+    },
+    "etiological": {
+      "parse_fail_and_no_tag": 0,
+      "parse_fail_but_has_tag": 0
+    }
+  },
+  "flip_comparison": {
+    "forecasting": {
+      "loose_flip": 1,
+      "strict_flip": 1
+    },
+    "correlation": {
+      "loose_flip": 261,
+      "strict_flip": 173
+    },
+    "entity": {
+      "loose_flip": 357,
+      "strict_flip": 333
+    },
+    "etiological": {
+      "loose_flip": 27,
+      "strict_flip": 27
+    }
+  },
+  "triple_diverse": {
+    "correlation": {
+      "wave4_loose_fn": 67,
+      "wave4_strict_fn": 18,
+      "e2_loose_recomputed": {
+        "count": 67,
+        "indices": [
+          16,
+          98,
+          119,
+          154,
+          175,
+          191,
+          206,
+          300,
+          314,
+          384,
+          399,
+          442,
+          463,
+          527,
+          533,
+          548,
+          614,
+          619,
+          622,
+          624,
+          628,
+          640,
+          641,
+          652,
+          669,
+          674,
+          678,
+          679,
+          687,
+          690,
+          694,
+          698,
+          709,
+          718,
+          731,
+          743,
+          752,
+          755,
+          765,
+          788,
+          792,
+          797,
+          828,
+          953,
+          965,
+          991,
+          1008,
+          1009,
+          1151,
+          1162,
+          1185,
+          1189,
+          1198,
+          1200,
+          1262,
+          1268,
+          1311,
+          1315,
+          1337,
+          1344,
+          1417,
+          1435,
+          1436,
+          1439,
+          1464,
+          1466,
+          1565
+        ]
+      },
+      "e2_strict_recomputed": {
+        "count": 18,
+        "indices": [
+          119,
+          154,
+          206,
+          314,
+          527,
+          533,
+          718,
+          731,
+          828,
+          953,
+          1151,
+          1162,
+          1262,
+          1311,
+          1344,
+          1435,
+          1464,
+          1466
+        ]
+      }
+    },
+    "entity": {
+      "wave4_loose_fn": 40,
+      "wave4_strict_fn": 31,
+      "e2_loose_recomputed": {
+        "count": 40,
+        "indices": [
+          0,
+          11,
+          105,
+          123,
+          125,
+          132,
+          133,
+          192,
+          242,
+          283,
+          320,
+          332,
+          339,
+          366,
+          408,
+          439,
+          446,
+          450,
+          490,
+          515,
+          559,
+          578,
+          580,
+          626,
+          644,
+          680,
+          694,
+          820,
+          847,
+          890,
+          908,
+          917,
+          946,
+          1024,
+          1027,
+          1070,
+          1104,
+          1119,
+          1121,
+          1137
+        ]
+      },
+      "e2_strict_recomputed": {
+        "count": 31,
+        "indices": [
+          0,
+          105,
+          123,
+          132,
+          192,
+          242,
+          283,
+          320,
+          332,
+          366,
+          408,
+          439,
+          446,
+          450,
+          515,
+          559,
+          580,
+          626,
+          644,
+          680,
+          694,
+          820,
+          847,
+          890,
+          917,
+          946,
+          1027,
+          1070,
+          1119,
+          1121,
+          1137
+        ]
+      }
+    },
+    "etiological": {
+      "wave4_loose_fn": 1,
+      "wave4_strict_fn": 1,
+      "e2_loose_recomputed": {
+        "count": 1,
+        "indices": [
+          57
+        ]
+      },
+      "e2_strict_recomputed": {
+        "count": 1,
+        "indices": [
+          57
+        ]
+      }
+    }
+  },
+  "falsifier_check": {
+    "correlation_loose_triple_target_drop": "67 -> ~18",
+    "correlation_e2_loose": 67,
+    "correlation_e2_strict": 18,
+    "entity_e2_loose": 40,
+    "entity_e2_strict": 31
+  }
+}

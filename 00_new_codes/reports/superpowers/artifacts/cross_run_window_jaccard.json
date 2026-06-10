@@ -1,0 +1,14 @@
+{
+  "forecasting": {
+    "persistent_n": 104,
+    "mean_pairwise_window_jaccard": 0.8455,
+    "exact_same_mismatch_windows_all3": 71,
+    "exact_same_ratio": 0.6827
+  },
+  "correlation": {
+    "persistent_n": 190,
+    "mean_pairwise_window_jaccard": 0.7859,
+    "exact_same_mismatch_windows_all3": 98,
+    "exact_same_ratio": 0.5158
+  }
+}

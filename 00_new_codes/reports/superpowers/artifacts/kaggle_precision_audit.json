@@ -1,0 +1,41 @@
+{
+  "warning": "Results NOT comparable to official ST-Test 6144 vLLM runs",
+  "configs": [
+    {
+      "config": "4bit_single",
+      "found": true,
+      "prediction_file": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/4bit_single/main_predictions.jsonl",
+      "n_records": 20,
+      "with_answer_tag": 0,
+      "pipeline": "hf_kaggle_not_official_vllm",
+      "comparable_to_sttest_6144": false
+    },
+    {
+      "config": "8bit_single",
+      "found": true,
+      "prediction_file": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/8bit_single/main_predictions.jsonl",
+      "n_records": 20,
+      "with_answer_tag": 0,
+      "pipeline": "hf_kaggle_not_official_vllm",
+      "comparable_to_sttest_6144": false
+    },
+    {
+      "config": "fp16_single",
+      "found": true,
+      "prediction_file": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/fp16_single/main_predictions.jsonl",
+      "n_records": 20,
+      "with_answer_tag": 0,
+      "pipeline": "hf_kaggle_not_official_vllm",
+      "comparable_to_sttest_6144": false
+    },
+    {
+      "config": "fp16_dual",
+      "found": true,
+      "prediction_file": "00_new_codes/repro_kaggle/experiments/stage1_results/experiment1_precision_resource/fp16_dual/main_predictions.jsonl",
+      "n_records": 20,
+      "with_answer_tag": 0,
+      "pipeline": "hf_kaggle_not_official_vllm",
+      "comparable_to_sttest_6144": false
+    }
+  ]
+}

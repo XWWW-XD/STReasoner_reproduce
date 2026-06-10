@@ -1,0 +1,14 @@
+
+--- Evaluation Metrics ---
+task: reasoning_entity
+total_samples: 1194
+evaluated_samples: 1194
+missing_predictions: 0
+coverage: 1.000000
+accuracy: 0.731156
+total_input_tokens: 495068
+avg_input_tokens: 414.630000
+samples_with_token_info: 1194
+--------------------------
+
+Saved metrics to /root/autodl-tmp/STReasoner_reproduce/exp/sttest_full_entity_6144_run3_official/evaluation_metrics.json

@@ -1,0 +1,120 @@
+{
+  "generated_answer_fields": [
+    {
+      "line": 37,
+      "text": "from vllm import SamplingParams",
+      "pattern": "SamplingParams"
+    },
+    {
+      "line": 77,
+      "text": "sampling_params = SamplingParams(",
+      "pattern": "SamplingParams"
+    },
+    {
+      "line": 78,
+      "text": "max_tokens=512,",
+      "pattern": "max_tokens"
+    },
+    {
+      "line": 88,
+      "text": "sampling_params: SamplingParams,",
+      "pattern": "SamplingParams"
+    },
+    {
+      "line": 204,
+      "text": "\"--max_tokens\",",
+      "pattern": "max_tokens"
+    },
+    {
+      "line": 224,
+      "text": "default=\"generated_answer.json\",",
+      "pattern": "generated_answer"
+    },
+    {
+      "line": 312,
+      "text": "sampling_params = SamplingParams(max_tokens=args.max_tokens, temperature=args.temperature)",
+      "pattern": "max_tokens"
+    },
+    {
+      "line": 312,
+      "text": "sampling_params = SamplingParams(max_tokens=args.max_tokens, temperature=args.temperature)",
+      "pattern": "SamplingParams"
+    },
+    {
+      "line": 324,
+      "text": "generated_answer = []",
+      "pattern": "generated_answer"
+    },
+    {
+      "line": 326,
+      "text": "generated_answer.append(",
+      "pattern": "generated_answer"
+    },
+    {
+      "line": 331,
+      "text": "\"num_tokens\": input_token_counts[idx],",
+      "pattern": "num_tokens"
+    },
+    {
+      "line": 337,
+      "text": "json.dump(generated_answer, fh, ensure_ascii=False, indent=4)",
+      "pattern": "generated_answer"
+    }
+  ],
+  "worker_sampling": [
+    {
+      "line": 107,
+      "text": "from vllm import LLM, SamplingParams",
+      "pattern": "SamplingParams"
+    },
+    {
+      "line": 108,
+      "text": "sampling_params = SamplingParams(temperature=0.5, top_p=0.95, max_tokens=CTX_LENGTH, stop_token_ids=[151643, 151645], st",
+      "pattern": "SamplingParams"
+    },
+    {
+      "line": 134,
+      "text": "if batch_args and batch_args[0] and isinstance(batch_args[0][-1], SamplingParams):",
+      "pattern": "SamplingParams"
+    },
+    {
+      "line": 136,
+      "text": "answers = llm.generate(batch_prompts, request_sampling_params, use_tqdm=False)",
+      "pattern": "llm\\.generate"
+    },
+    {
+      "line": 156,
+      "text": "def worker_vllm_ts(input_queue, output_queue, gpu_id, batch_size, sample_n, finished_flag, ready_cnt, model_path=MODEL_P",
+      "pattern": "worker_vllm_ts"
+    },
+    {
+      "line": 160,
+      "text": "from vllm import LLM, SamplingParams",
+      "pattern": "SamplingParams"
+    },
+    {
+      "line": 162,
+      "text": "sampling_params = SamplingParams(temperature=0.5, top_p=0.95, max_tokens=CTX_LENGTH, stop_token_ids=[151643, 151645], st",
+      "pattern": "SamplingParams"
+    },
+    {
+      "line": 187,
+      "text": "if batch_args and batch_args[0] and isinstance(batch_args[0][-1], SamplingParams):",
+      "pattern": "SamplingParams"
+    },
+    {
+      "line": 189,
+      "text": "answers = llm.generate(batch_inputs, request_sampling_params, use_tqdm=False)",
+      "pattern": "llm\\.generate"
+    },
+    {
+      "line": 276,
+      "text": "p = multiprocessing.Process(target=worker_vllm_ts, args=(self.input_queue, self.output_queue, gpu_id_str, batch_size, sa",
+      "pattern": "worker_vllm_ts"
+    }
+  ],
+  "links_to_wave6": {
+    "num_tokens_is_input": "inference_tsmllm_vllm.py writes input_token_counts[idx] as num_tokens",
+    "max_tokens_default_cli": "6144 for official ST-Test per run.log"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "entity": {
+    "total": 1194,
+    "counts": {
+      "loose_only_numeric": 591,
+      "no_numeric_narration": 603
+    },
+    "strict_mismatch_indices": []
+  },
+  "etiological": {
+    "total": 207,
+    "counts": {
+      "no_numeric_narration": 65,
+      "loose_only_numeric": 142
+    },
+    "strict_mismatch_indices": []
+  }
+}

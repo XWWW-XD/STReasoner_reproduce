@@ -1,0 +1,104 @@
+{
+  "run1": {
+    "forecasting": {
+      "mismatch_correct": 0,
+      "mismatch_wrong": 140,
+      "other_correct": 1,
+      "other_wrong": 137,
+      "m_missing": 1,
+      "o_missing": 1
+    },
+    "correlation": {
+      "mismatch_correct": 309,
+      "mismatch_wrong": 38,
+      "other_correct": 1015,
+      "other_wrong": 230,
+      "m_missing": 0,
+      "o_missing": 0
+    },
+    "entity": {
+      "mismatch_correct": 0,
+      "mismatch_wrong": 0,
+      "other_correct": 893,
+      "other_wrong": 301,
+      "m_missing": 0,
+      "o_missing": 0
+    },
+    "etiological": {
+      "mismatch_correct": 0,
+      "mismatch_wrong": 0,
+      "other_correct": 198,
+      "other_wrong": 9,
+      "m_missing": 0,
+      "o_missing": 0
+    }
+  },
+  "run2": {
+    "forecasting": {
+      "mismatch_correct": 0,
+      "mismatch_wrong": 141,
+      "other_correct": 0,
+      "other_wrong": 137,
+      "m_missing": 0,
+      "o_missing": 2
+    },
+    "correlation": {
+      "mismatch_correct": 285,
+      "mismatch_wrong": 41,
+      "other_correct": 1038,
+      "other_wrong": 228,
+      "m_missing": 0,
+      "o_missing": 0
+    },
+    "entity": {
+      "mismatch_correct": 0,
+      "mismatch_wrong": 1,
+      "other_correct": 876,
+      "other_wrong": 317,
+      "m_missing": 0,
+      "o_missing": 0
+    },
+    "etiological": {
+      "mismatch_correct": 0,
+      "mismatch_wrong": 0,
+      "other_correct": 192,
+      "other_wrong": 15,
+      "m_missing": 0,
+      "o_missing": 0
+    }
+  },
+  "run3": {
+    "forecasting": {
+      "mismatch_correct": 1,
+      "mismatch_wrong": 136,
+      "other_correct": 0,
+      "other_wrong": 142,
+      "m_missing": 0,
+      "o_missing": 1
+    },
+    "correlation": {
+      "mismatch_correct": 294,
+      "mismatch_wrong": 54,
+      "other_correct": 1015,
+      "other_wrong": 229,
+      "m_missing": 0,
+      "o_missing": 0
+    },
+    "entity": {
+      "mismatch_correct": 0,
+      "mismatch_wrong": 0,
+      "other_correct": 873,
+      "other_wrong": 321,
+      "m_missing": 0,
+      "o_missing": 0
+    },
+    "etiological": {
+      "mismatch_correct": 0,
+      "mismatch_wrong": 0,
+      "other_correct": 192,
+      "other_wrong": 15,
+      "m_missing": 0,
+      "o_missing": 0
+    }
+  }
+}

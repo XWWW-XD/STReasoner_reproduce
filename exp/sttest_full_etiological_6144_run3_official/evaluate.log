@@ -1,0 +1,14 @@
+
+--- Evaluation Metrics ---
+task: reasoning_etiological
+total_samples: 207
+evaluated_samples: 207
+missing_predictions: 0
+coverage: 1.000000
+accuracy: 0.927536
+total_input_tokens: 79543
+avg_input_tokens: 384.270000
+samples_with_token_info: 207
+--------------------------
+
+Saved metrics to /root/autodl-tmp/STReasoner_reproduce/exp/sttest_full_etiological_6144_run3_official/evaluation_metrics.json

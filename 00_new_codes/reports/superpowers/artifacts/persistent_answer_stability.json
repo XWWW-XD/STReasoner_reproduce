@@ -1,0 +1,16 @@
+{
+  "correlation": {
+    "persistent_n": 190,
+    "same_parsed_answer_across_runs": 158,
+    "diff_parsed_answer_across_runs": 32,
+    "same_correctness_label": 165,
+    "diff_correctness_label": 25
+  },
+  "forecasting": {
+    "persistent_n": 104,
+    "same_parsed_answer_across_runs": 0,
+    "diff_parsed_answer_across_runs": 104,
+    "same_correctness_label": 103,
+    "diff_correctness_label": 0
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "correlation": {
+    "unique_answer_counts": {
+      "2": 236,
+      "1": 1289,
+      "3": 67
+    },
+    "three_different_answers_count": 67,
+    "three_different_examples": [
+      16,
+      98,
+      119,
+      154,
+      175,
+      191,
+      206,
+      300,
+      314,
+      384
+    ]
+  },
+  "entity": {
+    "unique_answer_counts": {
+      "3": 40,
+      "2": 365,
+      "1": 789
+    },
+    "three_different_answers_count": 40,
+    "three_different_examples": [
+      0,
+      11,
+      105,
+      123,
+      125,
+      132,
+      133,
+      192,
+      242,
+      283
+    ]
+  },
+  "etiological": {
+    "unique_answer_counts": {
+      "1": 180,
+      "2": 26,
+      "3": 1
+    },
+    "three_different_answers_count": 1,
+    "three_different_examples": [
+      57
+    ]
+  }
+}

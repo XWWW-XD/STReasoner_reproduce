@@ -1,0 +1,22 @@
+{
+  "forecasting": {
+    "cells": {
+      "broad_and_mismatch": 141,
+      "broad_no_mismatch": 115,
+      "neither": 24
+    },
+    "total": 280,
+    "mention_mismatch_overlap_ratio": 1.0,
+    "proxy_span_jaccard_median": 1.0
+  },
+  "correlation": {
+    "cells": {
+      "broad_no_mismatch": 909,
+      "neither": 336,
+      "broad_and_mismatch": 347
+    },
+    "total": 1592,
+    "mention_mismatch_overlap_ratio": 1.0,
+    "proxy_span_jaccard_median": 1.0
+  }
+}

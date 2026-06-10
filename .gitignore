@@ -18,7 +18,29 @@ exp/**
 !exp/**/
 !exp/**/*.json
 !exp/**/*.jsonl
+!exp/**/evaluation_metrics.json
+!exp/**/summary*.json
+!exp/**/*_summary.json
 exp_images/
+
+# upstream bundled reference outputs (author repo)
+exp_STReasoner-8B/**
+!exp_STReasoner-8B/**/
+!exp_STReasoner-8B/**/*.json
+
+# Repro artifacts — track for remote-run / local-analysis workflow
+!00_new_codes/repro_autodl/experiments/results/**/
+!00_new_codes/repro_autodl/experiments/results/**/*.json
+!00_new_codes/repro_autodl/experiments/results/**/*.jsonl
+!00_new_codes/repro_kaggle/outputs/**/
+!00_new_codes/repro_kaggle/outputs/**/*.json
+!00_new_codes/repro_kaggle/outputs/**/*.jsonl
+!00_new_codes/repro_kaggle/experiments/stage1_results/**/
+!00_new_codes/repro_kaggle/experiments/stage1_results/**/*.json
+!00_new_codes/repro_kaggle/experiments/stage1_results/**/*.jsonl
+!00_new_codes/reports/superpowers/artifacts/**/
+!00_new_codes/reports/artifacts/**/
+
 ckpt
 vllm_input.txt
 output

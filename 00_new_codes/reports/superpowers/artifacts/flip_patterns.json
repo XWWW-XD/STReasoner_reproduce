@@ -1,0 +1,47 @@
+{
+  "correlation": {
+    "patterns": {
+      "RRR": 1181,
+      "WWW": 150,
+      "RRW": 58,
+      "RWR": 50,
+      "WRR": 44,
+      "WRW": 40,
+      "RWW": 35,
+      "WWR": 34
+    },
+    "volatile_count": 261,
+    "stable_count": 1331,
+    "volatile_ratio": 0.1639
+  },
+  "entity": {
+    "patterns": {
+      "RRR": 689,
+      "WWW": 148,
+      "RRW": 77,
+      "RWR": 75,
+      "WRR": 66,
+      "RWW": 52,
+      "WRW": 44,
+      "WWR": 43
+    },
+    "volatile_count": 357,
+    "stable_count": 837,
+    "volatile_ratio": 0.299
+  },
+  "etiological": {
+    "patterns": {
+      "RRR": 178,
+      "RWR": 9,
+      "RRW": 8,
+      "WRR": 4,
+      "RWW": 3,
+      "WRW": 2,
+      "WWW": 2,
+      "WWR": 1
+    },
+    "volatile_count": 27,
+    "stable_count": 180,
+    "volatile_ratio": 0.1304
+  }
+}
