@@ -44,3 +44,4 @@
 - 分析入口：[`分析入口说明.md`](分析入口说明.md)
 - MLP 复述：报告 [`39`](../reports/39-MLP复述四任务分析.md)、[`43`](../reports/43-run2-run3复述错误三次对比.md)、[`44`](../reports/44-exp_STReasoner-8B-MLP复述与6144对照.md)
 - Artifact 溯源：[`reports/artifacts/README.md`](../reports/artifacts/README.md)
+- 模型安装/卸载与调用路径：报告 [`45`](../reports/45-模型安装卸载与调用路径.md)
