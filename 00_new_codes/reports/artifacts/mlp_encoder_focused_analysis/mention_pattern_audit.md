@@ -1,6 +1,6 @@
 # Broad time-series mention pattern audit
 
-Source: `00_new_codes\reports\artifacts\sttest_full_6144_outputs_with_gold.jsonl`
+Source: `exp/sttest_full_*_6144/generated_answer.json` + `data/ST-Bench/ST-Test/`
 
 ## forecasting
 - broad mean (sample): 4.50

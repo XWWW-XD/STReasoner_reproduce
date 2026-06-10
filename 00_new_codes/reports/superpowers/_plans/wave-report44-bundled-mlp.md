@@ -30,7 +30,7 @@
 
 | 类型 | 路径 |
 | --- | --- |
-| 脚本 | `00_new_codes/tools/mlp_encoder_focused_analysis/{find_bad_cases,summarize_task_level_stats}.py` |
+| 脚本 | `00_new_codes/scripts/mlp_encoder_focused_analysis/{find_bad_cases,summarize_task_level_stats}.py` |
 | Artifact | `reports/artifacts/mlp_encoder_focused_analysis/upstream_bundled/` |
 | 报告 | `reports/44-exp_STReasoner-8B-MLP复述与6144对照.md` |
 | 对照 | `run1_recheck/`、`39`、`43` |
@@ -46,7 +46,7 @@
 ## Verify
 
 ```bash
-cd 00_new_codes/tools/mlp_encoder_focused_analysis
+cd 00_new_codes/scripts/mlp_encoder_focused_analysis
 python find_bad_cases.py --exp-layout bundled --out-subdir upstream_bundled
 python summarize_task_level_stats.py --exp-layout bundled --out-subdir upstream_bundled
 python find_bad_cases.py --out-subdir run1_recheck

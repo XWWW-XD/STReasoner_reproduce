@@ -186,7 +186,7 @@ label = **关系类型/传播路径的自然语言描述** 的四选一，不是
 | 官方全量评测 | `data/ST-Bench/ST-Test/{task}_test.jsonl` |
 | 论文 4 case | `00_new_codes/repro_autodl/experiments/stage2_subsets/paper_cases/PaperCases.jsonl` |
 | 小样本 20 条 | `SmartTest.jsonl`（每任务 5 条，`seed=20260519`） |
-| 分析附件 | `00_new_codes/reports/artifacts/sttest_full_6144_outputs_with_gold.jsonl`（推理输出+gold，非原始集） |
+| 推理输出 | `exp/sttest_full_*_6144/generated_answer.json`；gold 见 `data/ST-Bench/ST-Test/` |
 
 **Q32. 实验样本与论文 benchmark 一致吗？**  
 - 跑满 `ST-Test` 四文件 → **与论文 Table 4 测试集一致**  

@@ -37,8 +37,8 @@
 
 统计脚本：
 
-- `00_new_codes/tools/mlp_encoder_focused_analysis/find_bad_cases.py`
-- `00_new_codes/tools/mlp_encoder_focused_analysis/summarize_task_level_stats.py`
+- `00_new_codes/scripts/mlp_encoder_focused_analysis/find_bad_cases.py`
+- `00_new_codes/scripts/mlp_encoder_focused_analysis/summarize_task_level_stats.py`
 
 本轮重新生成的 artifact：
 
@@ -200,7 +200,7 @@
 
 ## 9. §5 代表样例完整材料
 
-以下四例与 §5 表格一一对应，材料来自 `sttest_full_6144_outputs_with_gold.jsonl` 与 `mismatch_sample_cards.json`（`00_new_codes/reports/artifacts/mlp_encoder_focused_analysis/`）。题干中的 `<ts><ts/>` 为原始 embedding 占位，未展开为明文数值。
+以下四例与 §5 表格一一对应，材料来自 `exp/sttest_full_*_6144/` 与 `mismatch_sample_cards.json`（`00_new_codes/reports/artifacts/mlp_encoder_focused_analysis/`）。题干中的 `<ts><ts/>` 为原始 embedding 占位，未展开为明文数值。
 
 ### 9.1 forecasting，idx 19（§5 代表窗口：Node 1，27-32）
 
@@ -294,7 +294,7 @@ Node 4 [67-73]: 370.15, 370.10, 370.09, 370.11, 370.11, 370.12, 370.12
 
 本节另用 **broad 提及** 统计模型在 `<think>` 中「把 Node 与一段数值列表绑在一起」的次数，用于观察复述行为密度，**不与 strict mismatch 窗口数直接对比**。Broad 规则（`count_ts_mentions.py`）：在 thinking 中去重计数以下 span——严格 window 行、`Node k (steps a-b):` 行内列表、`Node k [a-b]:` 行内列表、以及带足够数字的 `Node k` 数值行（排除图边 `->` 行）；同一文本区间只计一次。
 
-数据源：`00_new_codes/reports/artifacts/sttest_full_6144_outputs_with_gold.jsonl`（3273 条，含 `raw_response`）。分组标签来自 `task_level_reconstruction_mismatch.json` 的 mismatch idx 列表（与 §2 一致）。均值 = 提及次数总和 / 样本数；mismatch 样本数为 0 时均值记 N/A。
+数据源：`exp/sttest_full_*_6144/generated_answer.json`（3273 条 `response`）。分组标签来自 `task_level_reconstruction_mismatch.json` 的 mismatch idx 列表（与 §2 一致）。均值 = 提及次数总和 / 样本数；mismatch 样本数为 0 时均值记 N/A。
 
 ### 10.2 四任务 × 三行统计表
 
@@ -313,7 +313,7 @@ Node 4 [67-73]: 370.15, 370.10, 370.09, 370.11, 370.11, 370.12, 370.12
 | etiological | mismatch | 0 | 0 | N/A |
 | etiological | other | 207 | 516 | 2.4928 |
 
-artifact：`mention_stats_mismatch_vs_other.json` / `.md`，脚本 `00_new_codes/tools/mlp_encoder_focused_analysis/count_ts_mentions.py`。
+artifact：`mention_stats_mismatch_vs_other.json` / `.md`，脚本 `00_new_codes/scripts/mlp_encoder_focused_analysis/count_ts_mentions.py`。
 
 ### 10.3 解读
 

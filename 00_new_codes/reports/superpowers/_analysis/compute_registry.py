@@ -11,7 +11,8 @@ OUT = Path(__file__).resolve().parents[1] / "artifacts"
 REPORTS = ROOT / "00_new_codes/reports"
 
 EXP_ROOT = ROOT / "exp"
-REPRO_KAGGLE = ROOT / "00_new_codes/repro_kaggle/experiments/stage1_results"
+# Kaggle stage1_results removed 2026-06 (strategy-1); skip repro_kaggle json scan.
+REPRO_KAGGLE = None
 REPRO_AUTODL = ROOT / "00_new_codes/repro_autodl/experiments/results"
 
 
@@ -89,7 +90,7 @@ def main() -> None:
                 entries.append(row)
 
     repro_dirs = []
-    for base in [REPRO_KAGGLE, REPRO_AUTODL]:
+    for base in [b for b in [REPRO_KAGGLE, REPRO_AUTODL] if b is not None]:
         if base.exists():
             for p in base.rglob("evaluation_metrics.json"):
                 repro_dirs.append(p.parent)

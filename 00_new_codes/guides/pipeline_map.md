@@ -26,7 +26,7 @@
 **关键口径必须区分：**
 
 - `00_new_codes` 里的 **Stage 1 / Stage 2.1 / Stage 2.2** 是**复现实验编号**，与官方 README 中的 **训练 Stage 1/2/3**（SFT + RL）不是同一套编号。
-- **SmartTest（2 条）** 和 **paper_cases（4 条）** 仅用于链路验证、资源对比和论文样例回归，**不能代表完整 ST-Test 四类任务的整体效果**。
+- **paper_cases（4 条）** 用于论文样例回归与链路排查，**不能代表完整 ST-Test 四类任务的整体效果**（原 SmartTest / tiny20 实验已废弃）。
 - 正式 ST-Test 实验要求 `max_tokens=6144`；低于此值的结果只能记为预跑或链路检查。
 - 主实验只评测模型原始 `response`，生成后不得改写、补格式或重跑挑最好结果（见 `agents修改文件必读规则.md`）。
 
@@ -190,9 +190,9 @@
 - 复现脚本：
   - `00_new_codes/repro_autodl/experiments/scripts/`
   - `00_new_codes/repro_kaggle/`（**存档**）
-- paper cases 数据：
-  - `00_new_codes/repro_kaggle/experiments/stage1_subsets/exp1_resource_tiny20/paper_cases/`
-  - `00_new_codes/repro_autodl/experiments/stage2_2_subsets/experiment1_paper_cases/`
+- paper cases 数据（现行）：
+  - `00_new_codes/repro_autodl/experiments/stage2_subsets/paper_cases/PaperCases.jsonl`
+  - `00_new_codes/repro_autodl/experiments/stage2_2_subsets/experiment1_paper_cases/`（`stage2_2` prepare 快照）
 - smoke / 临时输出：
   - `00_new_codes/repro_autodl/experiments/stage2_2_smoke/`
 - 报告：
@@ -212,12 +212,13 @@
 - `generated_answer.json`
 - `evaluation_metrics.json`
 
-若有脚本产出，一并 push `summary.json` / `*_run.log` / `*_summary.json`。本地 `verify_reports.py`、`tools/mlp_encoder_*`、`superpowers/_analysis/` 只读固定路径；缺文件时 pull 后分析 FAIL 且难区分「未 push」与「脚本 bug」。详见 [`修改文件必读规则.md`](修改文件必读规则.md) 与 [`EXPERIMENTS.md`](EXPERIMENTS.md)。
+若有脚本产出，一并 push `summary.json` / `*_run.log` / `*_summary.json`。本地 `verify_reports.py`、`scripts/mlp_encoder_*`、`superpowers/_analysis/` 只读固定路径；缺文件时 pull 后分析 FAIL 且难区分「未 push」与「脚本 bug」。详见 [`修改文件必读规则.md`](修改文件必读规则.md) 与 [`EXPERIMENTS.md`](EXPERIMENTS.md)。
 
 ### 分析入口
 
-- 实验跑数脚本：`repro_autodl/experiments/scripts/` 等 — 见 [`分析入口说明.md`](分析入口说明.md)
-- 只读小工具 / 图表：`00_new_codes/tools/`
+- 实验跑数：`repro_autodl/experiments/scripts/` — 见 [`分析入口说明.md`](分析入口说明.md)
+- 只读分析：`00_new_codes/scripts/`
+- 通用小工具：`00_new_codes/tools/`
 - Superpowers 批算：`reports/superpowers/_analysis/`
 
 ---
@@ -280,19 +281,12 @@ flowchart LR
   end
 
   subgraph repro [ReproLayer_00_new_codes]
-    PREP[08_prepare_stage1_subsets.py] --> SUB[stage1/2_subsets]
-    S1[run_experiment1_new_version.py] --> RES1[stage1_results]
-    S2[stage2_run_smarttest.py] --> RES2[stage2_results]
-    S22[stage2_2_run_paper_cases.py] --> RES22[stage2_2_paper_cases]
-    SUB --> S1
-    SUB --> S2
-    SUB --> S22
-    EVA2[evaluate_qa.py] -.-> S1
-    EVA2 -.-> S2
-    EVA2 -.-> S22
+    PC[stage2_subsets/paper_cases] --> S22[stage2_2_run_paper_cases.py]
+    S22 --> RES22[stage2_2_paper_cases]
+    EVA2[evaluate_qa.py] -.-> S22
   end
 
-  SB --> PREP
+  SB --> PC
 ```
 
 ---
@@ -317,32 +311,21 @@ repro_kaggle/
 | 脚本 | 作用 |
 |------|------|
 | `00_check_kaggle_env.py` | 检查 GPU、CUDA、依赖 |
-| `08_prepare_stage1_exp1_subsets.py` | 从 HF 抽取 tiny20、paper cases、stress case |
+| `05_eval_sttest_tiny.py` 等 | 早期 tiny smoke（历史） |
 
-**实验一主脚本**：`experiments/scripts/stage1_script/run_experiment1_new_version.py`
-
-- 命令：`prepare` / `run-config` / `run-all` / `summarize`
-- 当前实际跑的数据：SmartTest 2 条
-- 评测：**Run** 诊断 + **`evaluate_qa.py`** 正式指标
-
-| 配置 | 加载方式 |
-|------|----------|
-| `4bit_single` | BitsAndBytes nf4 |
-| `8bit_single` | `load_in_8bit` |
-| `fp16_single` | `torch.float16` 单卡 |
-| `fp16_dual` | 双卡 `device_map="balanced"` |
+**Stage1 四精度实验**（`run_experiment1_new_version.py`、`08_prepare_stage1_exp1_subsets.py`、`exp1_resource_tiny20`）**已删除**；结论见 `stage1_docs/` 历史文档。
 
 **中文导读**：`experiments/stage1_docs/streasoner_code_reading/`
 
 ## 3.2 `repro_autodl/`
 
-- **存档**：`experiments/scripts/stage2_script/`
-- **非存档**：`stage2_run_smarttest.py`、`stage2_2_run_paper_cases.py`
+- **存档**：`experiments/scripts/stage2_script/`、`stage2_run_smarttest.py`（已删）
+- **现行**：`stage2_2_run_paper_cases.py`、`stage2_4_graph_ablation_paper_cases.py`
 
 | 阶段 | 脚本 | 数据 | max_new_tokens |
 |------|------|------|----------------|
-| Stage 2.1 | `stage2_run_smarttest.py` | SmartTest 2 条 | 2048 |
-| Stage 2.2 | `stage2_2_run_paper_cases.py` | paper_cases 4 条 | 6144 |
+| Stage 2.2 | `stage2_2_run_paper_cases.py` | `PaperCases.jsonl` 4 条 | 6144 |
+| Stage 2.4 | `stage2_4_graph_ablation_paper_cases.py` | 同上 | 6144 |
 
 Stage 2.2：`response` 字段对齐 evaluate；`run-all` 一次加载、循环复用；默认 `--format-prompt true`。
 
@@ -361,31 +344,24 @@ Stage 2.2：`response` 字段对齐 evaluate；`run-all` 一次加载、循环�
 
 ```mermaid
 flowchart TB
-  FULL["ST-Test 全量"] --> T20["tiny20 20条"]
-  FULL --> PC["paper_cases 4条"]
-  FULL --> ST["stress_case 1条"]
-  T20 --> SM["SmartTest 2条"]
-  SM --> S1["Stage1 Kaggle"]
-  SM --> S21["Stage2.1"]
-  PC --> S22["Stage2.2"]
+  FULL["ST-Test 全量"] --> PC["paper_cases 4条"]
+  PC --> S22["Stage2.2 / 2.4"]
+  FULL --> VLLM["官方 vLLM 全量推理"]
 ```
 
-| 子集 | 条数 | 用途 |
-|------|------|------|
-| tiny20 | 20 | 小规模能力探测 |
-| SmartTest | 2 | 实验一 / 2.1 主跑 |
-| paper_cases | 4 | 论文 case 回归 |
-| stress_case | 1 | 长输入压力测试 |
+| 子集 | 条数 | 路径 / 用途 |
+|------|------|-------------|
+| paper_cases | 4 | `repro_autodl/experiments/stage2_subsets/paper_cases/PaperCases.jsonl`；论文 Appendix 回归 |
+| ST-Test 全量 | — | `data/ST-Bench/ST-Test/`；正式 benchmark |
 
 ## 4.2 复现层数据流
 
 ```mermaid
 flowchart TB
-  HF["HF ST-Test"] --> P08["08_prepare..."]
-  P08 --> SUBSETS[tiny20 / paper_cases / stress]
-  SUBSETS --> RUNNERS[Stage1 / 2.1 / 2.2]
+  HF["HF ST-Test"] --> PC["PaperCases.jsonl 固化"]
+  PC --> S22["stage2_2_run_paper_cases.py"]
   MODEL["STReasoner-8B"] --> PROC["Qwen3TSProcessor + generate"]
-  RUNNERS --> PROC
+  S22 --> PROC
   PROC --> OUT["predictions.jsonl"]
   OUT --> EVAL["evaluate_qa.py"]
   EVAL --> SUM["summary.json + 报告"]
@@ -424,11 +400,11 @@ Stage2 输出三件套：`predictions.jsonl`、`summary.json`、`run.log`。显�
 
 | 维度 | 官方 vLLM | 复现 Transformers |
 |------|-----------|-------------------|
-| 入口 | `inference_tsmllm_vllm.py` | stage1 / stage2 runner |
-| 引擎 | vLLM-TS 多 GPU | HF + 量化或 fp16 单卡 |
-| 默认 max_tokens | 512 | 2048（2.1）；6144（2.2 / 正式） |
-| 数据规模 | 全量 ST-Test | SmartTest / paper_cases / tiny20 |
-| 目的 | 论文 benchmark | smoke / 链路排查（存档区） |
+| 入口 | `inference_tsmllm_vllm.py` | `stage2_2_run_paper_cases.py` 等 |
+| 引擎 | vLLM-TS 多 GPU | HF fp16 单卡（AutoDL） |
+| 默认 max_tokens | 512 | 6144（paper_cases / 正式 ST-Test） |
+| 数据规模 | 全量 ST-Test | paper_cases 4 条（小样本） |
+| 目的 | 论文 benchmark | 论文样例回归 / 链路排查 |
 
 两条路径评分均走 `evaluate_qa.py`，复现不走 vLLM 引擎。
 
@@ -438,10 +414,9 @@ Stage2 输出三件套：`predictions.jsonl`、`summary.json`、`run.log`。显�
 
 | 复现实验 | 状态 | 说明 |
 |----------|------|------|
-| Stage1 4bit / 8bit | 已完成 | `stage1_results/experiment1_precision_resource/` |
-| Stage1 fp16 | 曾受阻 | 格式问题 vs 模型能力需区分 |
-| Stage2.1 | smoketest 已有 | `results/2.1_smarttest_smoketest/` |
-| Stage2.2 | 多轮调试 | `2.2_consequences/`；待 format-prompt 重跑 |
+| Stage1 四精度 | 已归档 | 脚本与 `experiment1_precision_resource/` 已删；见 `stage1_docs/` |
+| Stage2.1 SmartTest | 已废弃 | `stage2_run_smarttest.py` 已删 |
+| Stage2.2 | 多轮调试 | `2.2_consequences/`；数据 `PaperCases.jsonl` |
 | 完整 ST-Test 6144 | 有 artifacts | `reports/artifacts/sttest_full_6144_*` |
 
 待办见 `reports/17-后续需要修改的问题.md`。规则见 `agents修改文件必读规则.md`。
@@ -459,8 +434,8 @@ Stage2 输出三件套：`predictions.jsonl`、`summary.json`、`run.log`。显�
 | 跑官方全量推理 | `inference/inference_tsmllm_vllm.py` |
 | 跑官方评测 | `evaluation/evaluate.py` |
 | ST-Bench 字段与子集规范 | `guides/dataset-ST-Bench使用说明.md` |
-| 准备复现子集 | `repro_kaggle/.../08_prepare_stage1_exp1_subsets.py` |
-| 跑 Paper Cases | `repro_autodl/.../stage2_2_run_paper_cases.py` |
+| paper_cases 数据 | `repro_autodl/experiments/stage2_subsets/paper_cases/PaperCases.jsonl` |
+| 跑 Paper Cases | `repro_autodl/experiments/scripts/stage2_2_run_paper_cases.py` |
 | 查实验规则 | `guides/agents修改文件必读规则.md` |
 | jsonl 转表格 | `tools/json_to_md_table.py` |
 | 读论文 | `paper/STReasoner_ACL_2026.txt` |
@@ -472,10 +447,9 @@ Stage2 输出三件套：`predictions.jsonl`、`summary.json`、`run.log`。显�
 | 术语 | 含义 |
 |------|------|
 | 官方训练 Stage 1/2/3 | SFT 对齐 → CoT SFT → S-GRPO RL |
-| 复现 Stage 1 / 2.1 / 2.2 | Kaggle 四精度 / SmartTest / Paper Cases |
+| 复现 Stage 2.2 / 2.4 | AutoDL paper_cases 小样本实验 |
 | ST-Bench / ST-Test | benchmark 数据集 / 测试子集 |
-| SmartTest | 2 条 smoke 样例 |
-| paper_cases | 论文 Appendix 匹配 ST-Test 的 4 条 |
+| paper_cases | `PaperCases.jsonl`：论文 Appendix 匹配 ST-Test 的 4 条（现行） |
 | `Qwen3TSForCausalLM` | STReasoner 加载类，非独立模型 |
 | `response` | 官方预测中的模型原始输出字段 |
 | **coverage** | 可评分数 ÷ 总样本数 |
