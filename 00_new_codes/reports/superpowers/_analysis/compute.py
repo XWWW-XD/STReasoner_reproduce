@@ -11,7 +11,7 @@ from statistics import mean, median
 
 ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "00_new_codes/tools/mlp_encoder_focused_analysis"))
+sys.path.insert(0, str(ROOT / "00_new_codes/scripts/mlp_encoder_focused_analysis"))
 
 from evaluation.evaluate_qa import (  # noqa: E402
     _normalize_choice,

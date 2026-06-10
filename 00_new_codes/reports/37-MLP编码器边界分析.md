@@ -187,9 +187,9 @@ Node 4 [67-73]: 370.15, 370.10, 370.09, 370.11, 370.11, 370.12, 370.12
 ## 8. 本轮生成文件
 
 ```text
-00_new_codes/tools/mlp_encoder_focused_analysis/inspect_mlp_encoder.py
-00_new_codes/tools/mlp_encoder_focused_analysis/find_bad_cases.py
-00_new_codes/tools/mlp_encoder_focused_analysis/summarize_bad_cases.py
+00_new_codes/scripts/mlp_encoder_focused_analysis/inspect_mlp_encoder.py
+00_new_codes/scripts/mlp_encoder_focused_analysis/find_bad_cases.py
+00_new_codes/scripts/mlp_encoder_focused_analysis/summarize_bad_cases.py
 00_new_codes/reports/artifacts/mlp_encoder_focused_analysis/mlp_encoder_facts.json
 00_new_codes/reports/artifacts/mlp_encoder_focused_analysis/reasoning_numeric_fidelity_cases.json
 00_new_codes/reports/artifacts/mlp_encoder_focused_analysis/cross_node_reasoning_error_cases.json

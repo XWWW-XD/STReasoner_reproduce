@@ -22,8 +22,8 @@
 
 脚本：
 
-- `00_new_codes/tools/mlp_encoder_focused_analysis/find_bad_cases.py`（`--exp-layout bundled`）
-- `00_new_codes/tools/mlp_encoder_focused_analysis/summarize_task_level_stats.py`
+- `00_new_codes/scripts/mlp_encoder_focused_analysis/find_bad_cases.py`（`--exp-layout bundled`）
+- `00_new_codes/scripts/mlp_encoder_focused_analysis/summarize_task_level_stats.py`
 
 ### 1.2 数据源
 

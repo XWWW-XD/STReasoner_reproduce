@@ -8,7 +8,7 @@ from openpyxl.utils import get_column_letter
 
 # ========== 你每次主要改这里 ==========
 
-SOURCE_FILE = r"C:\Users\HUAWEI\Downloads\temp_git_clone\STReasoner_reproduce\00_new_codes\repro_autodl\experiments\stage2_results\experiment1_smarttest\forecasting_prediction.jsonl"
+SOURCE_FILE = r"C:\Users\HUAWEI\Downloads\temp_git_clone\STReasoner_reproduce\00_new_codes\repro_autodl\experiments\results\2.2_consequences\baseline_current_6144\paper_cases_prediction.jsonl"
 OUTPUT_DIR = r"C:\Users\HUAWEI\Downloads\temp_git_clone\STReasoner_reproduce\00_new_codes\tools\outputs"
 
 # 留空 = 全选所有字段
