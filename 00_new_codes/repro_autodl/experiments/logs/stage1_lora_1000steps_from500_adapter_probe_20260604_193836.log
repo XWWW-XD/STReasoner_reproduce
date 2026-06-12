@@ -1,24 +1,0 @@
-model_dir=/root/autodl-tmp/STReasoner_reproduce/base_model/Qwen3-4B-Instruct-2507
-adapter_dir=/root/autodl-tmp/STReasoner_reproduce/output/single_a100_qwen3_4b_stage1_lora_1000steps_from500
-data_file=/root/autodl-tmp/STReasoner_reproduce/data/ST-Bench/ST-Align/alignment_train.jsonl
-sample_indices=[0, 1, 71, 72, 121, 122]
-max_new_tokens=32
-out_file=/root/autodl-tmp/STReasoner_reproduce/00_new_codes/repro_autodl/experiments/results/stage1_lora_1000steps_from500_probe_20260604_193836.jsonl
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.26s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.90s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.95s/it]
-The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
-The `seen_tokens` attribute is deprecated and will be removed in v4.41. Use the `cache_position` model input instead.
-The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
-The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
-The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
-The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
-The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
-{"sample_index": 0, "category": "temporal", "gold": "8.0", "response": "200", "generated_new_tokens": 4, "prompt_tokens": 492, "exact_match_simple": false}
-{"sample_index": 1, "category": "temporal", "gold": "0.0654", "response": "0.036", "generated_new_tokens": 6, "prompt_tokens": 492, "exact_match_simple": false}
-{"sample_index": 71, "category": "spatial", "gold": "no", "response": "no", "generated_new_tokens": 2, "prompt_tokens": 482, "exact_match_simple": true}
-{"sample_index": 72, "category": "spatial", "gold": "no", "response": "no", "generated_new_tokens": 2, "prompt_tokens": 490, "exact_match_simple": true}
-{"sample_index": 121, "category": "spatial_temporal", "gold": "demand_source", "response": "demand_source", "generated_new_tokens": 3, "prompt_tokens": 482, "exact_match_simple": true}
-{"sample_index": 122, "category": "spatial_temporal", "gold": "demand_source", "response": "demand_source", "generated_new_tokens": 3, "prompt_tokens": 482, "exact_match_simple": true}
-probe_exact_match_simple=4/6
-cuda_max_memory_allocated_gb=8.50
-cuda_max_memory_reserved_gb=8.60
-adapter_probe=ok

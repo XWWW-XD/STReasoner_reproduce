@@ -36,7 +36,7 @@
 
 ## 远端 push checklist
 
-每个正式 run 结束：**至少** push `generated_answer.json` + `evaluation_metrics.json`。详见 [`pipeline_map.md`](pipeline_map.md) 与 [`修改文件必读规则.md`](修改文件必读规则.md)。
+每个正式 run 结束：**至少** push `generated_answer.json` + `evaluation_metrics.json`。详见 [`pipeline_map.md`](pipeline_map.md) 与 [`修改文件必读规则.md`](修改文件必读规则.md)。`.log` 超 30 天删除见 [`运行日志清理.md`](运行日志清理.md)。
 
 ## 相关文档
 

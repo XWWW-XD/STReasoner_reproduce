@@ -1,0 +1,1009 @@
+{
+  "meta": {
+    "input_path": "C:\\Users\\HUAWEI\\Downloads\\temp_git_clone\\STReasoner_reproduce\\data\\ST-Bench\\ST-Align\\alignment_train.jsonl",
+    "total_rows": 153700,
+    "file_bytes": 1276634217,
+    "unique_question_stems_normalized": 19,
+    "unique_scenarios_fingerprint": 423
+  },
+  "question_types": [
+    {
+      "id": "graph_direct",
+      "label_zh": "直连边判断",
+      "count": 35472,
+      "pct": 23.0787,
+      "needs_ts": "no",
+      "answer_kind": "yes/no",
+      "ability_group": "graph_text_only",
+      "unique_answers": 2,
+      "top_answers": [
+        {
+          "value": "no",
+          "count": 30427,
+          "pct": 85.7775
+        },
+        {
+          "value": "yes",
+          "count": 5045,
+          "pct": 14.2225
+        }
+      ],
+      "example": {
+        "question": "Is there a direct connection from node 0 to node 0?",
+        "answer": "no",
+        "category": "spatial",
+        "node_count": 5,
+        "ts_length_node0": 96,
+        "graph_structure": "Node 0->Node 2; Node 1->Node 3; Node 2->Node 3; Node 2->Node 4; Node 3->Node 4",
+        "prefix_chars": 430
+      }
+    },
+    {
+      "id": "graph_indirect",
+      "label_zh": "间接路径判断",
+      "count": 35472,
+      "pct": 23.0787,
+      "needs_ts": "no",
+      "answer_kind": "yes/no",
+      "ability_group": "graph_text_only",
+      "unique_answers": 2,
+      "top_answers": [
+        {
+          "value": "no",
+          "count": 24696,
+          "pct": 69.6211
+        },
+        {
+          "value": "yes",
+          "count": 10776,
+          "pct": 30.3789
+        }
+      ],
+      "example": {
+        "question": "Is there an indirect path (through one or more intermediate nodes) from node 0 to node 0?",
+        "answer": "no",
+        "category": "spatial",
+        "node_count": 5,
+        "ts_length_node0": 96,
+        "graph_structure": "Node 0->Node 2; Node 1->Node 3; Node 2->Node 3; Node 2->Node 4; Node 3->Node 4",
+        "prefix_chars": 430
+      }
+    },
+    {
+      "id": "ts_sin_amp",
+      "label_zh": "正弦振幅 A",
+      "count": 12943,
+      "pct": 8.4209,
+      "needs_ts": "yes",
+      "answer_kind": "numeric",
+      "ability_group": "ts_numeric_inversion",
+      "unique_answers": 107,
+      "top_answers": [
+        {
+          "value": "40",
+          "count": 701,
+          "pct": 5.4161
+        },
+        {
+          "value": "800",
+          "count": 616,
+          "pct": 4.7593
+        },
+        {
+          "value": "200",
+          "count": 586,
+          "pct": 4.5275
+        },
+        {
+          "value": "50",
+          "count": 546,
+          "pct": 4.2185
+        },
+        {
+          "value": "3.0",
+          "count": 515,
+          "pct": 3.979
+        },
+        {
+          "value": "300",
+          "count": 498,
+          "pct": 3.8476
+        },
+        {
+          "value": "30",
+          "count": 479,
+          "pct": 3.7008
+        },
+        {
+          "value": "250",
+          "count": 460,
+          "pct": 3.554
+        }
+      ],
+      "example": {
+        "question": "What is the sinusoidal amplitude (A) of node 0 during the time range [0, 96]?",
+        "answer": "8.0",
+        "category": "temporal",
+        "node_count": 5,
+        "ts_length_node0": 96,
+        "graph_structure": "Node 0->Node 2; Node 1->Node 3; Node 2->Node 3; Node 2->Node 4; Node 3->Node 4",
+        "prefix_chars": 430
+      }
+    },
+    {
+      "id": "ts_sin_freq",
+      "label_zh": "正弦频率 omega",
+      "count": 12943,
+      "pct": 8.4209,
+      "needs_ts": "yes",
+      "answer_kind": "numeric",
+      "ability_group": "ts_numeric_inversion",
+      "unique_answers": 53,
+      "top_answers": [
+        {
+          "value": "0.2618",
+          "count": 3888,
+          "pct": 30.0394
+        },
+        {
+          "value": "0.1309",
+          "count": 2448,
+          "pct": 18.9137
+        },
+        {
+          "value": "0.0654",
+          "count": 1490,
+          "pct": 11.512
+        },
+        {
+          "value": "0.0374",
+          "count": 1070,
+          "pct": 8.267
+        },
+        {
+          "value": "0.0748",
+          "count": 569,
+          "pct": 4.3962
+        },
+        {
+          "value": "0.0524",
+          "count": 404,
+          "pct": 3.1214
+        },
+        {
+          "value": "3.14159",
+          "count": 348,
+          "pct": 2.6887
+        },
+        {
+          "value": "0.2094",
+          "count": 307,
+          "pct": 2.3719
+        }
+      ],
+      "example": {
+        "question": "What is the sinusoidal frequency (omega) of node 0 during the time range [0, 96]?",
+        "answer": "0.0654",
+        "category": "temporal",
+        "node_count": 5,
+        "ts_length_node0": 96,
+        "graph_structure": "Node 0->Node 2; Node 1->Node 3; Node 2->Node 3; Node 2->Node 4; Node 3->Node 4",
+        "prefix_chars": 430
+      }
+    },
+    {
+      "id": "ts_sin_phase",
+      "label_zh": "正弦相位 phi",
+      "count": 12943,
+      "pct": 8.4209,
+      "needs_ts": "yes",
+      "answer_kind": "numeric",
+      "ability_group": "ts_numeric_inversion",
+      "unique_answers": 495,
+      "top_answers": [
+        {
+          "value": "-1.5708",
+          "count": 1201,
+          "pct": 9.2791
+        },
+        {
+          "value": "1.5708",
+          "count": 422,
+          "pct": 3.2604
+        },
+        {
+          "value": "-1.8326",
+          "count": 421,
+          "pct": 3.2527
+        },
+        {
+          "value": "-2.0944",
+          "count": 362,
+          "pct": 2.7969
+        },
+        {
+          "value": "-0.7854",
+          "count": 315,
+          "pct": 2.4337
+        },
+        {
+          "value": "-3.142",
+          "count": 307,
+          "pct": 2.3719
+        },
+        {
+          "value": "-3.1416",
+          "count": 306,
+          "pct": 2.3642
+        },
+        {
+          "value": "-1.571",
+          "count": 291,
+          "pct": 2.2483
+        }
+      ],
+      "example": {
+        "question": "What is the sinusoidal phase (phi) of node 0 during the time range [0, 96]?",
+        "answer": "1.5708",
+        "category": "temporal",
+        "node_count": 5,
+        "ts_length_node0": 96,
+        "graph_structure": "Node 0->Node 2; Node 1->Node 3; Node 2->Node 3; Node 2->Node 4; Node 3->Node 4",
+        "prefix_chars": 430
+      }
+    },
+    {
+      "id": "ts_drift_type",
+      "label_zh": "演化模式",
+      "count": 6227,
+      "pct": 4.0514,
+      "needs_ts": "yes",
+      "answer_kind": "category",
+      "ability_group": "ts_pattern_classification",
+      "unique_answers": 2,
+      "top_answers": [
+        {
+          "value": "mean_reverting",
+          "count": 4575,
+          "pct": 73.4704
+        },
+        {
+          "value": "sinusoidal",
+          "count": 1652,
+          "pct": 26.5296
+        }
+      ],
+      "example": {
+        "question": "What is the evolution pattern of node 0 during the time range [0, 96]?",
+        "answer": "sinusoidal",
+        "category": "temporal",
+        "node_count": 5,
+        "ts_length_node0": 96,
+        "graph_structure": "Node 0->Node 2; Node 1->Node 3; Node 2->Node 3; Node 2->Node 4; Node 3->Node 4",
+        "prefix_chars": 430
+      }
+    },
+    {
+      "id": "ts_baseline",
+      "label_zh": "长期基线",
+      "count": 6227,
+      "pct": 4.0514,
+      "needs_ts": "yes",
+      "answer_kind": "numeric",
+      "ability_group": "ts_numeric_inversion",
+      "unique_answers": 264,
+      "top_answers": [
+        {
+          "value": "100",
+          "count": 702,
+          "pct": 11.2735
+        },
+        {
+          "value": "80",
+          "count": 300,
+          "pct": 4.8177
+        },
+        {
+          "value": "200",
+          "count": 278,
+          "pct": 4.4644
+        },
+        {
+          "value": "90",
+          "count": 263,
+          "pct": 4.2235
+        },
+        {
+          "value": "20.0",
+          "count": 200,
+          "pct": 3.2118
+        },
+        {
+          "value": "120",
+          "count": 178,
+          "pct": 2.8585
+        },
+        {
+          "value": "95",
+          "count": 175,
+          "pct": 2.8103
+        },
+        {
+          "value": "20",
+          "count": 161,
+          "pct": 2.5855
+        }
+      ],
+      "example": {
+        "question": "What is the long-term baseline value of node 0 during the time range [0, 96]?",
+        "answer": "12.0",
+        "category": "temporal",
+        "node_count": 5,
+        "ts_length_node0": 96,
+        "graph_structure": "Node 0->Node 2; Node 1->Node 3; Node 2->Node 3; Node 2->Node 4; Node 3->Node 4",
+        "prefix_chars": 430
+      }
+    },
+    {
+      "id": "ts_kappa",
+      "label_zh": "均值回归 kappa",
+      "count": 6216,
+      "pct": 4.0442,
+      "needs_ts": "yes",
+      "answer_kind": "numeric",
+      "ability_group": "ts_numeric_inversion",
+      "unique_answers": 28,
+      "top_answers": [
+        {
+          "value": "0.3",
+          "count": 1693,
+          "pct": 27.2362
+        },
+        {
+          "value": "0.25",
+          "count": 1164,
+          "pct": 18.7259
+        },
+        {
+          "value": "0.15",
+          "count": 1044,
+          "pct": 16.7954
+        },
+        {
+          "value": "0.1",
+          "count": 690,
+          "pct": 11.1004
+        },
+        {
+          "value": "0.2",
+          "count": 467,
+          "pct": 7.5129
+        },
+        {
+          "value": "0.35",
+          "count": 411,
+          "pct": 6.612
+        },
+        {
+          "value": "0.4",
+          "count": 184,
+          "pct": 2.9601
+        },
+        {
+          "value": "0.08",
+          "count": 179,
+          "pct": 2.8797
+        }
+      ],
+      "example": {
+        "question": "What is the mean reversion speed (kappa) of node 0 during the time range [0, 96]?",
+        "answer": "0.3",
+        "category": "temporal",
+        "node_count": 5,
+        "ts_length_node0": 96,
+        "graph_structure": "Node 0->Node 2; Node 1->Node 3; Node 2->Node 3; Node 2->Node 4; Node 3->Node 4",
+        "prefix_chars": 430
+      }
+    },
+    {
+      "id": "st_node_role",
+      "label_zh": "节点角色",
+      "count": 4914,
+      "pct": 3.1971,
+      "needs_ts": "mostly_no",
+      "answer_kind": "enum",
+      "ability_group": "scenario_metadata",
+      "unique_answers": 2,
+      "top_answers": [
+        {
+          "value": "propagation",
+          "count": 3170,
+          "pct": 64.5096
+        },
+        {
+          "value": "demand_source",
+          "count": 1744,
+          "pct": 35.4904
+        }
+      ],
+      "example": {
+        "question": "What is the type of node 0? demand_source or propagation?",
+        "answer": "demand_source",
+        "category": "spatial_temporal",
+        "node_count": 5,
+        "ts_length_node0": 96,
+        "graph_structure": "Node 0->Node 2; Node 1->Node 3; Node 2->Node 3; Node 2->Node 4; Node 3->Node 4",
+        "prefix_chars": 430
+      }
+    },
+    {
+      "id": "st_edge_lag",
+      "label_zh": "传播时滞",
+      "count": 4837,
+      "pct": 3.147,
+      "needs_ts": "mostly_no",
+      "answer_kind": "numeric",
+      "ability_group": "scenario_metadata",
+      "unique_answers": 7,
+      "top_answers": [
+        {
+          "value": "1",
+          "count": 4520,
+          "pct": 93.4464
+        },
+        {
+          "value": "2",
+          "count": 236,
+          "pct": 4.8791
+        },
+        {
+          "value": "0",
+          "count": 61,
+          "pct": 1.2611
+        },
+        {
+          "value": "3",
+          "count": 10,
+          "pct": 0.2067
+        },
+        {
+          "value": "4",
+          "count": 7,
+          "pct": 0.1447
+        },
+        {
+          "value": "5",
+          "count": 2,
+          "pct": 0.0413
+        },
+        {
+          "value": "6",
+          "count": 1,
+          "pct": 0.0207
+        }
+      ],
+      "example": {
+        "question": "What is the time lag between node 0 and node 2?",
+        "answer": "2",
+        "category": "spatial_temporal",
+        "node_count": 5,
+        "ts_length_node0": 96,
+        "graph_structure": "Node 0->Node 2; Node 1->Node 3; Node 2->Node 3; Node 2->Node 4; Node 3->Node 4",
+        "prefix_chars": 430
+      }
+    },
+    {
+      "id": "ts_sigma",
+      "label_zh": "噪声 sigma",
+      "count": 4616,
+      "pct": 3.0033,
+      "needs_ts": "yes",
+      "answer_kind": "numeric",
+      "ability_group": "ts_numeric_inversion",
+      "unique_answers": 58,
+      "top_answers": [
+        {
+          "value": "0.3",
+          "count": 682,
+          "pct": 14.7747
+        },
+        {
+          "value": "0.2",
+          "count": 571,
+          "pct": 12.37
+        },
+        {
+          "value": "0.5",
+          "count": 477,
+          "pct": 10.3336
+        },
+        {
+          "value": "0.4",
+          "count": 366,
+          "pct": 7.9289
+        },
+        {
+          "value": "0.8",
+          "count": 247,
+          "pct": 5.351
+        },
+        {
+          "value": "0.15",
+          "count": 232,
+          "pct": 5.026
+        },
+        {
+          "value": "0.1",
+          "count": 188,
+          "pct": 4.0728
+        },
+        {
+          "value": "0.05",
+          "count": 186,
+          "pct": 4.0295
+        }
+      ],
+      "example": {
+        "question": "What is the random fluctuation intensity (sigma) of node 0 during the time range [0, 96]?",
+        "answer": "0.01",
+        "category": "temporal",
+        "node_count": 5,
+        "ts_length_node0": 96,
+        "graph_structure": "Node 0->Node 2; Node 1->Node 3; Node 2->Node 3; Node 2->Node 4; Node 3->Node 4",
+        "prefix_chars": 430
+      }
+    },
+    {
+      "id": "st_edge_mod",
+      "label_zh": "边权调制 multiplier",
+      "count": 4531,
+      "pct": 2.948,
+      "needs_ts": "mostly_no",
+      "answer_kind": "numeric",
+      "ability_group": "scenario_metadata",
+      "unique_answers": 5,
+      "top_answers": [
+        {
+          "value": "15",
+          "count": 2699,
+          "pct": 59.5674
+        },
+        {
+          "value": "7.5",
+          "count": 1275,
+          "pct": 28.1395
+        },
+        {
+          "value": "7",
+          "count": 541,
+          "pct": 11.94
+        },
+        {
+          "value": "8",
+          "count": 8,
+          "pct": 0.1766
+        },
+        {
+          "value": "2.5",
+          "count": 8,
+          "pct": 0.1766
+        }
+      ],
+      "example": {
+        "question": "What is the modulation multiplier (multiplier) of edge (0,2) during the time range [40, 44]?",
+        "answer": "15",
+        "category": "spatial_temporal",
+        "node_count": 5,
+        "ts_length_node0": 96,
+        "graph_structure": "Node 0->Node 2; Node 1->Node 3; Node 2->Node 3; Node 2->Node 4; Node 3->Node 4",
+        "prefix_chars": 430
+      }
+    },
+    {
+      "id": "st_edge_effective",
+      "label_zh": "有效耦合强度",
+      "count": 4531,
+      "pct": 2.948,
+      "needs_ts": "mostly_no",
+      "answer_kind": "numeric",
+      "ability_group": "scenario_metadata",
+      "unique_answers": 6,
+      "top_answers": [
+        {
+          "value": "1.5",
+          "count": 2698,
+          "pct": 59.5454
+        },
+        {
+          "value": "0.75",
+          "count": 1272,
+          "pct": 28.0733
+        },
+        {
+          "value": "0.7",
+          "count": 541,
+          "pct": 11.94
+        },
+        {
+          "value": "0.8",
+          "count": 8,
+          "pct": 0.1766
+        },
+        {
+          "value": "0.25",
+          "count": 8,
+          "pct": 0.1766
+        },
+        {
+          "value": "0.0",
+          "count": 4,
+          "pct": 0.0883
+        }
+      ],
+      "example": {
+        "question": "What is the effective coupling strength of edge (0,2) during the time range [40, 44]?",
+        "answer": "1.5",
+        "category": "spatial_temporal",
+        "node_count": 5,
+        "ts_length_node0": 96,
+        "graph_structure": "Node 0->Node 2; Node 1->Node 3; Node 2->Node 3; Node 2->Node 4; Node 3->Node 4",
+        "prefix_chars": 430
+      }
+    },
+    {
+      "id": "ts_lambda",
+      "label_zh": "耦合 lambda",
+      "count": 1827,
+      "pct": 1.1887,
+      "needs_ts": "yes",
+      "answer_kind": "numeric",
+      "ability_group": "ts_numeric_inversion",
+      "unique_answers": 23,
+      "top_answers": [
+        {
+          "value": "1.2",
+          "count": 382,
+          "pct": 20.9086
+        },
+        {
+          "value": "1.4",
+          "count": 364,
+          "pct": 19.9234
+        },
+        {
+          "value": "1.3",
+          "count": 212,
+          "pct": 11.6037
+        },
+        {
+          "value": "1.0",
+          "count": 150,
+          "pct": 8.2102
+        },
+        {
+          "value": "0.8",
+          "count": 146,
+          "pct": 7.9912
+        },
+        {
+          "value": "1.5",
+          "count": 140,
+          "pct": 7.6628
+        },
+        {
+          "value": "1.1",
+          "count": 109,
+          "pct": 5.9661
+        },
+        {
+          "value": "0.9",
+          "count": 90,
+          "pct": 4.9261
+        }
+      ],
+      "example": {
+        "question": "What is the coupling strength (lambda) of node 2 during the time range [0, 96]?",
+        "answer": "1.4",
+        "category": "temporal",
+        "node_count": 5,
+        "ts_length_node0": 96,
+        "graph_structure": "Node 0->Node 2; Node 1->Node 3; Node 2->Node 3; Node 2->Node 4; Node 3->Node 4",
+        "prefix_chars": 430
+      }
+    },
+    {
+      "id": "ts_diffusion_shape",
+      "label_zh": "扩散形状",
+      "count": 1,
+      "pct": 0.0007,
+      "needs_ts": "yes",
+      "answer_kind": "category",
+      "ability_group": "ts_numeric_inversion",
+      "unique_answers": 1,
+      "top_answers": [
+        {
+          "value": "linear",
+          "count": 1,
+          "pct": 100.0
+        }
+      ],
+      "example": {
+        "question": "What is the diffusion shape (diffusion_shape) of node 6 during the time range [0, 167]?",
+        "answer": "linear",
+        "category": "temporal",
+        "node_count": 10,
+        "ts_length_node0": 168,
+        "graph_structure": "Node 0->Node 2; Node 1->Node 2; Node 2->Node 3; Node 3->Node 4; Node 4->Node 5; Node 5->Node 6; Node 6->Node 7; Node 7->Node 8; Node 8->Node 9",
+        "prefix_chars": 749
+      }
+    }
+  ],
+  "ability_groups": [
+    {
+      "id": "graph_text_only",
+      "label_zh": "纯图结构（Graph Structure 文本即可答）",
+      "count": 70944,
+      "pct": 46.1574
+    },
+    {
+      "id": "scenario_metadata",
+      "label_zh": "场景 metadata（仿真设定，大多不需读波形）",
+      "count": 18813,
+      "pct": 12.2401
+    },
+    {
+      "id": "ts_numeric_inversion",
+      "label_zh": "时序参数反演（需读 timeseries）",
+      "count": 57716,
+      "pct": 37.5511
+    },
+    {
+      "id": "ts_pattern_classification",
+      "label_zh": "时序模式分类（需读 timeseries）",
+      "count": 6227,
+      "pct": 4.0514
+    }
+  ],
+  "category_field": [
+    {
+      "category": "spatial",
+      "count": 70944,
+      "pct": 46.1574
+    },
+    {
+      "category": "temporal",
+      "count": 63943,
+      "pct": 41.6025
+    },
+    {
+      "category": "spatial_temporal",
+      "count": 18813,
+      "pct": 12.2401
+    }
+  ],
+  "redundancy": {
+    "questions_per_scenario": {
+      "min": 72.0,
+      "max": 6345.0,
+      "mean": 363.36,
+      "median": 310.0,
+      "p90": 465.6
+    },
+    "scenario_count_distribution_top": [
+      {
+        "value": "09e09c0404dd95e7",
+        "count": 6345,
+        "pct": 4.1282
+      },
+      {
+        "value": "c49c2f95d2cd483e",
+        "count": 5790,
+        "pct": 3.7671
+      },
+      {
+        "value": "a3ff3e82fa4e53d3",
+        "count": 4643,
+        "pct": 3.0208
+      },
+      {
+        "value": "0b63fb4f0be5bff3",
+        "count": 2787,
+        "pct": 1.8133
+      },
+      {
+        "value": "1445907a15ecf5cc",
+        "count": 2455,
+        "pct": 1.5973
+      },
+      {
+        "value": "02c9f8cd8de6781b",
+        "count": 2137,
+        "pct": 1.3904
+      },
+      {
+        "value": "fbf6069baa3e2f35",
+        "count": 2064,
+        "pct": 1.3429
+      },
+      {
+        "value": "93f2c8ebd8f17daa",
+        "count": 1615,
+        "pct": 1.0507
+      },
+      {
+        "value": "0958930e6461c4d5",
+        "count": 1460,
+        "pct": 0.9499
+      },
+      {
+        "value": "120dfe9545f806a7",
+        "count": 1338,
+        "pct": 0.8705
+      }
+    ]
+  },
+  "structure": {
+    "prefix_chars": {
+      "min": 284.0,
+      "max": 877.0,
+      "mean": 582.02,
+      "median": 739.0,
+      "p90": 781.0
+    },
+    "graph_edge_count": {
+      "min": 2.0,
+      "max": 17.0,
+      "mean": 7.44,
+      "median": 9.0,
+      "p90": 11.0
+    },
+    "node_count": [
+      {
+        "value": 10,
+        "count": 81322,
+        "pct": 52.9096
+      },
+      {
+        "value": 5,
+        "count": 41431,
+        "pct": 26.9558
+      },
+      {
+        "value": 3,
+        "count": 30947,
+        "pct": 20.1347
+      }
+    ],
+    "ts_length_node0": [
+      {
+        "value": 48,
+        "count": 39063,
+        "pct": 25.4151
+      },
+      {
+        "value": 168,
+        "count": 35922,
+        "pct": 23.3715
+      },
+      {
+        "value": 96,
+        "count": 28924,
+        "pct": 18.8185
+      },
+      {
+        "value": 84,
+        "count": 12595,
+        "pct": 8.1945
+      },
+      {
+        "value": 360,
+        "count": 10269,
+        "pct": 6.6812
+      },
+      {
+        "value": 120,
+        "count": 3309,
+        "pct": 2.1529
+      },
+      {
+        "value": 24,
+        "count": 3256,
+        "pct": 2.1184
+      },
+      {
+        "value": 240,
+        "count": 2823,
+        "pct": 1.8367
+      },
+      {
+        "value": 90,
+        "count": 2352,
+        "pct": 1.5303
+      },
+      {
+        "value": 336,
+        "count": 2201,
+        "pct": 1.432
+      }
+    ],
+    "time_range_in_question": [
+      {
+        "value": "[0, 96]",
+        "count": 5623,
+        "pct": 7.7028
+      },
+      {
+        "value": "[0, 48]",
+        "count": 5406,
+        "pct": 7.4056
+      },
+      {
+        "value": "[0, 168]",
+        "count": 3764,
+        "pct": 5.1562
+      },
+      {
+        "value": "[0, 167]",
+        "count": 3053,
+        "pct": 4.1822
+      },
+      {
+        "value": "[0, 84]",
+        "count": 2674,
+        "pct": 3.6631
+      },
+      {
+        "value": "[0, 24]",
+        "count": 2320,
+        "pct": 3.1781
+      },
+      {
+        "value": "[0, 360]",
+        "count": 2034,
+        "pct": 2.7863
+      },
+      {
+        "value": "[0, 47]",
+        "count": 1033,
+        "pct": 1.4151
+      },
+      {
+        "value": "[0, 120]",
+        "count": 799,
+        "pct": 1.0945
+      },
+      {
+        "value": "[0, 83]",
+        "count": 778,
+        "pct": 1.0658
+      }
+    ]
+  },
+  "graph_yes_no": {
+    "graph_direct": [
+      {
+        "value": "no",
+        "count": 30427,
+        "pct": 85.7775
+      },
+      {
+        "value": "yes",
+        "count": 5045,
+        "pct": 14.2225
+      }
+    ],
+    "graph_indirect": [
+      {
+        "value": "no",
+        "count": 24696,
+        "pct": 69.6211
+      },
+      {
+        "value": "yes",
+        "count": 10776,
+        "pct": 30.3789
+      }
+    ]
+  },
+  "unknown_questions": []
+}

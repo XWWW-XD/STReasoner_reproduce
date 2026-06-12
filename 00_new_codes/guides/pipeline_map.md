@@ -212,7 +212,7 @@
 - `generated_answer.json`
 - `evaluation_metrics.json`
 
-若有脚本产出，一并 push `summary.json` / `*_run.log` / `*_summary.json`。本地 `verify_reports.py`、`scripts/mlp_encoder_*`、`superpowers/_analysis/` 只读固定路径；缺文件时 pull 后分析 FAIL 且难区分「未 push」与「脚本 bug」。详见 [`修改文件必读规则.md`](修改文件必读规则.md) 与 [`EXPERIMENTS.md`](EXPERIMENTS.md)。
+若有脚本产出，一并 push `summary.json` / `*_run.log` / `*_summary.json`。本地 `verify_reports.py`、`scripts/mlp_encoder_*`、`superpowers/_analysis/` 只读固定路径；缺文件时 pull 后分析 FAIL 且难区分「未 push」与「脚本 bug」。详见 [`修改文件必读规则.md`](修改文件必读规则.md) 与 [`EXPERIMENTS.md`](EXPERIMENTS.md)。`.log` 超 30 天删除见 [`运行日志清理.md`](运行日志清理.md)。
 
 ### 分析入口
 
