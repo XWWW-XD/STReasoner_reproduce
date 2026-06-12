@@ -1,16 +1,0 @@
-/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-model_dir=/root/autodl-tmp/STReasoner_reproduce/base_model/Qwen3-4B-Instruct-2507
-adapter_dir=/root/autodl-tmp/STReasoner_reproduce/output/single_a100_qwen3_4b_stage1_lora_100steps
-tokenizer_class=Qwen2TokenizerFast
-processor_class=Qwen3TSProcessor
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.62s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.21s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.27s/it]
-base_model_class=Qwen3TSForCausalLM
-base_model_type=qwen3
-has_ts_encoder=True
-peft_model_class=PeftModelForCausalLM
-active_adapter=default
-peft_config_keys=['default']
-adapter_loaded=/root/autodl-tmp/STReasoner_reproduce/output/single_a100_qwen3_4b_stage1_lora_100steps
-nonzero_lora_B=257/257
-adapter_load_check=ok

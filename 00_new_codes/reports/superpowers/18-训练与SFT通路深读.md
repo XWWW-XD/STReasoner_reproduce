@@ -33,7 +33,7 @@ Timeseries 经 `template.mm_plugin.process_token_ids`（L49）并入 multimodal 
 
 ## 3. repro probe（只读登记）
 
-- `repro_autodl/experiments/results/stage1_lora_*.jsonl`：LoRA probe **非** ST-Test 官方指标 — registry wave8 已标 pipeline。
+- LoRA 训练集 probe jsonl 已从仓库删除（曾路径 `stage1_lora_*.jsonl`）；**非** ST-Test 官方指标。结论见 `t3-autodl2…/16`、`17`。
 - 官方脚本锚点：`scripts/qwen3-8b/` + [`10_sft_training_flow.md`](../../repro_kaggle/experiments/stage1_docs/streasoner_code_reading/10_sft_training_flow.md)
 
 ---

@@ -1,22 +1,0 @@
-/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-model_dir=/root/autodl-tmp/STReasoner_reproduce/base_model/Qwen3-4B-Instruct-2507
-adapter_dir=/root/autodl-tmp/STReasoner_reproduce/output/single_a100_qwen3_4b_stage1_lora_100steps
-tokenizer_class=Qwen2TokenizerFast
-processor_class=Qwen3TSProcessor
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:04<00:04,  4.98s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.19s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:08<00:00,  4.31s/it]
-base_model_class=Qwen3TSForCausalLM
-base_model_type=qwen3
-has_ts_encoder=True
-Traceback (most recent call last):
-  File "/root/autodl-tmp/STReasoner_reproduce/00_new_codes/repro_autodl/experiments/scripts/single_a100_qwen3_4b_stage1_adapter_load_check.py", line 74, in <module>
-    main()
-  File "/root/autodl-tmp/STReasoner_reproduce/00_new_codes/repro_autodl/experiments/scripts/single_a100_qwen3_4b_stage1_adapter_load_check.py", line 57, in main
-    model = PeftModel.from_pretrained(base_model, ADAPTER_DIR, is_trainable=False)
-  File "/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/peft/peft_model.py", line 541, in from_pretrained
-    load_result = model.load_adapter(
-  File "/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/peft/peft_model.py", line 1276, in load_adapter
-    load_result = set_peft_model_state_dict(
-  File "/root/autodl-tmp/conda/envs/str-py310/lib/python3.10/site-packages/peft/utils/save_and_load.py", line 359, in set_peft_model_state_dict
-    state_dict[store_key] = peft_model_state_dict[lookup_key]
-KeyError: 'base_model.model.ts_encoder.mlp.0.lora_A.default.weight'
