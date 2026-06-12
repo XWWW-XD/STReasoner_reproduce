@@ -1,0 +1,19 @@
+# 粘贴到 C:\Users\HUAWEI\.ssh\config
+# 本 A800 实例：connect.nma1.seetacloud.com:48192
+# VS Code Remote-SSH 连接目标：autodl-A800
+
+Host autodl-A800
+  HostName connect.nma1.seetacloud.com
+  Port 48192
+  User root
+  IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes
+  ServerAliveInterval 20
+  ServerAliveCountMax 6
+  TCPKeepAlive yes
+  ConnectTimeout 15
+  ConnectionAttempts 3
+  IPQoS none
+  # 远端 Codex 连远端 127.0.0.1:17997，须用 RemoteForward（不是 LocalForward）
+  RemoteForward 17997 127.0.0.1:7897
+  ExitOnForwardFailure yes
