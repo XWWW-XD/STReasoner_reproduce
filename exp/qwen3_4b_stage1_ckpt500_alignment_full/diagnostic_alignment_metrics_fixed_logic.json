@@ -1,0 +1,16 @@
+{
+  "total": 40512,
+  "missing": 0,
+  "numeric_targets": 17865,
+  "numeric_pred_parseable": 17865,
+  "numeric_parse_rate": 1.0,
+  "numeric_exact_abs_1e-6": 0.4469633361321019,
+  "numeric_exact_abs_1e-3": 0.46397984886649873,
+  "numeric_mae": 8.694733430937674,
+  "numeric_median_abs_error": 0.04999999999999999,
+  "numeric_mean_relative_error_nonzero": 1.1668330577047046,
+  "numeric_median_relative_error_nonzero": 0.07692307692307682,
+  "nonnumeric_targets": 22647,
+  "nonnumeric_exact": 0.9489557115732768,
+  "diagnostic_overall_score_fixed_logic": 0.840536675448961
+}

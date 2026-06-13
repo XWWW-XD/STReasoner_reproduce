@@ -185,3 +185,13 @@ __pycache__/
 # Python cache
 __pycache__/
 *.pyc
+
+# Local AutoDL run artifacts that are too large/noisy for GitHub pushes.
+# Keep compact reports and metrics in git; keep raw datasets/predictions on disk.
+data/ST-Bench/
+data/alignment/
+data/reasoning/
+exp/**/generated_answer.json
+00_new_codes/repro_autodl/experiments/logs/*.pid
+00_new_codes/repro_autodl/experiments/logs/*.monitor.csv
+00_new_codes/repro_autodl/experiments/logs/*.monitor*.csv

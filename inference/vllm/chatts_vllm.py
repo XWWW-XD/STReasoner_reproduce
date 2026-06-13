@@ -176,6 +176,9 @@ class TimeSeriesEmbedding(nn.Module):
         # Process all patches through MLP
         if patches_list:
             x_patches = torch.cat(patches_list, dim=0)
+            # Align input dtype with MLP weights to avoid matmul dtype mismatch.
+            target_dtype = self.mlp[0].weight.dtype
+            x_patches = x_patches.to(dtype=target_dtype)
             x = self.mlp(x_patches)
         else:
             # Handle empty case
