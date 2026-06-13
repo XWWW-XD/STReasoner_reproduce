@@ -1,0 +1,16 @@
+
+--- Evaluation Metrics ---
+task: alignment
+total_samples: 40512
+evaluated_samples: 40512
+missing_predictions: 0
+coverage: 1.000000
+overall_score: 0.530485
+exact_match: 0.948956
+relative_accuracy: 0.000000
+total_input_tokens: 16394615
+avg_input_tokens: 404.690000
+samples_with_token_info: 40512
+--------------------------
+
+Saved metrics to /root/autodl-tmp/STReasoner_reproduce/exp/qwen3_4b_stage1_ckpt500_alignment_full/evaluation_metrics.json

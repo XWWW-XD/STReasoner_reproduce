@@ -186,12 +186,11 @@ __pycache__/
 __pycache__/
 *.pyc
 
-# Local AutoDL run artifacts that are too large/noisy for GitHub pushes.
-# Keep compact reports and metrics in git; keep raw datasets/predictions on disk.
-data/ST-Bench/
-data/alignment/
-data/reasoning/
-exp/**/generated_answer.json
+# A800 Stage1 ckpt500 — track metadata + eval artifacts; weights (*.bin) stay ignored above.
+!00_new_codes/repro_autodl/experiments/checkpoints/
+!00_new_codes/repro_autodl/experiments/checkpoints/Qwen3-4B-Instruct-2507-stage1-checkpoint-500-paused/
+!00_new_codes/repro_autodl/experiments/checkpoints/Qwen3-4B-Instruct-2507-stage1-checkpoint-500-paused/**
+!00_new_codes/repro_autodl/experiments/logs/qwen3_4b_stage1_ckpt500_*.log
 00_new_codes/repro_autodl/experiments/logs/*.pid
 00_new_codes/repro_autodl/experiments/logs/*.monitor.csv
 00_new_codes/repro_autodl/experiments/logs/*.monitor*.csv

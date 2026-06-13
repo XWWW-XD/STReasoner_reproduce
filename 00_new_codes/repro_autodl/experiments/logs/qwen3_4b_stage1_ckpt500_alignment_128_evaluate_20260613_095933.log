@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/root/autodl-tmp/STReasoner_reproduce/evaluation/evaluate.py", line 18, in <module>
+    from evaluation.evaluate_qa import (
+ModuleNotFoundError: No module named 'evaluation'

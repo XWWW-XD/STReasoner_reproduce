@@ -1,0 +1,7 @@
+saved_at_local=2026-06-13_09:37:05_CST
+saved_at_utc=2026-06-13_01:37:05_UTC
+source=output/Qwen3-4B-Instruct-2507-stage1/checkpoint-500
+method=cp -al hardlink snapshot plus SHA256SUMS
+trainer_last_logged_step=509
+usable_checkpoint_step=500
+official_script_max_steps=1000
