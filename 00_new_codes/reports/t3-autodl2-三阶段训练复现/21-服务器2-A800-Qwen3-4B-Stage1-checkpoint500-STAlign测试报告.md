@@ -2,47 +2,13 @@
 
 日期：2026-06-13
 
-## 1. 背景
-
-测试对象：保存的 Stage1 `checkpoint-500`
-
-位置：
-
-```text
-00_new_codes/repro_autodl/experiments/checkpoints/Qwen3-4B-Instruct-2507-stage1-checkpoint-500-paused
-```
-
-训练状态说明：
-
-- 因训练使用 `--save_only_model`，该断点是模型权重断点，不包含完整 optimizer/scheduler/RNG Trainer 状态。
-
-## 2. 测试集与推理入口
+## 2. 测试集入口
 
 测试集：
 
 ```text
 data/ST-Bench/ST-Align/alignment_test.jsonl
 ```
-
-总样本数：
-
-```text
-40512
-```
-
-推理入口：
-
-```text
-inference/inference_tsmllm_vllm.py
-```
-
-评测入口：
-
-```text
-evaluation/evaluate.py
-```
-
-注意：`evaluation/evaluate.py` 的 alignment 默认路径是旧的 `data/alignment/alignment_test.jsonl`，所以本次必须显式传入 `data/ST-Bench/ST-Align/alignment_test.jsonl` 或对应子集路径。
 
 ## 3. 问题记录
 
@@ -295,28 +261,28 @@ exp/qwen3_4b_stage1_ckpt500_alignment_full/evaluation_metrics.json
 - `relative_accuracy≈0.703`：数值类目标的相对准确度。
 - `overall_score≈0.841`：数值 + 非数值混合总分。
 
+## 8. 长期保留与对比口径
 
+本报告对应的模型是 Stage1 full SFT 的 `checkpoint-500`，后续不再继续补跑 full SFT；这些文件主要用于和后续 LoRA/Stage2 结果对比。
 
-## 8. 关服务器前必须保留
-
-至少保留：
+需要长期保留：
 
 ```text
 inference/vllm/chatts_vllm.py
 00_new_codes/repro_autodl/experiments/checkpoints/Qwen3-4B-Instruct-2507-stage1-checkpoint-500-paused/
 exp/qwen3_4b_stage1_ckpt500_alignment_128/
+exp/qwen3_4b_stage1_ckpt500_alignment_full/
 00_new_codes/repro_autodl/experiments/eval_subsets/alignment_test_head128.jsonl
 00_new_codes/repro_autodl/experiments/logs/qwen3_4b_stage1_ckpt500_alignment_128_inference_20260613_095619_patched.log
 00_new_codes/repro_autodl/experiments/logs/qwen3_4b_stage1_ckpt500_alignment_128_evaluate_report29_20260614_120007.log
-```
-
-全量跑完后还要保留：
-
-```text
-exp/qwen3_4b_stage1_ckpt500_alignment_full/
 00_new_codes/repro_autodl/experiments/logs/qwen3_4b_stage1_ckpt500_alignment_full_inference_20260613_100107.log
 00_new_codes/repro_autodl/experiments/logs/qwen3_4b_stage1_ckpt500_alignment_full_evaluate_20260613_104412.log
 exp/qwen3_4b_stage1_ckpt500_alignment_full/evaluation_metrics.json
 00_new_codes/reports/t3-autodl2-三阶段训练复现/artifacts/stage1_a800_ckpt500/
 ```
 
+使用口径：
+
+- `checkpoint-500` 是模型权重断点，不是 optimizer/scheduler/RNG 完整续训断点。
+- 报告 28 的全量 ST-Align 指标可作为后续 LoRA 或 Stage2 前后对比基线。
+- `inference/vllm/chatts_vllm.py` 的 bf16 dtype 补丁需要保留，否则该 checkpoint 在 ST-Align vLLM 推理时会复现 dtype mismatch。

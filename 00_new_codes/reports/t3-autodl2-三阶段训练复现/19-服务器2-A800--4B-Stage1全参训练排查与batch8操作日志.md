@@ -403,172 +403,34 @@ batch=8 的 `trainer_log.jsonl`：
 
 这 5 步仍是 fp16 dynamic loss scale 初期 overflow skip，`grad_norm=0.0` 属正常下调过程。按 batch=1/offload 的规律，约 step 12 才会进入首个真实 optimizer update。正式训练不应因前 10-11 个 overflow skip 手动中断。
 
-## 5. 为什么推荐 batch=8 而不是 batch=4 或 batch=16
+## 5. batch=8 结论的后续更正
 
-batch=4 已经可跑，但显存只用约 25.5GB，A800 余量过大；速度约 48s/step。
+本报告早期根据 GPU 显存读数推荐过 `batch=8 + fp16 + ZeRO-3 offload-all`。这个结论后来被正式训练和 cgroup 证据推翻：batch1、batch4、batch8 在 offload-all 路线下都出现 `return code = -9`，并确认容器 CPU 内存上限约 120GiB，ZeRO-3 parameter+optimizer offload 会撞到 cgroup OOM kill。
 
-batch=8 可跑，显存约 42.9GB，仍有 38.3GB 余量；速度约 39s/step。它保持 global batch=64，且比 batch=4 省约 9s/step，1000 steps 可省约 2.5 小时。
+因此不要再按本报告早期的 batch=8 操作命令启动训练。保留这些记录的价值，是说明当时“GPU 显存看起来够”并不等于系统整体可长跑；真正不稳定点在 CPU offload-all 与容器 cgroup 内存限制。
 
-batch=16 理论上可以继续试，但按 batch=4 到 batch=8 的显存增量看，batch=16 可能接近或超过 70GB；再叠加长序列样本、checkpoint 保存、allocator 波动，正式长跑风险高于 batch=8。若要继续压速度，可以另做 batch=16/grad_acc=4 的 5-step 短验证；但当前推荐正式 Stage1 先用 batch=8。
-
-## 6. batch=8 正式训练操作
-
-### 6.1 开训前检查
-
-```bash
-cd /root/autodl-tmp/STReasoner_reproduce
-
-ps -eo pid,ppid,stat,etime,%cpu,%mem,rss,cmd | grep -E 'src/train.py|deepspeed|vllm|ray' | grep -v grep || true
-nvidia-smi
-free -h
-df -h / /root/autodl-tmp
-test -d ./base_model/Qwen3-4B-Instruct-2507
-test -f ./data/ST-Bench/ST-Align/alignment_train.jsonl
-test -f ./src/train.py
-test -f ./ds_config/ds_config_3_offload_all.json
-```
-
-如果有残留训练进程，先确认后再停；不要两个训练抢同一张卡。
-
-### 6.2 推荐正式命令
-
-```bash
-cd /root/autodl-tmp/STReasoner_reproduce
-
-export PATH="/root/autodl-tmp/conda/envs/str-py310/bin:${PATH}"
-export PYTHONPATH=.
-export HF_HOME=/root/autodl-tmp/cache/huggingface
-export HF_HUB_CACHE=/root/autodl-tmp/cache/huggingface
-export TRANSFORMERS_CACHE=/root/autodl-tmp/cache/huggingface
-export HF_DATASETS_CACHE=/root/autodl-tmp/cache/huggingface/datasets
-export TORCH_HOME=/root/autodl-tmp/cache/huggingface/torch
-export TORCH_EXTENSIONS_DIR=/root/autodl-tmp/cache/torch_extensions
-export TRITON_CACHE_DIR=/root/autodl-tmp/cache/triton
-export WANDB_DISABLED=true
-
-LOG="00_new_codes/repro_autodl/experiments/logs/qwen3_4b_stage1_align_single_a800_$(date +%Y%m%d_%H%M%S)_fp16_offload_batch8_ga8_train.log"
-PIDFILE="00_new_codes/repro_autodl/experiments/logs/qwen3_4b_stage1_align_single_a800.pid"
-
-nohup /root/autodl-tmp/conda/envs/str-py310/bin/deepspeed \
-  --num_gpus 1 \
-  --master_port=19901 \
-  src/train.py \
-  --deepspeed ds_config/ds_config_3_offload_all.json \
-  --stage sft \
-  --model_name_or_path ./base_model/Qwen3-4B-Instruct-2507 \
-  --dataset alignment \
-  --interleave_probs 1 \
-  --do_train \
-  --mix_strategy interleave_over \
-  --template STReasoner-Align \
-  --finetuning_type full \
-  --output_dir ./output/Qwen3-4B-Instruct-2507-stage1 \
-  --overwrite_output_dir \
-  --per_device_train_batch_size 8 \
-  --gradient_accumulation_steps 8 \
-  --lr_scheduler_type cosine \
-  --logging_steps 1 \
-  --save_steps 100 \
-  --learning_rate 1e-5 \
-  --timeseries_sft_lr 1e-5 \
-  --warmup_ratio 0.02 \
-  --num_train_epochs 0 \
-  --max_steps 1000 \
-  --plot_loss \
-  --fp16 \
-  --save_only_model \
-  --save_safetensors False \
-  --preprocessing_num_workers 96 \
-  --trust_remote_code True \
-  --cutoff_len 10000 \
-  > "$LOG" 2>&1 &
-
-echo $! > "$PIDFILE"
-echo "PID=$(cat "$PIDFILE")"
-echo "LOG=$LOG"
-```
-
-### 6.3 启动后 3 分钟内检查
-
-```bash
-PID=$(cat 00_new_codes/repro_autodl/experiments/logs/qwen3_4b_stage1_align_single_a800.pid)
-ps -p "$PID" -o pid,ppid,stat,etime,%cpu,%mem,rss,cmd
-tail -n 120 "$LOG"
-nvidia-smi
-```
-
-必须看到：
+最终可对比产物不是 batch=8/offload-all，而是报告 27 记录的：
 
 ```text
-DeepSpeed Basic Optimizer = DeepSpeedCPUAdam
-fp16_enabled True
-bfloat16_enabled False
-train_micro_batch_size_per_gpu 8
-gradient_accumulation_steps 8
-train_batch_size 64
-offload_param device='cpu'
-offload_optimizer device='cpu'
-***** Running training *****
+bf16
+ZeRO-3
+optimizer-only CPU offload
+parameter 不 offload
+micro batch = 2
+gradient accumulation = 32
+cutoff_len = 10000
+checkpoint-500
 ```
 
-如果日志中出现：
+## 6. 本报告保留价值
 
-```text
-RuntimeError: Ninja is required to load C++ extensions
-```
+本报告作为历史排查流水保留，主要用于回答三件事：
 
-说明 PATH 没带 conda env，重新 export PATH 后再启动。
+- 为什么官方 GPU-only ZeRO-3 在单卡 A800 上不够稳：optimizer/loss/overflow check 相关峰值会顶到 76-78GB 后 OOM。
+- 为什么 batch=8/offload-all 最终作废：短跑显存读数正常，但正式训练被 cgroup CPU OOM kill。
+- 为什么最终没有走 ZeRO-2：用户明确要求不要简单降 ZeRO 等级，后续定位到 cgroup 与 dtype mismatch 后，回到 ZeRO-3 optimizer-only offload。
 
-如果日志中出现：
-
-```text
-wandb.errors.errors.UsageError: No API key configured
-```
-
-说明 W&B 没禁掉，确认 `WANDB_DISABLED=true`，必要时额外加 `--report_to none`。
-
-### 6.4 训练中监控
-
-```bash
-tail -f "$LOG"
-```
-
-另开窗口看资源：
-
-```bash
-watch -n 30 'nvidia-smi; free -h; df -h / /root/autodl-tmp'
-```
-
-或轻量采样：
-
-```bash
-nvidia-smi --query-gpu=timestamp,name,memory.used,memory.free,utilization.gpu,utilization.memory --format=csv,noheader,nounits
-tail -n 20 output/Qwen3-4B-Instruct-2507-stage1/trainer_log.jsonl
-```
-
-预期：
-
-- 前 10-11 个 step 可能出现 fp16 overflow skip，`grad_norm=0.0`，loss scale 从 65536 逐步降到较低值。
-- 约 step 12 左右应出现真实更新，`grad_norm` 非 0，`ts_encoder_learning_rate` 进入 warmup。
-- 显存大约在 43GB 附近波动；如果遇到长样本可能上浮，A800 仍应有较大余量。
-- 第一个 checkpoint 在 `save_steps=100`，大约 65 分钟左右出现。
-
-### 6.5 完成后检查
-
-```bash
-tail -n 80 "$LOG"
-ls -lah ./output/Qwen3-4B-Instruct-2507-stage1
-du -sh ./output/Qwen3-4B-Instruct-2507-stage1
-tail -n 20 ./output/Qwen3-4B-Instruct-2507-stage1/trainer_log.jsonl
-```
-
-完成标准：
-
-```text
-1000/1000 steps
-有最终 loss / runtime / train_samples_per_second
-output/Qwen3-4B-Instruct-2507-stage1 可被后续 Stage2 作为 model_name_or_path
-```
+如果以后改 LoRA，本报告不再作为训练入口，只作为 full SFT 排查参考。
 
 ## 7. 对 Stage1 效果的预期
 
@@ -584,23 +446,17 @@ ST-Align 数据结构本身有明显偏差：大量样本不需要读 TS，仅�
 5. 不用 Stage1 spatial 成功宣称模型已经学会时序读取。
 ```
 
-## 8. 目前不建议做的事
+## 8. 不再建议做的事
 
 - 不建议回到 GPU-only ZeRO-3 正式长跑；已多次在 76-78GB 附近 OOM。
-- 不建议用 batch=1 offload 正式跑；能跑但约 33 小时，太慢。
-- 不建议立刻改 bf16；bf16 GPU-only 已证明仍会被 optimizer state 卡住，offload+bf16可另测，但会引入新变量。
-- 不建议马上改数据、LoRA、QLoRA、cutoff_len 或学习率；当前目标是先用官方源入口完成 Stage1 baseline。
-- 不建议把 batch=8 的前几步 overflow 当失败；这是 fp16 dynamic loss scale 正常下调。
+- 不建议继续使用 ZeRO-3 offload-all；它会触发容器 cgroup CPU OOM kill。
+- 不建议沿用 batch=8/offload-all 操作命令；该命令只保留为失败路径证据。
+- 不建议继续补跑 full SFT 到 1000 step；当前 full SFT 已停在 checkpoint-500，后续主线若改 LoRA，应以该产物和评测作为对比基线。
+- 不建议把本报告里的早期“推荐 batch=8”当成最终建议；最终口径以报告 27 为准。
 
-## 9. 下一步建议
+## 9. 2026-06-12 晚间正式尝试补充日志
 
-直接用 §6.2 的 batch=8 正式命令开 Stage1。  
-
-若 100 steps checkpoint 成功，继续跑完 1000 steps。若 batch=8 中途 OOM，再回退到 batch=4/grad_acc=16；若 batch=8 稳定但想继续压时长，可另开短验证 batch=16/grad_acc=4，但正式 baseline 优先不要在已可跑的 batch=8 上继续冒险。
-
-## 10. 2026-06-12 晚间正式尝试补充日志
-
-### 10.1 batch=8 offload fp16 正式训练
+### 9.1 batch=8 offload fp16 正式训练
 
 正式启动命令使用 `setsid` 后台运行，核心参数：
 
@@ -637,7 +493,7 @@ ts_encoder_learning_rate=5e-7
 
 结论：batch=8 的显存前向/反向短跑可以进入训练，但正式训练在第一次真实 optimizer/update 附近被系统杀掉；这更像进程/CPU/offload/系统层面的 kill，而不是常规 CUDA OOM。
 
-### 10.2 batch=4 offload fp16 正式训练
+### 9.2 batch=4 offload fp16 正式训练
 
 为排除 batch=8 过大，回退到：
 
@@ -671,7 +527,7 @@ ts_encoder_learning_rate=5e-7
 
 结论：把 micro batch 从 8 降到 4 没有解决 `-9`；问题不只是 batch=8 的 GPU 显存占用。
 
-### 10.3 offload bf16 batch=4 尝试
+### 9.3 offload bf16 batch=4 尝试
 
 按“改 bf”的要求，把 fp16 改为 bf16，其他保持 batch=4/offload：
 
@@ -708,7 +564,7 @@ RuntimeError: mat1 and mat2 must have the same dtype, but got Float and BFloat16
 
 结论：这次不是显存问题。bf16 下模型权重已转成 BFloat16，但 time-series encoder 的 `x_patches` 仍是 Float32，进入 `self.mlp` 时触发 dtype mismatch。若继续走 bf16，需要在 Qwen3TS 的 time-series encoder 源码里做最小 dtype 对齐，例如在 `self.mlp(x_patches)` 前把 `x_patches` 转到 MLP 权重 dtype/device。这个改动不改变训练入口、数据、模板、loss 或 batch 语义，只是让自定义 TS encoder 遵守当前精度模式。
 
-### 10.4 bf16 dtype 补丁与短跑结果
+### 9.4 bf16 dtype 补丁与短跑结果
 
 代码库已有同类实现可参考：
 
@@ -760,7 +616,7 @@ python -m py_compile /root/autodl-tmp/cache/huggingface/modules/transformers_mod
 
 该方向随后停止，配置文件已删除；不要按 ZeRO-2 路线继续。
 
-### 10.5 对 `-9` 的根因复查与纠正
+### 9.5 对 `-9` 的根因复查与纠正
 
 上面的 ZeRO-2 方向后来被停止。原因是这会引入过大的训练配置变量，不适合作为优先路线。真正应该先查 `-9` 的系统原因。
 
@@ -830,7 +686,7 @@ GPU memory ~= 42.6GB used / 38.7GB free
 
 当前判断：`offload_param + offload_optimizer` 是导致 `-9` 的主要不稳定点；`ZeRO-3 + optimizer-only CPU offload + bf16` 是更贴近原目标的单卡 A800 可行路线。
 
-### 10.6 bf16 ZeRO-3 optimizer-only smoke 完成
+### 9.6 bf16 ZeRO-3 optimizer-only smoke 完成
 
 上述 smoke 最终完整跑完 20/20，并成功保存 checkpoint 与最终模型：
 
@@ -856,7 +712,7 @@ cgroup oom_kill 仍为 4，未增加
 
 说明 `ZeRO-3 + optimizer-only CPU offload + bf16 + batch2/ga32` 能越过此前 offload-all 的 cgroup OOM kill，并能正常保存模型。
 
-### 10.7 正式 Stage1 已启动
+### 9.7 正式 Stage1 启动与后续状态
 
 正式训练启动时间：2026-06-12 21:49 UTC。
 
@@ -904,4 +760,6 @@ cgroup oom_kill = 4，未增加
 GPU memory ~= 36.0GB used / 45.2GB free
 ```
 
-按当前约 80-85 秒/step 估算，1000 step 约 22-24 小时。
+按当时约 80-85 秒/step 估算，1000 step 约 22-24 小时。
+
+后续状态已更新在报告 27：正式 full SFT 最终按用户指令停在 `checkpoint-500`，不再继续补跑 1000 step；该 checkpoint 已做保护快照，并已在报告 28 中完成 ST-Align 全量测试。后续如果转 LoRA，本报告只作为 full SFT 排查历史，不作为新的训练操作手册。
