@@ -4,9 +4,9 @@
   "evaluated_samples": 40512,
   "missing_predictions": 0,
   "coverage": 1.0,
-  "overall_score": 0.840536675448961,
+  "overall_score": 0.530484794628752,
   "exact_match": 0.9489557115732768,
-  "relative_accuracy": 0.70309665803459,
+  "relative_accuracy": 0.0,
   "total_input_tokens": 16394615,
   "avg_input_tokens": 404.69,
   "samples_with_token_info": 40512

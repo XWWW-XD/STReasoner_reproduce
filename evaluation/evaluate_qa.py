@@ -192,10 +192,10 @@ def evaluate_alignment_predictions(
                 rel_error = abs(pred_float - target_float) / abs(target_float)
             else:
                 rel_error = abs(pred_float - target_float)
-                rel_score = max(0.0, 1.0 - rel_error)
-                rel_sum += rel_score
-                rel_total += 1
-                overall_sum += rel_score
+            rel_score = max(0.0, 1.0 - rel_error)
+            rel_sum += rel_score
+            rel_total += 1
+            overall_sum += rel_score
         else:
             em_total += 1
             if _normalize_text(prediction) == _normalize_text(target):

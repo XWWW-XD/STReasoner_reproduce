@@ -1,0 +1,11 @@
+{
+  "global_steps": 500,
+  "loss_start": 16.5176,
+  "loss_end": 0.2063,
+  "grad_norm_start": 595.2406005859375,
+  "grad_norm_end": 2.7807860374450684,
+  "learning_rate_end": 5.1762773357163175e-06,
+  "ts_encoder_learning_rate_end": 5.160257887858278e-06,
+  "epoch_end": 0.16476839742137458,
+  "source": "00_new_codes/repro_autodl/experiments/checkpoints/Qwen3-4B-Instruct-2507-stage1-checkpoint-500-paused/trainer_state.json"
+}
