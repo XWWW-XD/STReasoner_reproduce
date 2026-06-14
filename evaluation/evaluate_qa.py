@@ -186,16 +186,17 @@ def evaluate_alignment_predictions(
         target_float = _safe_float(target)
         pred_float = _safe_float(prediction)
         evaluated += 1
-
+        # 如果能转成float，则用数值判断是否匹配
         if target_float is not None and pred_float is not None:
-            if abs(target_float) > 1e-6:
+            if abs(target_float) > 1e-6: # 相对误差
                 rel_error = abs(pred_float - target_float) / abs(target_float)
-            else:
+            else: # 绝对误差
                 rel_error = abs(pred_float - target_float)
-                rel_score = max(0.0, 1.0 - rel_error)
-                rel_sum += rel_score
-                rel_total += 1
-                overall_sum += rel_score
+            rel_score = max(0.0, 1.0 - rel_error)
+            rel_sum += rel_score
+            rel_total += 1
+            overall_sum += rel_score
+        # 如果不能转成float，则用exact match判断是否文本exact match
         else:
             em_total += 1
             if _normalize_text(prediction) == _normalize_text(target):
