@@ -123,22 +123,35 @@ idx=4 response='200'
 
 结论：128 条推理输出形态正常，能进入 vLLM、能处理 TS 输入、能生成短答案，没有空输出或卡死。
 
-### 3.2 问题2：指标异常说明
+### 3.2 问题2：`evaluation/evaluate_qa.py` 数值题评分 bug（已修复）
 
-`overall_score=0.1953125` 和 `exact_match=0.9259259259259259` 同时出现，看起来不一致。检查 `evaluation/evaluate_qa.py` 后发现 alignment 数值题评分逻辑存在问题：
+初版评分时 `overall_score=0.1953` 与 `exact_match=0.9259` 看起来不一致。原因是非零数值 target 只算了 `rel_error`，未计入 `rel_sum`/`overall_sum`：
 
 ```python
-if target_float is not None and pred_float is not None:
-    if abs(target_float) > 1e-6:
-        rel_error = abs(pred_float - target_float) / abs(target_float)
-    else:
-        rel_error = abs(pred_float - target_float)
-        # 以下代码有缩进问题
-        rel_score = max(0.0, 1.0 - rel_error)
-        rel_sum += rel_score
-        rel_total += 1
-        overall_sum += rel_score
+# 修复前（错误）
+if abs(target_float) > 1e-6:
+    rel_error = abs(pred_float - target_float) / abs(target_float)
+else:
+    rel_error = abs(pred_float - target_float)
+    rel_score = max(0.0, 1.0 - rel_error)
+    rel_sum += rel_score  # 仅 zero target 会累加
 ```
+
+已修复为对所有数值题统一累加：
+
+```python
+# 修复后
+if abs(target_float) > 1e-6:
+    rel_error = abs(pred_float - target_float) / abs(target_float)
+else:
+    rel_error = abs(pred_float - target_float)
+rel_score = max(0.0, 1.0 - rel_error)
+rel_sum += rel_score
+rel_total += 1
+overall_sum += rel_score
+```
+
+下文评分结果均使用修复后的 `evaluation/evaluate_qa.py`，对同一批 `generated_answer.json` 重评得到。
 
 ## 4. 评分结果
 
@@ -154,7 +167,7 @@ PYTHONPATH=. /root/autodl-tmp/conda/envs/str-py310/bin/python evaluation/evaluat
 评分日志：
 
 ```text
-00_new_codes/repro_autodl/experiments/logs/qwen3_4b_stage1_ckpt500_alignment_128_evaluate_20260613_095940.log
+00_new_codes/repro_autodl/experiments/logs/qwen3_4b_stage1_ckpt500_alignment_128_evaluate_report29_20260614_120007.log
 ```
 
 指标文件：
@@ -163,22 +176,23 @@ PYTHONPATH=. /root/autodl-tmp/conda/envs/str-py310/bin/python evaluation/evaluat
 exp/qwen3_4b_stage1_ckpt500_alignment_128/evaluation_metrics.json
 ```
 
-官方脚本输出：
+官方脚本输出（修复后）：
 
 ```json
 {
   "task": "alignment",
+  "total_samples": 128,
+  "evaluated_samples": 128,
+  "missing_predictions": 0,
   "coverage": 1.0,
-  "overall_score": 0.1953125,
-  "exact_match": 0.9259259259259259,
-  "relative_accuracy": null,
+  "overall_score": 0.7029,
+  "exact_match": 0.9259,
+  "relative_accuracy": 0.6433,
   "total_input_tokens": 32666,
   "avg_input_tokens": 255.2,
   "samples_with_token_info": 128
 }
 ```
-
-用的是 **exact match**
 
 ## 5. 全量测试操作与结果
 
@@ -264,7 +278,7 @@ avg_len = 3.61
 exp/qwen3_4b_stage1_ckpt500_alignment_full/evaluation_metrics.json
 ```
 
-官方全量评分输出：
+官方全量评分输出（修复后）：
 
 ```json
 {
@@ -273,9 +287,9 @@ exp/qwen3_4b_stage1_ckpt500_alignment_full/evaluation_metrics.json
   "evaluated_samples": 40512,
   "missing_predictions": 0,
   "coverage": 1.0,
-  "overall_score": 0.5304854117288709,
-  "exact_match": 0.9489557115732768,
-  "relative_accuracy": 0.0,
+  "overall_score": 0.8405,
+  "exact_match": 0.9490,
+  "relative_accuracy": 0.7031,
   "total_input_tokens": 16394615,
   "avg_input_tokens": 404.69,
   "samples_with_token_info": 40512
@@ -284,47 +298,26 @@ exp/qwen3_4b_stage1_ckpt500_alignment_full/evaluation_metrics.json
 
 解释：
 
-- `coverage=1.0`、`missing_predictions=0` 是关键健康信号：全量没有漏样本。
-- `exact_match=0.9489557` 对应非数值类目标的 exact match。
-- `relative_accuracy=0.0` 和 `overall_score=0.5304854` 受第 5 节提到的官方数值评分代码缺陷影响，不能直接当作完整 ST-Align 数值能力指标。
+- `coverage=1.0`、`missing_predictions=0`：全量没有漏样本。
+- `exact_match≈0.949`：非数值类目标的 exact match。
+- `relative_accuracy≈0.703`：数值类目标的相对准确度。
+- `overall_score≈0.841`：数值 + 非数值混合总分。
 
-## 6. 非官方诊断指标
+## 6. 训练曲线（checkpoint-500，step 1–500）
 
-为避免只看到官方 evaluator 的缺陷，本次额外计算了一个诊断文件：
+数据来源：`trainer_state.json`（正式训练 `...214947_bf16_zero3opt_batch2_ga32_train.log`）。
 
-```text
-exp/qwen3_4b_stage1_ckpt500_alignment_full/diagnostic_alignment_metrics_fixed_logic.json
-```
+| 指标 | step 1 | step 500 |
+|---|---:|---:|
+| loss | 16.52 | 0.21 |
+| grad_norm | 595.2 | 2.78 |
+| learning_rate | 0 | 5.18e-06 |
+| ts_encoder_lr | 5.0e-07 | 5.16e-06 |
+| epoch | 0.00033 | 0.165 |
 
-这个诊断没有替代官方结果，只用于判断 checkpoint 是否明显坏掉，以及数值/非数值输出是否可解析。
+![训练四联图](artifacts/stage1_a800_ckpt500/training_curves.png)
 
-诊断结果：
-
-```json
-{
-  "total": 40512,
-  "missing": 0,
-  "numeric_targets": 17865,
-  "numeric_pred_parseable": 17865,
-  "numeric_parse_rate": 1.0,
-  "numeric_exact_abs_1e-6": 0.4469633361321019,
-  "numeric_exact_abs_1e-3": 0.46397984886649873,
-  "numeric_mae": 8.694733430937674,
-  "numeric_median_abs_error": 0.04999999999999999,
-  "numeric_mean_relative_error_nonzero": 1.1668330577047046,
-  "numeric_median_relative_error_nonzero": 0.07692307692307682,
-  "nonnumeric_targets": 22647,
-  "nonnumeric_exact": 0.9489557115732768,
-  "diagnostic_overall_score_fixed_logic": 0.840536675448961
-}
-```
-
-诊断解读：
-
-- 17865 条数值目标的预测全部可解析为数字，说明模型没有出现大面积格式崩坏。
-- 非数值目标 exact match 约 94.90%，与官方 `exact_match` 一致。
-- 数值目标 `abs <= 1e-3` 的比例约 46.40%，中位绝对误差约 0.05。
-- 按补齐后的相对分数逻辑，诊断 overall 约 0.8405；这不是官方指标，不能直接和论文表格混比。
+![训练 loss](artifacts/stage1_a800_ckpt500/training_loss.png)
 
 ## 7. 最终判断
 
@@ -336,11 +329,10 @@ Stage1 checkpoint-500 在 ST-Align 全量测试上的链路结果是健康的：
 - 官方 evaluator 能完成全量评分。
 - 格式层面没有明显坏掉。
 
-需要注意的异常：
+需要注意：
 
-- `inference/vllm/chatts_vllm.py` 需要同步 bf16 dtype 对齐补丁，否则 bf16 checkpoint 在 vLLM 初始化阶段会失败。
-- `evaluation/evaluate_qa.py` 的 alignment 数值评分逻辑不完整，导致官方 `relative_accuracy`/`overall_score` 对数值题解释困难。
-- 当前测试对象是 `checkpoint-500`，不是 1000 step 完整 Stage1 终点；因为用户要求暂停到 500，这次报告只评价 checkpoint-500。
+- `inference/vllm/chatts_vllm.py` 需保留 bf16 dtype 对齐补丁。
+- 当前测试对象是 `checkpoint-500`，不是 1000 step 完整 Stage1 终点。
 
 ## 8. 关服务器前必须保留
 
@@ -352,7 +344,7 @@ inference/vllm/chatts_vllm.py
 exp/qwen3_4b_stage1_ckpt500_alignment_128/
 00_new_codes/repro_autodl/experiments/eval_subsets/alignment_test_head128.jsonl
 00_new_codes/repro_autodl/experiments/logs/qwen3_4b_stage1_ckpt500_alignment_128_inference_20260613_095619_patched.log
-00_new_codes/repro_autodl/experiments/logs/qwen3_4b_stage1_ckpt500_alignment_128_evaluate_20260613_095940.log
+00_new_codes/repro_autodl/experiments/logs/qwen3_4b_stage1_ckpt500_alignment_128_evaluate_report29_20260614_120007.log
 ```
 
 全量跑完后还要保留：
@@ -362,6 +354,6 @@ exp/qwen3_4b_stage1_ckpt500_alignment_full/
 00_new_codes/repro_autodl/experiments/logs/qwen3_4b_stage1_ckpt500_alignment_full_inference_20260613_100107.log
 00_new_codes/repro_autodl/experiments/logs/qwen3_4b_stage1_ckpt500_alignment_full_evaluate_20260613_104412.log
 exp/qwen3_4b_stage1_ckpt500_alignment_full/evaluation_metrics.json
-exp/qwen3_4b_stage1_ckpt500_alignment_full/diagnostic_alignment_metrics_fixed_logic.json
+00_new_codes/reports/t3-autodl2-三阶段训练复现/artifacts/stage1_a800_ckpt500/
 ```
 

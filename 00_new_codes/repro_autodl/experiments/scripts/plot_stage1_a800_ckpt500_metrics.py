@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Plot Stage1 A800 ckpt-500 training curves and ST-Align eval comparison."""
+"""Plot Stage1 A800 ckpt-500 training curves."""
 
 from __future__ import annotations
 
@@ -17,8 +17,6 @@ TRAINER_STATE = REPO / (
 OUT_DIR = REPO / (
     "00_new_codes/reports/t3-autodl2-三阶段训练复现/artifacts/stage1_a800_ckpt500"
 )
-METRICS_128 = REPO / "exp/qwen3_4b_stage1_ckpt500_alignment_128"
-METRICS_FULL = REPO / "exp/qwen3_4b_stage1_ckpt500_alignment_full"
 
 
 def load_log_history() -> list[dict]:
@@ -74,8 +72,7 @@ def plot_training_curves(history: list[dict], out_dir: Path) -> None:
     ax.set_ylabel("Epoch")
     ax.grid(True, alpha=0.3)
 
-    out = out_dir / "training_curves.png"
-    fig.savefig(out, dpi=160)
+    fig.savefig(out_dir / "training_curves.png", dpi=160)
     plt.close(fig)
 
     fig, ax = plt.subplots(figsize=(10, 4), constrained_layout=True)
@@ -87,43 +84,6 @@ def plot_training_curves(history: list[dict], out_dir: Path) -> None:
     ax.legend()
     ax.grid(True, alpha=0.3)
     fig.savefig(out_dir / "training_loss.png", dpi=160)
-    plt.close(fig)
-
-
-def load_metrics(path: Path, backup_name: str) -> tuple[dict, dict]:
-    current = json.loads((path / "evaluation_metrics.json").read_text(encoding="utf-8"))
-    backup = json.loads((path / backup_name).read_text(encoding="utf-8"))
-    return backup, current
-
-
-def plot_eval_comparison(out_dir: Path) -> None:
-    r28_128, r29_128 = load_metrics(METRICS_128, "evaluation_metrics_report28.json")
-    r28_full, r29_full = load_metrics(METRICS_FULL, "evaluation_metrics_report28.json")
-
-    metrics = ["overall_score", "relative_accuracy", "exact_match"]
-    labels = ["Overall", "Rel. acc.", "Exact match"]
-    x = range(len(metrics))
-    width = 0.18
-
-    fig, axes = plt.subplots(1, 2, figsize=(11, 4.5), constrained_layout=True)
-    fig.suptitle("ST-Align eval: report 28 (buggy) vs report 29 (fixed)", fontsize=12)
-
-    for ax, title, old_m, new_m in (
-        (axes[0], "Head-128 subset", r28_128, r29_128),
-        (axes[1], "Full 40512", r28_full, r29_full),
-    ):
-        old_vals = [old_m.get(k) or 0.0 for k in metrics]
-        new_vals = [new_m.get(k) or 0.0 for k in metrics]
-        ax.bar([i - width / 2 for i in x], old_vals, width, label="Report 28", color="#94a3b8")
-        ax.bar([i + width / 2 for i in x], new_vals, width, label="Report 29", color="#2563eb")
-        ax.set_xticks(list(x))
-        ax.set_xticklabels(labels)
-        ax.set_ylim(0, 1.05)
-        ax.set_title(title)
-        ax.legend(fontsize=9)
-        ax.grid(True, axis="y", alpha=0.3)
-
-    fig.savefig(out_dir / "eval_metrics_report28_vs_29.png", dpi=160)
     plt.close(fig)
 
 
@@ -150,7 +110,6 @@ def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     history = load_log_history()
     plot_training_curves(history, OUT_DIR)
-    plot_eval_comparison(OUT_DIR)
     write_summary(history, OUT_DIR)
     print(f"Wrote plots to {OUT_DIR}")
 
