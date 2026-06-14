@@ -44,14 +44,6 @@ evaluation/evaluate.py
 
 注意：`evaluation/evaluate.py` 的 alignment 默认路径是旧的 `data/alignment/alignment_test.jsonl`，所以本次必须显式传入 `data/ST-Bench/ST-Align/alignment_test.jsonl` 或对应子集路径。
 
-### 2.1 详细配置
-
-服务器：A800 
-
-模型：Qwen3-4B Stage1 checkpoint-500 ST-Align 
-
-精度：bf16
-
 ## 3. 问题记录
 
 ### 3.1 问题1：当前 ST-Align 推理使用的 `inference/vllm/chatts_vllm.py` 没有同步bf16补丁
@@ -123,7 +115,7 @@ idx=4 response='200'
 
 结论：128 条推理输出形态正常，能进入 vLLM、能处理 TS 输入、能生成短答案，没有空输出或卡死。
 
-### 3.2 问题2：`evaluation/evaluate_qa.py` 数值题评分 bug（已修复）
+### 3.2 问题2：`evaluation/evaluate_qa.py` 数值题评分 bug
 
 初版评分时 `overall_score=0.1953` 与 `exact_match=0.9259` 看起来不一致。原因是非零数值 target 只算了 `rel_error`，未计入 `rel_sum`/`overall_sum`：
 
@@ -303,36 +295,7 @@ exp/qwen3_4b_stage1_ckpt500_alignment_full/evaluation_metrics.json
 - `relative_accuracy≈0.703`：数值类目标的相对准确度。
 - `overall_score≈0.841`：数值 + 非数值混合总分。
 
-## 6. 训练曲线（checkpoint-500，step 1–500）
 
-数据来源：`trainer_state.json`（正式训练 `...214947_bf16_zero3opt_batch2_ga32_train.log`）。
-
-| 指标 | step 1 | step 500 |
-|---|---:|---:|
-| loss | 16.52 | 0.21 |
-| grad_norm | 595.2 | 2.78 |
-| learning_rate | 0 | 5.18e-06 |
-| ts_encoder_lr | 5.0e-07 | 5.16e-06 |
-| epoch | 0.00033 | 0.165 |
-
-![训练四联图](artifacts/stage1_a800_ckpt500/training_curves.png)
-
-![训练 loss](artifacts/stage1_a800_ckpt500/training_loss.png)
-
-## 7. 最终判断
-
-Stage1 checkpoint-500 在 ST-Align 全量测试上的链路结果是健康的：
-
-- checkpoint 能加载。
-- vLLM TS 推理能跑完整 40512 条。
-- 输出没有空响应。
-- 官方 evaluator 能完成全量评分。
-- 格式层面没有明显坏掉。
-
-需要注意：
-
-- `inference/vllm/chatts_vllm.py` 需保留 bf16 dtype 对齐补丁。
-- 当前测试对象是 `checkpoint-500`，不是 1000 step 完整 Stage1 终点。
 
 ## 8. 关服务器前必须保留
 
