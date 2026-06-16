@@ -1,0 +1,188 @@
+{
+  "tasks": {
+    "cgmacros/a1c_classification": {
+      "dataset": "cgmacros",
+      "task": "a1c_classification",
+      "source_file": "exp/cgmacros/a1c_classification.py",
+      "capability": "Inference",
+      "subtask": "Physiological Classification",
+      "metric": "Accuracy"
+    },
+    "cgmacros/cgm_stat_calculation": {
+      "dataset": "cgmacros",
+      "task": "cgm_stat_calculation",
+      "source_file": "exp/cgmacros/cgm_stat_calculation.py",
+      "capability": "Perception",
+      "subtask": "Stat. Calculation",
+      "metric": "sMAPE (1-0.5*sMAPE)"
+    },
+    "cgmacros/fasting_glu_prediction": {
+      "dataset": "cgmacros",
+      "task": "fasting_glu_prediction",
+      "source_file": "exp/cgmacros/fasting_glu_prediction.py",
+      "capability": "Inference",
+      "subtask": "Subject Profiling",
+      "metric": "Accuracy"
+    },
+    "cgmacros/iauc_calculation": {
+      "dataset": "cgmacros",
+      "task": "iauc_calculation",
+      "source_file": "exp/cgmacros/iauc_calculation.py",
+      "capability": "Perception",
+      "subtask": "Stat. Calculation",
+      "metric": "Accuracy"
+    },
+    "cgmacros/meal_forecasting": {
+      "dataset": "cgmacros",
+      "task": "meal_forecasting",
+      "source_file": "exp/cgmacros/meal_forecasting.py",
+      "capability": "Generation",
+      "subtask": "Future Forecasting",
+      "metric": "sMAPE"
+    },
+    "cgmacros/meal_forecasting_meal_info": {
+      "dataset": "cgmacros",
+      "task": "meal_forecasting_meal_info",
+      "source_file": "exp/cgmacros/meal_forecasting_meal_info.py",
+      "capability": "Generation",
+      "subtask": "Future Forecasting",
+      "metric": "sMAPE"
+    },
+    "cgmacros/meal_forecasting_no_ref": {
+      "dataset": "cgmacros",
+      "task": "meal_forecasting_no_ref",
+      "source_file": "exp/cgmacros/meal_forecasting_no_ref.py",
+      "capability": "Generation",
+      "subtask": "Future Forecasting",
+      "metric": "sMAPE"
+    },
+    "cgmacros/meal_forecasting_no_ref_meal_info": {
+      "dataset": "cgmacros",
+      "task": "meal_forecasting_no_ref_meal_info",
+      "source_file": "exp/cgmacros/meal_forecasting_no_ref_meal_info.py",
+      "capability": "Generation",
+      "subtask": "Future Forecasting",
+      "metric": "sMAPE"
+    },
+    "cgmacros/meal_img_classification": {
+      "dataset": "cgmacros",
+      "task": "meal_img_classification",
+      "source_file": "exp/cgmacros/meal_img_classification.py",
+      "capability": "Inference",
+      "subtask": "Physiological Classification",
+      "metric": "Accuracy"
+    },
+    "cgmacros/meal_react_comparison": {
+      "dataset": "cgmacros",
+      "task": "meal_react_comparison",
+      "source_file": "exp/cgmacros/meal_react_comparison.py",
+      "capability": "Inference",
+      "subtask": "Subject Profiling",
+      "metric": "Accuracy"
+    },
+    "cgmacros/meal_time_localization": {
+      "dataset": "cgmacros",
+      "task": "meal_time_localization",
+      "source_file": "exp/cgmacros/meal_time_localization.py",
+      "capability": "Inference",
+      "subtask": "Event Localization",
+      "metric": "IoU"
+    },
+    "cgmacros/non_meal_imputation_calories": {
+      "dataset": "cgmacros",
+      "task": "non_meal_imputation_calories",
+      "source_file": "exp/cgmacros/non_meal_imputation_calories.py",
+      "capability": "Generation",
+      "subtask": "Signal Imputation",
+      "metric": "sMAPE"
+    },
+    "cgmacros/non_meal_imputation_cgm_only": {
+      "dataset": "cgmacros",
+      "task": "non_meal_imputation_cgm_only",
+      "source_file": "exp/cgmacros/non_meal_imputation_cgm_only.py",
+      "capability": "Generation",
+      "subtask": "Signal Imputation",
+      "metric": "sMAPE"
+    },
+    "cgmacros/non_meal_imputation_hr": {
+      "dataset": "cgmacros",
+      "task": "non_meal_imputation_hr",
+      "source_file": "exp/cgmacros/non_meal_imputation_hr.py",
+      "capability": "Generation",
+      "subtask": "Signal Imputation",
+      "metric": "sMAPE"
+    }
+  },
+  "cgmacros_catalog": {
+    "cgm_stat_calculation": {
+      "capability": "Perception",
+      "subtask": "Stat. Calculation",
+      "metric": "sMAPE (1-0.5*sMAPE)"
+    },
+    "iauc_calculation": {
+      "capability": "Perception",
+      "subtask": "Stat. Calculation",
+      "metric": "Accuracy"
+    },
+    "a1c_classification": {
+      "capability": "Inference",
+      "subtask": "Physiological Classification",
+      "metric": "Accuracy"
+    },
+    "meal_img_classification": {
+      "capability": "Inference",
+      "subtask": "Physiological Classification",
+      "metric": "Accuracy"
+    },
+    "meal_time_localization": {
+      "capability": "Inference",
+      "subtask": "Event Localization",
+      "metric": "IoU"
+    },
+    "meal_react_comparison": {
+      "capability": "Inference",
+      "subtask": "Subject Profiling",
+      "metric": "Accuracy"
+    },
+    "fasting_glu_prediction": {
+      "capability": "Inference",
+      "subtask": "Subject Profiling",
+      "metric": "Accuracy"
+    },
+    "meal_forecasting": {
+      "capability": "Generation",
+      "subtask": "Future Forecasting",
+      "metric": "sMAPE"
+    },
+    "meal_forecasting_meal_info": {
+      "capability": "Generation",
+      "subtask": "Future Forecasting",
+      "metric": "sMAPE"
+    },
+    "meal_forecasting_no_ref": {
+      "capability": "Generation",
+      "subtask": "Future Forecasting",
+      "metric": "sMAPE"
+    },
+    "meal_forecasting_no_ref_meal_info": {
+      "capability": "Generation",
+      "subtask": "Future Forecasting",
+      "metric": "sMAPE"
+    },
+    "non_meal_imputation_cgm_only": {
+      "capability": "Generation",
+      "subtask": "Signal Imputation",
+      "metric": "sMAPE"
+    },
+    "non_meal_imputation_hr": {
+      "capability": "Generation",
+      "subtask": "Signal Imputation",
+      "metric": "sMAPE"
+    },
+    "non_meal_imputation_calories": {
+      "capability": "Generation",
+      "subtask": "Signal Imputation",
+      "metric": "sMAPE"
+    }
+  }
+}

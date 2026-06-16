@@ -1,0 +1,14 @@
+{
+  "samples": [
+    {
+      "path": "/root/autodl-tmp/datasets/HEARTS/frozen_test_cases/cgmacros/cgm_stat_calculation/0.pkl",
+      "size_bytes": 43761,
+      "detected_keys": [
+        "GT",
+        "cgm"
+      ],
+      "cgm_rows_hint": 1431,
+      "has_dataframe": true
+    }
+  ]
+}

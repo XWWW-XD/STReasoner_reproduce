@@ -1,0 +1,34 @@
+{
+  "timestamp": "2026-06-16T00:48:02.503898+00:00",
+  "method": "git_clone + curl_resolve (huggingface_hub blocked by proxy/xet)",
+  "frozen_dir": "/root/autodl-tmp/datasets/HEARTS/frozen_test_cases",
+  "pkl_count": 10,
+  "lfs_pointer_remaining": [],
+  "total_bytes": 437619,
+  "readme_exists": true,
+  "code_cloned": true,
+  "pkl_paths": [
+    "cgmacros/cgm_stat_calculation/0.pkl",
+    "cgmacros/cgm_stat_calculation/1.pkl",
+    "cgmacros/cgm_stat_calculation/2.pkl",
+    "cgmacros/cgm_stat_calculation/3.pkl",
+    "cgmacros/cgm_stat_calculation/4.pkl",
+    "cgmacros/cgm_stat_calculation/5.pkl",
+    "cgmacros/cgm_stat_calculation/6.pkl",
+    "cgmacros/cgm_stat_calculation/7.pkl",
+    "cgmacros/cgm_stat_calculation/8.pkl",
+    "cgmacros/cgm_stat_calculation/9.pkl"
+  ],
+  "downloaded_via_curl": [
+    "cgmacros/cgm_stat_calculation/0.pkl",
+    "cgmacros/cgm_stat_calculation/1.pkl",
+    "cgmacros/cgm_stat_calculation/2.pkl",
+    "cgmacros/cgm_stat_calculation/3.pkl",
+    "cgmacros/cgm_stat_calculation/4.pkl",
+    "cgmacros/cgm_stat_calculation/5.pkl",
+    "cgmacros/cgm_stat_calculation/6.pkl",
+    "cgmacros/cgm_stat_calculation/7.pkl",
+    "cgmacros/cgm_stat_calculation/8.pkl",
+    "cgmacros/cgm_stat_calculation/9.pkl"
+  ]
+}

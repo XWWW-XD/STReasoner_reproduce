@@ -1,0 +1,345 @@
+{
+  "entries": [
+    {
+      "index": 0,
+      "source_path": "cgmacros/cgm_stat_calculation/0.pkl",
+      "dataset": "cgmacros",
+      "task": "cgm_stat_calculation",
+      "capability": "Perception",
+      "subtask": "Stat. Calculation",
+      "metric": "sMAPE (1-0.5*sMAPE)",
+      "prompt_or_query": "The continuous glucose monitors (CGM) data for this subject is provided in 'input/cgm.csv'. There are two columns in this csv file: one is timestamp containing the time of each reading, and the other column \"Libre GL\" contains glucose values (mg/dL). Calculate percentage of time CGM is below and above normal range (70 - 180 mg/dL). Please calculate and output your final answer as a JSON object without any other text in the following format:\n{\n    \"below\": [float, percentage of time CGM < 70 mg/dL],\n    \"above\": [float, percentage of time CGM > 180 mg/dL]\n}",
+      "prompt_source": "HEARTS/exp/cgmacros/cgm_stat_calculation.py run_agent prompt (official)",
+      "prompt_truncated": false,
+      "input_summary": "CGM time series as pandas DataFrame in pickle key 'cgm'; columns include timestamp + Libre GL (mg/dL); ~1431 rows per minute sampling.",
+      "ground_truth": {
+        "below": 0.0,
+        "above": 3.7037
+      },
+      "ground_truth_source_keys": [
+        "GT.below",
+        "GT.above"
+      ],
+      "notes": "testcase file index 0",
+      "glucose_stats": {
+        "n_readings": 1431,
+        "min_mg_dl": 80.0,
+        "max_mg_dl": 192.0,
+        "mean_mg_dl": 125.99,
+        "std_mg_dl": 21.83,
+        "minutes_below_70": 0,
+        "minutes_above_180": 53,
+        "minutes_in_range_70_180": 1378,
+        "pct_in_range": 96.3
+      },
+      "gt_verified_against_series": true
+    },
+    {
+      "index": 1,
+      "source_path": "cgmacros/cgm_stat_calculation/1.pkl",
+      "dataset": "cgmacros",
+      "task": "cgm_stat_calculation",
+      "capability": "Perception",
+      "subtask": "Stat. Calculation",
+      "metric": "sMAPE (1-0.5*sMAPE)",
+      "prompt_or_query": "The continuous glucose monitors (CGM) data for this subject is provided in 'input/cgm.csv'. There are two columns in this csv file: one is timestamp containing the time of each reading, and the other column \"Libre GL\" contains glucose values (mg/dL). Calculate percentage of time CGM is below and above normal range (70 - 180 mg/dL). Please calculate and output your final answer as a JSON object without any other text in the following format:\n{\n    \"below\": [float, percentage of time CGM < 70 mg/dL],\n    \"above\": [float, percentage of time CGM > 180 mg/dL]\n}",
+      "prompt_source": "HEARTS/exp/cgmacros/cgm_stat_calculation.py run_agent prompt (official)",
+      "prompt_truncated": false,
+      "input_summary": "CGM time series as pandas DataFrame in pickle key 'cgm'; columns include timestamp + Libre GL (mg/dL); ~1431 rows per minute sampling.",
+      "ground_truth": {
+        "below": 0.0,
+        "above": 17.051
+      },
+      "ground_truth_source_keys": [
+        "GT.below",
+        "GT.above"
+      ],
+      "notes": "testcase file index 1",
+      "glucose_stats": {
+        "n_readings": 1431,
+        "min_mg_dl": 90.0,
+        "max_mg_dl": 289.0,
+        "mean_mg_dl": 145.52,
+        "std_mg_dl": 45.67,
+        "minutes_below_70": 0,
+        "minutes_above_180": 244,
+        "minutes_in_range_70_180": 1187,
+        "pct_in_range": 82.95
+      },
+      "gt_verified_against_series": true
+    },
+    {
+      "index": 2,
+      "source_path": "cgmacros/cgm_stat_calculation/2.pkl",
+      "dataset": "cgmacros",
+      "task": "cgm_stat_calculation",
+      "capability": "Perception",
+      "subtask": "Stat. Calculation",
+      "metric": "sMAPE (1-0.5*sMAPE)",
+      "prompt_or_query": "The continuous glucose monitors (CGM) data for this subject is provided in 'input/cgm.csv'. There are two columns in this csv file: one is timestamp containing the time of each reading, and the other column \"Libre GL\" contains glucose values (mg/dL). Calculate percentage of time CGM is below and above normal range (70 - 180 mg/dL). Please calculate and output your final answer as a JSON object without any other text in the following format:\n{\n    \"below\": [float, percentage of time CGM < 70 mg/dL],\n    \"above\": [float, percentage of time CGM > 180 mg/dL]\n}",
+      "prompt_source": "HEARTS/exp/cgmacros/cgm_stat_calculation.py run_agent prompt (official)",
+      "prompt_truncated": false,
+      "input_summary": "CGM time series as pandas DataFrame in pickle key 'cgm'; columns include timestamp + Libre GL (mg/dL); ~1431 rows per minute sampling.",
+      "ground_truth": {
+        "below": 0.0,
+        "above": 8.246
+      },
+      "ground_truth_source_keys": [
+        "GT.below",
+        "GT.above"
+      ],
+      "notes": "testcase file index 2",
+      "glucose_stats": {
+        "n_readings": 1431,
+        "min_mg_dl": 79.0,
+        "max_mg_dl": 233.0,
+        "mean_mg_dl": 129.94,
+        "std_mg_dl": 32.21,
+        "minutes_below_70": 0,
+        "minutes_above_180": 118,
+        "minutes_in_range_70_180": 1313,
+        "pct_in_range": 91.75
+      },
+      "gt_verified_against_series": true
+    },
+    {
+      "index": 3,
+      "source_path": "cgmacros/cgm_stat_calculation/3.pkl",
+      "dataset": "cgmacros",
+      "task": "cgm_stat_calculation",
+      "capability": "Perception",
+      "subtask": "Stat. Calculation",
+      "metric": "sMAPE (1-0.5*sMAPE)",
+      "prompt_or_query": "The continuous glucose monitors (CGM) data for this subject is provided in 'input/cgm.csv'. There are two columns in this csv file: one is timestamp containing the time of each reading, and the other column \"Libre GL\" contains glucose values (mg/dL). Calculate percentage of time CGM is below and above normal range (70 - 180 mg/dL). Please calculate and output your final answer as a JSON object without any other text in the following format:\n{\n    \"below\": [float, percentage of time CGM < 70 mg/dL],\n    \"above\": [float, percentage of time CGM > 180 mg/dL]\n}",
+      "prompt_source": "HEARTS/exp/cgmacros/cgm_stat_calculation.py run_agent prompt (official)",
+      "prompt_truncated": false,
+      "input_summary": "CGM time series as pandas DataFrame in pickle key 'cgm'; columns include timestamp + Libre GL (mg/dL); ~1431 rows per minute sampling.",
+      "ground_truth": {
+        "below": 0.0,
+        "above": 17.3305
+      },
+      "ground_truth_source_keys": [
+        "GT.below",
+        "GT.above"
+      ],
+      "notes": "testcase file index 3",
+      "glucose_stats": {
+        "n_readings": 1431,
+        "min_mg_dl": 93.0,
+        "max_mg_dl": 231.0,
+        "mean_mg_dl": 134.72,
+        "std_mg_dl": 40.12,
+        "minutes_below_70": 0,
+        "minutes_above_180": 248,
+        "minutes_in_range_70_180": 1183,
+        "pct_in_range": 82.67
+      },
+      "gt_verified_against_series": true
+    },
+    {
+      "index": 4,
+      "source_path": "cgmacros/cgm_stat_calculation/4.pkl",
+      "dataset": "cgmacros",
+      "task": "cgm_stat_calculation",
+      "capability": "Perception",
+      "subtask": "Stat. Calculation",
+      "metric": "sMAPE (1-0.5*sMAPE)",
+      "prompt_or_query": "The continuous glucose monitors (CGM) data for this subject is provided in 'input/cgm.csv'. There are two columns in this csv file: one is timestamp containing the time of each reading, and the other column \"Libre GL\" contains glucose values (mg/dL). Calculate percentage of time CGM is below and above normal range (70 - 180 mg/dL). Please calculate and output your final answer as a JSON object without any other text in the following format:\n{\n    \"below\": [float, percentage of time CGM < 70 mg/dL],\n    \"above\": [float, percentage of time CGM > 180 mg/dL]\n}",
+      "prompt_source": "HEARTS/exp/cgmacros/cgm_stat_calculation.py run_agent prompt (official)",
+      "prompt_truncated": false,
+      "input_summary": "CGM time series as pandas DataFrame in pickle key 'cgm'; columns include timestamp + Libre GL (mg/dL); ~1431 rows per minute sampling.",
+      "ground_truth": {
+        "below": 0.0,
+        "above": 15.0245
+      },
+      "ground_truth_source_keys": [
+        "GT.below",
+        "GT.above"
+      ],
+      "notes": "testcase file index 4",
+      "glucose_stats": {
+        "n_readings": 1431,
+        "min_mg_dl": 92.0,
+        "max_mg_dl": 206.0,
+        "mean_mg_dl": 129.97,
+        "std_mg_dl": 31.95,
+        "minutes_below_70": 0,
+        "minutes_above_180": 215,
+        "minutes_in_range_70_180": 1216,
+        "pct_in_range": 84.98
+      },
+      "gt_verified_against_series": true
+    },
+    {
+      "index": 5,
+      "source_path": "cgmacros/cgm_stat_calculation/5.pkl",
+      "dataset": "cgmacros",
+      "task": "cgm_stat_calculation",
+      "capability": "Perception",
+      "subtask": "Stat. Calculation",
+      "metric": "sMAPE (1-0.5*sMAPE)",
+      "prompt_or_query": "The continuous glucose monitors (CGM) data for this subject is provided in 'input/cgm.csv'. There are two columns in this csv file: one is timestamp containing the time of each reading, and the other column \"Libre GL\" contains glucose values (mg/dL). Calculate percentage of time CGM is below and above normal range (70 - 180 mg/dL). Please calculate and output your final answer as a JSON object without any other text in the following format:\n{\n    \"below\": [float, percentage of time CGM < 70 mg/dL],\n    \"above\": [float, percentage of time CGM > 180 mg/dL]\n}",
+      "prompt_source": "HEARTS/exp/cgmacros/cgm_stat_calculation.py run_agent prompt (official)",
+      "prompt_truncated": false,
+      "input_summary": "CGM time series as pandas DataFrame in pickle key 'cgm'; columns include timestamp + Libre GL (mg/dL); ~1431 rows per minute sampling.",
+      "ground_truth": {
+        "below": 0.0,
+        "above": 15.1642
+      },
+      "ground_truth_source_keys": [
+        "GT.below",
+        "GT.above"
+      ],
+      "notes": "testcase file index 5",
+      "glucose_stats": {
+        "n_readings": 1431,
+        "min_mg_dl": 87.0,
+        "max_mg_dl": 244.0,
+        "mean_mg_dl": 139.63,
+        "std_mg_dl": 35.68,
+        "minutes_below_70": 0,
+        "minutes_above_180": 217,
+        "minutes_in_range_70_180": 1214,
+        "pct_in_range": 84.84
+      },
+      "gt_verified_against_series": true
+    },
+    {
+      "index": 6,
+      "source_path": "cgmacros/cgm_stat_calculation/6.pkl",
+      "dataset": "cgmacros",
+      "task": "cgm_stat_calculation",
+      "capability": "Perception",
+      "subtask": "Stat. Calculation",
+      "metric": "sMAPE (1-0.5*sMAPE)",
+      "prompt_or_query": "The continuous glucose monitors (CGM) data for this subject is provided in 'input/cgm.csv'. There are two columns in this csv file: one is timestamp containing the time of each reading, and the other column \"Libre GL\" contains glucose values (mg/dL). Calculate percentage of time CGM is below and above normal range (70 - 180 mg/dL). Please calculate and output your final answer as a JSON object without any other text in the following format:\n{\n    \"below\": [float, percentage of time CGM < 70 mg/dL],\n    \"above\": [float, percentage of time CGM > 180 mg/dL]\n}",
+      "prompt_source": "HEARTS/exp/cgmacros/cgm_stat_calculation.py run_agent prompt (official)",
+      "prompt_truncated": false,
+      "input_summary": "CGM time series as pandas DataFrame in pickle key 'cgm'; columns include timestamp + Libre GL (mg/dL); ~1431 rows per minute sampling.",
+      "ground_truth": {
+        "below": 0.0,
+        "above": 6.8484
+      },
+      "ground_truth_source_keys": [
+        "GT.below",
+        "GT.above"
+      ],
+      "notes": "testcase file index 6",
+      "glucose_stats": {
+        "n_readings": 1431,
+        "min_mg_dl": 94.0,
+        "max_mg_dl": 225.0,
+        "mean_mg_dl": 128.48,
+        "std_mg_dl": 29.78,
+        "minutes_below_70": 0,
+        "minutes_above_180": 98,
+        "minutes_in_range_70_180": 1333,
+        "pct_in_range": 93.15
+      },
+      "gt_verified_against_series": true
+    },
+    {
+      "index": 7,
+      "source_path": "cgmacros/cgm_stat_calculation/7.pkl",
+      "dataset": "cgmacros",
+      "task": "cgm_stat_calculation",
+      "capability": "Perception",
+      "subtask": "Stat. Calculation",
+      "metric": "sMAPE (1-0.5*sMAPE)",
+      "prompt_or_query": "The continuous glucose monitors (CGM) data for this subject is provided in 'input/cgm.csv'. There are two columns in this csv file: one is timestamp containing the time of each reading, and the other column \"Libre GL\" contains glucose values (mg/dL). Calculate percentage of time CGM is below and above normal range (70 - 180 mg/dL). Please calculate and output your final answer as a JSON object without any other text in the following format:\n{\n    \"below\": [float, percentage of time CGM < 70 mg/dL],\n    \"above\": [float, percentage of time CGM > 180 mg/dL]\n}",
+      "prompt_source": "HEARTS/exp/cgmacros/cgm_stat_calculation.py run_agent prompt (official)",
+      "prompt_truncated": false,
+      "input_summary": "CGM time series as pandas DataFrame in pickle key 'cgm'; columns include timestamp + Libre GL (mg/dL); ~1431 rows per minute sampling.",
+      "ground_truth": {
+        "below": 0.0,
+        "above": 7.4773
+      },
+      "ground_truth_source_keys": [
+        "GT.below",
+        "GT.above"
+      ],
+      "notes": "testcase file index 7",
+      "glucose_stats": {
+        "n_readings": 1431,
+        "min_mg_dl": 105.0,
+        "max_mg_dl": 193.0,
+        "mean_mg_dl": 134.08,
+        "std_mg_dl": 25.75,
+        "minutes_below_70": 0,
+        "minutes_above_180": 107,
+        "minutes_in_range_70_180": 1324,
+        "pct_in_range": 92.52
+      },
+      "gt_verified_against_series": true
+    },
+    {
+      "index": 8,
+      "source_path": "cgmacros/cgm_stat_calculation/8.pkl",
+      "dataset": "cgmacros",
+      "task": "cgm_stat_calculation",
+      "capability": "Perception",
+      "subtask": "Stat. Calculation",
+      "metric": "sMAPE (1-0.5*sMAPE)",
+      "prompt_or_query": "The continuous glucose monitors (CGM) data for this subject is provided in 'input/cgm.csv'. There are two columns in this csv file: one is timestamp containing the time of each reading, and the other column \"Libre GL\" contains glucose values (mg/dL). Calculate percentage of time CGM is below and above normal range (70 - 180 mg/dL). Please calculate and output your final answer as a JSON object without any other text in the following format:\n{\n    \"below\": [float, percentage of time CGM < 70 mg/dL],\n    \"above\": [float, percentage of time CGM > 180 mg/dL]\n}",
+      "prompt_source": "HEARTS/exp/cgmacros/cgm_stat_calculation.py run_agent prompt (official)",
+      "prompt_truncated": false,
+      "input_summary": "CGM time series as pandas DataFrame in pickle key 'cgm'; columns include timestamp + Libre GL (mg/dL); ~1431 rows per minute sampling.",
+      "ground_truth": {
+        "below": 0.0,
+        "above": 15.0943
+      },
+      "ground_truth_source_keys": [
+        "GT.below",
+        "GT.above"
+      ],
+      "notes": "testcase file index 8",
+      "glucose_stats": {
+        "n_readings": 1431,
+        "min_mg_dl": 92.0,
+        "max_mg_dl": 223.0,
+        "mean_mg_dl": 136.88,
+        "std_mg_dl": 33.11,
+        "minutes_below_70": 0,
+        "minutes_above_180": 216,
+        "minutes_in_range_70_180": 1215,
+        "pct_in_range": 84.91
+      },
+      "gt_verified_against_series": true
+    },
+    {
+      "index": 9,
+      "source_path": "cgmacros/cgm_stat_calculation/9.pkl",
+      "dataset": "cgmacros",
+      "task": "cgm_stat_calculation",
+      "capability": "Perception",
+      "subtask": "Stat. Calculation",
+      "metric": "sMAPE (1-0.5*sMAPE)",
+      "prompt_or_query": "The continuous glucose monitors (CGM) data for this subject is provided in 'input/cgm.csv'. There are two columns in this csv file: one is timestamp containing the time of each reading, and the other column \"Libre GL\" contains glucose values (mg/dL). Calculate percentage of time CGM is below and above normal range (70 - 180 mg/dL). Please calculate and output your final answer as a JSON object without any other text in the following format:\n{\n    \"below\": [float, percentage of time CGM < 70 mg/dL],\n    \"above\": [float, percentage of time CGM > 180 mg/dL]\n}",
+      "prompt_source": "HEARTS/exp/cgmacros/cgm_stat_calculation.py run_agent prompt (official)",
+      "prompt_truncated": false,
+      "input_summary": "CGM time series as pandas DataFrame in pickle key 'cgm'; columns include timestamp + Libre GL (mg/dL); ~1431 rows per minute sampling.",
+      "ground_truth": {
+        "below": 0.0,
+        "above": 0.0
+      },
+      "ground_truth_source_keys": [
+        "GT.below",
+        "GT.above"
+      ],
+      "notes": "testcase file index 9",
+      "glucose_stats": {
+        "n_readings": 1431,
+        "min_mg_dl": 97.0,
+        "max_mg_dl": 175.0,
+        "mean_mg_dl": 128.66,
+        "std_mg_dl": 22.15,
+        "minutes_below_70": 0,
+        "minutes_above_180": 0,
+        "minutes_in_range_70_180": 1431,
+        "pct_in_range": 100.0
+      },
+      "gt_verified_against_series": true
+    }
+  ],
+  "disclaimer": "GT and glucose_stats from pickle.load when available; pickletools fallback. Prompt from official task source."
+}

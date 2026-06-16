@@ -1,0 +1,168 @@
+{
+  "hf_frozen": {
+    "total_pkl": 10,
+    "total_bytes": 437619,
+    "by_dataset": {
+      "cgmacros": {
+        "cgm_stat_calculation": [
+          {
+            "file": "cgmacros/cgm_stat_calculation/0.pkl",
+            "bytes": 43761
+          },
+          {
+            "file": "cgmacros/cgm_stat_calculation/1.pkl",
+            "bytes": 43762
+          },
+          {
+            "file": "cgmacros/cgm_stat_calculation/2.pkl",
+            "bytes": 43762
+          },
+          {
+            "file": "cgmacros/cgm_stat_calculation/3.pkl",
+            "bytes": 43762
+          },
+          {
+            "file": "cgmacros/cgm_stat_calculation/4.pkl",
+            "bytes": 43762
+          },
+          {
+            "file": "cgmacros/cgm_stat_calculation/5.pkl",
+            "bytes": 43762
+          },
+          {
+            "file": "cgmacros/cgm_stat_calculation/6.pkl",
+            "bytes": 43762
+          },
+          {
+            "file": "cgmacros/cgm_stat_calculation/7.pkl",
+            "bytes": 43762
+          },
+          {
+            "file": "cgmacros/cgm_stat_calculation/8.pkl",
+            "bytes": 43762
+          },
+          {
+            "file": "cgmacros/cgm_stat_calculation/9.pkl",
+            "bytes": 43762
+          }
+        ]
+      }
+    }
+  },
+  "paper_total_test_samples": 20226,
+  "paper_datasets": [
+    {
+      "dataset": "capture24",
+      "domain": "Motion",
+      "modality": "IMU (100Hz)",
+      "paper_test_samples": 1204,
+      "access": "Open Source"
+    },
+    {
+      "dataset": "pamap2",
+      "domain": "Motion",
+      "modality": "IMU (100Hz)",
+      "paper_test_samples": 106,
+      "access": "Open Source"
+    },
+    {
+      "dataset": "shanghai_diabetes",
+      "domain": "Metabolic",
+      "modality": "CGM (per minute)",
+      "paper_test_samples": 232,
+      "access": "Open Source"
+    },
+    {
+      "dataset": "cgmacros",
+      "domain": "Metabolic",
+      "modality": "CGM, HR, Annotation",
+      "paper_test_samples": 2333,
+      "access": "Open Source"
+    },
+    {
+      "dataset": "vitaldb",
+      "domain": "Surgery",
+      "modality": "MBP, EEG, ECG, PPG",
+      "paper_test_samples": 2000,
+      "access": "Open Source"
+    },
+    {
+      "dataset": "shhs",
+      "domain": "Sleep",
+      "modality": "ECG, EEG, EOG, etc.",
+      "paper_test_samples": 4799,
+      "access": "Restricted"
+    },
+    {
+      "dataset": "harespod",
+      "domain": "Respiration",
+      "modality": "Respiration, SpO2, HR",
+      "paper_test_samples": 632,
+      "access": "Open Source"
+    },
+    {
+      "dataset": "phymer",
+      "domain": "Emotion",
+      "modality": "BVP, EDA, TEMP, HR",
+      "paper_test_samples": 1830,
+      "access": "Restricted"
+    },
+    {
+      "dataset": "perg_ioba",
+      "domain": "Ophthalmology",
+      "modality": "PERG (1700Hz)",
+      "paper_test_samples": 870,
+      "access": "Open Source"
+    },
+    {
+      "dataset": "gazebase",
+      "domain": "Eye Movement",
+      "modality": "Eye Tracking (1000Hz)",
+      "paper_test_samples": 988,
+      "access": "Open Source"
+    },
+    {
+      "dataset": "globem",
+      "domain": "Behavior",
+      "modality": "Aggregated (per day)",
+      "paper_test_samples": 1140,
+      "access": "Restricted"
+    },
+    {
+      "dataset": "bridge2ai_voice",
+      "domain": "Speech",
+      "modality": "Audio (100Hz)",
+      "paper_test_samples": 1600,
+      "access": "Restricted"
+    },
+    {
+      "dataset": "vctk",
+      "domain": "Speech",
+      "modality": "Audio (16kHz)",
+      "paper_test_samples": 200,
+      "access": "Open Source"
+    },
+    {
+      "dataset": "grabmyo",
+      "domain": "Gesture",
+      "modality": "EMG (2048Hz)",
+      "paper_test_samples": 400,
+      "access": "Open Source"
+    },
+    {
+      "dataset": "coughvid",
+      "domain": "COVID Cough",
+      "modality": "Audio (48kHz)",
+      "paper_test_samples": 892,
+      "access": "Open Source"
+    },
+    {
+      "dataset": "coswara",
+      "domain": "COVID Cough",
+      "modality": "Audio (48kHz)",
+      "paper_test_samples": 1000,
+      "access": "Open Source"
+    }
+  ],
+  "hf_vs_paper_note": "HF 当前仅发布部分 frozen pickle；论文 20,226 为全 benchmark。"
+}

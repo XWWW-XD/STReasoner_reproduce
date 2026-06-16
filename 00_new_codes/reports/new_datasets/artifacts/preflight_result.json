@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-06-16T00:44:54.737404+00:00",
+  "data_root": "/root/autodl-tmp/datasets/HEARTS",
+  "pass": true,
+  "clone_code": true,
+  "disk": {
+    "df_line": "/dev/md127      100G   61G   40G  61% /root/autodl-tmp",
+    "avail_gb": 40.0
+  },
+  "hf": {
+    "id": "yang-ai-lab/HEARTS",
+    "private": false,
+    "gated": false,
+    "disabled": false,
+    "used_storage_bytes": 437619,
+    "used_storage_mb": 0.417,
+    "siblings_count": 12
+  },
+  "github": {
+    "size_kb": 8203,
+    "size_mb": 8.01
+  },
+  "estimated_total_mb": 58.43,
+  "checks": {
+    "disk_ok": true,
+    "hf_public": true,
+    "size_ok": true
+  }
+}
